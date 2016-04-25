@@ -1,0 +1,45 @@
+{
+  "Servers": [
+    {
+      "ID": 114308649,
+      "Name": "ModGames",
+      "Pattern": "test",
+      "URL": "modgames.net"
+    }
+  ],
+  "Mods": [
+    {
+      "ID": 2116902403,
+      "Name": "Test 1",
+      "Version": "1.0",
+      "Root": "F:\\[WorkSpace]\\[Programming]\\[WinForms]\\Skyrim Mods Tracker\\Skyrim Mods Tracker\\Skyrim Mods Tracker\\bin\\Debug\\smt.json",
+      "State": 2,
+      "Sources": [
+        {
+          "Path": "/load/tes_v_skyrim/graficheskie_modifikacii/wonders_of_weather_chudesa_pogody/279-1-0-19576?lj1RHo",
+          "Server": 114308649,
+          "Language": 1,
+          "Version": ""
+        }
+      ]
+    },
+    {
+      "ID": 1994677775,
+      "Name": "Test 2",
+      "Version": "1.0",
+      "Root": "F:\\[WorkSpace]\\[Programming]\\[WinForms]\\Skyrim Mods Tracker\\Skyrim Mods Tracker\\Skyrim Mods Tracker\\bin\\Debug\\smt.json",
+      "State": 2,
+      "Sources": []
+    },
+    {
+      "ID": 501519061,
+      "Name": "Test 3",
+      "Version": "1.0",
+      "Root": "F:\\[WorkSpace]\\[Programming]\\[WinForms]\\Skyrim Mods Tracker\\Skyrim Mods Tracker\\Skyrim Mods Tracker\\bin\\Debug\\smt.json",
+      "State": 2,
+      "Sources": []
+    }
+  ],
+  "Updated": "04/25/2016 14:55",
+  "Version": "0.3"
+}

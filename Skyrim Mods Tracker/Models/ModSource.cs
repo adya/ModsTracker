@@ -34,7 +34,6 @@ namespace SMT.Models
         /// <summary>
         /// State of that source.
         /// </summary>
-        [JsonIgnore]
         public SourceState State { get; set; }
 
         [JsonIgnore]

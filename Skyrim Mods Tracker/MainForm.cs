@@ -26,18 +26,18 @@ namespace SMT
             mods = ModsManager.Mods.ToList();
             bsMods.DataSource = mods;
             ofdRoot.InitialDirectory = Environment.CurrentDirectory;
-
             cbLanguage.DataSource = Enum.GetValues(typeof(Language));
-
             SetModEditable(false);
         }
 
         private void bsModsCurrentChanged(object sender, EventArgs e)
         {
             SaveSources();
+            if (bsMods.Current == null) { SetModEditable(false); return; }
             selectedMod = bsMods.Current as Mod;
             sources = selectedMod.Sources.ToList();
             bsSources.DataSource = sources;
+            dgvSources.DataSource = bsSources;
         }
 
         private void SaveSources()
@@ -62,6 +62,10 @@ namespace SMT
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSources();
+            var m = ModsManager.Mods;
+            m.Clear();
+            foreach (var mod in mods)
+                m.Add(mod);
             StorageManager.Sync();
         }
 
@@ -73,6 +77,8 @@ namespace SMT
         private void MainForm_Load(object sender, EventArgs e)
         {
             dgvMods.ClearSelection();
+            dgvSources.ClearSelection();
+           
         }
 
         private void dgvMods_MouseDown(object sender, MouseEventArgs e)
@@ -105,6 +111,8 @@ namespace SMT
             bBrowse.Enabled = isEditable;
             bSourceAdd.Enabled = isEditable;
             bSourceDelete.Enabled = isEditable;
+            bModDelete.Enabled = isEditable;
+            dgvSources.Enabled = isEditable;
             if (isEditable) bsMods.ResumeBinding();
             else
             {
@@ -113,6 +121,7 @@ namespace SMT
                 tbRoot.Clear();
                 tbVersion.Clear();
                 SetSourceEditable(false);
+                dgvSources.DataSource = null;
                 dgvSources.ClearSelection();
             }
         }
@@ -195,6 +204,18 @@ namespace SMT
         private void cbServer_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                ModsReader.CheckMod(mods[e.RowIndex]);
+                bsMods.ResetBindings(false);
+            }
         }
     }
 }

@@ -19,7 +19,6 @@ namespace SMT.Managers
         private const string STORAGE_DATE_KEY = "Updated";
 
         private static Dictionary<string, dynamic> data;
-        public static bool IsSync { get; private set; }
         public static string StorageFilePath { get { return Path.Combine(Environment.CurrentDirectory, STORAGE_FILE + STORAGE_EXT); } }
 
         static StorageManager()
@@ -50,7 +49,6 @@ namespace SMT.Managers
             storageData.TryCopy(STORAGE_DATE_KEY, data);
             storageData.TryCopy(STORAGE_VERSION_KEY, data);
 
-            IsSync = true;
         }
 
         /// <summary>
@@ -65,14 +63,12 @@ namespace SMT.Managers
             if (items == null) return;
             string key = KeyForType(typeof(T));
             data.Set(key, new HashSet<T>(items));
-            IsSync = false;
         }
 
        
 
         public static void Sync()
         {
-            if (IsSync) return;
             data.Set(STORAGE_DATE_KEY, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
             data.Set(STORAGE_VERSION_KEY, STORAGE_VERSION);
             string res = JsonConvert.SerializeObject(data, Formatting.Indented);

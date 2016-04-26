@@ -72,12 +72,7 @@ namespace SMT
         private bool ValidateURL()
         {
             var cur = bsServers.Current as Server;
-            try {
-                Uri uri = new Uri(tbURL.Text);
-                return uri.Host != null && uri.Host != "" && !(servers.FindAll(s => s.URL.Equals(tbURL.Text) && !s.Equals(cur)).Count > 0);
-            }
-            catch (Exception e) { return false; }
-            
+            return !(servers.FindAll(s => s.URL.Equals(tbURL.Text) && !s.Equals(cur)).Count > 0);
         }
 
         private void ServersForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -116,7 +111,6 @@ namespace SMT
         {
             e.Cancel = !ValidateURL();
             if (e.Cancel) MessageBox.Show("Server with that URL already exists");
-            else tbURL.Text = new Uri(tbURL.Text).Host;
         }
     }
 }

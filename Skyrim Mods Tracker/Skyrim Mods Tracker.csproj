@@ -58,6 +58,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\ModsManager.cs" />
+    <Compile Include="Managers\ModsReader.cs" />
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
     <Compile Include="Models\Language.cs" />

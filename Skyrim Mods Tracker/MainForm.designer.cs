@@ -56,13 +56,14 @@
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.lLanguage = new System.Windows.Forms.Label();
             this.lServer = new System.Windows.Forms.Label();
+            this.Refresh = new System.Windows.Forms.DataGridViewButtonColumn();
             this.bsSources = new System.Windows.Forms.BindingSource(this.components);
             this.bsMods = new System.Windows.Forms.BindingSource(this.components);
             this.serverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.languageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,7 +83,8 @@
             // dgvMods
             // 
             this.dgvMods.AllowUserToAddRows = false;
-            this.dgvMods.AllowUserToDeleteRows = false;
+            this.dgvMods.AllowUserToOrderColumns = true;
+            this.dgvMods.AllowUserToResizeRows = false;
             this.dgvMods.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,16 +97,18 @@
             this.iDDataGridViewTextBoxColumn,
             this.versionDataGridViewTextBoxColumn,
             this.stateDataGridViewTextBoxColumn,
+            this.Refresh,
             this.rootDataGridViewTextBoxColumn});
             this.dgvMods.DataSource = this.bsMods;
+            this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMods.Location = new System.Drawing.Point(12, 27);
-            this.dgvMods.MultiSelect = false;
             this.dgvMods.Name = "dgvMods";
             this.dgvMods.ReadOnly = true;
             this.dgvMods.RowHeadersVisible = false;
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMods.Size = new System.Drawing.Size(626, 424);
             this.dgvMods.TabIndex = 0;
+            this.dgvMods.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellContentClick);
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
             // 
             // gbMod
@@ -246,7 +250,7 @@
             // dgvSources
             // 
             this.dgvSources.AllowUserToAddRows = false;
-            this.dgvSources.AllowUserToDeleteRows = false;
+            this.dgvSources.AllowUserToOrderColumns = true;
             this.dgvSources.AllowUserToResizeRows = false;
             this.dgvSources.AutoGenerateColumns = false;
             this.dgvSources.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
@@ -256,12 +260,11 @@
             this.serverDataGridViewTextBoxColumn,
             this.languageDataGridViewTextBoxColumn,
             this.versionDataGridViewTextBoxColumn1,
-            this.pathDataGridViewTextBoxColumn,
-            this.stateDataGridViewTextBoxColumn1});
+            this.stateDataGridViewTextBoxColumn1,
+            this.pathDataGridViewTextBoxColumn});
             this.dgvSources.DataSource = this.bsSources;
             this.dgvSources.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvSources.Location = new System.Drawing.Point(10, 19);
-            this.dgvSources.MultiSelect = false;
             this.dgvSources.Name = "dgvSources";
             this.dgvSources.ReadOnly = true;
             this.dgvSources.RowHeadersVisible = false;
@@ -346,7 +349,6 @@
             this.tbSourceVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Version", true));
             this.tbSourceVersion.Location = new System.Drawing.Point(73, 72);
             this.tbSourceVersion.Name = "tbSourceVersion";
-            this.tbSourceVersion.ReadOnly = true;
             this.tbSourceVersion.Size = new System.Drawing.Size(252, 20);
             this.tbSourceVersion.TabIndex = 8;
             // 
@@ -387,6 +389,13 @@
             this.lServer.TabIndex = 2;
             this.lServer.Text = "URL:";
             // 
+            // Refresh
+            // 
+            this.Refresh.HeaderText = "Refresh";
+            this.Refresh.Name = "Refresh";
+            this.Refresh.ReadOnly = true;
+            this.Refresh.Width = 48;
+            // 
             // bsSources
             // 
             this.bsSources.DataSource = typeof(SMT.Models.ModSource);
@@ -421,14 +430,6 @@
             this.versionDataGridViewTextBoxColumn1.ReadOnly = true;
             this.versionDataGridViewTextBoxColumn1.Width = 65;
             // 
-            // pathDataGridViewTextBoxColumn
-            // 
-            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
-            this.pathDataGridViewTextBoxColumn.HeaderText = "Path";
-            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
-            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pathDataGridViewTextBoxColumn.Width = 52;
-            // 
             // stateDataGridViewTextBoxColumn1
             // 
             this.stateDataGridViewTextBoxColumn1.DataPropertyName = "State";
@@ -436,6 +437,14 @@
             this.stateDataGridViewTextBoxColumn1.Name = "stateDataGridViewTextBoxColumn1";
             this.stateDataGridViewTextBoxColumn1.ReadOnly = true;
             this.stateDataGridViewTextBoxColumn1.Width = 55;
+            // 
+            // pathDataGridViewTextBoxColumn
+            // 
+            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
+            this.pathDataGridViewTextBoxColumn.HeaderText = "Path";
+            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
+            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pathDataGridViewTextBoxColumn.Width = 52;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -541,16 +550,17 @@
         private System.Windows.Forms.Button bSourceDelete;
         private System.Windows.Forms.BindingSource bsMods;
         private System.Windows.Forms.BindingSource bsSources;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn Refresh;
         private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
     }
 }
 

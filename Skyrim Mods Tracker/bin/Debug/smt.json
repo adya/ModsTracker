@@ -1,16 +1,18 @@
 {
+  "Updated": "04/28/2016 02:39",
+  "Version": "0.5",
   "Servers": [
     {
       "ID": 114308649,
       "Name": "ModGames",
-      "Pattern": " \\s*<br><b>\\s*Версия:\\s*</b>\\s*(.+).*",
+      "Pattern": ".*<br><b>\\s*Версия:\\s*</b>\\s*(.+).*",
       "URL": "http://modgames.net"
     },
     {
       "ID": 1652867154,
       "Name": "Nexus",
-      "Pattern": "test",
-      "URL": "http://nexusmods.com"
+      "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
+      "URL": "https://nexusmods.com"
     }
   ],
   "Mods": [
@@ -29,7 +31,5 @@
         }
       ]
     }
-  ],
-  "Updated": "04/26/2016 12:46",
-  "Version": "0.3"
+  ]
 }

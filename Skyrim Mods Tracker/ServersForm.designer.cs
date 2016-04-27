@@ -30,21 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvServers = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ServerAvailable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.lPatternError = new System.Windows.Forms.Label();
+            this.lURLError = new System.Windows.Forms.Label();
+            this.lNameError = new System.Windows.Forms.Label();
             this.lPattern = new System.Windows.Forms.Label();
             this.lURL = new System.Windows.Forms.Label();
             this.tbPattern = new System.Windows.Forms.TextBox();
             this.lName = new System.Windows.Forms.Label();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
-            this.bAdd = new System.Windows.Forms.Button();
-            this.bDelete = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServerAvailable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bAdd = new SMT.Utils.StateButton();
+            this.bRemove = new SMT.Utils.StateButton();
+            this.bsServers = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionPatternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsServers = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).BeginInit();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsServers)).BeginInit();
@@ -55,6 +58,9 @@
             this.dgvServers.AllowUserToAddRows = false;
             this.dgvServers.AllowUserToDeleteRows = false;
             this.dgvServers.AllowUserToResizeRows = false;
+            this.dgvServers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvServers.AutoGenerateColumns = false;
             this.dgvServers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvServers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -73,103 +79,9 @@
             this.dgvServers.ReadOnly = true;
             this.dgvServers.RowHeadersVisible = false;
             this.dgvServers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServers.Size = new System.Drawing.Size(404, 237);
+            this.dgvServers.Size = new System.Drawing.Size(416, 243);
             this.dgvServers.TabIndex = 5;
             this.dgvServers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvServers_MouseDown);
-            // 
-            // gbDetails
-            // 
-            this.gbDetails.Controls.Add(this.lPattern);
-            this.gbDetails.Controls.Add(this.lURL);
-            this.gbDetails.Controls.Add(this.tbPattern);
-            this.gbDetails.Controls.Add(this.lName);
-            this.gbDetails.Controls.Add(this.tbURL);
-            this.gbDetails.Controls.Add(this.tbName);
-            this.gbDetails.Controls.Add(this.bAdd);
-            this.gbDetails.Controls.Add(this.bDelete);
-            this.gbDetails.Location = new System.Drawing.Point(422, 12);
-            this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Size = new System.Drawing.Size(250, 237);
-            this.gbDetails.TabIndex = 1;
-            this.gbDetails.TabStop = false;
-            this.gbDetails.Text = "Server";
-            // 
-            // lPattern
-            // 
-            this.lPattern.AutoSize = true;
-            this.lPattern.Location = new System.Drawing.Point(10, 74);
-            this.lPattern.Name = "lPattern";
-            this.lPattern.Size = new System.Drawing.Size(44, 13);
-            this.lPattern.TabIndex = 3;
-            this.lPattern.Text = "Pattern:";
-            // 
-            // lURL
-            // 
-            this.lURL.AutoSize = true;
-            this.lURL.Location = new System.Drawing.Point(10, 48);
-            this.lURL.Name = "lURL";
-            this.lURL.Size = new System.Drawing.Size(32, 13);
-            this.lURL.TabIndex = 3;
-            this.lURL.Text = "URL:";
-            // 
-            // tbPattern
-            // 
-            this.tbPattern.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "VersionPattern", true));
-            this.tbPattern.Location = new System.Drawing.Point(54, 71);
-            this.tbPattern.Name = "tbPattern";
-            this.tbPattern.Size = new System.Drawing.Size(190, 20);
-            this.tbPattern.TabIndex = 2;
-            // 
-            // lName
-            // 
-            this.lName.AutoSize = true;
-            this.lName.Location = new System.Drawing.Point(10, 22);
-            this.lName.Name = "lName";
-            this.lName.Size = new System.Drawing.Size(38, 13);
-            this.lName.TabIndex = 3;
-            this.lName.Text = "Name:";
-            // 
-            // tbURL
-            // 
-            this.tbURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "URL", true));
-            this.tbURL.Location = new System.Drawing.Point(54, 45);
-            this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(190, 20);
-            this.tbURL.TabIndex = 1;
-            this.tbURL.Validating += new System.ComponentModel.CancelEventHandler(this.tbURL_Validating);
-            // 
-            // tbName
-            // 
-            this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "Name", true));
-            this.tbName.Location = new System.Drawing.Point(54, 19);
-            this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(190, 20);
-            this.tbName.TabIndex = 0;
-            this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
-            // 
-            // bAdd
-            // 
-            this.bAdd.BackColor = System.Drawing.Color.YellowGreen;
-            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bAdd.Location = new System.Drawing.Point(88, 208);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(75, 23);
-            this.bAdd.TabIndex = 3;
-            this.bAdd.Text = "Add";
-            this.bAdd.UseVisualStyleBackColor = false;
-            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
-            // 
-            // bDelete
-            // 
-            this.bDelete.BackColor = System.Drawing.Color.IndianRed;
-            this.bDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bDelete.Location = new System.Drawing.Point(169, 208);
-            this.bDelete.Name = "bDelete";
-            this.bDelete.Size = new System.Drawing.Size(75, 23);
-            this.bDelete.TabIndex = 4;
-            this.bDelete.Text = "Delete";
-            this.bDelete.UseVisualStyleBackColor = false;
-            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
             // 
             // ID
             // 
@@ -187,6 +99,146 @@
             this.ServerAvailable.Name = "ServerAvailable";
             this.ServerAvailable.ReadOnly = true;
             this.ServerAvailable.Width = 41;
+            // 
+            // gbDetails
+            // 
+            this.gbDetails.Controls.Add(this.bAdd);
+            this.gbDetails.Controls.Add(this.bRemove);
+            this.gbDetails.Controls.Add(this.lPatternError);
+            this.gbDetails.Controls.Add(this.lURLError);
+            this.gbDetails.Controls.Add(this.lNameError);
+            this.gbDetails.Controls.Add(this.lPattern);
+            this.gbDetails.Controls.Add(this.lURL);
+            this.gbDetails.Controls.Add(this.tbPattern);
+            this.gbDetails.Controls.Add(this.lName);
+            this.gbDetails.Controls.Add(this.tbURL);
+            this.gbDetails.Controls.Add(this.tbName);
+            this.gbDetails.Dock = System.Windows.Forms.DockStyle.Right;
+            this.gbDetails.Location = new System.Drawing.Point(434, 0);
+            this.gbDetails.Name = "gbDetails";
+            this.gbDetails.Size = new System.Drawing.Size(250, 261);
+            this.gbDetails.TabIndex = 1;
+            this.gbDetails.TabStop = false;
+            this.gbDetails.Text = "Server";
+            // 
+            // lPatternError
+            // 
+            this.lPatternError.AutoSize = true;
+            this.lPatternError.Location = new System.Drawing.Point(60, 123);
+            this.lPatternError.Name = "lPatternError";
+            this.lPatternError.Size = new System.Drawing.Size(29, 13);
+            this.lPatternError.TabIndex = 5;
+            this.lPatternError.Text = "Error";
+            this.lPatternError.Visible = false;
+            // 
+            // lURLError
+            // 
+            this.lURLError.AutoSize = true;
+            this.lURLError.Location = new System.Drawing.Point(60, 83);
+            this.lURLError.Name = "lURLError";
+            this.lURLError.Size = new System.Drawing.Size(29, 13);
+            this.lURLError.TabIndex = 5;
+            this.lURLError.Text = "Error";
+            this.lURLError.Visible = false;
+            // 
+            // lNameError
+            // 
+            this.lNameError.AutoSize = true;
+            this.lNameError.Location = new System.Drawing.Point(60, 43);
+            this.lNameError.Name = "lNameError";
+            this.lNameError.Size = new System.Drawing.Size(29, 13);
+            this.lNameError.TabIndex = 5;
+            this.lNameError.Text = "Error";
+            this.lNameError.Visible = false;
+            // 
+            // lPattern
+            // 
+            this.lPattern.AutoSize = true;
+            this.lPattern.Location = new System.Drawing.Point(10, 103);
+            this.lPattern.Name = "lPattern";
+            this.lPattern.Size = new System.Drawing.Size(44, 13);
+            this.lPattern.TabIndex = 3;
+            this.lPattern.Text = "Pattern:";
+            // 
+            // lURL
+            // 
+            this.lURL.AutoSize = true;
+            this.lURL.Location = new System.Drawing.Point(10, 63);
+            this.lURL.Name = "lURL";
+            this.lURL.Size = new System.Drawing.Size(32, 13);
+            this.lURL.TabIndex = 3;
+            this.lURL.Text = "URL:";
+            // 
+            // tbPattern
+            // 
+            this.tbPattern.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "VersionPattern", true));
+            this.tbPattern.Location = new System.Drawing.Point(54, 100);
+            this.tbPattern.Name = "tbPattern";
+            this.tbPattern.Size = new System.Drawing.Size(190, 20);
+            this.tbPattern.TabIndex = 2;
+            // 
+            // lName
+            // 
+            this.lName.AutoSize = true;
+            this.lName.Location = new System.Drawing.Point(10, 22);
+            this.lName.Name = "lName";
+            this.lName.Size = new System.Drawing.Size(38, 13);
+            this.lName.TabIndex = 3;
+            this.lName.Text = "Name:";
+            // 
+            // tbURL
+            // 
+            this.tbURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "URL", true));
+            this.tbURL.Location = new System.Drawing.Point(54, 60);
+            this.tbURL.Name = "tbURL";
+            this.tbURL.Size = new System.Drawing.Size(190, 20);
+            this.tbURL.TabIndex = 1;
+            // 
+            // tbName
+            // 
+            this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "Name", true));
+            this.tbName.Location = new System.Drawing.Point(54, 20);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(190, 20);
+            this.tbName.TabIndex = 0;
+            // 
+            // bAdd
+            // 
+            this.bAdd.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAdd.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAdd.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAdd.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAdd.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAdd.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAdd.Location = new System.Drawing.Point(89, 232);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(75, 23);
+            this.bAdd.TabIndex = 7;
+            this.bAdd.Text = "Add";
+            this.bAdd.UseVisualStyleBackColor = false;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
+            // 
+            // bRemove
+            // 
+            this.bRemove.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemove.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemove.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemove.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemove.EnabledForeColor = System.Drawing.Color.Black;
+            this.bRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemove.ForeColor = System.Drawing.Color.Black;
+            this.bRemove.Location = new System.Drawing.Point(170, 232);
+            this.bRemove.Name = "bRemove";
+            this.bRemove.Size = new System.Drawing.Size(75, 23);
+            this.bRemove.TabIndex = 6;
+            this.bRemove.Text = "Remove";
+            this.bRemove.UseVisualStyleBackColor = false;
+            // 
+            // bsServers
+            // 
+            this.bsServers.DataSource = typeof(SMT.Models.Server);
+            this.bsServers.CurrentItemChanged += new System.EventHandler(this.bsServers_CurrentItemChanged);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -212,10 +264,6 @@
             this.versionPatternDataGridViewTextBoxColumn.ReadOnly = true;
             this.versionPatternDataGridViewTextBoxColumn.Width = 99;
             // 
-            // bsServers
-            // 
-            this.bsServers.DataSource = typeof(SMT.Models.Server);
-            // 
             // ServersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,14 +272,13 @@
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.dgvServers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MaximumSize = new System.Drawing.Size(700, 500);
+            this.MaximumSize = new System.Drawing.Size(1200, 1500);
             this.MinimumSize = new System.Drawing.Size(700, 300);
             this.Name = "ServersForm";
             this.Text = "ServersForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServersForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServersForm_FormClosed);
             this.Load += new System.EventHandler(this.ServersForm_Load);
-            this.ResizeBegin += new System.EventHandler(this.ServersForm_ResizeBegin);
-            this.SizeChanged += new System.EventHandler(this.ServersForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).EndInit();
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
@@ -244,8 +291,6 @@
 
         private System.Windows.Forms.DataGridView dgvServers;
         private System.Windows.Forms.GroupBox gbDetails;
-        private System.Windows.Forms.Button bAdd;
-        private System.Windows.Forms.Button bDelete;
         private System.Windows.Forms.Label lURL;
         private System.Windows.Forms.Label lName;
         private System.Windows.Forms.TextBox tbURL;
@@ -258,5 +303,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ServerAvailable;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lPatternError;
+        private System.Windows.Forms.Label lURLError;
+        private System.Windows.Forms.Label lNameError;
+        private Utils.StateButton bRemove;
+        private Utils.StateButton bAdd;
     }
 }

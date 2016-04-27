@@ -1,31 +1,53 @@
 ﻿using Newtonsoft.Json;
 using System;
+using SMT.Managers;
 
 namespace SMT.Models
 {
     class Server
     {
+        [JsonIgnore]
+        private string url;
 
         /// <summary>
-        /// Gets server id.
+        /// Server id.
         /// </summary>
         public int ID { get; private set; }
 
         /// <summary>
-        /// Gets displayed name of the server.
+        /// Name of the server.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets regular expression pattern which matches version label on mod's web-page.
+        /// Regular expression pattern which matches version label on mod's web-page.
         /// </summary>
         [JsonProperty("Pattern")]
         public string VersionPattern { get; set; }
 
         /// <summary>
-        /// Gets server domain.
+        /// Flag indicating whether server a has valid url or not.
         /// </summary>
-        public string URL { get; set; }
+        [JsonIgnore]
+        public bool HasValidURL { get; private set; }
+
+        /// <summary>
+        /// Flag indicating whether server a has valid name or not.
+        /// </summary>
+        [JsonIgnore]
+        public bool HasValidName { get { return !string.IsNullOrWhiteSpace(Name); } }
+
+        [JsonIgnore]
+        public bool IsValid { get { return HasValidName && HasValidURL && this.HasValidPattern(); } }
+
+        /// <summary>
+        /// Server domain.
+        /// </summary>
+        public string URL
+        {
+            get { return url; }
+            set { HasValidURL = ServersManager.TryBuildURL(value, out url); }
+        }
 
         [JsonConstructor]
         public Server(int id) { ID = id; Name = ""; VersionPattern = ""; URL = ""; }
@@ -40,9 +62,6 @@ namespace SMT.Models
 
         public override int GetHashCode() { return ID; }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() { return Name; }
     }
 }

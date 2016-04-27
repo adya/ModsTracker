@@ -1,7 +1,7 @@
 ﻿using SMT.Managers;
 using SMT.Models;
+using SMT.Utils;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,31 +10,25 @@ namespace SMT
 {
     public partial class ServersForm : Form
     {
-        private int oldHeight;
-        private List<Server> servers;
-        //private List<Server> original;
+        private BindingList<Server> servers;
 
         public ServersForm()
         {
             InitializeComponent();
-            servers = ServersManager.Servers.ToList();
-       //     original = servers.Select(s => new Server(s.ID) {Name = s.Name, URL = s.URL, VersionPattern = s.VersionPattern }).ToList();
+            servers = new BindingList<Server>(ServersManager.Servers.ToList());
             bsServers.DataSource = servers;
-        }
-
-        private void ServersForm_SizeChanged(object sender, EventArgs e)
-        {
-            dgvServers.Height += this.Height - oldHeight;
-            oldHeight = this.Height;
-        }
-
-        private void ServersForm_ResizeBegin(object sender, EventArgs e)
-        {
-            oldHeight = Height;
         }
 
         private void ServersForm_Load(object sender, EventArgs e)
         {
+            tbName.BindLabel(lNameError);
+            tbURL.BindLabel(lURLError);
+            tbPattern.BindLabel(lPatternError);
+
+            tbURL.TextChanged += OnTextChanged;
+            tbName.TextChanged += OnTextChanged;
+            tbPattern.TextChanged += OnTextChanged;
+
             dgvServers.ClearSelection();
         }
 
@@ -44,73 +38,136 @@ namespace SMT
             {
                 DataGridView.HitTestInfo hit = dgvServers.HitTest(e.X, e.Y);
                 if (hit.Type == DataGridViewHitTestType.None)
-                {
-                    dgvServers.ClearSelection();
-                    bsServers.SuspendBinding();
-                    tbName.Clear();
-                    tbPattern.Clear();
-                    tbURL.Clear();
-                }
+                    SetServerEditable(false);
                 else if (hit.Type == DataGridViewHitTestType.Cell || hit.Type == DataGridViewHitTestType.RowHeader)
-                    bsServers.ResumeBinding();
+                    SetServerEditable(true);
             }
         }
 
-        private bool ValidateServer(Server server)
+        private void SetServerEditable(bool isEditable)
         {
-            return server.Name != null && server.Name != "" &&
-                    server.URL != null && server.URL != "" &&
-                    server.VersionPattern != null && server.VersionPattern != "";
+            bsServers.RaiseListChangedEvents = isEditable;
+            if (!isEditable)
+            {
+                dgvServers.ClearSelection();
+                bsServers.SuspendBinding();
+                tbName.Clear();
+                tbPattern.Clear();
+                tbURL.Clear();
+                tbName.ClearMessage();
+                tbURL.ClearMessage();
+                tbPattern.ClearMessage();
+            }
+            else
+                bsServers.ResumeBinding();
+
+            tbName.Enabled = isEditable;
+            tbURL.Enabled = isEditable;
+            tbPattern.Enabled = isEditable;
+            bRemove.Enabled = isEditable;
         }
 
-        private bool ValidateName()
+        private void ValidateName()
         {
             var cur = bsServers.Current as Server;
-            return !(servers.FindAll(s => s.Name.Equals(tbName.Text) && !s.Equals(cur)).Count > 0);
-        }
+            if (cur == null) return;
 
-        private bool ValidateURL()
-        {
-            var cur = bsServers.Current as Server;
-            return !(servers.FindAll(s => s.URL.Equals(tbURL.Text) && !s.Equals(cur)).Count > 0);
+            if (!cur.HasValidName) tbName.SetError("Name must not be empty.");
+            else if (!cur.HasUniqueName()) tbName.SetWarning("Name must be unique.");
+            else tbName.SetValidMessage(); 
         }
-
-        private void ServersForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void ValidateURL()
         {
             if (bsServers.IsBindingSuspended) return;
-            if (ValidateName() && ValidateURL() && ValidateServer(bsServers.Current as Server))
-                bsServers.EndEdit();
-            ServersManager.Servers.Clear();
-            foreach (var server in servers)
+            var cur = bsServers.Current as Server;
+            if (cur == null) return;
+
+            if (cur.HasValidURL)
             {
-                if (ValidateServer(server))
-                    ServersManager.Servers.Add(server);
+                if (ServersManager.Servers.FirstOrDefault(s => !s.Equals(cur) && s.URL == cur.URL) != null)
+                    tbURL.SetWarning("Server with that URL already exists.");
+                else
+                    tbURL.SetValidMessage();
             }
+            else tbURL.SetError("Malformed URL.");
+        }
+        private void ValidatePattern()
+        {
+            if (bsServers.IsBindingSuspended) return;
+            var cur = bsServers.Current as Server;
+            if (cur == null) return;
+
+            if (cur.HasValidPattern()) tbPattern.SetValidMessage();
+            else tbPattern.SetError("Invalid pattern");
+        }
+        private void ValidateFields()
+        {
+            if (bsServers.IsBindingSuspended) return;
+            ValidateName();
+            ValidateURL();
+            ValidatePattern();
         }
 
+  
 
 
         private void bAdd_Click(object sender, EventArgs e)
         {
+            SetServerEditable(true);
             bsServers.AddNew();
+            dgvServers.ClearSelection();
+            dgvServers.Rows[servers.Count - 1].Selected = true;
             tbName.Focus();
         }
 
-        private void bDelete_Click(object sender, EventArgs e)
+        private void bRemove_Click(object sender, EventArgs e)
         {
             bsServers.RemoveCurrent();
+            SetServerEditable(servers.Count > 0);
+            dgvServers.ClearSelection();
+            if (servers.Count > 0)
+            {
+                dgvServers.Rows[servers.Count - 1].Selected = true;
+                tbName.Focus();
+            }
         }
 
-        private void tbName_Validating(object sender, CancelEventArgs e)
+        private void bsServers_CurrentItemChanged(object sender, EventArgs e)
         {
-            e.Cancel = !ValidateName();
-            if (e.Cancel) MessageBox.Show("Server with that name already exists");
+            ValidateFields();  
         }
 
-        private void tbURL_Validating(object sender, CancelEventArgs e)
+        private void OnTextChanged(object sender, EventArgs e)
         {
-            e.Cancel = !ValidateURL();
-            if (e.Cancel) MessageBox.Show("Server with that URL already exists");
+            if (bsServers.IsBindingSuspended) return;
+            bsServers.EndEdit();
+            bsServers.ResetCurrentItem();
+            ValidateFields();
         }
+
+        private void ServersForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var invalidServers = servers.Where(s => !s.IsValid).Select(s => s.Name).ToList();
+
+            if (invalidServers.Count == 0 ||
+                (DialogResult.OK == MessageBox.Show("Some of the servers has invalid configuration.\n" +
+                                                    "Closing this window will save these configurations and may break associated mod sources." +
+                                                    "\n\nFix servers: [" + string.Join(", ", invalidServers) + "]", "Invalid servers", MessageBoxButtons.OKCancel)))
+            {
+                ServersManager.Servers.Clear();
+                foreach (var server in servers)
+                    ServersManager.Servers.Add(server);
+            }
+            else e.Cancel = true;
+        }
+
+        private void ServersForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            tbName.UnbindLabel();
+            tbPattern.UnbindLabel();
+            tbURL.UnbindLabel();
+            ServersManager.FormatServers();
+        }
+
     }
 }

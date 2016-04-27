@@ -18,7 +18,7 @@ namespace SMT.Models
         /// <summary>
         /// Domain server.
         /// </summary>
-        [JsonConverter(typeof(ServerJsonConverter))]
+        [JsonConverter(typeof(ServerIDJsonConverter))]
         public Server Server { get; set; }
 
         /// <summary>
@@ -39,16 +39,18 @@ namespace SMT.Models
         [JsonIgnore]
         public string URL
         {
-            get { return Server.URL + Path; }
+            get { return (Server != null ? Server.URL + Path : ""); }
             set
             {
-                try {
-                    Uri uri = new Uri(value);
-                    Server = ServersManager.ServerWithURL(uri.Host);
+                Uri uri;
+                bool valid = Uri.TryCreate(value, UriKind.Absolute, out uri);
+                if (valid)
+                {
+                    Server = ServersManager.ServerWithURL(ServersManager.BuildURL(uri));
                     Path = uri.PathAndQuery;
                 }
-                catch (Exception e)
-                {
+                else
+                { 
                     Path = "";
                     Server = null;
                 }

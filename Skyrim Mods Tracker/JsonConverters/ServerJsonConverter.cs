@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SMT.JsonConverters
 {
-    class ServerJsonConverter : JsonConverter
+    class ServerIDJsonConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

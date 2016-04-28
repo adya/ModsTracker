@@ -30,9 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvServers = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uRLDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ServerAvailable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.versionPatternDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsServers = new System.Windows.Forms.BindingSource(this.components);
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.bAdd = new SMT.Utils.StateButton();
+            this.bRemove = new SMT.Utils.StateButton();
             this.lPatternError = new System.Windows.Forms.Label();
             this.lURLError = new System.Windows.Forms.Label();
             this.lNameError = new System.Windows.Forms.Label();
@@ -42,15 +48,9 @@
             this.lName = new System.Windows.Forms.Label();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
-            this.bAdd = new SMT.Utils.StateButton();
-            this.bRemove = new SMT.Utils.StateButton();
-            this.bsServers = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionPatternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).BeginInit();
-            this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsServers)).BeginInit();
+            this.gbDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvServers
@@ -67,11 +67,11 @@
             this.dgvServers.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvServers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
+            this.nameDataGridViewcontrolColumn,
             this.ID,
-            this.uRLDataGridViewTextBoxColumn,
+            this.uRLDataGridViewcontrolColumn,
             this.ServerAvailable,
-            this.versionPatternDataGridViewTextBoxColumn});
+            this.versionPatternDataGridViewcontrolColumn});
             this.dgvServers.DataSource = this.bsServers;
             this.dgvServers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvServers.Location = new System.Drawing.Point(12, 12);
@@ -83,6 +83,14 @@
             this.dgvServers.TabIndex = 5;
             this.dgvServers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvServers_MouseDown);
             // 
+            // nameDataGridViewcontrolColumn
+            // 
+            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
+            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
+            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
+            this.nameDataGridViewcontrolColumn.ReadOnly = true;
+            this.nameDataGridViewcontrolColumn.Width = 58;
+            // 
             // ID
             // 
             this.ID.DataPropertyName = "ID";
@@ -92,6 +100,14 @@
             this.ID.Visible = false;
             this.ID.Width = 41;
             // 
+            // uRLDataGridViewcontrolColumn
+            // 
+            this.uRLDataGridViewcontrolColumn.DataPropertyName = "URL";
+            this.uRLDataGridViewcontrolColumn.HeaderText = "URL";
+            this.uRLDataGridViewcontrolColumn.Name = "uRLDataGridViewcontrolColumn";
+            this.uRLDataGridViewcontrolColumn.ReadOnly = true;
+            this.uRLDataGridViewcontrolColumn.Width = 52;
+            // 
             // ServerAvailable
             // 
             this.ServerAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -99,6 +115,19 @@
             this.ServerAvailable.Name = "ServerAvailable";
             this.ServerAvailable.ReadOnly = true;
             this.ServerAvailable.Width = 41;
+            // 
+            // versionPatternDataGridViewcontrolColumn
+            // 
+            this.versionPatternDataGridViewcontrolColumn.DataPropertyName = "VersionPattern";
+            this.versionPatternDataGridViewcontrolColumn.HeaderText = "VersionPattern";
+            this.versionPatternDataGridViewcontrolColumn.Name = "versionPatternDataGridViewcontrolColumn";
+            this.versionPatternDataGridViewcontrolColumn.ReadOnly = true;
+            this.versionPatternDataGridViewcontrolColumn.Width = 99;
+            // 
+            // bsServers
+            // 
+            this.bsServers.DataSource = typeof(SMT.Models.Server);
+            this.bsServers.CurrentItemChanged += new System.EventHandler(this.bsServers_CurrentItemChanged);
             // 
             // gbDetails
             // 
@@ -120,6 +149,40 @@
             this.gbDetails.TabIndex = 1;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Server";
+            // 
+            // bAdd
+            // 
+            this.bAdd.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAdd.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAdd.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAdd.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAdd.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAdd.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAdd.Location = new System.Drawing.Point(89, 232);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(75, 23);
+            this.bAdd.TabIndex = 7;
+            this.bAdd.Text = "Add";
+            this.bAdd.UseVisualStyleBackColor = false;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
+            // 
+            // bRemove
+            // 
+            this.bRemove.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemove.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemove.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemove.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemove.EnabledForeColor = System.Drawing.Color.Black;
+            this.bRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemove.ForeColor = System.Drawing.Color.Black;
+            this.bRemove.Location = new System.Drawing.Point(170, 232);
+            this.bRemove.Name = "bRemove";
+            this.bRemove.Size = new System.Drawing.Size(75, 23);
+            this.bRemove.TabIndex = 6;
+            this.bRemove.Text = "Remove";
+            this.bRemove.UseVisualStyleBackColor = false;
+            this.bRemove.Click += new System.EventHandler(this.bRemove_Click);
             // 
             // lPatternError
             // 
@@ -202,68 +265,6 @@
             this.tbName.Size = new System.Drawing.Size(190, 20);
             this.tbName.TabIndex = 0;
             // 
-            // bAdd
-            // 
-            this.bAdd.BackColor = System.Drawing.Color.ForestGreen;
-            this.bAdd.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bAdd.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bAdd.EnabledBackColor = System.Drawing.Color.ForestGreen;
-            this.bAdd.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAdd.Location = new System.Drawing.Point(89, 232);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(75, 23);
-            this.bAdd.TabIndex = 7;
-            this.bAdd.Text = "Add";
-            this.bAdd.UseVisualStyleBackColor = false;
-            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
-            // 
-            // bRemove
-            // 
-            this.bRemove.BackColor = System.Drawing.Color.LightCoral;
-            this.bRemove.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bRemove.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bRemove.EnabledBackColor = System.Drawing.Color.LightCoral;
-            this.bRemove.EnabledForeColor = System.Drawing.Color.Black;
-            this.bRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bRemove.ForeColor = System.Drawing.Color.Black;
-            this.bRemove.Location = new System.Drawing.Point(170, 232);
-            this.bRemove.Name = "bRemove";
-            this.bRemove.Size = new System.Drawing.Size(75, 23);
-            this.bRemove.TabIndex = 6;
-            this.bRemove.Text = "Remove";
-            this.bRemove.UseVisualStyleBackColor = false;
-            // 
-            // bsServers
-            // 
-            this.bsServers.DataSource = typeof(SMT.Models.Server);
-            this.bsServers.CurrentItemChanged += new System.EventHandler(this.bsServers_CurrentItemChanged);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // uRLDataGridViewTextBoxColumn
-            // 
-            this.uRLDataGridViewTextBoxColumn.DataPropertyName = "URL";
-            this.uRLDataGridViewTextBoxColumn.HeaderText = "URL";
-            this.uRLDataGridViewTextBoxColumn.Name = "uRLDataGridViewTextBoxColumn";
-            this.uRLDataGridViewTextBoxColumn.ReadOnly = true;
-            this.uRLDataGridViewTextBoxColumn.Width = 52;
-            // 
-            // versionPatternDataGridViewTextBoxColumn
-            // 
-            this.versionPatternDataGridViewTextBoxColumn.DataPropertyName = "VersionPattern";
-            this.versionPatternDataGridViewTextBoxColumn.HeaderText = "VersionPattern";
-            this.versionPatternDataGridViewTextBoxColumn.Name = "versionPatternDataGridViewTextBoxColumn";
-            this.versionPatternDataGridViewTextBoxColumn.ReadOnly = true;
-            this.versionPatternDataGridViewTextBoxColumn.Width = 99;
-            // 
             // ServersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,9 +281,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServersForm_FormClosed);
             this.Load += new System.EventHandler(this.ServersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsServers)).EndInit();
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsServers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -298,11 +299,11 @@
         private System.Windows.Forms.Label lPattern;
         private System.Windows.Forms.TextBox tbPattern;
         private System.Windows.Forms.BindingSource bsServers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewcontrolColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ServerAvailable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewcontrolColumn;
         private System.Windows.Forms.Label lPatternError;
         private System.Windows.Forms.Label lURLError;
         private System.Windows.Forms.Label lNameError;

@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.dgvMods = new System.Windows.Forms.DataGridView();
             this.gbMod = new System.Windows.Forms.GroupBox();
-            this.bModAdd = new System.Windows.Forms.Button();
-            this.bModDelete = new System.Windows.Forms.Button();
-            this.bBrowse = new System.Windows.Forms.Button();
+            this.lRootError = new System.Windows.Forms.Label();
+            this.lVersionError = new System.Windows.Forms.Label();
+            this.lNameError = new System.Windows.Forms.Label();
             this.tbRoot = new System.Windows.Forms.TextBox();
             this.tbVersion = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
@@ -42,33 +42,38 @@
             this.lName = new System.Windows.Forms.Label();
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdRoot = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvSources = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbSource = new System.Windows.Forms.GroupBox();
-            this.bSourceAdd = new System.Windows.Forms.Button();
-            this.bSourceDelete = new System.Windows.Forms.Button();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.cbManual = new System.Windows.Forms.CheckBox();
+            this.lSrcVersionError = new System.Windows.Forms.Label();
+            this.lURLError = new System.Windows.Forms.Label();
             this.tbSourceVersion = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lSrcVersion = new System.Windows.Forms.Label();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.lLanguage = new System.Windows.Forms.Label();
             this.lServer = new System.Windows.Forms.Label();
-            this.Refresh = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.bAddSource = new SMT.Utils.StateButton();
+            this.bRemoveSource = new SMT.Utils.StateButton();
             this.bsSources = new System.Windows.Forms.BindingSource(this.components);
+            this.stateButton1 = new SMT.Utils.StateButton();
+            this.bRemoveMod = new SMT.Utils.StateButton();
+            this.bBrowse = new SMT.Utils.StateButton();
             this.bsMods = new System.Windows.Forms.BindingSource(this.components);
-            this.serverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.languageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rootDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serverDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.languageDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rootDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.gbMod.SuspendLayout();
             this.msMenu.SuspendLayout();
@@ -93,30 +98,30 @@
             this.dgvMods.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMods.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvMods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.iDDataGridViewTextBoxColumn,
-            this.versionDataGridViewTextBoxColumn,
-            this.stateDataGridViewTextBoxColumn,
-            this.Refresh,
-            this.rootDataGridViewTextBoxColumn});
+            this.nameDataGridViewcontrolColumn,
+            this.iDDataGridViewcontrolColumn,
+            this.versionDataGridViewcontrolColumn,
+            this.stateDataGridViewcontrolColumn,
+            this.rootDataGridViewcontrolColumn});
             this.dgvMods.DataSource = this.bsMods;
             this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMods.Location = new System.Drawing.Point(12, 27);
             this.dgvMods.Name = "dgvMods";
             this.dgvMods.ReadOnly = true;
-            this.dgvMods.RowHeadersVisible = false;
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMods.Size = new System.Drawing.Size(626, 424);
+            this.dgvMods.Size = new System.Drawing.Size(629, 504);
             this.dgvMods.TabIndex = 0;
-            this.dgvMods.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellContentClick);
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
             // 
             // gbMod
             // 
             this.gbMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbMod.Controls.Add(this.bModAdd);
-            this.gbMod.Controls.Add(this.bModDelete);
+            this.gbMod.Controls.Add(this.lRootError);
+            this.gbMod.Controls.Add(this.lVersionError);
+            this.gbMod.Controls.Add(this.lNameError);
+            this.gbMod.Controls.Add(this.stateButton1);
+            this.gbMod.Controls.Add(this.bRemoveMod);
             this.gbMod.Controls.Add(this.bBrowse);
             this.gbMod.Controls.Add(this.tbRoot);
             this.gbMod.Controls.Add(this.tbVersion);
@@ -126,75 +131,78 @@
             this.gbMod.Controls.Add(this.lName);
             this.gbMod.Location = new System.Drawing.Point(3, 3);
             this.gbMod.Name = "gbMod";
-            this.gbMod.Size = new System.Drawing.Size(354, 134);
+            this.gbMod.Size = new System.Drawing.Size(354, 174);
             this.gbMod.TabIndex = 1;
             this.gbMod.TabStop = false;
             this.gbMod.Text = "Mod";
             // 
-            // bModAdd
+            // lRootError
             // 
-            this.bModAdd.BackColor = System.Drawing.Color.YellowGreen;
-            this.bModAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bModAdd.Location = new System.Drawing.Point(190, 105);
-            this.bModAdd.Name = "bModAdd";
-            this.bModAdd.Size = new System.Drawing.Size(75, 23);
-            this.bModAdd.TabIndex = 4;
-            this.bModAdd.Text = "Add";
-            this.bModAdd.UseVisualStyleBackColor = false;
-            this.bModAdd.Click += new System.EventHandler(this.bModAdd_Click);
+            this.lRootError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lRootError.AutoSize = true;
+            this.lRootError.Location = new System.Drawing.Point(61, 123);
+            this.lRootError.Name = "lRootError";
+            this.lRootError.Size = new System.Drawing.Size(29, 13);
+            this.lRootError.TabIndex = 7;
+            this.lRootError.Text = "Error";
+            this.lRootError.Visible = false;
             // 
-            // bModDelete
+            // lVersionError
             // 
-            this.bModDelete.BackColor = System.Drawing.Color.IndianRed;
-            this.bModDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bModDelete.Location = new System.Drawing.Point(271, 105);
-            this.bModDelete.Name = "bModDelete";
-            this.bModDelete.Size = new System.Drawing.Size(75, 23);
-            this.bModDelete.TabIndex = 5;
-            this.bModDelete.Text = "Delete";
-            this.bModDelete.UseVisualStyleBackColor = false;
-            this.bModDelete.Click += new System.EventHandler(this.bModDelete_Click);
+            this.lVersionError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lVersionError.AutoSize = true;
+            this.lVersionError.Location = new System.Drawing.Point(61, 83);
+            this.lVersionError.Name = "lVersionError";
+            this.lVersionError.Size = new System.Drawing.Size(29, 13);
+            this.lVersionError.TabIndex = 7;
+            this.lVersionError.Text = "Error";
+            this.lVersionError.Visible = false;
             // 
-            // bBrowse
+            // lNameError
             // 
-            this.bBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.bBrowse.Location = new System.Drawing.Point(326, 69);
-            this.bBrowse.Name = "bBrowse";
-            this.bBrowse.Size = new System.Drawing.Size(20, 20);
-            this.bBrowse.TabIndex = 3;
-            this.bBrowse.Text = "...";
-            this.bBrowse.UseVisualStyleBackColor = true;
-            this.bBrowse.Click += new System.EventHandler(this.bBrowse_Click);
+            this.lNameError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lNameError.AutoSize = true;
+            this.lNameError.Location = new System.Drawing.Point(61, 43);
+            this.lNameError.Name = "lNameError";
+            this.lNameError.Size = new System.Drawing.Size(29, 13);
+            this.lNameError.TabIndex = 7;
+            this.lNameError.Text = "Error";
+            this.lNameError.Visible = false;
             // 
             // tbRoot
             // 
             this.tbRoot.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Root", true));
-            this.tbRoot.Location = new System.Drawing.Point(51, 69);
+            this.tbRoot.Location = new System.Drawing.Point(55, 100);
             this.tbRoot.Name = "tbRoot";
-            this.tbRoot.Size = new System.Drawing.Size(269, 20);
+            this.tbRoot.Size = new System.Drawing.Size(265, 20);
             this.tbRoot.TabIndex = 3;
             // 
             // tbVersion
             // 
+            this.tbVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Version", true));
-            this.tbVersion.Location = new System.Drawing.Point(51, 43);
+            this.tbVersion.Location = new System.Drawing.Point(55, 60);
             this.tbVersion.Name = "tbVersion";
-            this.tbVersion.Size = new System.Drawing.Size(295, 20);
+            this.tbVersion.Size = new System.Drawing.Size(290, 20);
             this.tbVersion.TabIndex = 2;
             // 
             // tbName
             // 
+            this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Name", true));
-            this.tbName.Location = new System.Drawing.Point(51, 17);
+            this.tbName.Location = new System.Drawing.Point(55, 20);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(295, 20);
+            this.tbName.Size = new System.Drawing.Size(290, 20);
             this.tbName.TabIndex = 1;
             // 
             // lRoot
             // 
             this.lRoot.AutoSize = true;
-            this.lRoot.Location = new System.Drawing.Point(7, 72);
+            this.lRoot.Location = new System.Drawing.Point(7, 103);
             this.lRoot.Name = "lRoot";
             this.lRoot.Size = new System.Drawing.Size(33, 13);
             this.lRoot.TabIndex = 0;
@@ -203,7 +211,7 @@
             // lVersion
             // 
             this.lVersion.AutoSize = true;
-            this.lVersion.Location = new System.Drawing.Point(7, 46);
+            this.lVersion.Location = new System.Drawing.Point(7, 63);
             this.lVersion.Name = "lVersion";
             this.lVersion.Size = new System.Drawing.Size(45, 13);
             this.lVersion.TabIndex = 0;
@@ -212,7 +220,7 @@
             // lName
             // 
             this.lName.AutoSize = true;
-            this.lName.Location = new System.Drawing.Point(7, 20);
+            this.lName.Location = new System.Drawing.Point(7, 23);
             this.lName.Name = "lName";
             this.lName.Size = new System.Drawing.Size(38, 13);
             this.lName.TabIndex = 0;
@@ -221,10 +229,11 @@
             // msMenu
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serversToolStripMenuItem});
+            this.serversToolStripMenuItem,
+            this.checkModsToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(1001, 24);
+            this.msMenu.Size = new System.Drawing.Size(1004, 24);
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "menuStrip1";
             // 
@@ -235,14 +244,21 @@
             this.serversToolStripMenuItem.Text = "Servers";
             this.serversToolStripMenuItem.Click += new System.EventHandler(this.serversToolStripMenuItem_Click);
             // 
+            // checkModsToolStripMenuItem
+            // 
+            this.checkModsToolStripMenuItem.Name = "checkModsToolStripMenuItem";
+            this.checkModsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.checkModsToolStripMenuItem.Text = "Check mods";
+            this.checkModsToolStripMenuItem.Click += new System.EventHandler(this.checkModsToolStripMenuItem_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dgvSources);
-            this.groupBox1.Location = new System.Drawing.Point(3, 143);
+            this.groupBox1.Location = new System.Drawing.Point(3, 183);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(354, 146);
+            this.groupBox1.Size = new System.Drawing.Size(354, 147);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sources";
@@ -257,11 +273,11 @@
             this.dgvSources.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSources.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.serverDataGridViewTextBoxColumn,
-            this.languageDataGridViewTextBoxColumn,
-            this.versionDataGridViewTextBoxColumn1,
-            this.stateDataGridViewTextBoxColumn1,
-            this.pathDataGridViewTextBoxColumn});
+            this.serverDataGridViewcontrolColumn,
+            this.languageDataGridViewcontrolColumn,
+            this.versionDataGridViewcontrolColumn1,
+            this.stateDataGridViewcontrolColumn1,
+            this.pathDataGridViewcontrolColumn});
             this.dgvSources.DataSource = this.bsSources;
             this.dgvSources.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvSources.Location = new System.Drawing.Point(10, 19);
@@ -279,102 +295,102 @@
             this.panel1.Controls.Add(this.gbMod);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(641, 24);
+            this.panel1.Location = new System.Drawing.Point(644, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 427);
+            this.panel1.Size = new System.Drawing.Size(360, 512);
             this.panel1.TabIndex = 4;
             // 
             // gbSource
             // 
-            this.gbSource.Controls.Add(this.bSourceAdd);
-            this.gbSource.Controls.Add(this.bSourceDelete);
+            this.gbSource.Controls.Add(this.bAddSource);
+            this.gbSource.Controls.Add(this.bRemoveSource);
             this.gbSource.Controls.Add(this.tbURL);
             this.gbSource.Controls.Add(this.cbManual);
+            this.gbSource.Controls.Add(this.lSrcVersionError);
+            this.gbSource.Controls.Add(this.lURLError);
             this.gbSource.Controls.Add(this.tbSourceVersion);
-            this.gbSource.Controls.Add(this.label1);
+            this.gbSource.Controls.Add(this.lSrcVersion);
             this.gbSource.Controls.Add(this.cbLanguage);
             this.gbSource.Controls.Add(this.lLanguage);
             this.gbSource.Controls.Add(this.lServer);
-            this.gbSource.Location = new System.Drawing.Point(3, 295);
+            this.gbSource.Location = new System.Drawing.Point(3, 336);
             this.gbSource.Name = "gbSource";
-            this.gbSource.Size = new System.Drawing.Size(354, 127);
+            this.gbSource.Size = new System.Drawing.Size(354, 169);
             this.gbSource.TabIndex = 4;
             this.gbSource.TabStop = false;
             this.gbSource.Text = "Source";
             // 
-            // bSourceAdd
-            // 
-            this.bSourceAdd.BackColor = System.Drawing.Color.YellowGreen;
-            this.bSourceAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSourceAdd.Location = new System.Drawing.Point(190, 98);
-            this.bSourceAdd.Name = "bSourceAdd";
-            this.bSourceAdd.Size = new System.Drawing.Size(75, 23);
-            this.bSourceAdd.TabIndex = 12;
-            this.bSourceAdd.Text = "Add";
-            this.bSourceAdd.UseVisualStyleBackColor = false;
-            this.bSourceAdd.Click += new System.EventHandler(this.bSourceAdd_Click);
-            // 
-            // bSourceDelete
-            // 
-            this.bSourceDelete.BackColor = System.Drawing.Color.IndianRed;
-            this.bSourceDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSourceDelete.Location = new System.Drawing.Point(271, 98);
-            this.bSourceDelete.Name = "bSourceDelete";
-            this.bSourceDelete.Size = new System.Drawing.Size(75, 23);
-            this.bSourceDelete.TabIndex = 13;
-            this.bSourceDelete.Text = "Delete";
-            this.bSourceDelete.UseVisualStyleBackColor = false;
-            this.bSourceDelete.Click += new System.EventHandler(this.bSourceDelete_Click);
-            // 
             // tbURL
             // 
             this.tbURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "URL", true));
-            this.tbURL.Location = new System.Drawing.Point(73, 19);
+            this.tbURL.Location = new System.Drawing.Point(70, 20);
             this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(273, 20);
+            this.tbURL.Size = new System.Drawing.Size(275, 20);
             this.tbURL.TabIndex = 11;
             // 
             // cbManual
             // 
             this.cbManual.AutoSize = true;
-            this.cbManual.Location = new System.Drawing.Point(331, 75);
+            this.cbManual.Location = new System.Drawing.Point(331, 103);
             this.cbManual.Name = "cbManual";
             this.cbManual.Size = new System.Drawing.Size(15, 14);
             this.cbManual.TabIndex = 9;
             this.cbManual.UseVisualStyleBackColor = true;
             this.cbManual.CheckedChanged += new System.EventHandler(this.cbManual_CheckedChanged);
             // 
+            // lSrcVersionError
+            // 
+            this.lSrcVersionError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lSrcVersionError.AutoSize = true;
+            this.lSrcVersionError.Location = new System.Drawing.Point(76, 123);
+            this.lSrcVersionError.Name = "lSrcVersionError";
+            this.lSrcVersionError.Size = new System.Drawing.Size(29, 13);
+            this.lSrcVersionError.TabIndex = 7;
+            this.lSrcVersionError.Text = "Error";
+            this.lSrcVersionError.Visible = false;
+            // 
+            // lURLError
+            // 
+            this.lURLError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lURLError.AutoSize = true;
+            this.lURLError.Location = new System.Drawing.Point(76, 43);
+            this.lURLError.Name = "lURLError";
+            this.lURLError.Size = new System.Drawing.Size(29, 13);
+            this.lURLError.TabIndex = 7;
+            this.lURLError.Text = "Error";
+            this.lURLError.Visible = false;
+            // 
             // tbSourceVersion
             // 
             this.tbSourceVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Version", true));
-            this.tbSourceVersion.Location = new System.Drawing.Point(73, 72);
+            this.tbSourceVersion.Location = new System.Drawing.Point(70, 100);
             this.tbSourceVersion.Name = "tbSourceVersion";
-            this.tbSourceVersion.Size = new System.Drawing.Size(252, 20);
+            this.tbSourceVersion.Size = new System.Drawing.Size(250, 20);
             this.tbSourceVersion.TabIndex = 8;
             // 
-            // label1
+            // lSrcVersion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 75);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Version:";
+            this.lSrcVersion.AutoSize = true;
+            this.lSrcVersion.Location = new System.Drawing.Point(7, 103);
+            this.lSrcVersion.Name = "lSrcVersion";
+            this.lSrcVersion.Size = new System.Drawing.Size(45, 13);
+            this.lSrcVersion.TabIndex = 7;
+            this.lSrcVersion.Text = "Version:";
             // 
             // cbLanguage
             // 
             this.cbLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Language", true));
             this.cbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLanguage.FormattingEnabled = true;
-            this.cbLanguage.Location = new System.Drawing.Point(73, 45);
+            this.cbLanguage.Location = new System.Drawing.Point(70, 60);
             this.cbLanguage.Name = "cbLanguage";
-            this.cbLanguage.Size = new System.Drawing.Size(273, 21);
+            this.cbLanguage.Size = new System.Drawing.Size(275, 21);
             this.cbLanguage.TabIndex = 5;
             // 
             // lLanguage
             // 
             this.lLanguage.AutoSize = true;
-            this.lLanguage.Location = new System.Drawing.Point(7, 48);
+            this.lLanguage.Location = new System.Drawing.Point(7, 63);
             this.lLanguage.Name = "lLanguage";
             this.lLanguage.Size = new System.Drawing.Size(58, 13);
             this.lLanguage.TabIndex = 4;
@@ -383,122 +399,206 @@
             // lServer
             // 
             this.lServer.AutoSize = true;
-            this.lServer.Location = new System.Drawing.Point(7, 22);
+            this.lServer.Location = new System.Drawing.Point(7, 23);
             this.lServer.Name = "lServer";
             this.lServer.Size = new System.Drawing.Size(32, 13);
             this.lServer.TabIndex = 2;
             this.lServer.Text = "URL:";
             // 
-            // Refresh
+            // bAddSource
             // 
-            this.Refresh.HeaderText = "Refresh";
-            this.Refresh.Name = "Refresh";
-            this.Refresh.ReadOnly = true;
-            this.Refresh.Width = 48;
+            this.bAddSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddSource.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAddSource.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAddSource.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAddSource.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAddSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAddSource.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddSource.Location = new System.Drawing.Point(190, 140);
+            this.bAddSource.Name = "bAddSource";
+            this.bAddSource.Size = new System.Drawing.Size(75, 23);
+            this.bAddSource.TabIndex = 13;
+            this.bAddSource.Text = "Add";
+            this.bAddSource.UseVisualStyleBackColor = false;
+            this.bAddSource.Click += new System.EventHandler(this.bAddSource_Click);
+            // 
+            // bRemoveSource
+            // 
+            this.bRemoveSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRemoveSource.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveSource.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemoveSource.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemoveSource.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemoveSource.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveSource.Location = new System.Drawing.Point(271, 140);
+            this.bRemoveSource.Name = "bRemoveSource";
+            this.bRemoveSource.Size = new System.Drawing.Size(75, 23);
+            this.bRemoveSource.TabIndex = 12;
+            this.bRemoveSource.Text = "Remove";
+            this.bRemoveSource.UseVisualStyleBackColor = false;
+            this.bRemoveSource.Click += new System.EventHandler(this.bRemoveSource_Click);
             // 
             // bsSources
             // 
             this.bsSources.DataSource = typeof(SMT.Models.ModSource);
             this.bsSources.CurrentChanged += new System.EventHandler(this.bsSourcesCurrentChanged);
             // 
+            // stateButton1
+            // 
+            this.stateButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.stateButton1.BackColor = System.Drawing.Color.ForestGreen;
+            this.stateButton1.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.stateButton1.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.stateButton1.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.stateButton1.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.stateButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stateButton1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.stateButton1.Location = new System.Drawing.Point(190, 145);
+            this.stateButton1.Name = "stateButton1";
+            this.stateButton1.Size = new System.Drawing.Size(75, 23);
+            this.stateButton1.TabIndex = 6;
+            this.stateButton1.Text = "Add";
+            this.stateButton1.UseVisualStyleBackColor = false;
+            this.stateButton1.Click += new System.EventHandler(this.bAddMod_Click);
+            // 
+            // bRemoveMod
+            // 
+            this.bRemoveMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRemoveMod.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveMod.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemoveMod.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemoveMod.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemoveMod.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveMod.Location = new System.Drawing.Point(271, 145);
+            this.bRemoveMod.Name = "bRemoveMod";
+            this.bRemoveMod.Size = new System.Drawing.Size(75, 23);
+            this.bRemoveMod.TabIndex = 5;
+            this.bRemoveMod.Text = "Remove";
+            this.bRemoveMod.UseVisualStyleBackColor = false;
+            this.bRemoveMod.Click += new System.EventHandler(this.bRemoveMod_Click);
+            // 
+            // bBrowse
+            // 
+            this.bBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bBrowse.BackColor = System.Drawing.Color.SkyBlue;
+            this.bBrowse.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bBrowse.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bBrowse.EnabledBackColor = System.Drawing.Color.SkyBlue;
+            this.bBrowse.EnabledForeColor = System.Drawing.Color.Black;
+            this.bBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F);
+            this.bBrowse.ForeColor = System.Drawing.Color.Black;
+            this.bBrowse.Location = new System.Drawing.Point(325, 100);
+            this.bBrowse.Name = "bBrowse";
+            this.bBrowse.Size = new System.Drawing.Size(20, 20);
+            this.bBrowse.TabIndex = 4;
+            this.bBrowse.Text = "..";
+            this.bBrowse.UseVisualStyleBackColor = false;
+            // 
             // bsMods
             // 
             this.bsMods.DataSource = typeof(SMT.Models.Mod);
             this.bsMods.CurrentChanged += new System.EventHandler(this.bsModsCurrentChanged);
             // 
-            // serverDataGridViewTextBoxColumn
+            // serverDataGridViewcontrolColumn
             // 
-            this.serverDataGridViewTextBoxColumn.DataPropertyName = "Server";
-            this.serverDataGridViewTextBoxColumn.HeaderText = "Server";
-            this.serverDataGridViewTextBoxColumn.Name = "serverDataGridViewTextBoxColumn";
-            this.serverDataGridViewTextBoxColumn.ReadOnly = true;
-            this.serverDataGridViewTextBoxColumn.Width = 61;
+            this.serverDataGridViewcontrolColumn.DataPropertyName = "Server";
+            this.serverDataGridViewcontrolColumn.HeaderText = "Server";
+            this.serverDataGridViewcontrolColumn.Name = "serverDataGridViewcontrolColumn";
+            this.serverDataGridViewcontrolColumn.ReadOnly = true;
+            this.serverDataGridViewcontrolColumn.Width = 61;
             // 
-            // languageDataGridViewTextBoxColumn
+            // languageDataGridViewcontrolColumn
             // 
-            this.languageDataGridViewTextBoxColumn.DataPropertyName = "Language";
-            this.languageDataGridViewTextBoxColumn.HeaderText = "Language";
-            this.languageDataGridViewTextBoxColumn.Name = "languageDataGridViewTextBoxColumn";
-            this.languageDataGridViewTextBoxColumn.ReadOnly = true;
-            this.languageDataGridViewTextBoxColumn.Width = 78;
+            this.languageDataGridViewcontrolColumn.DataPropertyName = "Language";
+            this.languageDataGridViewcontrolColumn.HeaderText = "Language";
+            this.languageDataGridViewcontrolColumn.Name = "languageDataGridViewcontrolColumn";
+            this.languageDataGridViewcontrolColumn.ReadOnly = true;
+            this.languageDataGridViewcontrolColumn.Width = 78;
             // 
-            // versionDataGridViewTextBoxColumn1
+            // versionDataGridViewcontrolColumn1
             // 
-            this.versionDataGridViewTextBoxColumn1.DataPropertyName = "Version";
-            this.versionDataGridViewTextBoxColumn1.HeaderText = "Version";
-            this.versionDataGridViewTextBoxColumn1.Name = "versionDataGridViewTextBoxColumn1";
-            this.versionDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.versionDataGridViewTextBoxColumn1.Width = 65;
+            this.versionDataGridViewcontrolColumn1.DataPropertyName = "Version";
+            this.versionDataGridViewcontrolColumn1.HeaderText = "Version";
+            this.versionDataGridViewcontrolColumn1.Name = "versionDataGridViewcontrolColumn1";
+            this.versionDataGridViewcontrolColumn1.ReadOnly = true;
+            this.versionDataGridViewcontrolColumn1.Width = 65;
             // 
-            // stateDataGridViewTextBoxColumn1
+            // stateDataGridViewcontrolColumn1
             // 
-            this.stateDataGridViewTextBoxColumn1.DataPropertyName = "State";
-            this.stateDataGridViewTextBoxColumn1.HeaderText = "State";
-            this.stateDataGridViewTextBoxColumn1.Name = "stateDataGridViewTextBoxColumn1";
-            this.stateDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.stateDataGridViewTextBoxColumn1.Width = 55;
+            this.stateDataGridViewcontrolColumn1.DataPropertyName = "State";
+            this.stateDataGridViewcontrolColumn1.HeaderText = "State";
+            this.stateDataGridViewcontrolColumn1.Name = "stateDataGridViewcontrolColumn1";
+            this.stateDataGridViewcontrolColumn1.ReadOnly = true;
+            this.stateDataGridViewcontrolColumn1.Width = 55;
             // 
-            // pathDataGridViewTextBoxColumn
+            // pathDataGridViewcontrolColumn
             // 
-            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
-            this.pathDataGridViewTextBoxColumn.HeaderText = "Path";
-            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
-            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pathDataGridViewTextBoxColumn.Width = 52;
+            this.pathDataGridViewcontrolColumn.DataPropertyName = "Path";
+            this.pathDataGridViewcontrolColumn.HeaderText = "Path";
+            this.pathDataGridViewcontrolColumn.Name = "pathDataGridViewcontrolColumn";
+            this.pathDataGridViewcontrolColumn.ReadOnly = true;
+            this.pathDataGridViewcontrolColumn.Width = 52;
             // 
-            // nameDataGridViewTextBoxColumn
+            // nameDataGridViewcontrolColumn
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 58;
+            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
+            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
+            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
+            this.nameDataGridViewcontrolColumn.ReadOnly = true;
+            this.nameDataGridViewcontrolColumn.Width = 58;
             // 
-            // iDDataGridViewTextBoxColumn
+            // iDDataGridViewcontrolColumn
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            this.iDDataGridViewTextBoxColumn.Width = 41;
+            this.iDDataGridViewcontrolColumn.DataPropertyName = "ID";
+            this.iDDataGridViewcontrolColumn.HeaderText = "ID";
+            this.iDDataGridViewcontrolColumn.Name = "iDDataGridViewcontrolColumn";
+            this.iDDataGridViewcontrolColumn.ReadOnly = true;
+            this.iDDataGridViewcontrolColumn.Visible = false;
+            this.iDDataGridViewcontrolColumn.Width = 41;
             // 
-            // versionDataGridViewTextBoxColumn
+            // versionDataGridViewcontrolColumn
             // 
-            this.versionDataGridViewTextBoxColumn.DataPropertyName = "Version";
-            this.versionDataGridViewTextBoxColumn.HeaderText = "Version";
-            this.versionDataGridViewTextBoxColumn.Name = "versionDataGridViewTextBoxColumn";
-            this.versionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.versionDataGridViewTextBoxColumn.Width = 65;
+            this.versionDataGridViewcontrolColumn.DataPropertyName = "Version";
+            this.versionDataGridViewcontrolColumn.HeaderText = "Version";
+            this.versionDataGridViewcontrolColumn.Name = "versionDataGridViewcontrolColumn";
+            this.versionDataGridViewcontrolColumn.ReadOnly = true;
+            this.versionDataGridViewcontrolColumn.Width = 65;
             // 
-            // stateDataGridViewTextBoxColumn
+            // stateDataGridViewcontrolColumn
             // 
-            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
-            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
-            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
-            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stateDataGridViewTextBoxColumn.Width = 55;
+            this.stateDataGridViewcontrolColumn.DataPropertyName = "State";
+            this.stateDataGridViewcontrolColumn.HeaderText = "State";
+            this.stateDataGridViewcontrolColumn.Name = "stateDataGridViewcontrolColumn";
+            this.stateDataGridViewcontrolColumn.ReadOnly = true;
+            this.stateDataGridViewcontrolColumn.Width = 55;
             // 
-            // rootDataGridViewTextBoxColumn
+            // rootDataGridViewcontrolColumn
             // 
-            this.rootDataGridViewTextBoxColumn.DataPropertyName = "Root";
-            this.rootDataGridViewTextBoxColumn.HeaderText = "Root";
-            this.rootDataGridViewTextBoxColumn.Name = "rootDataGridViewTextBoxColumn";
-            this.rootDataGridViewTextBoxColumn.ReadOnly = true;
-            this.rootDataGridViewTextBoxColumn.Width = 53;
+            this.rootDataGridViewcontrolColumn.DataPropertyName = "Root";
+            this.rootDataGridViewcontrolColumn.HeaderText = "Root";
+            this.rootDataGridViewcontrolColumn.Name = "rootDataGridViewcontrolColumn";
+            this.rootDataGridViewcontrolColumn.ReadOnly = true;
+            this.rootDataGridViewcontrolColumn.Width = 53;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 451);
+            this.ClientSize = new System.Drawing.Size(1004, 536);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvMods);
             this.Controls.Add(this.msMenu);
             this.MainMenuStrip = this.msMenu;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(2000, 1000);
-            this.MinimumSize = new System.Drawing.Size(630, 490);
+            this.MinimumSize = new System.Drawing.Size(630, 575);
             this.Name = "MainForm";
             this.Text = "Skyrim Mods Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -531,10 +631,7 @@
         private System.Windows.Forms.Label lVersion;
         private System.Windows.Forms.Label lName;
         private System.Windows.Forms.OpenFileDialog ofdRoot;
-        private System.Windows.Forms.Button bBrowse;
         private System.Windows.Forms.TextBox tbRoot;
-        private System.Windows.Forms.Button bModAdd;
-        private System.Windows.Forms.Button bModDelete;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvSources;
         private System.Windows.Forms.Panel panel1;
@@ -542,25 +639,33 @@
         private System.Windows.Forms.TextBox tbURL;
         private System.Windows.Forms.CheckBox cbManual;
         private System.Windows.Forms.TextBox tbSourceVersion;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lSrcVersion;
         private System.Windows.Forms.ComboBox cbLanguage;
         private System.Windows.Forms.Label lLanguage;
         private System.Windows.Forms.Label lServer;
-        private System.Windows.Forms.Button bSourceAdd;
-        private System.Windows.Forms.Button bSourceDelete;
         private System.Windows.Forms.BindingSource bsMods;
         private System.Windows.Forms.BindingSource bsSources;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn Refresh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewcontrolColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewcontrolColumn;
+        private System.Windows.Forms.ToolStripMenuItem checkModsToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewcontrolColumn;
+        private Utils.StateButton bBrowse;
+        private Utils.StateButton stateButton1;
+        private Utils.StateButton bRemoveMod;
+        private System.Windows.Forms.Label lRootError;
+        private System.Windows.Forms.Label lVersionError;
+        private System.Windows.Forms.Label lNameError;
+        private System.Windows.Forms.Label lSrcVersionError;
+        private System.Windows.Forms.Label lURLError;
+        private Utils.StateButton bAddSource;
+        private Utils.StateButton bRemoveSource;
     }
 }
 

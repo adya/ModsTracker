@@ -1,5 +1,6 @@
 ﻿using SMT.Managers;
 using SMT.Models;
+using SMT.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace SMT
 {
     public partial class MainForm : Form
     {
-        private List<Mod> mods;
+        private BindingList<Mod> mods;
         private Mod selectedMod;
         private List<ModSource> sources;
         private ModSource selectedSource;
@@ -23,11 +24,41 @@ namespace SMT
         public MainForm()
         {
             InitializeComponent();
-            mods = ModsManager.Mods.ToList();
+            DefineControlMessagesStyle();
+
+            mods = new BindingList<Mod>(ModsManager.Mods.ToList());
             bsMods.DataSource = mods;
-            ofdRoot.InitialDirectory = Environment.CurrentDirectory;
             cbLanguage.DataSource = Enum.GetValues(typeof(Language));
+            ofdRoot.InitialDirectory = Environment.CurrentDirectory;
             SetModEditable(false);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            dgvMods.AutoResizeColumns();
+
+            tbName.BindLabel(lNameError);
+            tbRoot.BindLabel(lRootError);
+            tbVersion.BindLabel(lVersionError);
+            tbURL.BindLabel(lURLError);
+            tbSourceVersion.BindLabel(lSrcVersionError);
+
+            dgvMods.ClearSelection();
+            dgvSources.ClearSelection();
+
+        }
+
+        private void DefineControlMessagesStyle()
+        {
+            // define style.
+            ControlMessagesExtension.ErrorBackColor = Color.LightCoral;
+            ControlMessagesExtension.ErrorLabelColor = Color.OrangeRed;
+            ControlMessagesExtension.WarningBackColor = Color.Khaki;
+            ControlMessagesExtension.WarningLabelColor = Color.DarkOrange;
+            ControlMessagesExtension.ValidBackColor = Color.LightGreen;
+            ControlMessagesExtension.ValidLabelColor = Color.ForestGreen;
+            ControlMessagesExtension.ClearBackColor = Color.White;
+            ControlMessagesExtension.ClearLabelColor = Color.Black;
         }
 
         private void bsModsCurrentChanged(object sender, EventArgs e)
@@ -74,12 +105,7 @@ namespace SMT
             new ServersForm().ShowDialog();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            dgvMods.ClearSelection();
-            dgvSources.ClearSelection();
-           
-        }
+       
 
         private void dgvMods_MouseDown(object sender, MouseEventArgs e)
         {
@@ -109,9 +135,9 @@ namespace SMT
             tbRoot.Enabled = isEditable;
             tbVersion.Enabled = isEditable;
             bBrowse.Enabled = isEditable;
-            bSourceAdd.Enabled = isEditable;
-            bSourceDelete.Enabled = isEditable;
-            bModDelete.Enabled = isEditable;
+            bAddSource.Enabled = isEditable;
+            bRemoveSource.Enabled = isEditable;
+            bRemoveMod.Enabled = isEditable;
             dgvSources.Enabled = isEditable;
             if (isEditable) bsMods.ResumeBinding();
             else
@@ -153,27 +179,26 @@ namespace SMT
             }
         }
 
-        private void bModAdd_Click(object sender, EventArgs e)
+        private void bAddMod_Click(object sender, EventArgs e)
         {
             bsMods.AddNew();
             SetModEditable(true);
             tbName.Focus();
-            
         }
 
-        private void bModDelete_Click(object sender, EventArgs e)
+        private void bRemoveMod_Click(object sender, EventArgs e)
         {
             bsMods.RemoveCurrent();
             SetModEditable(false);
         }
 
-        private void bSourceAdd_Click(object sender, EventArgs e)
+        private void bAddSource_Click(object sender, EventArgs e)
         {
             bsSources.AddNew();
             SetSourceEditable(true);
         }
 
-        private void bSourceDelete_Click(object sender, EventArgs e)
+        private void bRemoveSource_Click(object sender, EventArgs e)
         {
             bsSources.RemoveCurrent();
             SetSourceEditable(false);
@@ -201,21 +226,39 @@ namespace SMT
             tbSourceVersion.Enabled = cbManual.Checked;
         }
 
-        private void cbServer_SelectedIndexChanged(object sender, EventArgs e)
+        private void MarkMods()
         {
-
+            for (int i = 0; i < mods.Count; i++)
+                MarkMod(mods[i], i);
         }
 
-        private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void MarkMod(Mod mod, int index)
         {
-            var senderGrid = (DataGridView)sender;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+            if (mod.State != ModState.NotTracking && mod.State != ModState.Undefined && 
+                mod.Sources.Select( s => s.State).Where(state => state == SourceState.UnknownServer || 
+                                                                 state == SourceState.UnreachablePage ||
+                                                                 state == SourceState.UnavailableVersion).Count() > 0)
             {
-                ModsReader.CheckMod(mods[e.RowIndex]);
-                bsMods.ResetBindings(false);
+                dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.Aqua;
             }
+
+            switch (mod.State)
+            {
+                case ModState.Undefined: 
+                case ModState.NotTracking: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.LightPink; break;
+                case ModState.MissedFile: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220); break;
+                case ModState.UpToDate: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen; break;
+                case ModState.Outdated: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.Orange; break;
+                default: break;
+            }
+        }
+
+        private void checkModsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModsManager.CheckUpdates();
+            MarkMods();
+            dgvMods.AutoResizeColumns();
         }
     }
 }

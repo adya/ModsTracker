@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SMT.Utils
 {
-    static class TextBoxMessagesExtension
+    static class ControlMessagesExtension
     {
       
 
@@ -29,52 +29,52 @@ namespace SMT.Utils
         /// Sets message to the bounded label if it exists and applies error style. <para/>
         /// Empty or null messages will be hidden.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
+        /// <param name="control">Targeted control.</param>
         /// <param name="text">Text of the message.</param>
-        public static void SetError(this TextBox textBox, string text = null)
+        public static void SetError(this Control control, string text = null)
         {
-            textBox.SetMessage(text);
-            SetColor(textBox.GetBoundedLabel(), ErrorLabelColor);
-            SetColor(textBox, ErrorBackColor);
+            control.SetMessage(text);
+            SetColor(control.GetBoundedLabel(), ErrorLabelColor);
+            SetColor(control, ErrorBackColor);
         }
 
         /// <summary>
         /// Sets message to the bounded label if it exists and applies warning style.<para/>
         /// Empty or null messages will be hidden.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
+        /// <param name="control">Targeted control.</param>
         /// <param name="text">Text of the message.</param>
-        public static void SetWarning(this TextBox textBox, string text = null)
+        public static void SetWarning(this Control control, string text = null)
         {
-            textBox.SetMessage(text);
-            SetColor(textBox.GetBoundedLabel(), WarningLabelColor);
-            SetColor(textBox, WarningBackColor);
+            control.SetMessage(text);
+            SetColor(control.GetBoundedLabel(), WarningLabelColor);
+            SetColor(control, WarningBackColor);
 
         }
 
         /// <summary>
         /// Sets message to the bounded label if it exists and applies valid style.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
+        /// <param name="control">Targeted control.</param>
         /// <param name="text">Text of the message.</param>
         /// <param name="hideEmtpy">Flag indicating whether the bounded label should be hidden if message is empty. </param>
-        public static void SetValidMessage(this TextBox textBox, string text = null, bool hideEmpty = true)
+        public static void SetValidMessage(this Control control, string text = null, bool hideEmpty = true)
         {
-            textBox.SetMessage(text, hideEmpty);
-            SetColor(textBox.GetBoundedLabel(), ValidLabelColor);
-            SetColor(textBox, ValidBackColor);
+            control.SetMessage(text, hideEmpty);
+            SetColor(control.GetBoundedLabel(), ValidLabelColor);
+            SetColor(control, ValidBackColor);
         }
 
         /// <summary>
         /// Sets message to the bounded label if it exists and applies clear style.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
+        /// <param name="control">Targeted control.</param>
         /// <param name="text">Text of the message.</param>
         /// <param name="hideEmtpy">Flag indicating whether the bounded label should be hidden if message is empty. </param>
-        public static void SetMessage(this TextBox textBox, string text = null, bool hideEmtpy = true)
+        public static void SetMessage(this Control control, string text = null, bool hideEmtpy = true)
         {
             bool isEmpty = (text == null || text == "");
-            Label boundedLabel = textBox.GetBoundedLabel();
+            Label boundedLabel = control.GetBoundedLabel();
             if (boundedLabel != null)
             {
                 boundedLabel.Visible = !hideEmtpy || !isEmpty;
@@ -82,45 +82,45 @@ namespace SMT.Utils
             }
 
             SetColor(boundedLabel, ClearLabelColor);
-            SetColor(textBox, ClearBackColor);
+            SetColor(control, ClearBackColor);
         }
 
         /// <summary>
         /// Clears bounded label if it exists and aplies clear style.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
-        public static void ClearMessage(this TextBox textBox) { textBox.SetMessage(null); }
+        /// <param name="control">Targeted control.</param>
+        public static void ClearMessage(this Control control) { control.SetMessage(null); }
 
-        private static void SetColor(TextBox textBox, Color color) { if (textBox != null) textBox.BackColor = color; }
+        private static void SetColor(Control control, Color color) { if (control != null) control.BackColor = color; }
         private static void SetColor(Label label, Color color) { if (label != null) label.ForeColor = color; }
     }
 
-    static class TextBoxBinderExtension
+    static class ControlBinderExtension
     {
-        private static Dictionary<TextBox, Label> assignments = new Dictionary<TextBox, Label>();
+        private static Dictionary<Control, Label> assignments = new Dictionary<Control, Label>();
 
         /// <summary>
-        /// Bounds specified label with targeted text box.
+        /// Bounds specified label with targeted control.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
+        /// <param name="control">Targeted control.</param>
         /// <param name="label">Label to be bounded.</param>
-        public static void BindLabel(this TextBox textBox, Label label) { assignments.Set(textBox, label); }
+        public static void BindLabel(this Control control, Label label) { assignments.Set(control, label); }
 
         /// <summary>
-        /// Removes binding for targeted text box.
+        /// Removes binding for targeted control.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
-        public static void UnbindLabel(this TextBox textBox) { assignments.Remove(textBox); }
+        /// <param name="control">Targeted control.</param>
+        public static void UnbindLabel(this Control control) { assignments.Remove(control); }
 
         /// <summary>
-        /// Gets bounded label of targeted text box.
+        /// Gets bounded label of targeted control.
         /// </summary>
-        /// <param name="textBox">Targeted text box.</param>
+        /// <param name="control">Targeted control.</param>
         /// <returns></returns>
-        public static Label GetBoundedLabel(this TextBox textBox)
+        public static Label GetBoundedLabel(this Control control)
         {
             Label label;
-            assignments.TryGetValue(textBox, out label);
+            assignments.TryGetValue(control, out label);
             return label;
         }
 

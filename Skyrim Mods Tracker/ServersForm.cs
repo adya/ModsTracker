@@ -32,18 +32,6 @@ namespace SMT
             dgvServers.ClearSelection();
         }
 
-        private void dgvServers_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                DataGridView.HitTestInfo hit = dgvServers.HitTest(e.X, e.Y);
-                if (hit.Type == DataGridViewHitTestType.None)
-                    SetServerEditable(false);
-                else if (hit.Type == DataGridViewHitTestType.Cell || hit.Type == DataGridViewHitTestType.RowHeader)
-                    SetServerEditable(true);
-            }
-        }
-
         private void SetServerEditable(bool isEditable)
         {
             bsServers.RaiseListChangedEvents = isEditable;
@@ -97,7 +85,7 @@ namespace SMT
             var cur = bsServers.Current as Server;
             if (cur == null) return;
 
-            if (cur.HasValidPattern()) tbPattern.SetValidMessage();
+            if (cur.HasValidPattern) tbPattern.SetValidMessage();
             else tbPattern.SetError("Invalid pattern");
         }
         private void ValidateFields()
@@ -108,8 +96,17 @@ namespace SMT
             ValidatePattern();
         }
 
-  
-
+        private void dgvServers_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                DataGridView.HitTestInfo hit = dgvServers.HitTest(e.X, e.Y);
+                if (hit.Type == DataGridViewHitTestType.None)
+                    SetServerEditable(false);
+                else if (hit.Type == DataGridViewHitTestType.Cell || hit.Type == DataGridViewHitTestType.RowHeader)
+                    SetServerEditable(true);
+            }
+        }
 
         private void bAdd_Click(object sender, EventArgs e)
         {

@@ -1,23 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using SMT.Managers;
+using System.Text.RegularExpressions;
 
 namespace SMT.Models
 {
-    class Server
+    class Server : SMTNamedModel, IRemote, IValidatable
     {
         [JsonIgnore]
         private string url;
-
-        /// <summary>
-        /// Server id.
-        /// </summary>
-        public int ID { get; private set; }
-
-        /// <summary>
-        /// Name of the server.
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// Regular expression pattern which matches version label on mod's web-page.
@@ -26,42 +17,42 @@ namespace SMT.Models
         public string VersionPattern { get; set; }
 
         /// <summary>
-        /// Flag indicating whether server a has valid url or not.
-        /// </summary>
-        [JsonIgnore]
-        public bool HasValidURL { get; private set; }
-
-        /// <summary>
-        /// Flag indicating whether server a has valid name or not.
-        /// </summary>
-        [JsonIgnore]
-        public bool HasValidName { get { return !string.IsNullOrWhiteSpace(Name); } }
-
-        [JsonIgnore]
-        public bool IsValid { get { return HasValidName && HasValidURL && this.HasValidPattern(); } }
-
-        /// <summary>
-        /// Server domain.
+        /// Server's domain.
         /// </summary>
         public string URL
         {
             get { return url; }
-            set { HasValidURL = ServersManager.TryBuildURL(value, out url); }
+            set { HasValidURL = ServersManager.TryBuildServerURL(value, out url); }
         }
+
+        /// <summary>
+        /// Flag indicating whether the server has a valid url or not.
+        /// </summary>
+        [JsonIgnore]
+        public bool HasValidURL { get; private set; }
+
+        public bool HasValidPattern { get
+            {
+                if (string.IsNullOrWhiteSpace(VersionPattern)) return false;
+                try { Regex.IsMatch("", VersionPattern); return true; }
+                catch (ArgumentException) { return false; }
+            } }
+
+        /// <summary>
+        /// Checks whether the server has a valid configuration.
+        /// </summary>
+        public bool IsValid { get { return HasValidName && HasValidURL && this.HasValidPattern; } }
+
 
         [JsonConstructor]
-        public Server(int id) { ID = id; Name = ""; VersionPattern = ""; URL = ""; }
+        protected Server(int id) : base(id) {}
+        public Server() : base() {}
 
-        public Server() : this(Math.Abs(Guid.NewGuid().ToString().GetHashCode())) { }
-
-        public override bool Equals(object other)
+        protected override void Init()
         {
-            if (other == null || !typeof(Server).Equals(other.GetType())) return false;
-            return ((Server)other).ID == this.ID;
+            base.Init();
+            URL = "";
+            VersionPattern = "";
         }
-
-        public override int GetHashCode() { return ID; }
-
-        public override string ToString() { return Name; }
     }
 }

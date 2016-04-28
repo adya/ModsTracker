@@ -1,20 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
+using SMT.Managers;
 using System.Collections.Generic;
+using SMT.JsonConverters;
 
 namespace SMT.Models
 {
-    class Mod
+    class Mod : SMTNamedModel, IStateful<ModState>, IVersioning, IValidatable
     {
-        public enum ModState { Undefined, MissedFile, NotTracking, Outdated, UpToDate }
-
-        public int ID { get; private set; }
-
-        /// <summary>
-        /// Mod's name.
-        /// </summary>
-        public string Name { get; set; }
-
         /// <summary>
         /// Mod's version.
         /// </summary>
@@ -29,27 +22,35 @@ namespace SMT.Models
         /// Mod's state
         /// </summary>
         [JsonIgnore]
-        public ModState State {get; set;}
+        public ModState State { get; set; }
 
+        /// <summary>
+        /// Sources at which this mod is available.
+        /// </summary>
         public HashSet<ModSource> Sources { get; private set; }
 
+        /// <summary>
+        /// Checks whether the mod a has valid version or not.
+        /// </summary>
+        [JsonIgnore]
+        public bool HasValidVersion { get { return !string.IsNullOrWhiteSpace(Version); } }
+
+        /// <summary>
+        /// Checks whether the mod has valid configuration.
+        /// </summary>
+        [JsonIgnore]
+        public bool IsValid { get { return HasValidName && HasValidVersion && this.HasValidRoot(); } }
+
+        public Mod() : base() {}
         [JsonConstructor]
-        public Mod(int id, HashSet<ModSource> sources = null)
+        protected Mod(int id) : base(id) {}
+
+        protected override void Init()
         {
-            ID = id;
-            Sources = (sources == null ? new HashSet<ModSource>() : sources);
-            Name = "";
+            base.Init();
             Version = "";
             Root = "";
+            Sources = new HashSet<ModSource>();
         }
-        public Mod() : this(Math.Abs(Guid.NewGuid().ToString().GetHashCode())){}
-
-        public override bool Equals(object other)
-        {
-            if (other == null || !typeof(Mod).Equals(other.GetType())) return false;
-            return ((Mod)other).ID == ID;
-        }
-
-        public override int GetHashCode() { return ID; }
     }
 }

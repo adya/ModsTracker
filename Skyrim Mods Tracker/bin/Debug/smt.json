@@ -1,35 +1,39 @@
 {
-  "Updated": "04/28/2016 02:39",
+  "Updated": "04/28/2016 19:35",
   "Version": "0.5",
   "Servers": [
     {
-      "ID": 114308649,
-      "Name": "ModGames",
       "Pattern": ".*<br><b>\\s*Версия:\\s*</b>\\s*(.+).*",
-      "URL": "http://modgames.net"
+      "URL": "http://modgames.net",
+      "HasValidPattern": true,
+      "IsValid": true,
+      "Name": "ModGames",
+      "ID": 2117186640
     },
     {
-      "ID": 1652867154,
-      "Name": "Nexus",
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
-      "URL": "https://nexusmods.com"
+      "URL": "https://nexusmods.com",
+      "HasValidPattern": true,
+      "IsValid": true,
+      "Name": "Nexus",
+      "ID": 1273431505
     }
   ],
   "Mods": [
     {
-      "ID": 1211214278,
-      "Name": "The Notice Bords\\Доски с заданиями",
       "Version": "2.2",
       "Root": "F:\\[Games]\\Steam\\SteamApps\\common\\Skyrim Mods\\Bash Installers\\The Notice Boards (v2.2) (RU).rar",
       "Sources": [
         {
-          "Path": "/load/tes_v_skyrim/kvesty/the_notice_bords_92_doski_s_zadanijami/250-1-0-20257",
-          "Server": 114308649,
+          "Path": "/load/tes_v_skyrim/kvesty/the_notice_bords_92_doski_s_zadanijami/250-1-0-20257?lufP4q",
+          "Server": 2117186640,
           "Language": 1,
           "Version": "2.2",
-          "State": 4
+          "ID": 1145684469
         }
-      ]
+      ],
+      "Name": "The Notice Bords\\Доски с заданиями",
+      "ID": 317625093
     }
   ]
 }

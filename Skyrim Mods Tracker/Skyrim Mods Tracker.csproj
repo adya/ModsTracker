@@ -60,6 +60,14 @@
     <Compile Include="Managers\ModsManager.cs" />
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
+    <Compile Include="Models\PropertyInterfaces\INamed.cs" />
+    <Compile Include="Models\PropertyInterfaces\IValidatable.cs" />
+    <Compile Include="Models\SMTNamedModel.cs" />
+    <Compile Include="Models\States.cs" />
+    <Compile Include="Models\PropertyInterfaces\IRemote.cs" />
+    <Compile Include="Models\PropertyInterfaces\IStateful.cs" />
+    <Compile Include="Models\PropertyInterfaces\IVersioning.cs" />
+    <Compile Include="Models\SMTModel.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Mod.cs" />
     <Compile Include="Models\ModSource.cs" />

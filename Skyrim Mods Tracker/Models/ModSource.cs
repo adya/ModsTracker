@@ -5,21 +5,18 @@ using System;
 
 namespace SMT.Models
 {
-    class ModSource
+    class ModSource : SMTModel, IValidatable, IStateful<SourceState>, IVersioning, IRemote
     {
-
-        public enum SourceState { Undefined, UnknownServer, UnreachablePage, UnavailableVersion, Available}
-
         /// <summary>
-        /// Relative path.
+        /// Relative url to the source's web-page.
         /// </summary>
-        public string Path { get; set; }
+        public string Path { get; private set; }
 
         /// <summary>
         /// Domain server.
         /// </summary>
         [JsonConverter(typeof(ServerIDJsonConverter))]
-        public Server Server { get; set; }
+        public Server Server { get; private set; }
 
         /// <summary>
         /// Language of the mod available at this source.
@@ -32,21 +29,20 @@ namespace SMT.Models
         public string Version { get; set; }
 
         /// <summary>
-        /// State of that source.
+        /// Absolute url to the source's web-page.
         /// </summary>
-        public SourceState State { get; set; }
-
         [JsonIgnore]
         public string URL
         {
-            get { return (Server != null ? Server.URL + Path : ""); }
+            get { return (HasValidURL ? ModsManager.BuildModSourceURL(this) : ""); }
             set
             {
-                Uri uri;
-                bool valid = Uri.TryCreate(value, UriKind.Absolute, out uri);
-                if (valid)
+                Uri uri = null;
+                HasValidURL = !string.IsNullOrWhiteSpace(value) && ModsManager.TryBuildModSourceURL(value, out uri);;
+                if (HasValidURL)
                 {
-                    Server = ServersManager.ServerWithURL(ServersManager.BuildURL(uri));
+                    Server = ServersManager.ServerWithURL(uri);
+                    HasValidURL = (Server != null);
                     Path = uri.PathAndQuery;
                 }
                 else
@@ -57,26 +53,43 @@ namespace SMT.Models
             }
         }
 
-        public ModSource()
+        /// <summary>
+        /// Flag indicating whether the source has a valid url or not. <para/>
+        /// Note: This includes validating server using the list of known servers.
+        /// </summary>
+        [JsonIgnore]
+        public bool HasValidURL { get; protected set; }
+
+        /// <summary>
+        /// Checks whether the source a has valid version or not.
+        /// </summary>
+        [JsonIgnore]
+        public bool HasValidVersion { get { return !string.IsNullOrWhiteSpace(Version); } }
+
+        [JsonIgnore]
+        public bool IsValid { get { return HasValidURL && HasValidVersion; }}
+
+        [JsonIgnore]
+        public SourceState State { get; set; }
+
+        public ModSource() : base(){}
+        protected ModSource(int id) : base(id) { }
+
+        protected override void Init()
         {
             Path = "";
+            Server = null;
+            Language = Language.None;
             Version = "";
+            HasValidURL = false; 
         }
 
-        public override bool Equals(object other)
+        [JsonConstructor]
+        private ModSource(int id, string path, Server server, Language lang, string version) : base(id)
         {
-            if (Server == null || Path == null) return false;
-            if (other == null || !typeof(ModSource).Equals(other.GetType())) return false;
-            ModSource o = (ModSource)other;
-            if (o.Server == null || o.Path == null) return false;
-            return o.Server.Equals(this.Server) && o.Path.Equals(this.Path);
+            URL = ModsManager.BuildModSourceURL(server, path);
+            Language = lang;
+            Version = version;
         }
-
-        public override int GetHashCode()
-        {
-            if (Server == null) return 0;
-            return Path.GetHashCode() * Server.GetHashCode() << Server.GetHashCode();
-        }
-
     }
 }

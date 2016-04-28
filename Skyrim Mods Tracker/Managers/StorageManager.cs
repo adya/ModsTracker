@@ -28,8 +28,8 @@ namespace SMT.Managers
 
             data.Set(STORAGE_DATE_KEY, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
             data.Set(STORAGE_VERSION_KEY, STORAGE_VERSION);
-            data.Set(STORAGE_SERVERS_KEY, new HashSet<Server>());
-            data.Set(STORAGE_MODS_KEY, new HashSet<Mod>());
+            data.Set(STORAGE_SERVERS_KEY, new HashSet<SMTModel>());
+            data.Set(STORAGE_MODS_KEY, new HashSet<SMTModel>());
 
             if (!File.Exists(StorageFilePath))
                 Sync();
@@ -51,9 +51,6 @@ namespace SMT.Managers
                 storageData.Set(STORAGE_MODS_KEY, (value as JArray).ToObject<HashSet<Mod>>());
                 storageData.TryCopy(STORAGE_MODS_KEY, data);
             }
-
-           
-
         }
 
         /// <summary>
@@ -61,9 +58,9 @@ namespace SMT.Managers
         /// </summary>
         /// <typeparam name="T">Target type.</typeparam>
         /// <returns>Returns HashSet of stored items of specified type. </returns>
-        public static HashSet<T> Get<T>() { return data[KeyForType(typeof(T))]; }
+        public static HashSet<T> Get<T>() where T : SMTModel { return data[KeyForType(typeof(T))]; }
 
-        public static void Set<T>(HashSet<T> items)
+        public static void Set<T>(HashSet<T> items) where T : SMTModel
         {
             if (items == null) return;
             string key = KeyForType(typeof(T));

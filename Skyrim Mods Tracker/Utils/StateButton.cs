@@ -6,17 +6,43 @@ namespace SMT.Utils
 {
     class StateButton : Button
     {
-        public StateButton() : base()
-        {
-            DisabledBackColor = EnabledBackColor = BackColor;
-            DisabledForeColor = EnabledForeColor = ForeColor;
-        }
-
-        public Color DisabledBackColor { get; set; }
-        public Color DisabledForeColor { get; set; }
 
         public Color EnabledBackColor { get; set; }
         public Color EnabledForeColor { get; set; }
+        public Color DisabledBackColor { get; set; }
+        public Color DisabledForeColor { get; set; }
+
+        public StateButton() : base()
+        {
+            DisabledBackColor = Color.LightGray;
+            DisabledForeColor = Color.DimGray;
+            EnabledBackColor = BackColor;
+            EnabledForeColor = ForeColor;
+        }
+
+        protected override void OnForeColorChanged(EventArgs e)
+        {
+            if (DesignMode)
+            {
+                if (Enabled) EnabledForeColor = ForeColor;
+                else DisabledForeColor = ForeColor;
+                Refresh();
+            }
+                
+            base.OnForeColorChanged(e);
+        }
+
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            if (DesignMode)
+            {
+                if (Enabled) EnabledBackColor = BackColor;
+                else DisabledBackColor = BackColor;
+                Refresh();
+            }
+            base.OnBackColorChanged(e);
+        }
+
 
         protected override void OnEnabledChanged(EventArgs e)
         {

@@ -41,7 +41,6 @@
             this.lVersion = new System.Windows.Forms.Label();
             this.lName = new System.Windows.Forms.Label();
             this.msMenu = new System.Windows.Forms.MenuStrip();
-            this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdRoot = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,6 +56,10 @@
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.lLanguage = new System.Windows.Forms.Label();
             this.lServer = new System.Windows.Forms.Label();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scanModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
             this.bsSources = new System.Windows.Forms.BindingSource(this.components);
@@ -69,11 +72,11 @@
             this.versionDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pathDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rootDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rootDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.gbMod.SuspendLayout();
             this.msMenu.SuspendLayout();
@@ -88,6 +91,7 @@
             // dgvMods
             // 
             this.dgvMods.AllowUserToAddRows = false;
+            this.dgvMods.AllowUserToDeleteRows = false;
             this.dgvMods.AllowUserToOrderColumns = true;
             this.dgvMods.AllowUserToResizeRows = false;
             this.dgvMods.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -98,11 +102,11 @@
             this.dgvMods.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMods.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvMods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewcontrolColumn,
-            this.iDDataGridViewcontrolColumn,
-            this.versionDataGridViewcontrolColumn,
-            this.stateDataGridViewcontrolColumn,
-            this.rootDataGridViewcontrolColumn});
+            this.nameDataGridViewTextBoxColumn,
+            this.versionDataGridViewTextBoxColumn,
+            this.stateDataGridViewTextBoxColumn,
+            this.rootDataGridViewTextBoxColumn,
+            this.iDDataGridViewTextBoxColumn});
             this.dgvMods.DataSource = this.bsMods;
             this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMods.Location = new System.Drawing.Point(12, 27);
@@ -110,7 +114,7 @@
             this.dgvMods.ReadOnly = true;
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMods.Size = new System.Drawing.Size(629, 504);
-            this.dgvMods.TabIndex = 0;
+            this.dgvMods.TabIndex = 10;
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
             // 
             // gbMod
@@ -229,20 +233,13 @@
             // msMenu
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serversToolStripMenuItem,
-            this.checkModsToolStripMenuItem});
+            this.checkModsToolStripMenuItem,
+            this.settingsToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(1004, 24);
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "menuStrip1";
-            // 
-            // serversToolStripMenuItem
-            // 
-            this.serversToolStripMenuItem.Name = "serversToolStripMenuItem";
-            this.serversToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.serversToolStripMenuItem.Text = "Servers";
-            this.serversToolStripMenuItem.Click += new System.EventHandler(this.serversToolStripMenuItem_Click);
             // 
             // checkModsToolStripMenuItem
             // 
@@ -271,7 +268,6 @@
             this.dgvSources.AutoGenerateColumns = false;
             this.dgvSources.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSources.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvSources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSources.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.serverDataGridViewcontrolColumn,
             this.languageDataGridViewcontrolColumn,
@@ -286,7 +282,7 @@
             this.dgvSources.RowHeadersVisible = false;
             this.dgvSources.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSources.Size = new System.Drawing.Size(336, 119);
-            this.dgvSources.TabIndex = 0;
+            this.dgvSources.TabIndex = 11;
             this.dgvSources.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvSources_MouseDown);
             // 
             // panel1
@@ -405,6 +401,36 @@
             this.lServer.TabIndex = 2;
             this.lServer.Text = "URL:";
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.serversToolStripMenuItem,
+            this.scanModsToolStripMenuItem,
+            this.preferencesToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // serversToolStripMenuItem
+            // 
+            this.serversToolStripMenuItem.Name = "serversToolStripMenuItem";
+            this.serversToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serversToolStripMenuItem.Text = "Servers";
+            this.serversToolStripMenuItem.Click += new System.EventHandler(this.serversToolStripMenuItem_Click);
+            // 
+            // scanModsToolStripMenuItem
+            // 
+            this.scanModsToolStripMenuItem.Name = "scanModsToolStripMenuItem";
+            this.scanModsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.scanModsToolStripMenuItem.Text = "Scan Mods";
+            // 
+            // preferencesToolStripMenuItem
+            // 
+            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.preferencesToolStripMenuItem.Text = "Preferences";
+            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
+            // 
             // bAddSource
             // 
             this.bAddSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -444,7 +470,7 @@
             // bsSources
             // 
             this.bsSources.DataSource = typeof(SMT.Models.ModSource);
-            this.bsSources.CurrentChanged += new System.EventHandler(this.bsSourcesCurrentChanged);
+            this.bsSources.CurrentItemChanged += new System.EventHandler(this.bsSources_CurrentItemChanged);
             // 
             // stateButton1
             // 
@@ -504,7 +530,7 @@
             // bsMods
             // 
             this.bsMods.DataSource = typeof(SMT.Models.Mod);
-            this.bsMods.CurrentChanged += new System.EventHandler(this.bsModsCurrentChanged);
+            this.bsMods.CurrentItemChanged += new System.EventHandler(this.bsMods_CurrentItemChanged);
             // 
             // serverDataGridViewcontrolColumn
             // 
@@ -546,46 +572,46 @@
             this.pathDataGridViewcontrolColumn.ReadOnly = true;
             this.pathDataGridViewcontrolColumn.Width = 52;
             // 
-            // nameDataGridViewcontrolColumn
+            // nameDataGridViewTextBoxColumn
             // 
-            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
-            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
-            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
-            this.nameDataGridViewcontrolColumn.ReadOnly = true;
-            this.nameDataGridViewcontrolColumn.Width = 58;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 58;
             // 
-            // iDDataGridViewcontrolColumn
+            // versionDataGridViewTextBoxColumn
             // 
-            this.iDDataGridViewcontrolColumn.DataPropertyName = "ID";
-            this.iDDataGridViewcontrolColumn.HeaderText = "ID";
-            this.iDDataGridViewcontrolColumn.Name = "iDDataGridViewcontrolColumn";
-            this.iDDataGridViewcontrolColumn.ReadOnly = true;
-            this.iDDataGridViewcontrolColumn.Visible = false;
-            this.iDDataGridViewcontrolColumn.Width = 41;
+            this.versionDataGridViewTextBoxColumn.DataPropertyName = "Version";
+            this.versionDataGridViewTextBoxColumn.HeaderText = "Version";
+            this.versionDataGridViewTextBoxColumn.Name = "versionDataGridViewTextBoxColumn";
+            this.versionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.versionDataGridViewTextBoxColumn.Width = 65;
             // 
-            // versionDataGridViewcontrolColumn
+            // stateDataGridViewTextBoxColumn
             // 
-            this.versionDataGridViewcontrolColumn.DataPropertyName = "Version";
-            this.versionDataGridViewcontrolColumn.HeaderText = "Version";
-            this.versionDataGridViewcontrolColumn.Name = "versionDataGridViewcontrolColumn";
-            this.versionDataGridViewcontrolColumn.ReadOnly = true;
-            this.versionDataGridViewcontrolColumn.Width = 65;
+            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
+            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
+            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stateDataGridViewTextBoxColumn.Width = 55;
             // 
-            // stateDataGridViewcontrolColumn
+            // rootDataGridViewTextBoxColumn
             // 
-            this.stateDataGridViewcontrolColumn.DataPropertyName = "State";
-            this.stateDataGridViewcontrolColumn.HeaderText = "State";
-            this.stateDataGridViewcontrolColumn.Name = "stateDataGridViewcontrolColumn";
-            this.stateDataGridViewcontrolColumn.ReadOnly = true;
-            this.stateDataGridViewcontrolColumn.Width = 55;
+            this.rootDataGridViewTextBoxColumn.DataPropertyName = "Root";
+            this.rootDataGridViewTextBoxColumn.HeaderText = "Root";
+            this.rootDataGridViewTextBoxColumn.Name = "rootDataGridViewTextBoxColumn";
+            this.rootDataGridViewTextBoxColumn.ReadOnly = true;
+            this.rootDataGridViewTextBoxColumn.Width = 53;
             // 
-            // rootDataGridViewcontrolColumn
+            // iDDataGridViewTextBoxColumn
             // 
-            this.rootDataGridViewcontrolColumn.DataPropertyName = "Root";
-            this.rootDataGridViewcontrolColumn.HeaderText = "Root";
-            this.rootDataGridViewcontrolColumn.Name = "rootDataGridViewcontrolColumn";
-            this.rootDataGridViewcontrolColumn.ReadOnly = true;
-            this.rootDataGridViewcontrolColumn.Width = 53;
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.iDDataGridViewTextBoxColumn.Width = 41;
             // 
             // MainForm
             // 
@@ -602,6 +628,7 @@
             this.Name = "MainForm";
             this.Text = "Skyrim Mods Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).EndInit();
             this.gbMod.ResumeLayout(false);
@@ -623,7 +650,6 @@
         #endregion
         private System.Windows.Forms.GroupBox gbMod;
         private System.Windows.Forms.MenuStrip msMenu;
-        private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgvMods;
         private System.Windows.Forms.TextBox tbVersion;
         private System.Windows.Forms.TextBox tbName;
@@ -643,7 +669,6 @@
         private System.Windows.Forms.ComboBox cbLanguage;
         private System.Windows.Forms.Label lLanguage;
         private System.Windows.Forms.Label lServer;
-        private System.Windows.Forms.BindingSource bsMods;
         private System.Windows.Forms.BindingSource bsSources;
         private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewcontrolColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewcontrolColumn;
@@ -651,11 +676,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewcontrolColumn;
         private System.Windows.Forms.ToolStripMenuItem checkModsToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewcontrolColumn;
         private Utils.StateButton bBrowse;
         private Utils.StateButton stateButton1;
         private Utils.StateButton bRemoveMod;
@@ -666,6 +686,16 @@
         private System.Windows.Forms.Label lURLError;
         private Utils.StateButton bAddSource;
         private Utils.StateButton bRemoveSource;
+        private System.Windows.Forms.BindingSource bsMods;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scanModsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
     }
 }
 

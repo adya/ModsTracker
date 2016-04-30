@@ -3,20 +3,25 @@ using System;
 using SMT.Managers;
 using System.Collections.Generic;
 using SMT.JsonConverters;
+using SMT.Utils;
+using System.IO;
 
 namespace SMT.Models
 {
     class Mod : SMTNamedModel, IStateful<ModState>, IVersioning, IValidatable
     {
+        private string version, root;
+
+
         /// <summary>
         /// Mod's version.
         /// </summary>
-        public string Version { get; set; }
+        public string Version { get { return version; } set { version = StringUtils.NonNull(value); } }
 
         /// <summary>
         /// Path to the file.
         /// </summary>
-        public string Root { get; set; }
+        public string Root { get { return root; } set { root = StringUtils.NonNull(value); } }
 
         /// <summary>
         /// Mod's state
@@ -35,11 +40,21 @@ namespace SMT.Models
         [JsonIgnore]
         public bool HasValidVersion { get { return !string.IsNullOrWhiteSpace(Version); } }
 
+        [JsonIgnore]
+        public bool HasValidRoot
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Root)) return false;
+                return File.Exists(Root) || Directory.Exists(Root);
+            }
+        }
+
         /// <summary>
         /// Checks whether the mod has valid configuration.
         /// </summary>
         [JsonIgnore]
-        public bool IsValid { get { return HasValidName && HasValidVersion && this.HasValidRoot(); } }
+        public bool IsValid { get { return HasValidName && HasValidVersion && HasValidRoot; } }
 
         public Mod() : base() {}
         [JsonConstructor]
@@ -51,6 +66,14 @@ namespace SMT.Models
             Version = "";
             Root = "";
             Sources = new HashSet<ModSource>();
+        }
+
+        public override void Normalize()
+        {
+            Version = Version.Trim();
+            Root = Root.Trim();
+            foreach (var src in Sources)
+                src.Normalize();
         }
     }
 }

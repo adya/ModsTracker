@@ -31,16 +31,21 @@ namespace SMT.Models
         [JsonIgnore]
         public bool HasValidURL { get; private set; }
 
-        public bool HasValidPattern { get
+        [JsonIgnore]
+        public bool HasValidPattern
+        {
+            get
             {
                 if (string.IsNullOrWhiteSpace(VersionPattern)) return false;
                 try { Regex.IsMatch("", VersionPattern); return true; }
                 catch (ArgumentException) { return false; }
-            } }
+            }
+        }
 
         /// <summary>
         /// Checks whether the server has a valid configuration.
         /// </summary>
+        [JsonIgnore]
         public bool IsValid { get { return HasValidName && HasValidURL && this.HasValidPattern; } }
 
 

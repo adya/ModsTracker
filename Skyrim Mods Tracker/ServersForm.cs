@@ -21,6 +21,7 @@ namespace SMT
 
         private void ServersForm_Load(object sender, EventArgs e)
         {
+            dgvServers.AutoResizeColumns();
             tbName.BindLabel(lNameError);
             tbURL.BindLabel(lURLError);
             tbPattern.BindLabel(lPatternError);
@@ -29,7 +30,7 @@ namespace SMT
             tbName.TextChanged += OnTextChanged;
             tbPattern.TextChanged += OnTextChanged;
 
-            dgvServers.ClearSelection();
+            SetServerEditable(false);
         }
 
         private void SetServerEditable(bool isEditable)
@@ -126,6 +127,7 @@ namespace SMT
             {
                 dgvServers.Rows[servers.Count - 1].Selected = true;
                 tbName.Focus();
+                tbName.DeselectAll();
             }
         }
 
@@ -149,7 +151,8 @@ namespace SMT
             if (invalidServers.Count == 0 ||
                 (DialogResult.OK == MessageBox.Show("Some of the servers has invalid configuration.\n" +
                                                     "Closing this window will save these configurations and may break associated mod sources." +
-                                                    "\n\nFix servers: [" + string.Join(", ", invalidServers) + "]", "Invalid servers", MessageBoxButtons.OKCancel)))
+                                                    "\n\nFix servers: [" + string.Join(", ", invalidServers) + "]" +
+                                                    "\n\n Continue?", "Invalid servers", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)))
             {
                 ServersManager.Servers.Clear();
                 foreach (var server in servers)
@@ -163,7 +166,7 @@ namespace SMT
             tbName.UnbindLabel();
             tbPattern.UnbindLabel();
             tbURL.UnbindLabel();
-            ServersManager.FormatServers();
+            ServersManager.NormalizeServers();
         }
 
     }

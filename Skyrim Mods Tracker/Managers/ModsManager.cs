@@ -14,11 +14,10 @@ namespace SMT.Managers
         public static HashSet<Mod> Mods { get { return StorageManager.Get<Mod>(); } }
         public static void CheckUpdates() { foreach (var mod in Mods) CheckUpdates(mod);  }
 
-        public static void FormatMods() { foreach (var mod in Mods) mod.Format(); }
+        public static void NormalizeMods() { foreach (var mod in Mods) mod.Normalize(); }
 
         public static Mod ModWithID(int id) { return Mods.FirstOrDefault(m => m.ID == id); }
-        public static Mod ModWithRoot(string root) { return Mods.FirstOrDefault(m => m.HasValidRoot() && m.Root.Equals(root)); }
-
+        public static Mod ModWithRoot(string root) { return Mods.FirstOrDefault(m => m.HasValidRoot && m.Root.Equals(root)); }
 
         public static string BuildModSourceURL(ModSource source) { return BuildModSourceURL(source.Server, source.Path); }
        
@@ -34,20 +33,11 @@ namespace SMT.Managers
 
         #region Mod Extensions
 
-        public static void Format(this Mod mod)
-        {
-            mod.Name = mod.Name.Trim();
-            mod.Version = mod.Version.Trim();
-            mod.Root = mod.Root.Trim();
-        }
-
-        
-
         public static void CheckUpdates(this Mod mod)
         {
             if (mod.Sources == null || mod.Sources.Count == 0) { mod.State = ModState.NotTracking; return; }
 
-            if (!mod.HasValidRoot()) mod.State = ModState.MissedFile;
+            if (!mod.HasValidRoot) mod.State = ModState.MissedFile;
 
             using (WebClient client = new WebClient())
             {
@@ -93,12 +83,6 @@ namespace SMT.Managers
         }
 
         public static bool HasUniqueName(this Mod mod) { return (Mods.Count(m => !m.Equals(mod) && m.Name.Equals(mod.Name)) == 0); }
-        
-        public static bool HasValidRoot(this Mod mod)
-        {
-            if (string.IsNullOrWhiteSpace(mod.Root)) return false;
-            return File.Exists(mod.Root) || Directory.Exists(mod.Root);
-        }
 
         //public static bool HasInvalidSources(this Mod mod)
         //{

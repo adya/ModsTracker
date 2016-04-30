@@ -1,18 +1,16 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SMT.Utils;
 
 namespace SMT.Models
 {
     abstract class SMTNamedModel : SMTModel, INamed
     {
+        private string name; // field for preventing null values.
+
         /// <summary>
         /// Modle's name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get { return name; } set { name = StringUtils.NonNull(value); } }
 
         /// <summary>
         /// Checks whether the mod a has valid name or not.
@@ -24,6 +22,11 @@ namespace SMT.Models
         protected SMTNamedModel() : base() {}
 
         protected override void Init() { Name = ""; }
+
+        public override void Normalize()
+        {
+            Name = Name.Trim();
+        }
 
         public override string ToString() { return Name; }
     }

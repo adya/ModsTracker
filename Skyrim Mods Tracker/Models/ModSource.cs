@@ -1,12 +1,15 @@
 ﻿using Newtonsoft.Json;
 using SMT.JsonConverters;
 using SMT.Managers;
+using SMT.Utils;
 using System;
 
 namespace SMT.Models
 {
     class ModSource : SMTModel, IValidatable, IStateful<SourceState>, IVersioning, IRemote
     {
+        private string version;
+
         /// <summary>
         /// Relative url to the source's web-page.
         /// </summary>
@@ -26,7 +29,7 @@ namespace SMT.Models
         /// <summary>
         /// Latest version available at this source.
         /// </summary>
-        public string Version { get; set; }
+        public string Version { get { return version; } set { version = StringUtils.NonNull(value); } }
 
         /// <summary>
         /// Absolute url to the source's web-page.
@@ -84,12 +87,19 @@ namespace SMT.Models
             HasValidURL = false; 
         }
 
+        public override void Normalize()
+        {
+            Path = Path.Trim();
+            Version = Version.Trim();
+        }
+
         [JsonConstructor]
         private ModSource(int id, string path, Server server, Language lang, string version) : base(id)
         {
             URL = ModsManager.BuildModSourceURL(server, path);
             Language = lang;
             Version = version;
+            Normalize();
         }
     }
 }

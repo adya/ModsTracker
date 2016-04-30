@@ -13,7 +13,15 @@ namespace SMT.Models
 
         protected SMTModel() : this(Math.Abs(Guid.NewGuid().ToString().GetHashCode())) { }
 
+        /// <summary>
+        /// Initalizes all model's properties with default values.
+        /// </summary>
         protected abstract void Init();
+
+        /// <summary>
+        /// Normalizes all model's properties, e.g. removes any typos and redundant symbols.
+        /// </summary>
+        public abstract void Normalize();
 
         public override bool Equals(object other)
         {

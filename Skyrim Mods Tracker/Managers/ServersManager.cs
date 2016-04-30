@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using SMT.Utils;
 
 namespace SMT.Managers
 {
@@ -11,7 +12,7 @@ namespace SMT.Managers
     {
         public static HashSet<Server> Servers { get { return StorageManager.Get<Server>(); } }
 
-        public static void FormatServers() { foreach (var server in Servers) server.Format(); }
+        public static void NormalizeServers() { foreach (var server in Servers) server.Format(); }
 
 
         public static Server ServerWithID(int id) { return Servers.FirstOrDefault(s => s.ID == id); }
@@ -29,7 +30,7 @@ namespace SMT.Managers
         {
             Uri uri;
             bool success = (Uri.TryCreate(url, UriKind.Absolute, out uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps));
-            serverUrl = (success ? BuildServerURL(uri) : url);
+            serverUrl = (success ? BuildServerURL(uri) : StringUtils.NonNull(url));
             return success;
         }
 

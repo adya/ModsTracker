@@ -1,39 +1,1212 @@
 {
-  "Updated": "04/28/2016 19:35",
+  "Updated": "05/01/2016 21:56",
   "Version": "0.5",
   "Servers": [
     {
       "Pattern": ".*<br><b>\\s*Версия:\\s*</b>\\s*(.+).*",
       "URL": "http://modgames.net",
-      "HasValidPattern": true,
-      "IsValid": true,
       "Name": "ModGames",
       "ID": 2117186640
     },
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "https://nexusmods.com",
-      "HasValidPattern": true,
-      "IsValid": true,
       "Name": "Nexus",
       "ID": 1273431505
     }
   ],
   "Mods": [
     {
+      "Version": "4.1",
+      "FileName": "83 Willows 101 Bugs HD(v4.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "83 Willows 101 Bugs HD",
+      "ID": 219141854
+    },
+    {
+      "Version": "2.3.1",
+      "FileName": "Achieve That (v2.3.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Achieve That ",
+      "ID": 492117955
+    },
+    {
+      "Version": "2",
+      "FileName": "Alchemy And Enchanting Tables(v2) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Alchemy And Enchanting Tables",
+      "ID": 568136717
+    },
+    {
+      "Version": "1.1",
+      "FileName": "All Tamriel Books (v1.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "All Tamriel Books ",
+      "ID": 1065519178
+    },
+    {
+      "Version": "6.0",
+      "FileName": "Andragorn's Armoury (v6.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Andragorn's Armoury ",
+      "ID": 1010100212
+    },
+    {
+      "Version": "RU",
+      "FileName": "Archery Pro - Beta b (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Archery Pro - Beta b ",
+      "ID": 238393364
+    },
+    {
+      "Version": "3.6",
+      "FileName": "Armor Compilation(v3.6) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Armor Compilation",
+      "ID": 881009592
+    },
+    {
+      "Version": "3.0",
+      "FileName": "Ashara Erin and Sienna Followers(v3.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Ashara Erin and Sienna Followers",
+      "ID": 450827538
+    },
+    {
+      "Version": "1.7",
+      "FileName": "B-D-Y-E-B Shield Mod(v1.7) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "B-D-Y-E-B Shield Mod",
+      "ID": 578684165
+    },
+    {
+      "Version": "3.0",
+      "FileName": "BadGremlins Great JarHunt(v3.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "BadGremlins Great JarHunt",
+      "ID": 276342987
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Be a Milk Drinker(v2.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Be a Milk Drinker",
+      "ID": 152331932
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Black Mage Robe Replacer(v1.0) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Black Mage Robe Replacer",
+      "ID": 2102021293
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Book Covers Skyrim (v3.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Book Covers Skyrim ",
+      "ID": 1452803259
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Book Covers Skyrim - Hotfix (v3.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Book Covers Skyrim - Hotfix ",
+      "ID": 2063440253
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Book Covers Skyrim - Paper Textures(v3.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Book Covers Skyrim - Paper Textures",
+      "ID": 86483384
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Book Weight(v1.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Book Weight",
+      "ID": 239565086
+    },
+    {
       "Version": "2.2",
-      "Root": "F:\\[Games]\\Steam\\SteamApps\\common\\Skyrim Mods\\Bash Installers\\The Notice Boards (v2.2) (RU).rar",
-      "Sources": [
-        {
-          "Path": "/load/tes_v_skyrim/kvesty/the_notice_bords_92_doski_s_zadanijami/250-1-0-20257?lufP4q",
-          "Server": 2117186640,
-          "Language": 1,
-          "Version": "2.2",
-          "ID": 1145684469
-        }
-      ],
-      "Name": "The Notice Bords\\Доски с заданиями",
-      "ID": 317625093
+      "FileName": "Bucklers - Shields and other Armours(v2.2) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Bucklers - Shields and other Armours",
+      "ID": 1732689814
+    },
+    {
+      "Version": "3.6",
+      "FileName": "Burn Freeze Shock Effects(v3.6) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Burn Freeze Shock Effects",
+      "ID": 800985244
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Buy Perks(v1.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Buy Perks",
+      "ID": 548748300
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Catwalk(v1.2) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Catwalk",
+      "ID": 1479149272
+    },
+    {
+      "Version": "3.0b",
+      "FileName": "Chesko Wearable Lanterns(v3.0b) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Chesko Wearable Lanterns",
+      "ID": 1693028327
+    },
+    {
+      "Version": "no",
+      "FileName": "Chocolate Glazed Sweetroll(no) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Chocolate Glazed Sweetroll",
+      "ID": 132479547
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Climates Of Tamriel - Dawnguard Patch(v3.1) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Climates Of Tamriel - Dawnguard Patch",
+      "ID": 1070663239
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Climates Of Tamriel - Dragonborn Patch(v3.1) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Climates Of Tamriel - Dragonborn Patch",
+      "ID": 1199056529
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Climates Of Tamriel - Sounds(v3.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Climates Of Tamriel - Sounds",
+      "ID": 951591238
+    },
+    {
+      "Version": "3.1",
+      "FileName": "Climates Of Tamriel(v3.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Climates Of Tamriel",
+      "ID": 667534423
+    },
+    {
+      "Version": "1.5",
+      "FileName": "Clothing and Clutter Fixes (v1.5) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Clothing and Clutter Fixes ",
+      "ID": 1276314735
+    },
+    {
+      "Version": "1.4",
+      "FileName": "Companion Valfar (v1.4) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Companion Valfar ",
+      "ID": 1408841908
+    },
+    {
+      "Version": "1.61",
+      "FileName": "Complete Crafting Overhaul Remade (v1.61) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Complete Crafting Overhaul Remade ",
+      "ID": 537133151
+    },
+    {
+      "Version": "NO",
+      "FileName": "Convenient Horses - Alternate Textures (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Convenient Horses - Alternate Textures ",
+      "ID": 481437290
+    },
+    {
+      "Version": "5.0",
+      "FileName": "Convenient Horses(v5.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Convenient Horses",
+      "ID": 527757700
+    },
+    {
+      "Version": "no",
+      "FileName": "Craftable Clothes and Robes(no) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Craftable Clothes and Robes",
+      "ID": 2064796187
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Crown Royal Money Bags(v1.2) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Crown Royal Money Bags",
+      "ID": 727088712
+    },
+    {
+      "Version": "2.5.5",
+      "FileName": "Daedric Armor and weapon Improvement(v2.5.5) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Daedric Armor and weapon Improvement",
+      "ID": 1915238197
+    },
+    {
+      "Version": "6.3.5",
+      "FileName": "Deadly Dragons(v6.3.5) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Deadly Dragons",
+      "ID": 1542150471
+    },
+    {
+      "Version": "4.4.0",
+      "FileName": "Deadly DragonsArmory(v4.4.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Deadly DragonsArmory",
+      "ID": 1730725733
+    },
+    {
+      "Version": "3.0",
+      "FileName": "Diamond Weapon Smithing(v3.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Diamond Weapon Smithing",
+      "ID": 1787451855
+    },
+    {
+      "Version": "1.51",
+      "FileName": "DIMONIZED UNP female body(v1.51) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "DIMONIZED UNP female body",
+      "ID": 1703142303
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Distant Detail Hearthfire Edition(v1.0) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Distant Detail Hearthfire Edition",
+      "ID": 2012889325
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Divine Intervention(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Divine Intervention",
+      "ID": 1970598051
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Drachis Argonians(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Drachis Argonians",
+      "ID": 1431703587
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Dragon Soul Relinquishment (v1.2) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Dragon Soul Relinquishment ",
+      "ID": 250553620
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Dynamic Torches(v2.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Dynamic Torches",
+      "ID": 1097580568
+    },
+    {
+      "Version": "1.21",
+      "FileName": "Egil Lovers(v1.21) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Egil Lovers",
+      "ID": 987207106
+    },
+    {
+      "Version": "2.1",
+      "FileName": "Elemental Arrows(v2.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Elemental Arrows",
+      "ID": 490044881
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Elven Armor and Weapons(v1.0) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Elven Armor and Weapons",
+      "ID": 529533441
+    },
+    {
+      "Version": "3.6a",
+      "FileName": "Enhanced Blood Textures (v3.6a).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Enhanced Blood Textures ",
+      "ID": 755390281
+    },
+    {
+      "Version": "3.5",
+      "FileName": "Enhanced Blood Textures - No Screen Blood(v3.5) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Enhanced Blood Textures - No Screen Blood",
+      "ID": 1551551336
+    },
+    {
+      "Version": "1.4",
+      "FileName": "Fleetford(v1.4) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Fleetford",
+      "ID": 1527181652
+    },
+    {
+      "Version": "1.1",
+      "FileName": "Follower Trap Safety(v1.1) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Follower Trap Safety",
+      "ID": 1033145887
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Forgotten Windmill(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Forgotten Windmill",
+      "ID": 1446821153
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Get Arrows Back(v1.0) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Get Arrows Back",
+      "ID": 1215962337
+    },
+    {
+      "Version": "5.5",
+      "FileName": "Get Snowy(v5.5) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Get Snowy",
+      "ID": 138539121
+    },
+    {
+      "Version": "no",
+      "FileName": "Glowing Eyes for Khajiits(no) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Glowing Eyes for Khajiits",
+      "ID": 1804653490
+    },
+    {
+      "Version": "1.3",
+      "FileName": "Grimoas Plantigrade Feet For Beast Races(v1.3) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Grimoas Plantigrade Feet For Beast Races",
+      "ID": 2099360808
+    },
+    {
+      "Version": "1.0",
+      "FileName": "HD Kajiit Textures(v1.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "HD Kajiit Textures",
+      "ID": 1752634477
+    },
+    {
+      "Version": "3.0",
+      "FileName": "HD Torch Variants(v3.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "HD Torch Variants",
+      "ID": 1448434610
+    },
+    {
+      "Version": "2.1",
+      "FileName": "High Quality LODs[Meshes](v2.1) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "High Quality LODs[Meshes]",
+      "ID": 923024363
+    },
+    {
+      "Version": "2.1",
+      "FileName": "High Quality LODs[Normals](v2.1) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "High Quality LODs[Normals]",
+      "ID": 727081670
+    },
+    {
+      "Version": "2.1",
+      "FileName": "High Quality LODs[Textures](v2.1) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "High Quality LODs[Textures]",
+      "ID": 755687450
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Hold Border Banners (v1.0) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Hold Border Banners ",
+      "ID": 567807362
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Hoth (v2.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Hoth ",
+      "ID": 1236737093
+    },
+    {
+      "Version": "4.0",
+      "FileName": "Hybrids HD Plants and Herbs Retexture(v4.0) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Hybrids HD Plants and Herbs Retexture",
+      "ID": 107910854
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Illustrated Panels Towns(v1.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Illustrated Panels Towns",
+      "ID": 1210006451
+    },
+    {
+      "Version": "7.1",
+      "FileName": "Immersive Armours UNP(v7.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Immersive Armours UNP",
+      "ID": 206633640
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Improved Books [Quest + Skills](v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Improved Books [Quest + Skills]",
+      "ID": 350238126
+    },
+    {
+      "Version": "1.8.1",
+      "FileName": "Improved NPC Clothing(v1.8.1) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Improved NPC Clothing",
+      "ID": 313288532
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Improved Weapon Impact EFFECTS Correct Metal(v1.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Improved Weapon Impact EFFECTS Correct Metal",
+      "ID": 1114672030
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Insanitys City Banner Replacer(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Insanitys City Banner Replacer",
+      "ID": 1250709089
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Ishs Souls to Perks(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Ishs Souls to Perks",
+      "ID": 1532344041
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Jaffar (v1.2) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Jaffar ",
+      "ID": 194794879
+    },
+    {
+      "Version": "13D",
+      "FileName": "JaySuS Swords (v13D) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "JaySuS Swords ",
+      "ID": 342941920
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Jewels of the nord(v1.2) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Jewels of the nord",
+      "ID": 780969210
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Langleys Ingots Retexture(v1.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Langleys Ingots Retexture",
+      "ID": 1326154857
+    },
+    {
+      "Version": "1.02",
+      "FileName": "LFox Alchemists(v1.02) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "LFox Alchemists",
+      "ID": 450599466
+    },
+    {
+      "Version": "1.0",
+      "FileName": "LFox Improved Shouts(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "LFox Improved Shouts",
+      "ID": 479136978
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Lilium Follower - Standalone - New Spells (v2.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Lilium Follower - Standalone - New Spells ",
+      "ID": 181231258
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Lock Overhaul (v1.2).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Lock Overhaul ",
+      "ID": 1955277733
+    },
+    {
+      "Version": "1.4",
+      "FileName": "LOD Terrain(v1.4) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "LOD Terrain",
+      "ID": 389670617
+    },
+    {
+      "Version": "1.4",
+      "FileName": "LOD Waterfalls(v1.4) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "LOD Waterfalls",
+      "ID": 1200374706
+    },
+    {
+      "Version": "1.1",
+      "FileName": "Lost Longswords(v1.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Lost Longswords",
+      "ID": 284333275
+    },
+    {
+      "Version": "1.7",
+      "FileName": "Marriage Dynamic Outfits(v1.7) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Marriage Dynamic Outfits",
+      "ID": 710998698
+    },
+    {
+      "Version": "3.05",
+      "FileName": "More Slots for Enchanting(v3.05) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "More Slots for Enchanting",
+      "ID": 1470205893
+    },
+    {
+      "Version": "1.6",
+      "FileName": "More Village Animals(v1.6) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "More Village Animals",
+      "ID": 840525366
+    },
+    {
+      "Version": "no",
+      "FileName": "NMFWLM(no) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "NMFWLM",
+      "ID": 277107215
+    },
+    {
+      "Version": "0.2",
+      "FileName": "NPC Bartering(v0.2) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "NPC Bartering",
+      "ID": 206218797
+    },
+    {
+      "Version": "2.01 to v2.02",
+      "FileName": "OBIS - Organized Bandits In Skyrim (v2.01 to v2.02) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "OBIS - Organized Bandits In Skyrim ",
+      "ID": 1060713866
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Old Spells (v1.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Old Spells ",
+      "ID": 956403388
+    },
+    {
+      "Version": "0.9",
+      "FileName": "Open Dragon Priest Masks(v0.9) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Open Dragon Priest Masks",
+      "ID": 1490341864
+    },
+    {
+      "Version": "1.4",
+      "FileName": "Perk Trainers(v1.4) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Perk Trainers",
+      "ID": 331782098
+    },
+    {
+      "Version": "0.3",
+      "FileName": "Pets of Skyrim(v0.3) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Pets of Skyrim",
+      "ID": 299243463
+    },
+    {
+      "Version": "1.1",
+      "FileName": "Phenderix Magic Sounds Improved(v1.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Phenderix Magic Sounds Improved",
+      "ID": 264097703
+    },
+    {
+      "Version": "1.9Final",
+      "FileName": "Portal - Dynamically Placed Teleportation(v1.9Final) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Portal - Dynamically Placed Teleportation",
+      "ID": 1630918481
+    },
+    {
+      "Version": "0.1",
+      "FileName": "Powerful potions(v0.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Powerful potions",
+      "ID": 1179658826
+    },
+    {
+      "Version": "1.4",
+      "FileName": "Radiance of Enchanted Weapons(v1.4) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Radiance of Enchanted Weapons",
+      "ID": 1232019720
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Revised Speed(v2.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Revised Speed",
+      "ID": 1511187097
+    },
+    {
+      "Version": "1.2",
+      "FileName": "Reweighed Potions(v1.2) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Reweighed Potions",
+      "ID": 1565061213
+    },
+    {
+      "Version": "no",
+      "FileName": "Rift Performance Plus (no) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Rift Performance Plus ",
+      "ID": 134934864
+    },
+    {
+      "Version": "2.8",
+      "FileName": "Ruins Clutter Improved (v2.8) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Ruins Clutter Improved ",
+      "ID": 1285067031
+    },
+    {
+      "Version": "2.0.3",
+      "FileName": "Run For Your Lives(v2.0.3) (RU).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Run For Your Lives",
+      "ID": 952474479
+    },
+    {
+      "Version": ".1.9.32",
+      "FileName": "Rus Names fix (v.1.9.32) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Rus Names fix ",
+      "ID": 1060621457
+    },
+    {
+      "Version": ".1.1",
+      "FileName": "Rusty Traders Magic Arrows(v.1.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Rusty Traders Magic Arrows",
+      "ID": 133173656
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Septim HD(v1.0) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "Septim HD",
+      "ID": 1717880772
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Serious HD Retexture Skyrim(v2.0) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Serious HD Retexture Skyrim",
+      "ID": 657093503
+    },
+    {
+      "Version": "5.0final",
+      "FileName": "Shady Tales(v5.0final) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Shady Tales",
+      "ID": 328270363
+    },
+    {
+      "Version": "3.0",
+      "FileName": "Silly Level of Detail - Potions and Poisons(v3.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Silly Level of Detail - Potions and Poisons",
+      "ID": 1609127316
+    },
+    {
+      "Version": "1.0final",
+      "FileName": "Silly Level of Detail - Wine Cellar(v1.0final) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Silly Level of Detail - Wine Cellar",
+      "ID": 1067549478
+    },
+    {
+      "Version": "3.3",
+      "FileName": "SkyFalls and SkyMills (v3.3) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "SkyFalls and SkyMills ",
+      "ID": 190142979
+    },
+    {
+      "Version": "1.1a",
+      "FileName": "Skyforge Shields(v1.1a) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Skyforge Shields",
+      "ID": 1708210334
+    },
+    {
+      "Version": "6.5.2",
+      "FileName": "Skyrim Immersive Creatures (v6.5.2) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Skyrim Immersive Creatures ",
+      "ID": 2060949104
+    },
+    {
+      "Version": "1.28",
+      "FileName": "SkyTEST - Realistic Animals and Predators - Dawnguard(v1.28) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "SkyTEST - Realistic Animals and Predators - Dawnguard",
+      "ID": 1925793648
+    },
+    {
+      "Version": "1.35",
+      "FileName": "SkyTEST - Realistic Animals and Predators - Dragonborn(v1.35) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "SkyTEST - Realistic Animals and Predators - Dragonborn",
+      "ID": 2018903788
+    },
+    {
+      "Version": "1.37",
+      "FileName": "SkyTEST - Realistic Animals and Predators(v1.37) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "SkyTEST - Realistic Animals and Predators",
+      "ID": 724988958
+    },
+    {
+      "Version": "4.1",
+      "FileName": "SkyUI(v4.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "SkyUI",
+      "ID": 922839512
+    },
+    {
+      "Version": "1.0",
+      "FileName": "Solitude Public Bathhouse(v1.0) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Solitude Public Bathhouse",
+      "ID": 223103715
+    },
+    {
+      "Version": "0.9.1",
+      "FileName": "Spouses Can Live Everywhere(v0.9.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Spouses Can Live Everywhere",
+      "ID": 550689759
+    },
+    {
+      "Version": "1.72",
+      "FileName": "Static Mesh Improvement Mod - SMIM(v1.72) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Static Mesh Improvement Mod - SMIM",
+      "ID": 1936531408
+    },
+    {
+      "Version": "3.0",
+      "FileName": "Tauriel Companion from The Hobbit(v3.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Tauriel Companion from The Hobbit",
+      "ID": 915344857
+    },
+    {
+      "Version": "1.1",
+      "FileName": "Telekinetic Push(v1.1) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "Telekinetic Push",
+      "ID": 299288580
+    },
+    {
+      "Version": "1.2 final",
+      "FileName": "The Divine Shrines Retexture - 2048 HD Arkay and Akatosh Version(v1.2 final) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "The Divine Shrines Retexture - 2048 HD Arkay and Akatosh Version",
+      "ID": 1361125197
+    },
+    {
+      "Version": "1.2 final",
+      "FileName": "The Divine Shrines Retexture(v1.2 final) (NO).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "The Divine Shrines Retexture",
+      "ID": 976486935
+    },
+    {
+      "Version": "2.2",
+      "FileName": "The Notice Boards (v2.2) (RU).rar",
+      "State": 3,
+      "Sources": [],
+      "Name": "The Notice Boards ",
+      "ID": 823896614
+    },
+    {
+      "Version": "3.4",
+      "FileName": "The Ruffled Feather - W.A.T.E.R (v3.4) (EN).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "The Ruffled Feather - W.A.T.E.R ",
+      "ID": 658091879
+    },
+    {
+      "Version": "4.0",
+      "FileName": "UHDT[Bones and Skeletons](v4.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "UHDT[Bones and Skeletons]",
+      "ID": 740001251
+    },
+    {
+      "Version": "4.0",
+      "FileName": "UHDT[Dawnguard](v4.0) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "UHDT[Dawnguard]",
+      "ID": 1745009814
+    },
+    {
+      "Version": "3.5",
+      "FileName": "UHDT[Shields](v3.5) (NO).zip",
+      "State": 3,
+      "Sources": [],
+      "Name": "UHDT[Shields]",
+      "ID": 1873860056
+    },
+    {
+      "Version": "5.0",
+      "FileName": "UHDT[Weapons](v5.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "UHDT[Weapons]",
+      "ID": 959515490
+    },
+    {
+      "Version": "12j b15",
+      "FileName": "Ultimate Follower Overhaul (v12j b15) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Ultimate Follower Overhaul ",
+      "ID": 1397787843
+    },
+    {
+      "Version": "1.9",
+      "FileName": "Ultimate HD Fire Effects (v1.9) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Ultimate HD Fire Effects ",
+      "ID": 1873596195
+    },
+    {
+      "Version": "1.3.2",
+      "FileName": "Unexpected Blades(v1.3.2) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unexpected Blades",
+      "ID": 519077194
+    },
+    {
+      "Version": "2.2",
+      "FileName": "Unicorn(v2.2) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unicorn",
+      "ID": 670951258
+    },
+    {
+      "Version": "5.0",
+      "FileName": "Unique Region Names(v5.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unique Region Names",
+      "ID": 2097140876
+    },
+    {
+      "Version": "2.1.1",
+      "FileName": "Unofficial Dawnguard Patch(v2.1.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Dawnguard Patch",
+      "ID": 1720757649
+    },
+    {
+      "Version": "2.1.1",
+      "FileName": "Unofficial Dragonborn Patch(v2.1.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Dragonborn Patch",
+      "ID": 1452304169
+    },
+    {
+      "Version": "2.1.1",
+      "FileName": "Unofficial Hearthfire Patch(v2.1.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Hearthfire Patch",
+      "ID": 213096770
+    },
+    {
+      "Version": "1.1.9a",
+      "FileName": "Unofficial High Resolution Patch(v1.1.9a) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial High Resolution Patch",
+      "ID": 872643897
+    },
+    {
+      "Version": "2.1.1",
+      "FileName": "Unofficial Skyrim Patch(v2.1.1) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Skyrim Patch",
+      "ID": 1507682940
+    },
+    {
+      "Version": "1.0",
+      "FileName": "UNP Barkeeper Slightly Transparent(v1.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "UNP Barkeeper Slightly Transparent",
+      "ID": 705832069
+    },
+    {
+      "Version": "2.1",
+      "FileName": "UNP Female Armors(v2.1) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "UNP Female Armors",
+      "ID": 2097448056
+    },
+    {
+      "Version": "2.0",
+      "FileName": "UNP Female Armors[Boot Pack](v2.0) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "UNP Female Armors[Boot Pack]",
+      "ID": 436011652
+    },
+    {
+      "Version": "2.3",
+      "FileName": "UNP Fitness Body - Also CBBE (v2.3) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "UNP Fitness Body - Also CBBE ",
+      "ID": 1063435736
+    },
+    {
+      "Version": "1.0",
+      "FileName": "VoidCraft_Jewelry(v1.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "VoidCraft_Jewelry",
+      "ID": 1071753613
+    },
+    {
+      "Version": "5.10",
+      "FileName": "Weapons and Armor Fixes Remade (v5.10) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Weapons and Armor Fixes Remade ",
+      "ID": 1042104387
+    },
+    {
+      "Version": "1.09",
+      "FileName": "Wet and Cold - Ashes (v1.09) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Wet and Cold - Ashes ",
+      "ID": 1225701781
+    },
+    {
+      "Version": "2.0",
+      "FileName": "Wet and Cold - Holidays (v2.0) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Wet and Cold - Holidays ",
+      "ID": 1227808635
+    },
+    {
+      "Version": "1.422",
+      "FileName": "Wet and Cold(v1.422) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Wet and Cold",
+      "ID": 280949668
+    },
+    {
+      "Version": "1.1.1a",
+      "FileName": "When Vampires Attack(v1.1.1a) (NO).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "When Vampires Attack",
+      "ID": 925408812
+    },
+    {
+      "Version": "1.01",
+      "FileName": "Wonders of Weather (v1.01) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "Wonders of Weather ",
+      "ID": 797438938
+    },
+    {
+      "Version": "2.01",
+      "FileName": "OBIS - Organized Bandits In Skyrim (v2.01) (RU).7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "OBIS - Organized Bandits In Skyrim ",
+      "ID": 1114265192
     }
   ]
 }

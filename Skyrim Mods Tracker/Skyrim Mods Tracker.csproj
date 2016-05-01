@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Managers\ModsManager.cs" />
     <Compile Include="Managers\ServersManager.cs" />
+    <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
     <Compile Include="Models\PropertyInterfaces\INamed.cs" />
     <Compile Include="Models\PropertyInterfaces\IValidatable.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="ServersForm.designer.cs">
       <DependentUpon>ServersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\EnumParsing.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\StateButton.cs">
       <SubType>Component</SubType>

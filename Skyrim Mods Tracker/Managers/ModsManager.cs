@@ -6,18 +6,61 @@ using System.Text;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.IO;
+using SMT.Utils;
 
 namespace SMT.Managers
 {
     static class ModsManager
     {
         public static HashSet<Mod> Mods { get { return StorageManager.Get<Mod>(); } }
-        public static void CheckUpdates() { foreach (var mod in Mods) CheckUpdates(mod);  }
+        public static void CheckUpdates() { foreach (var mod in Mods) mod.CheckUpdates();  }
+        public static Mod ParseMod(string str)
+        {
+            Match m = Regex.Match(str, SettingsManager.NamePattern);
+
+            var nameG = m.Groups[SettingsManager.PATTERN_NAME_GROUP];
+            var versionG = m.Groups[SettingsManager.PATTERN_VERSION_GROUP];
+
+            if (nameG == null) return null;
+
+            Mod mod = new Mod();
+            mod.Name = nameG.Value;
+
+            if (versionG != null) mod.Version = versionG.Value;
+
+            return mod;   
+        }
+
+        public static string BuildPatternfilename(this Mod mod)
+        {
+            string modStr = string.Format("{0}({1})({2})", mod.Name, mod.Version, string.Join(",", mod.Sources.Select(s => s.Language.ToShortString())));
+            string modPattern = SettingsManager.DefaultNamePattern;
+            return Regex.Replace(modStr, modPattern, SettingsManager.NamePattern);
+        }
+
+        private static Language ParseLanguage(string str)
+        {
+            Language l = Language.None;
+            if (string.IsNullOrWhiteSpace(str)) return l;
+            Enum.TryParse(str, out l);
+            return l;
+        }
+
+        private static string ToShortString(this Language lang)
+        {
+            switch (lang)
+            {
+                default:
+                case Language.None: return "NO";
+                case Language.Russian: return "RU";
+                case Language.English: return "EN";
+            }
+        }
 
         public static void NormalizeMods() { foreach (var mod in Mods) mod.Normalize(); }
 
         public static Mod ModWithID(int id) { return Mods.FirstOrDefault(m => m.ID == id); }
-        public static Mod ModWithRoot(string root) { return Mods.FirstOrDefault(m => m.HasValidRoot && m.Root.Equals(root)); }
+        public static Mod ModWithRoot(string root) { return Mods.FirstOrDefault(m => m.HasValidFileName && m.FileName.Equals(root)); }
 
         public static string BuildModSourceURL(ModSource source) { return BuildModSourceURL(source.Server, source.Path); }
        
@@ -37,7 +80,7 @@ namespace SMT.Managers
         {
             if (mod.Sources == null || mod.Sources.Count == 0) { mod.State = ModState.NotTracking; return; }
 
-            if (!mod.HasValidRoot) mod.State = ModState.MissedFile;
+            if (!mod.HasValidFileName) mod.State = ModState.MissedFile;
 
             using (WebClient client = new WebClient())
             {

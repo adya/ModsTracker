@@ -40,8 +40,6 @@
             this.lRoot = new System.Windows.Forms.Label();
             this.lVersion = new System.Windows.Forms.Label();
             this.lName = new System.Windows.Forms.Label();
-            this.msMenu = new System.Windows.Forms.MenuStrip();
-            this.checkModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdRoot = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvSources = new System.Windows.Forms.DataGridView();
@@ -56,10 +54,15 @@
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.lLanguage = new System.Windows.Forms.Label();
             this.lServer = new System.Windows.Forms.Label();
+            this.ssStatus = new System.Windows.Forms.StatusStrip();
+            this.spbStatusProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.slStatusTitle = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scanModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msMenu = new System.Windows.Forms.MenuStrip();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
             this.bsSources = new System.Windows.Forms.BindingSource(this.components);
@@ -75,15 +78,15 @@
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rootDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.gbMod.SuspendLayout();
-            this.msMenu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSources)).BeginInit();
             this.panel1.SuspendLayout();
             this.gbSource.SuspendLayout();
+            this.ssStatus.SuspendLayout();
+            this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsSources)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMods)).BeginInit();
             this.SuspendLayout();
@@ -105,13 +108,14 @@
             this.nameDataGridViewTextBoxColumn,
             this.versionDataGridViewTextBoxColumn,
             this.stateDataGridViewTextBoxColumn,
-            this.rootDataGridViewTextBoxColumn,
+            this.FileName,
             this.iDDataGridViewTextBoxColumn});
             this.dgvMods.DataSource = this.bsMods;
             this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMods.Location = new System.Drawing.Point(12, 27);
             this.dgvMods.Name = "dgvMods";
             this.dgvMods.ReadOnly = true;
+            this.dgvMods.RowHeadersVisible = false;
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMods.Size = new System.Drawing.Size(629, 504);
             this.dgvMods.TabIndex = 10;
@@ -177,7 +181,9 @@
             // 
             // tbRoot
             // 
-            this.tbRoot.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Root", true));
+            this.tbRoot.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbRoot.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tbRoot.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "FileName", true));
             this.tbRoot.Location = new System.Drawing.Point(55, 100);
             this.tbRoot.Name = "tbRoot";
             this.tbRoot.Size = new System.Drawing.Size(265, 20);
@@ -208,9 +214,9 @@
             this.lRoot.AutoSize = true;
             this.lRoot.Location = new System.Drawing.Point(7, 103);
             this.lRoot.Name = "lRoot";
-            this.lRoot.Size = new System.Drawing.Size(33, 13);
+            this.lRoot.Size = new System.Drawing.Size(26, 13);
             this.lRoot.TabIndex = 0;
-            this.lRoot.Text = "Root:";
+            this.lRoot.Text = "File:";
             // 
             // lVersion
             // 
@@ -229,24 +235,6 @@
             this.lName.Size = new System.Drawing.Size(38, 13);
             this.lName.TabIndex = 0;
             this.lName.Text = "Name:";
-            // 
-            // msMenu
-            // 
-            this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkModsToolStripMenuItem,
-            this.settingsToolStripMenuItem});
-            this.msMenu.Location = new System.Drawing.Point(0, 0);
-            this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(1004, 24);
-            this.msMenu.TabIndex = 2;
-            this.msMenu.Text = "menuStrip1";
-            // 
-            // checkModsToolStripMenuItem
-            // 
-            this.checkModsToolStripMenuItem.Name = "checkModsToolStripMenuItem";
-            this.checkModsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.checkModsToolStripMenuItem.Text = "Check mods";
-            this.checkModsToolStripMenuItem.Click += new System.EventHandler(this.checkModsToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -401,11 +389,40 @@
             this.lServer.TabIndex = 2;
             this.lServer.Text = "URL:";
             // 
+            // ssStatus
+            // 
+            this.ssStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.spbStatusProgress,
+            this.slStatusTitle});
+            this.ssStatus.Location = new System.Drawing.Point(0, 514);
+            this.ssStatus.Name = "ssStatus";
+            this.ssStatus.Size = new System.Drawing.Size(644, 22);
+            this.ssStatus.TabIndex = 11;
+            this.ssStatus.Text = "statusStrip1";
+            // 
+            // spbStatusProgress
+            // 
+            this.spbStatusProgress.Name = "spbStatusProgress";
+            this.spbStatusProgress.Size = new System.Drawing.Size(100, 16);
+            this.spbStatusProgress.Visible = false;
+            // 
+            // slStatusTitle
+            // 
+            this.slStatusTitle.Name = "slStatusTitle";
+            this.slStatusTitle.Size = new System.Drawing.Size(39, 17);
+            this.slStatusTitle.Text = "Status";
+            // 
+            // checkModsToolStripMenuItem
+            // 
+            this.checkModsToolStripMenuItem.Name = "checkModsToolStripMenuItem";
+            this.checkModsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.checkModsToolStripMenuItem.Text = "Check mods";
+            this.checkModsToolStripMenuItem.Click += new System.EventHandler(this.checkModsToolStripMenuItem_Click);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serversToolStripMenuItem,
-            this.scanModsToolStripMenuItem,
             this.preferencesToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -414,22 +431,35 @@
             // serversToolStripMenuItem
             // 
             this.serversToolStripMenuItem.Name = "serversToolStripMenuItem";
-            this.serversToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serversToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.serversToolStripMenuItem.Text = "Servers";
             this.serversToolStripMenuItem.Click += new System.EventHandler(this.serversToolStripMenuItem_Click);
-            // 
-            // scanModsToolStripMenuItem
-            // 
-            this.scanModsToolStripMenuItem.Name = "scanModsToolStripMenuItem";
-            this.scanModsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.scanModsToolStripMenuItem.Text = "Scan Mods";
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
+            // 
+            // msMenu
+            // 
+            this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkModsToolStripMenuItem,
+            this.settingsToolStripMenuItem});
+            this.msMenu.Location = new System.Drawing.Point(0, 0);
+            this.msMenu.Name = "msMenu";
+            this.msMenu.Size = new System.Drawing.Size(1004, 24);
+            this.msMenu.TabIndex = 2;
+            this.msMenu.Text = "menuStrip1";
+            // 
+            // FileName
+            // 
+            this.FileName.DataPropertyName = "FileName";
+            this.FileName.HeaderText = "File name";
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Width = 75;
             // 
             // bAddSource
             // 
@@ -526,6 +556,7 @@
             this.bBrowse.TabIndex = 4;
             this.bBrowse.Text = "..";
             this.bBrowse.UseVisualStyleBackColor = false;
+            this.bBrowse.Click += new System.EventHandler(this.bBrowse_Click);
             // 
             // bsMods
             // 
@@ -596,14 +627,6 @@
             this.stateDataGridViewTextBoxColumn.ReadOnly = true;
             this.stateDataGridViewTextBoxColumn.Width = 55;
             // 
-            // rootDataGridViewTextBoxColumn
-            // 
-            this.rootDataGridViewTextBoxColumn.DataPropertyName = "Root";
-            this.rootDataGridViewTextBoxColumn.HeaderText = "Root";
-            this.rootDataGridViewTextBoxColumn.Name = "rootDataGridViewTextBoxColumn";
-            this.rootDataGridViewTextBoxColumn.ReadOnly = true;
-            this.rootDataGridViewTextBoxColumn.Width = 53;
-            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -618,6 +641,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 536);
+            this.Controls.Add(this.ssStatus);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvMods);
             this.Controls.Add(this.msMenu);
@@ -633,13 +657,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).EndInit();
             this.gbMod.ResumeLayout(false);
             this.gbMod.PerformLayout();
-            this.msMenu.ResumeLayout(false);
-            this.msMenu.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSources)).EndInit();
             this.panel1.ResumeLayout(false);
             this.gbSource.ResumeLayout(false);
             this.gbSource.PerformLayout();
+            this.ssStatus.ResumeLayout(false);
+            this.ssStatus.PerformLayout();
+            this.msMenu.ResumeLayout(false);
+            this.msMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsSources)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMods)).EndInit();
             this.ResumeLayout(false);
@@ -649,7 +675,6 @@
 
         #endregion
         private System.Windows.Forms.GroupBox gbMod;
-        private System.Windows.Forms.MenuStrip msMenu;
         private System.Windows.Forms.DataGridView dgvMods;
         private System.Windows.Forms.TextBox tbVersion;
         private System.Windows.Forms.TextBox tbName;
@@ -675,7 +700,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewcontrolColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewcontrolColumn;
-        private System.Windows.Forms.ToolStripMenuItem checkModsToolStripMenuItem;
         private Utils.StateButton bBrowse;
         private Utils.StateButton stateButton1;
         private Utils.StateButton bRemoveMod;
@@ -687,15 +711,20 @@
         private Utils.StateButton bAddSource;
         private Utils.StateButton bRemoveSource;
         private System.Windows.Forms.BindingSource bsMods;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewTextBoxColumn;
+        private System.Windows.Forms.StatusStrip ssStatus;
+        private System.Windows.Forms.ToolStripProgressBar spbStatusProgress;
+        private System.Windows.Forms.ToolStripStatusLabel slStatusTitle;
+        private System.Windows.Forms.ToolStripMenuItem checkModsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip msMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scanModsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
     }
 }
 

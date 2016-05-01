@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using SMT.Managers;
-using System.Text.RegularExpressions;
 
 namespace SMT.Models
 {
@@ -37,7 +36,7 @@ namespace SMT.Models
             get
             {
                 if (string.IsNullOrWhiteSpace(VersionPattern)) return false;
-                try { Regex.IsMatch("", VersionPattern); return true; }
+                try { System.Text.RegularExpressions.Regex.IsMatch("", VersionPattern); return true; }
                 catch (ArgumentException) { return false; }
             }
         }

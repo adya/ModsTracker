@@ -19,6 +19,9 @@ namespace SMT
         private BindingList<Mod> mods;
         private BindingList<ModSource> sources;
 
+        private BackgroundWorker bgWorker;
+        private int pendingDialogs; // used to update status when dialogs are pending
+
         public MainForm()
         {
             InitializeComponent();
@@ -29,10 +32,19 @@ namespace SMT
             bsMods.DataSource = mods;
 
             cbLanguage.DataSource = Enum.GetValues(typeof(Language));
-            ofdRoot.InitialDirectory = Environment.CurrentDirectory;
 
+            bgWorker = new BackgroundWorker();
+            bgWorker.WorkerReportsProgress = true;
+
+            ApplySettings();
+
+            if (SettingsManager.AutoScanMods)
+                RunScanMods();
+
+            SetDefaultStatus();
         }
 
+       
         private void MainForm_Load(object sender, EventArgs e)
         {
             dgvMods.AutoResizeColumns();
@@ -52,6 +64,7 @@ namespace SMT
             SetModEditable(false);
             SetSourceEditable(false);
 
+            MarkMods();
         }
 
         private void DefineControlMessagesStyle()
@@ -85,6 +98,17 @@ namespace SMT
                 }
             }
             return false;
+        }
+
+        private void ApplySettings()
+        {
+            ofdRoot.InitialDirectory = (SettingsManager.HasValidModsLocation ? SettingsManager.ModsLocation : Environment.CurrentDirectory);
+            if (SettingsManager.HasValidModsLocation) {
+                AutoCompleteStringCollection completions = new AutoCompleteStringCollection();
+                completions.AddRange(Directory.GetFiles(SettingsManager.ModsLocation).Select(str => Path.GetFileName(str)).ToArray());
+                completions.AddRange(Directory.GetDirectories(SettingsManager.ModsLocation).Select(str => Path.GetFileName(str)).ToArray());
+                tbRoot.AutoCompleteCustomSource = completions;
+            }
         }
 
         private void SetModEditable(bool isEditable)
@@ -135,6 +159,17 @@ namespace SMT
                 bsSources.ResumeBinding();
         }
 
+        private void SetDefaultStatus()
+        {
+            spbStatusProgress.Visible = false;
+            SetStatus(string.Format("Total mods: {0}.", mods.Count));
+        }
+        private void SetStatus(string status)
+        {
+            if (status == null) status = "";
+            slStatusTitle.Text = status;
+        }
+
         private void ValidateModName()
         {
             var cur = bsMods.Current as Mod;
@@ -150,11 +185,11 @@ namespace SMT
             if (!cur.HasValidVersion) tbVersion.SetError("Version must not be empty.");
             else tbVersion.SetValidMessage();
         }
-        private void ValidateModRoot()
+        private void ValidateModFileName()
         {
             var cur = bsMods.Current as Mod;
             if (cur == null) return;
-            if (!cur.HasValidRoot) tbRoot.SetWarning("Set valid root to provide version naming feature.");
+            if (!cur.HasValidFileName) tbRoot.SetWarning("Set valid root to provide version naming feature.");
             else tbRoot.SetValidMessage();
         }
         private void ValidateModFields()
@@ -162,7 +197,7 @@ namespace SMT
             if (bsMods.IsBindingSuspended) return;
             ValidateModName();
             ValidateModVersion();
-            ValidateModRoot();
+            ValidateModFileName();
         }
 
         private void ValidateSourceURL()
@@ -212,6 +247,132 @@ namespace SMT
                 default: break;
             }
         }
+
+        private void RunCheckMods()
+        {
+            spbStatusProgress.Maximum = mods.Count;
+            spbStatusProgress.Value = 0;
+            SetStatus("Checking mods...");
+
+            bgWorker.DoWork += CheckModsWork;
+            bgWorker.ProgressChanged += CheckModsWorkProgressChanged;
+            bgWorker.RunWorkerCompleted += CheckModsWorkCompleted;
+            bgWorker.RunWorkerAsync();
+        }
+        private void CheckModsWork(object sender, DoWorkEventArgs e)
+        {
+
+            for (int i = 0; i < mods.Count; i++)
+            {
+                int progress = (int)(((double)i / (double)mods.Count) * 100);
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, false }); // mod, index, isProcessed
+                mods[i].CheckUpdates();
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, true });// mod, index, isProcessed
+            }
+        }
+        private void CheckModsWorkProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var userState = e.UserState as object[];
+            var mod = userState[0] as Mod;
+            var index = (int)userState[1];
+            var isCompleted = (bool)userState[2];
+            string format = "{4}% ({2}/{3}). Checking '{0}'...{1}";
+            SetStatus(string.Format(format, mod.Name, (isCompleted ? "Done" : ""), index + 1, mods.Count, e.ProgressPercentage));
+            if (isCompleted)
+            {
+                spbStatusProgress.Value++;
+                MarkMod(mod, index);
+            }
+        }
+        private void CheckModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            dgvMods.AutoResizeColumns();
+            spbStatusProgress.Value = 0;
+            SetDefaultStatus();
+            bgWorker.DoWork -= CheckModsWork;
+            bgWorker.ProgressChanged -= CheckModsWorkProgressChanged;
+            bgWorker.RunWorkerCompleted -= CheckModsWorkCompleted;
+        }
+
+
+        private void RunScanMods()
+        {
+            spbStatusProgress.Maximum = Directory.GetFiles(SettingsManager.ModsLocation).Length + Directory.GetDirectories(SettingsManager.ModsLocation).Length;
+            spbStatusProgress.Value = 0;
+            SetStatus("Scanning mods...");
+            
+            bgWorker.DoWork += ScanModsWork;
+            bgWorker.ProgressChanged += ScanModsWorkProgressChanged;
+            bgWorker.RunWorkerCompleted += ScanModsWorkCompleted;
+            bgWorker.RunWorkerAsync();
+        }
+        private void ScanModsWork(object sender, DoWorkEventArgs e)
+        {
+            string[] files = Directory.GetFiles(SettingsManager.ModsLocation);
+            string[] dirs = Directory.GetDirectories(SettingsManager.ModsLocation);
+            int totalSize = files.Length + dirs.Length;
+            for (int i = 0; i < files.Length; i++)
+            {
+                string filename = Path.GetFileNameWithoutExtension(files[i]);
+                Mod scannedMod = ModsManager.ParseMod(filename);
+                scannedMod.FileName = Path.GetFileName(files[i]);
+             
+                int progress = (int)(((double)i / (double)totalSize) * 100);
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { scannedMod, i}); // mod, index
+            }
+        }
+
+        private void ScanModsWorkProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var userState = e.UserState as object[];
+            var mod = userState[0] as Mod;
+            var index = (int)userState[1];
+            
+           
+            List<Mod> duplicates = mods.Where(m => m.Name.Equals(mod.Name)).ToList();
+            bool added = false;
+            
+            if (mod.IsValid)
+            {
+                if (duplicates != null && duplicates.Count > 0)
+                {
+                    var difVersion = duplicates.FirstOrDefault(m => !m.Version.Equals(mod.Version));
+                    var sameVersion = duplicates.FirstOrDefault(m => m.Version.Equals(mod.Version));
+                    if (difVersion != null) {
+                        pendingDialogs++;
+                        if (DialogResult.Yes == MessageBox.Show(this, string.Format("Found mod '{0}', which already exists in database, but has different version.\n\nDatabase version: '{1}'\nFile version: '{2}'\nDo you want to use version file version?", mod.Name, difVersion.Version, mod.Version), "Duplicated mod", MessageBoxButtons.YesNo))
+                        {
+                            difVersion.Version = mod.Version;
+                            pendingDialogs--;
+                        }
+                        else if (sameVersion == null) {
+                            added = true;
+                            mods.Add(mod);
+                            
+                        }
+                        else pendingDialogs--;
+                    }
+                }
+                else {
+                    added = true;
+                    mods.Add(mod);
+                }
+            }
+            string format = "{4}% ({2}/{3}). {1} '{0}'";
+            SetStatus(string.Format(format, mod.Name, (added ? "Added" : "Scanned"), index + 1, mods.Count, e.ProgressPercentage));
+            if (pendingDialogs == 0) SetDefaultStatus();
+            spbStatusProgress.Value++;
+            MarkMod(mod, mods.Count - 1);
+        }
+        private void ScanModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            dgvMods.AutoResizeColumns();
+            SetDefaultStatus();
+            bgWorker.DoWork -= ScanModsWork;
+            bgWorker.ProgressChanged -= ScanModsWorkProgressChanged;
+            bgWorker.RunWorkerCompleted -= ScanModsWorkCompleted;
+        }
+
 
         private void bsMods_CurrentItemChanged(object sender, EventArgs e)
         {
@@ -296,11 +457,10 @@ namespace SMT
         }
         private void checkModsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ModsManager.CheckUpdates();
-            MarkMods();
-            dgvMods.AutoResizeColumns();
+            RunCheckMods(); 
         }
-  
+
+     
         private void cbManual_CheckedChanged(object sender, EventArgs e)
         {
             tbSourceVersion.Enabled = cbManual.Checked;
@@ -350,7 +510,11 @@ namespace SMT
 
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new PreferencesForm().ShowDialog();
+            if (DialogResult.Yes == new PreferencesForm().ShowDialog())
+                RunScanMods();
+            ApplySettings();
         }
+
+       
     }
 }

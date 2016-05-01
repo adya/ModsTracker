@@ -18,8 +18,7 @@ namespace SMT.Utils
         public static bool TryCopy<TKey, TValue>(this Dictionary<TKey, TValue> src, TKey key, Dictionary<TKey, TValue> dst)
         {
             bool success = src.ContainsKey(key);
-            if (success)
-                dst.Set(key, src[key]);
+            if (success) dst.Set(key, src[key]);
             return success;
         }
     }

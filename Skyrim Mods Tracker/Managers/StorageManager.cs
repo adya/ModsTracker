@@ -26,15 +26,23 @@ namespace SMT.Managers
         {
             data = new Dictionary<string, dynamic>();
 
-            data.Set(STORAGE_DATE_KEY, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
-            data.Set(STORAGE_VERSION_KEY, STORAGE_VERSION);
-            data.Set(STORAGE_SERVERS_KEY, new HashSet<SMTModel>());
-            data.Set(STORAGE_MODS_KEY, new HashSet<SMTModel>());
-
+            LoadDefaults();
             if (!File.Exists(StorageFilePath))
                 Sync();
-            string json = File.ReadAllText(StorageFilePath);
+            LoadCustom();
+        }
 
+        private static void LoadDefaults()
+        {
+            data.Set(STORAGE_DATE_KEY, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
+            data.Set(STORAGE_VERSION_KEY, STORAGE_VERSION);
+            data.Set(STORAGE_SERVERS_KEY, new HashSet<Server>());
+            data.Set(STORAGE_MODS_KEY, new HashSet<Mod>());
+        }
+
+        private static void LoadCustom()
+        {
+            string json = File.ReadAllText(StorageFilePath);
             Dictionary<string, dynamic> storageData = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(json);
 
             storageData.TryCopy(STORAGE_DATE_KEY, data);

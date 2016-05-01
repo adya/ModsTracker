@@ -1,4 +1,13 @@
-﻿namespace SMT.Models
+﻿using SMT.Utils;
+
+namespace SMT.Models
 {
-    enum Language { None, Russian, English}
+    enum Language {
+        
+        None,
+        [Name("RU")]
+        Russian,
+        [Name("EN")]
+        English
+    }
 }

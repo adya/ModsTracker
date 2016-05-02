@@ -1,5 +1,5 @@
 {
-  "Updated": "05/01/2016 21:56",
+  "Updated": "05/02/2016 19:05",
   "Version": "0.5",
   "Servers": [
     {
@@ -13,16 +13,37 @@
       "URL": "https://nexusmods.com",
       "Name": "Nexus",
       "ID": 1273431505
+    },
+    {
+      "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
+      "URL": "http://skyrim.nexusmods.com",
+      "Name": "Nexus old",
+      "ID": 145814667
+    },
+    {
+      "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
+      "URL": "http://nexusmods.com",
+      "Name": "Nexus old",
+      "ID": 962540621
     }
   ],
   "Mods": [
     {
       "Version": "4.1",
       "FileName": "83 Willows 101 Bugs HD(v4.1) (RU).7z",
-      "State": 3,
-      "Sources": [],
+      "State": 4,
+      "Sources": [
+        {
+          "Path": "/load/252-1-0-15245",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "1.0",
+          "State": 6,
+          "ID": 1611350113
+        }
+      ],
       "Name": "83 Willows 101 Bugs HD",
-      "ID": 219141854
+      "ID": 1930815808
     },
     {
       "Version": "2.3.1",
@@ -30,7 +51,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Achieve That ",
-      "ID": 492117955
+      "ID": 1912734141
     },
     {
       "Version": "2",
@@ -38,7 +59,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Alchemy And Enchanting Tables",
-      "ID": 568136717
+      "ID": 561376684
     },
     {
       "Version": "1.1",
@@ -46,7 +67,7 @@
       "State": 3,
       "Sources": [],
       "Name": "All Tamriel Books ",
-      "ID": 1065519178
+      "ID": 1791132117
     },
     {
       "Version": "6.0",
@@ -54,7 +75,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Andragorn's Armoury ",
-      "ID": 1010100212
+      "ID": 1037761289
     },
     {
       "Version": "RU",
@@ -62,7 +83,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Archery Pro - Beta b ",
-      "ID": 238393364
+      "ID": 2112179519
     },
     {
       "Version": "3.6",
@@ -70,7 +91,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Armor Compilation",
-      "ID": 881009592
+      "ID": 452979807
     },
     {
       "Version": "3.0",
@@ -78,7 +99,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Ashara Erin and Sienna Followers",
-      "ID": 450827538
+      "ID": 1237519150
     },
     {
       "Version": "1.7",
@@ -86,7 +107,7 @@
       "State": 3,
       "Sources": [],
       "Name": "B-D-Y-E-B Shield Mod",
-      "ID": 578684165
+      "ID": 690196541
     },
     {
       "Version": "3.0",
@@ -94,7 +115,7 @@
       "State": 3,
       "Sources": [],
       "Name": "BadGremlins Great JarHunt",
-      "ID": 276342987
+      "ID": 2004551912
     },
     {
       "Version": "2.0",
@@ -102,7 +123,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Be a Milk Drinker",
-      "ID": 152331932
+      "ID": 546904756
     },
     {
       "Version": "1.0",
@@ -110,7 +131,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Black Mage Robe Replacer",
-      "ID": 2102021293
+      "ID": 1717899646
     },
     {
       "Version": "3.1",
@@ -118,7 +139,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Book Covers Skyrim ",
-      "ID": 1452803259
+      "ID": 906421255
     },
     {
       "Version": "3.1",
@@ -126,7 +147,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Book Covers Skyrim - Hotfix ",
-      "ID": 2063440253
+      "ID": 308737754
     },
     {
       "Version": "3.1",
@@ -134,7 +155,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Book Covers Skyrim - Paper Textures",
-      "ID": 86483384
+      "ID": 83640878
     },
     {
       "Version": "1.0",
@@ -142,7 +163,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Book Weight",
-      "ID": 239565086
+      "ID": 1532507830
     },
     {
       "Version": "2.2",
@@ -150,7 +171,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Bucklers - Shields and other Armours",
-      "ID": 1732689814
+      "ID": 665416136
     },
     {
       "Version": "3.6",
@@ -158,7 +179,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Burn Freeze Shock Effects",
-      "ID": 800985244
+      "ID": 293749383
     },
     {
       "Version": "1.0",
@@ -166,7 +187,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Buy Perks",
-      "ID": 548748300
+      "ID": 1204865306
     },
     {
       "Version": "1.2",
@@ -174,7 +195,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Catwalk",
-      "ID": 1479149272
+      "ID": 1007693112
     },
     {
       "Version": "3.0b",
@@ -182,7 +203,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Chesko Wearable Lanterns",
-      "ID": 1693028327
+      "ID": 908553603
     },
     {
       "Version": "no",
@@ -190,7 +211,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Chocolate Glazed Sweetroll",
-      "ID": 132479547
+      "ID": 994822916
     },
     {
       "Version": "3.1",
@@ -198,7 +219,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Climates Of Tamriel - Dawnguard Patch",
-      "ID": 1070663239
+      "ID": 600087793
     },
     {
       "Version": "3.1",
@@ -206,7 +227,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Climates Of Tamriel - Dragonborn Patch",
-      "ID": 1199056529
+      "ID": 1787118019
     },
     {
       "Version": "3.1",
@@ -214,7 +235,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Climates Of Tamriel - Sounds",
-      "ID": 951591238
+      "ID": 1223441710
     },
     {
       "Version": "3.1",
@@ -222,7 +243,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Climates Of Tamriel",
-      "ID": 667534423
+      "ID": 1858959557
     },
     {
       "Version": "1.5",
@@ -230,7 +251,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Clothing and Clutter Fixes ",
-      "ID": 1276314735
+      "ID": 1393558186
     },
     {
       "Version": "1.4",
@@ -238,7 +259,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Companion Valfar ",
-      "ID": 1408841908
+      "ID": 2067090206
     },
     {
       "Version": "1.61",
@@ -246,7 +267,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Complete Crafting Overhaul Remade ",
-      "ID": 537133151
+      "ID": 1666055459
     },
     {
       "Version": "NO",
@@ -254,7 +275,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Convenient Horses - Alternate Textures ",
-      "ID": 481437290
+      "ID": 1523224687
     },
     {
       "Version": "5.0",
@@ -262,7 +283,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Convenient Horses",
-      "ID": 527757700
+      "ID": 2039311582
     },
     {
       "Version": "no",
@@ -270,7 +291,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Craftable Clothes and Robes",
-      "ID": 2064796187
+      "ID": 1912668896
     },
     {
       "Version": "1.2",
@@ -278,7 +299,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Crown Royal Money Bags",
-      "ID": 727088712
+      "ID": 1209431367
     },
     {
       "Version": "2.5.5",
@@ -286,7 +307,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Daedric Armor and weapon Improvement",
-      "ID": 1915238197
+      "ID": 1251202998
     },
     {
       "Version": "6.3.5",
@@ -294,7 +315,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Deadly Dragons",
-      "ID": 1542150471
+      "ID": 1356666286
     },
     {
       "Version": "4.4.0",
@@ -302,7 +323,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Deadly DragonsArmory",
-      "ID": 1730725733
+      "ID": 1647916945
     },
     {
       "Version": "3.0",
@@ -310,7 +331,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Diamond Weapon Smithing",
-      "ID": 1787451855
+      "ID": 1151261115
     },
     {
       "Version": "1.51",
@@ -318,7 +339,7 @@
       "State": 3,
       "Sources": [],
       "Name": "DIMONIZED UNP female body",
-      "ID": 1703142303
+      "ID": 1487089974
     },
     {
       "Version": "1.0",
@@ -326,7 +347,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Distant Detail Hearthfire Edition",
-      "ID": 2012889325
+      "ID": 2019097463
     },
     {
       "Version": "1.0",
@@ -334,7 +355,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Divine Intervention",
-      "ID": 1970598051
+      "ID": 439838399
     },
     {
       "Version": "1.0",
@@ -342,7 +363,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Drachis Argonians",
-      "ID": 1431703587
+      "ID": 184530348
     },
     {
       "Version": "1.2",
@@ -350,7 +371,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Dragon Soul Relinquishment ",
-      "ID": 250553620
+      "ID": 1223255419
     },
     {
       "Version": "2.0",
@@ -358,7 +379,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Dynamic Torches",
-      "ID": 1097580568
+      "ID": 1881539690
     },
     {
       "Version": "1.21",
@@ -366,7 +387,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Egil Lovers",
-      "ID": 987207106
+      "ID": 1206140635
     },
     {
       "Version": "2.1",
@@ -374,7 +395,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Elemental Arrows",
-      "ID": 490044881
+      "ID": 1213627047
     },
     {
       "Version": "1.0",
@@ -382,7 +403,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Elven Armor and Weapons",
-      "ID": 529533441
+      "ID": 835463911
     },
     {
       "Version": "3.6a",
@@ -390,7 +411,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Enhanced Blood Textures ",
-      "ID": 755390281
+      "ID": 594737416
     },
     {
       "Version": "3.5",
@@ -398,7 +419,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Enhanced Blood Textures - No Screen Blood",
-      "ID": 1551551336
+      "ID": 1247341375
     },
     {
       "Version": "1.4",
@@ -406,7 +427,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Fleetford",
-      "ID": 1527181652
+      "ID": 1085639614
     },
     {
       "Version": "1.1",
@@ -414,7 +435,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Follower Trap Safety",
-      "ID": 1033145887
+      "ID": 989898362
     },
     {
       "Version": "1.0",
@@ -422,7 +443,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Forgotten Windmill",
-      "ID": 1446821153
+      "ID": 1566831493
     },
     {
       "Version": "1.0",
@@ -430,7 +451,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Get Arrows Back",
-      "ID": 1215962337
+      "ID": 1919618914
     },
     {
       "Version": "5.5",
@@ -438,7 +459,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Get Snowy",
-      "ID": 138539121
+      "ID": 541676536
     },
     {
       "Version": "no",
@@ -446,7 +467,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Glowing Eyes for Khajiits",
-      "ID": 1804653490
+      "ID": 373828892
     },
     {
       "Version": "1.3",
@@ -454,7 +475,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Grimoas Plantigrade Feet For Beast Races",
-      "ID": 2099360808
+      "ID": 1600891910
     },
     {
       "Version": "1.0",
@@ -462,7 +483,7 @@
       "State": 3,
       "Sources": [],
       "Name": "HD Kajiit Textures",
-      "ID": 1752634477
+      "ID": 705320282
     },
     {
       "Version": "3.0",
@@ -470,7 +491,7 @@
       "State": 3,
       "Sources": [],
       "Name": "HD Torch Variants",
-      "ID": 1448434610
+      "ID": 396531505
     },
     {
       "Version": "2.1",
@@ -478,7 +499,7 @@
       "State": 3,
       "Sources": [],
       "Name": "High Quality LODs[Meshes]",
-      "ID": 923024363
+      "ID": 1101811759
     },
     {
       "Version": "2.1",
@@ -486,7 +507,7 @@
       "State": 3,
       "Sources": [],
       "Name": "High Quality LODs[Normals]",
-      "ID": 727081670
+      "ID": 874424838
     },
     {
       "Version": "2.1",
@@ -494,7 +515,7 @@
       "State": 3,
       "Sources": [],
       "Name": "High Quality LODs[Textures]",
-      "ID": 755687450
+      "ID": 1922590759
     },
     {
       "Version": "1.0",
@@ -502,7 +523,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Hold Border Banners ",
-      "ID": 567807362
+      "ID": 1400234561
     },
     {
       "Version": "2.0",
@@ -510,7 +531,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Hoth ",
-      "ID": 1236737093
+      "ID": 1785697643
     },
     {
       "Version": "4.0",
@@ -518,7 +539,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Hybrids HD Plants and Herbs Retexture",
-      "ID": 107910854
+      "ID": 1880294679
     },
     {
       "Version": "1.0",
@@ -526,7 +547,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Illustrated Panels Towns",
-      "ID": 1210006451
+      "ID": 1749042300
     },
     {
       "Version": "7.1",
@@ -534,7 +555,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Immersive Armours UNP",
-      "ID": 206633640
+      "ID": 1029774325
     },
     {
       "Version": "1.0",
@@ -542,7 +563,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Improved Books [Quest + Skills]",
-      "ID": 350238126
+      "ID": 22788941
     },
     {
       "Version": "1.8.1",
@@ -550,7 +571,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Improved NPC Clothing",
-      "ID": 313288532
+      "ID": 1358608206
     },
     {
       "Version": "1.0",
@@ -558,7 +579,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Improved Weapon Impact EFFECTS Correct Metal",
-      "ID": 1114672030
+      "ID": 547379233
     },
     {
       "Version": "1.0",
@@ -566,7 +587,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Insanitys City Banner Replacer",
-      "ID": 1250709089
+      "ID": 1694551058
     },
     {
       "Version": "1.0",
@@ -574,7 +595,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Ishs Souls to Perks",
-      "ID": 1532344041
+      "ID": 636249355
     },
     {
       "Version": "1.2",
@@ -582,7 +603,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Jaffar ",
-      "ID": 194794879
+      "ID": 901884591
     },
     {
       "Version": "13D",
@@ -590,7 +611,7 @@
       "State": 3,
       "Sources": [],
       "Name": "JaySuS Swords ",
-      "ID": 342941920
+      "ID": 948460597
     },
     {
       "Version": "1.2",
@@ -598,7 +619,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Jewels of the nord",
-      "ID": 780969210
+      "ID": 2120949267
     },
     {
       "Version": "1.0",
@@ -606,7 +627,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Langleys Ingots Retexture",
-      "ID": 1326154857
+      "ID": 1586934766
     },
     {
       "Version": "1.02",
@@ -614,7 +635,7 @@
       "State": 3,
       "Sources": [],
       "Name": "LFox Alchemists",
-      "ID": 450599466
+      "ID": 192611567
     },
     {
       "Version": "1.0",
@@ -622,7 +643,7 @@
       "State": 3,
       "Sources": [],
       "Name": "LFox Improved Shouts",
-      "ID": 479136978
+      "ID": 221497058
     },
     {
       "Version": "2.0",
@@ -630,7 +651,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Lilium Follower - Standalone - New Spells ",
-      "ID": 181231258
+      "ID": 1765639478
     },
     {
       "Version": "1.2",
@@ -638,7 +659,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Lock Overhaul ",
-      "ID": 1955277733
+      "ID": 53543240
     },
     {
       "Version": "1.4",
@@ -646,7 +667,7 @@
       "State": 3,
       "Sources": [],
       "Name": "LOD Terrain",
-      "ID": 389670617
+      "ID": 1459237998
     },
     {
       "Version": "1.4",
@@ -654,7 +675,7 @@
       "State": 3,
       "Sources": [],
       "Name": "LOD Waterfalls",
-      "ID": 1200374706
+      "ID": 1550903423
     },
     {
       "Version": "1.1",
@@ -662,7 +683,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Lost Longswords",
-      "ID": 284333275
+      "ID": 100701735
     },
     {
       "Version": "1.7",
@@ -670,7 +691,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Marriage Dynamic Outfits",
-      "ID": 710998698
+      "ID": 732852976
     },
     {
       "Version": "3.05",
@@ -678,7 +699,7 @@
       "State": 3,
       "Sources": [],
       "Name": "More Slots for Enchanting",
-      "ID": 1470205893
+      "ID": 651971516
     },
     {
       "Version": "1.6",
@@ -686,7 +707,7 @@
       "State": 3,
       "Sources": [],
       "Name": "More Village Animals",
-      "ID": 840525366
+      "ID": 1558551325
     },
     {
       "Version": "no",
@@ -694,7 +715,7 @@
       "State": 3,
       "Sources": [],
       "Name": "NMFWLM",
-      "ID": 277107215
+      "ID": 98493055
     },
     {
       "Version": "0.2",
@@ -702,7 +723,7 @@
       "State": 3,
       "Sources": [],
       "Name": "NPC Bartering",
-      "ID": 206218797
+      "ID": 1905026409
     },
     {
       "Version": "2.01 to v2.02",
@@ -710,7 +731,7 @@
       "State": 3,
       "Sources": [],
       "Name": "OBIS - Organized Bandits In Skyrim ",
-      "ID": 1060713866
+      "ID": 38337681
     },
     {
       "Version": "1.0",
@@ -718,7 +739,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Old Spells ",
-      "ID": 956403388
+      "ID": 1540662570
     },
     {
       "Version": "0.9",
@@ -726,7 +747,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Open Dragon Priest Masks",
-      "ID": 1490341864
+      "ID": 703007199
     },
     {
       "Version": "1.4",
@@ -734,7 +755,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Perk Trainers",
-      "ID": 331782098
+      "ID": 68819134
     },
     {
       "Version": "0.3",
@@ -742,7 +763,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Pets of Skyrim",
-      "ID": 299243463
+      "ID": 1712586327
     },
     {
       "Version": "1.1",
@@ -750,7 +771,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Phenderix Magic Sounds Improved",
-      "ID": 264097703
+      "ID": 1877144948
     },
     {
       "Version": "1.9Final",
@@ -758,7 +779,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Portal - Dynamically Placed Teleportation",
-      "ID": 1630918481
+      "ID": 1978836003
     },
     {
       "Version": "0.1",
@@ -766,7 +787,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Powerful potions",
-      "ID": 1179658826
+      "ID": 186706958
     },
     {
       "Version": "1.4",
@@ -774,7 +795,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Radiance of Enchanted Weapons",
-      "ID": 1232019720
+      "ID": 126562187
     },
     {
       "Version": "2.0",
@@ -782,7 +803,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Revised Speed",
-      "ID": 1511187097
+      "ID": 1808617728
     },
     {
       "Version": "1.2",
@@ -790,7 +811,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Reweighed Potions",
-      "ID": 1565061213
+      "ID": 252297890
     },
     {
       "Version": "no",
@@ -798,7 +819,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Rift Performance Plus ",
-      "ID": 134934864
+      "ID": 1374194421
     },
     {
       "Version": "2.8",
@@ -806,7 +827,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Ruins Clutter Improved ",
-      "ID": 1285067031
+      "ID": 733851037
     },
     {
       "Version": "2.0.3",
@@ -814,7 +835,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Run For Your Lives",
-      "ID": 952474479
+      "ID": 70321150
     },
     {
       "Version": ".1.9.32",
@@ -822,7 +843,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Rus Names fix ",
-      "ID": 1060621457
+      "ID": 1996578666
     },
     {
       "Version": ".1.1",
@@ -830,7 +851,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Rusty Traders Magic Arrows",
-      "ID": 133173656
+      "ID": 1252682624
     },
     {
       "Version": "1.0",
@@ -838,7 +859,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Septim HD",
-      "ID": 1717880772
+      "ID": 1754135071
     },
     {
       "Version": "2.0",
@@ -846,7 +867,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Serious HD Retexture Skyrim",
-      "ID": 657093503
+      "ID": 915317053
     },
     {
       "Version": "5.0final",
@@ -854,7 +875,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Shady Tales",
-      "ID": 328270363
+      "ID": 625090430
     },
     {
       "Version": "3.0",
@@ -862,7 +883,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Silly Level of Detail - Potions and Poisons",
-      "ID": 1609127316
+      "ID": 1242235345
     },
     {
       "Version": "1.0final",
@@ -870,7 +891,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Silly Level of Detail - Wine Cellar",
-      "ID": 1067549478
+      "ID": 748290925
     },
     {
       "Version": "3.3",
@@ -878,7 +899,7 @@
       "State": 3,
       "Sources": [],
       "Name": "SkyFalls and SkyMills ",
-      "ID": 190142979
+      "ID": 438109312
     },
     {
       "Version": "1.1a",
@@ -886,7 +907,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Skyforge Shields",
-      "ID": 1708210334
+      "ID": 1360269853
     },
     {
       "Version": "6.5.2",
@@ -894,7 +915,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Skyrim Immersive Creatures ",
-      "ID": 2060949104
+      "ID": 1564291743
     },
     {
       "Version": "1.28",
@@ -902,7 +923,7 @@
       "State": 3,
       "Sources": [],
       "Name": "SkyTEST - Realistic Animals and Predators - Dawnguard",
-      "ID": 1925793648
+      "ID": 771501216
     },
     {
       "Version": "1.35",
@@ -910,7 +931,7 @@
       "State": 3,
       "Sources": [],
       "Name": "SkyTEST - Realistic Animals and Predators - Dragonborn",
-      "ID": 2018903788
+      "ID": 172123177
     },
     {
       "Version": "1.37",
@@ -918,7 +939,7 @@
       "State": 3,
       "Sources": [],
       "Name": "SkyTEST - Realistic Animals and Predators",
-      "ID": 724988958
+      "ID": 1945573468
     },
     {
       "Version": "4.1",
@@ -926,7 +947,7 @@
       "State": 3,
       "Sources": [],
       "Name": "SkyUI",
-      "ID": 922839512
+      "ID": 1819187974
     },
     {
       "Version": "1.0",
@@ -934,7 +955,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Solitude Public Bathhouse",
-      "ID": 223103715
+      "ID": 601044633
     },
     {
       "Version": "0.9.1",
@@ -942,7 +963,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Spouses Can Live Everywhere",
-      "ID": 550689759
+      "ID": 1685379588
     },
     {
       "Version": "1.72",
@@ -950,7 +971,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Static Mesh Improvement Mod - SMIM",
-      "ID": 1936531408
+      "ID": 296854876
     },
     {
       "Version": "3.0",
@@ -958,7 +979,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Tauriel Companion from The Hobbit",
-      "ID": 915344857
+      "ID": 1948074815
     },
     {
       "Version": "1.1",
@@ -966,7 +987,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Telekinetic Push",
-      "ID": 299288580
+      "ID": 947858497
     },
     {
       "Version": "1.2 final",
@@ -974,7 +995,7 @@
       "State": 3,
       "Sources": [],
       "Name": "The Divine Shrines Retexture - 2048 HD Arkay and Akatosh Version",
-      "ID": 1361125197
+      "ID": 3516278
     },
     {
       "Version": "1.2 final",
@@ -982,7 +1003,7 @@
       "State": 3,
       "Sources": [],
       "Name": "The Divine Shrines Retexture",
-      "ID": 976486935
+      "ID": 1793668282
     },
     {
       "Version": "2.2",
@@ -990,7 +1011,7 @@
       "State": 3,
       "Sources": [],
       "Name": "The Notice Boards ",
-      "ID": 823896614
+      "ID": 1401171995
     },
     {
       "Version": "3.4",
@@ -998,7 +1019,7 @@
       "State": 3,
       "Sources": [],
       "Name": "The Ruffled Feather - W.A.T.E.R ",
-      "ID": 658091879
+      "ID": 520748922
     },
     {
       "Version": "4.0",
@@ -1006,7 +1027,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UHDT[Bones and Skeletons]",
-      "ID": 740001251
+      "ID": 1970576425
     },
     {
       "Version": "4.0",
@@ -1014,7 +1035,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UHDT[Dawnguard]",
-      "ID": 1745009814
+      "ID": 1287946562
     },
     {
       "Version": "3.5",
@@ -1022,7 +1043,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UHDT[Shields]",
-      "ID": 1873860056
+      "ID": 1187566860
     },
     {
       "Version": "5.0",
@@ -1030,7 +1051,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UHDT[Weapons]",
-      "ID": 959515490
+      "ID": 1461987039
     },
     {
       "Version": "12j b15",
@@ -1038,7 +1059,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Ultimate Follower Overhaul ",
-      "ID": 1397787843
+      "ID": 585807370
     },
     {
       "Version": "1.9",
@@ -1046,7 +1067,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Ultimate HD Fire Effects ",
-      "ID": 1873596195
+      "ID": 1086354639
     },
     {
       "Version": "1.3.2",
@@ -1054,7 +1075,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unexpected Blades",
-      "ID": 519077194
+      "ID": 1817296700
     },
     {
       "Version": "2.2",
@@ -1062,7 +1083,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unicorn",
-      "ID": 670951258
+      "ID": 1184444432
     },
     {
       "Version": "5.0",
@@ -1070,7 +1091,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unique Region Names",
-      "ID": 2097140876
+      "ID": 813844292
     },
     {
       "Version": "2.1.1",
@@ -1078,7 +1099,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unofficial Dawnguard Patch",
-      "ID": 1720757649
+      "ID": 852318969
     },
     {
       "Version": "2.1.1",
@@ -1086,7 +1107,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unofficial Dragonborn Patch",
-      "ID": 1452304169
+      "ID": 760793164
     },
     {
       "Version": "2.1.1",
@@ -1094,7 +1115,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unofficial Hearthfire Patch",
-      "ID": 213096770
+      "ID": 1483810830
     },
     {
       "Version": "1.1.9a",
@@ -1102,7 +1123,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unofficial High Resolution Patch",
-      "ID": 872643897
+      "ID": 593835672
     },
     {
       "Version": "2.1.1",
@@ -1110,7 +1131,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Unofficial Skyrim Patch",
-      "ID": 1507682940
+      "ID": 1426508632
     },
     {
       "Version": "1.0",
@@ -1118,7 +1139,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UNP Barkeeper Slightly Transparent",
-      "ID": 705832069
+      "ID": 1371085588
     },
     {
       "Version": "2.1",
@@ -1126,7 +1147,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UNP Female Armors",
-      "ID": 2097448056
+      "ID": 32023427
     },
     {
       "Version": "2.0",
@@ -1134,7 +1155,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UNP Female Armors[Boot Pack]",
-      "ID": 436011652
+      "ID": 593524589
     },
     {
       "Version": "2.3",
@@ -1142,7 +1163,7 @@
       "State": 3,
       "Sources": [],
       "Name": "UNP Fitness Body - Also CBBE ",
-      "ID": 1063435736
+      "ID": 276905136
     },
     {
       "Version": "1.0",
@@ -1150,7 +1171,7 @@
       "State": 3,
       "Sources": [],
       "Name": "VoidCraft_Jewelry",
-      "ID": 1071753613
+      "ID": 170449907
     },
     {
       "Version": "5.10",
@@ -1158,7 +1179,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Weapons and Armor Fixes Remade ",
-      "ID": 1042104387
+      "ID": 686006119
     },
     {
       "Version": "1.09",
@@ -1166,7 +1187,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Wet and Cold - Ashes ",
-      "ID": 1225701781
+      "ID": 738414823
     },
     {
       "Version": "2.0",
@@ -1174,7 +1195,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Wet and Cold - Holidays ",
-      "ID": 1227808635
+      "ID": 1087969218
     },
     {
       "Version": "1.422",
@@ -1182,7 +1203,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Wet and Cold",
-      "ID": 280949668
+      "ID": 2064486471
     },
     {
       "Version": "1.1.1a",
@@ -1190,7 +1211,7 @@
       "State": 3,
       "Sources": [],
       "Name": "When Vampires Attack",
-      "ID": 925408812
+      "ID": 660146231
     },
     {
       "Version": "1.01",
@@ -1198,7 +1219,7 @@
       "State": 3,
       "Sources": [],
       "Name": "Wonders of Weather ",
-      "ID": 797438938
+      "ID": 662431480
     },
     {
       "Version": "2.01",
@@ -1206,7 +1227,7 @@
       "State": 3,
       "Sources": [],
       "Name": "OBIS - Organized Bandits In Skyrim ",
-      "ID": 1114265192
+      "ID": 78802143
     }
   ]
 }

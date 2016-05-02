@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvServers = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uRLDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServerAvailable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.versionPatternDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsServers = new System.Windows.Forms.BindingSource(this.components);
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.bAdd = new SMT.Utils.StateButton();
@@ -48,6 +43,11 @@
             this.lName = new System.Windows.Forms.Label();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
+            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uRLDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ServerAvailable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.versionPatternDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsServers)).BeginInit();
             this.gbDetails.SuspendLayout();
@@ -81,47 +81,6 @@
             this.dgvServers.Size = new System.Drawing.Size(416, 243);
             this.dgvServers.TabIndex = 5;
             this.dgvServers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvServers_MouseDown);
-            // 
-            // nameDataGridViewcontrolColumn
-            // 
-            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
-            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
-            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
-            this.nameDataGridViewcontrolColumn.ReadOnly = true;
-            this.nameDataGridViewcontrolColumn.Width = 58;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 41;
-            // 
-            // uRLDataGridViewcontrolColumn
-            // 
-            this.uRLDataGridViewcontrolColumn.DataPropertyName = "URL";
-            this.uRLDataGridViewcontrolColumn.HeaderText = "URL";
-            this.uRLDataGridViewcontrolColumn.Name = "uRLDataGridViewcontrolColumn";
-            this.uRLDataGridViewcontrolColumn.ReadOnly = true;
-            this.uRLDataGridViewcontrolColumn.Width = 52;
-            // 
-            // ServerAvailable
-            // 
-            this.ServerAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ServerAvailable.HeaderText = "Status";
-            this.ServerAvailable.Name = "ServerAvailable";
-            this.ServerAvailable.ReadOnly = true;
-            this.ServerAvailable.Width = 41;
-            // 
-            // versionPatternDataGridViewcontrolColumn
-            // 
-            this.versionPatternDataGridViewcontrolColumn.DataPropertyName = "VersionPattern";
-            this.versionPatternDataGridViewcontrolColumn.HeaderText = "VersionPattern";
-            this.versionPatternDataGridViewcontrolColumn.Name = "versionPatternDataGridViewcontrolColumn";
-            this.versionPatternDataGridViewcontrolColumn.ReadOnly = true;
-            this.versionPatternDataGridViewcontrolColumn.Width = 99;
             // 
             // bsServers
             // 
@@ -264,6 +223,47 @@
             this.tbName.Size = new System.Drawing.Size(190, 20);
             this.tbName.TabIndex = 0;
             // 
+            // nameDataGridViewcontrolColumn
+            // 
+            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
+            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
+            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
+            this.nameDataGridViewcontrolColumn.ReadOnly = true;
+            this.nameDataGridViewcontrolColumn.Width = 58;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 41;
+            // 
+            // uRLDataGridViewcontrolColumn
+            // 
+            this.uRLDataGridViewcontrolColumn.DataPropertyName = "URL";
+            this.uRLDataGridViewcontrolColumn.HeaderText = "URL";
+            this.uRLDataGridViewcontrolColumn.Name = "uRLDataGridViewcontrolColumn";
+            this.uRLDataGridViewcontrolColumn.ReadOnly = true;
+            this.uRLDataGridViewcontrolColumn.Width = 52;
+            // 
+            // ServerAvailable
+            // 
+            this.ServerAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ServerAvailable.HeaderText = "Status";
+            this.ServerAvailable.Name = "ServerAvailable";
+            this.ServerAvailable.ReadOnly = true;
+            this.ServerAvailable.Width = 41;
+            // 
+            // versionPatternDataGridViewcontrolColumn
+            // 
+            this.versionPatternDataGridViewcontrolColumn.DataPropertyName = "VersionPattern";
+            this.versionPatternDataGridViewcontrolColumn.HeaderText = "Version pattern";
+            this.versionPatternDataGridViewcontrolColumn.Name = "versionPatternDataGridViewcontrolColumn";
+            this.versionPatternDataGridViewcontrolColumn.ReadOnly = true;
+            this.versionPatternDataGridViewcontrolColumn.Width = 101;
+            // 
             // ServersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,15 +298,15 @@
         private System.Windows.Forms.Label lPattern;
         private System.Windows.Forms.TextBox tbPattern;
         private System.Windows.Forms.BindingSource bsServers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ServerAvailable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewcontrolColumn;
         private System.Windows.Forms.Label lPatternError;
         private System.Windows.Forms.Label lURLError;
         private System.Windows.Forms.Label lNameError;
         private Utils.StateButton bRemove;
         private Utils.StateButton bAdd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewcontrolColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ServerAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewcontrolColumn;
     }
 }

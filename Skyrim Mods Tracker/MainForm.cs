@@ -16,7 +16,11 @@ namespace SMT
 {
     public partial class MainForm : Form
     {
+        private const string DDChromeBookmarks = "chromium/x-bookmark-entries";
+        private const string DDText = "Text";
+
         private BindingList<Mod> mods;
+        private Mod selectedMod;
         private BindingList<ModSource> sources;
 
         private BackgroundWorker bgWorker;
@@ -44,7 +48,7 @@ namespace SMT
             SetDefaultStatus();
         }
 
-       
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             dgvMods.AutoResizeColumns();
@@ -63,7 +67,6 @@ namespace SMT
 
             SetModEditable(false);
             SetSourceEditable(false);
-
             MarkMods();
         }
 
@@ -103,7 +106,8 @@ namespace SMT
         private void ApplySettings()
         {
             ofdRoot.InitialDirectory = (SettingsManager.HasValidModsLocation ? SettingsManager.ModsLocation : Environment.CurrentDirectory);
-            if (SettingsManager.HasValidModsLocation) {
+            if (SettingsManager.HasValidModsLocation)
+            {
                 AutoCompleteStringCollection completions = new AutoCompleteStringCollection();
                 completions.AddRange(Directory.GetFiles(SettingsManager.ModsLocation).Select(str => Path.GetFileName(str)).ToArray());
                 completions.AddRange(Directory.GetDirectories(SettingsManager.ModsLocation).Select(str => Path.GetFileName(str)).ToArray());
@@ -120,7 +124,7 @@ namespace SMT
             bAddSource.Enabled = isEditable;
             bRemoveMod.Enabled = isEditable;
             dgvSources.Enabled = isEditable;
-            
+
             if (!isEditable)
             {
                 dgvMods.ClearSelection();
@@ -133,10 +137,11 @@ namespace SMT
                 tbVersion.ClearMessage();
                 SetSourceEditable(false);
                 dgvSources.DataSource = null;
-                
             }
-            else
+            else {
                 bsMods.ResumeBinding();
+                MarkSources();
+            }
         }
         private void SetSourceEditable(bool isEditable)
         {
@@ -224,11 +229,11 @@ namespace SMT
         private void MarkMods()
         {
             for (int i = 0; i < mods.Count; i++)
-                MarkMod(mods[i], i);
+                MarkMod(i);
         }
-        private void MarkMod(Mod mod, int index)
+        private void MarkMod(int index)
         {
-
+            Mod mod = mods[index];
             if (mod.State != ModState.NotTracking && mod.State != ModState.Undefined &&
                 mod.Sources.Select(s => s.State).Where(state => state == SourceState.UnknownServer ||
                                                                 state == SourceState.UnreachablePage ||
@@ -248,10 +253,30 @@ namespace SMT
             }
         }
 
+        private void MarkSources()
+        {
+            for(int i=0; i< sources.Count;i++)
+            {
+                ModSource src = sources[i];
+                switch (src.State)
+                {
+                    default:
+                    case SourceState.Undefined: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.UnknownServer: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.BrokenServer: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.UnreachablePage: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.UnavailableVersion: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.Available: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen; break;
+                    case SourceState.Update: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.Orange; break;
+                }
+            }
+        }
+
         private void RunCheckMods()
         {
             spbStatusProgress.Maximum = mods.Count;
             spbStatusProgress.Value = 0;
+            spbStatusProgress.Visible = true;
             SetStatus("Checking mods...");
 
             bgWorker.DoWork += CheckModsWork;
@@ -267,7 +292,7 @@ namespace SMT
                 int progress = (int)(((double)i / (double)mods.Count) * 100);
                 (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, false }); // mod, index, isProcessed
                 mods[i].CheckUpdates();
-                (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, true });// mod, index, isProcessed
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, true }); // mod, index, isProcessed
             }
         }
         private void CheckModsWorkProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -281,7 +306,7 @@ namespace SMT
             if (isCompleted)
             {
                 spbStatusProgress.Value++;
-                MarkMod(mod, index);
+                MarkMod(index);
             }
         }
         private void CheckModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -294,13 +319,13 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= CheckModsWorkCompleted;
         }
 
-
         private void RunScanMods()
         {
             spbStatusProgress.Maximum = Directory.GetFiles(SettingsManager.ModsLocation).Length + Directory.GetDirectories(SettingsManager.ModsLocation).Length;
             spbStatusProgress.Value = 0;
+            spbStatusProgress.Visible = true;
             SetStatus("Scanning mods...");
-            
+
             bgWorker.DoWork += ScanModsWork;
             bgWorker.ProgressChanged += ScanModsWorkProgressChanged;
             bgWorker.RunWorkerCompleted += ScanModsWorkCompleted;
@@ -316,39 +341,40 @@ namespace SMT
                 string filename = Path.GetFileNameWithoutExtension(files[i]);
                 Mod scannedMod = ModsManager.ParseMod(filename);
                 scannedMod.FileName = Path.GetFileName(files[i]);
-             
+
                 int progress = (int)(((double)i / (double)totalSize) * 100);
-                (sender as BackgroundWorker).ReportProgress(progress, new object[] { scannedMod, i}); // mod, index
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { scannedMod, i }); // mod, index
             }
         }
-
         private void ScanModsWorkProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var userState = e.UserState as object[];
             var mod = userState[0] as Mod;
             var index = (int)userState[1];
-            
-           
+
+
             List<Mod> duplicates = mods.Where(m => m.Name.Equals(mod.Name)).ToList();
             bool added = false;
-            
+
             if (mod.IsValid)
             {
                 if (duplicates != null && duplicates.Count > 0)
                 {
                     var difVersion = duplicates.FirstOrDefault(m => !m.Version.Equals(mod.Version));
                     var sameVersion = duplicates.FirstOrDefault(m => m.Version.Equals(mod.Version));
-                    if (difVersion != null) {
+                    if (difVersion != null)
+                    {
                         pendingDialogs++;
                         if (DialogResult.Yes == MessageBox.Show(this, string.Format("Found mod '{0}', which already exists in database, but has different version.\n\nDatabase version: '{1}'\nFile version: '{2}'\nDo you want to use version file version?", mod.Name, difVersion.Version, mod.Version), "Duplicated mod", MessageBoxButtons.YesNo))
                         {
                             difVersion.Version = mod.Version;
                             pendingDialogs--;
                         }
-                        else if (sameVersion == null) {
+                        else if (sameVersion == null)
+                        {
                             added = true;
                             mods.Add(mod);
-                            
+
                         }
                         else pendingDialogs--;
                     }
@@ -362,7 +388,7 @@ namespace SMT
             SetStatus(string.Format(format, mod.Name, (added ? "Added" : "Scanned"), index + 1, mods.Count, e.ProgressPercentage));
             if (pendingDialogs == 0) SetDefaultStatus();
             spbStatusProgress.Value++;
-            MarkMod(mod, mods.Count - 1);
+            MarkMod(mods.Count - 1);
         }
         private void ScanModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -373,20 +399,23 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= ScanModsWorkCompleted;
         }
 
-
         private void bsMods_CurrentItemChanged(object sender, EventArgs e)
         {
             if (bsMods.Current == null) { SetModEditable(false); return; }
-            var selectedMod = bsMods.Current as Mod;
+           
             if (selectedMod != null) SaveSources(selectedMod);
+            selectedMod = bsMods.Current as Mod;
             sources = new BindingList<ModSource>(selectedMod.Sources.ToList());
             bsSources.DataSource = sources;
+            dgvSources.DataSource = bsSources;
+            MarkSources();
+            dgvSources.ClearSelection();
         }
         private void bsSources_CurrentItemChanged(object sender, EventArgs e)
         {
             ValidateSourceFields();
         }
-      
+
         private void dgvMods_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -417,7 +446,26 @@ namespace SMT
             tbName.Focus();
             tbName.DeselectAll();
         }
-   
+
+        private void OnModTextChanged(object sender, EventArgs e)
+        {
+            if (bsMods.IsBindingSuspended) return;
+            bsMods.EndEdit();
+            (sender as TextBox).TextChanged -= OnModTextChanged;
+            bsMods.ResetCurrentItem();
+            (sender as TextBox).TextChanged += OnModTextChanged;
+            ValidateModFields();
+        }
+        private void OnSourceTextChanged(object sender, EventArgs e)
+        {
+            if (bsSources.IsBindingSuspended) return;
+            bsSources.EndEdit();
+            (sender as TextBox).TextChanged -= OnSourceTextChanged;
+            bsSources.ResetCurrentItem();
+            (sender as TextBox).TextChanged += OnSourceTextChanged;
+            ValidateSourceFields();
+        }
+
         private void bBrowse_Click(object sender, EventArgs e)
         {
             if (DialogResult.OK == ofdRoot.ShowDialog())
@@ -436,7 +484,7 @@ namespace SMT
         {
             bsMods.RemoveCurrent();
             SetModEditable(mods.Count > 0);
-            if (mods.Count > 0) EditRow(dgvMods, mods.Count - 1);
+            //  if (mods.Count > 0) EditRow(dgvMods, mods.Count - 1);
         }
         private void bAddSource_Click(object sender, EventArgs e)
         {
@@ -448,7 +496,7 @@ namespace SMT
         {
             bsSources.RemoveCurrent();
             SetSourceEditable(false);
-            if (sources.Count > 0) EditRow(dgvSources, sources.Count - 1);
+            //       if (sources.Count > 0) EditRow(dgvSources, sources.Count - 1);
         }
 
         private void serversToolStripMenuItem_Click(object sender, EventArgs e)
@@ -457,29 +505,21 @@ namespace SMT
         }
         private void checkModsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunCheckMods(); 
+            RunCheckMods();
+        }
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == new PreferencesForm().ShowDialog())
+                RunScanMods();
+            ApplySettings();
         }
 
-     
+
         private void cbManual_CheckedChanged(object sender, EventArgs e)
         {
             tbSourceVersion.Enabled = cbManual.Checked;
         }
 
-        private void OnModTextChanged(object sender, EventArgs e)
-        {
-            if (bsMods.IsBindingSuspended) return;
-            bsMods.EndEdit();
-            bsMods.ResetCurrentItem();
-            ValidateModFields();
-        }
-        private void OnSourceTextChanged(object sender, EventArgs e)
-        {
-            if (bsSources.IsBindingSuspended) return;
-            bsSources.EndEdit();
-            bsSources.ResetCurrentItem();
-            ValidateSourceFields();
-        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -495,10 +535,7 @@ namespace SMT
                 var m = ModsManager.Mods;
                 m.Clear();
                 foreach (var mod in mods)
-                {
-                    SaveSources(mod, true);
                     m.Add(mod);
-                }
             }
             else e.Cancel = true;
         }
@@ -508,13 +545,40 @@ namespace SMT
             StorageManager.Sync();
         }
 
-        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dgvSources_DragDrop(object sender, DragEventArgs e)
         {
-            if (DialogResult.Yes == new PreferencesForm().ShowDialog())
-                RunScanMods();
-            ApplySettings();
+            if (e.Data.GetDataPresent(DDText))
+                AddModSource(e.Data.GetData(DDText) as string);
+            else if (e.Data.GetDataPresent(DDChromeBookmarks))
+            {
+                using (MemoryStream ms = e.Data.GetData(DDChromeBookmarks) as MemoryStream)
+                {
+                    var urls = ChromeUtils.ReadBookmarksURL(ms.ToArray());
+                    foreach (var url in urls)
+                        AddModSource(url);
+                }
+            }
+                
         }
 
-       
+        private void dgvSources_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DDText) || e.Data.GetDataPresent(DDChromeBookmarks))
+                e.Effect = DragDropEffects.Link;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void AddModSource(string sourceURL)
+        {
+            
+            ModSource source;
+            if (ModsManager.TryBuildModSource(sourceURL, out source))
+            {
+                bsSources.Add(source);
+                SetSourceEditable(true);
+            }
+            bsSources.ResetBindings(false);
+        }
     }
 }

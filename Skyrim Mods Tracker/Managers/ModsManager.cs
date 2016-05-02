@@ -74,6 +74,21 @@ namespace SMT.Managers
             return success;
         }
 
+        public static bool TryBuildModSource(string url, out ModSource src)
+        {
+            Uri uri;
+            if (TryBuildModSourceURL(url, out uri))
+            {
+                src = new ModSource();
+                src.URL = url;
+            }
+            else
+                src = null;
+
+            return src != null;
+            
+        }
+
         #region Mod Extensions
 
         public static void CheckUpdates(this Mod mod)

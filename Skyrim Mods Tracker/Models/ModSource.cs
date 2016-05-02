@@ -67,12 +67,11 @@ namespace SMT.Models
         /// Checks whether the source a has valid version or not.
         /// </summary>
         [JsonIgnore]
-        public bool HasValidVersion { get { return !string.IsNullOrWhiteSpace(Version); } }
+        public bool HasValidVersion { get { return Version != null; } }
 
         [JsonIgnore]
         public bool IsValid { get { return HasValidURL && HasValidVersion; }}
 
-        [JsonIgnore]
         public SourceState State { get; set; }
 
         public ModSource() : base(){}

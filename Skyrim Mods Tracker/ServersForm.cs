@@ -97,6 +97,14 @@ namespace SMT
             ValidatePattern();
         }
 
+        private void EditRow(DataGridView dgv, int index)
+        {
+            dgv.ClearSelection();
+            dgv.Rows[index].Selected = true;
+            tbName.Focus();
+            tbName.DeselectAll();
+        }
+
         private void dgvServers_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -113,9 +121,7 @@ namespace SMT
         {
             SetServerEditable(true);
             bsServers.AddNew();
-            dgvServers.ClearSelection();
-            dgvServers.Rows[servers.Count - 1].Selected = true;
-            tbName.Focus();
+            EditRow(dgvServers, servers.Count - 1);
         }
 
         private void bRemove_Click(object sender, EventArgs e)
@@ -123,12 +129,7 @@ namespace SMT
             bsServers.RemoveCurrent();
             SetServerEditable(servers.Count > 0);
             dgvServers.ClearSelection();
-            if (servers.Count > 0)
-            {
-                dgvServers.Rows[servers.Count - 1].Selected = true;
-                tbName.Focus();
-                tbName.DeselectAll();
-            }
+            //if (servers.Count > 0) EditRow(dgvServers, servers.Count - 1);
         }
 
         private void bsServers_CurrentItemChanged(object sender, EventArgs e)
@@ -140,7 +141,9 @@ namespace SMT
         {
             if (bsServers.IsBindingSuspended) return;
             bsServers.EndEdit();
+            (sender as TextBox).TextChanged -= OnTextChanged;
             bsServers.ResetCurrentItem();
+            (sender as TextBox).TextChanged += OnTextChanged;
             ValidateFields();
         }
 

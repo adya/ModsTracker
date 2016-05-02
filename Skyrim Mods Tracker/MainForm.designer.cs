@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvMods = new System.Windows.Forms.DataGridView();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbMod = new System.Windows.Forms.GroupBox();
             this.lRootError = new System.Windows.Forms.Label();
             this.lVersionError = new System.Windows.Forms.Label();
@@ -62,11 +63,11 @@
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu = new System.Windows.Forms.MenuStrip();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lDummyFocus = new System.Windows.Forms.Label();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
             this.bsSources = new System.Windows.Forms.BindingSource(this.components);
-            this.stateButton1 = new SMT.Utils.StateButton();
+            this.bAddMod = new SMT.Utils.StateButton();
             this.bRemoveMod = new SMT.Utils.StateButton();
             this.bBrowse = new SMT.Utils.StateButton();
             this.bsMods = new System.Windows.Forms.BindingSource(this.components);
@@ -119,7 +120,16 @@
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMods.Size = new System.Drawing.Size(629, 504);
             this.dgvMods.TabIndex = 10;
+            this.dgvMods.TabStop = false;
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
+            // 
+            // FileName
+            // 
+            this.FileName.DataPropertyName = "FileName";
+            this.FileName.HeaderText = "File name";
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Width = 75;
             // 
             // gbMod
             // 
@@ -128,7 +138,7 @@
             this.gbMod.Controls.Add(this.lRootError);
             this.gbMod.Controls.Add(this.lVersionError);
             this.gbMod.Controls.Add(this.lNameError);
-            this.gbMod.Controls.Add(this.stateButton1);
+            this.gbMod.Controls.Add(this.bAddMod);
             this.gbMod.Controls.Add(this.bRemoveMod);
             this.gbMod.Controls.Add(this.bBrowse);
             this.gbMod.Controls.Add(this.tbRoot);
@@ -250,6 +260,7 @@
             // 
             // dgvSources
             // 
+            this.dgvSources.AllowDrop = true;
             this.dgvSources.AllowUserToAddRows = false;
             this.dgvSources.AllowUserToOrderColumns = true;
             this.dgvSources.AllowUserToResizeRows = false;
@@ -271,6 +282,9 @@
             this.dgvSources.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSources.Size = new System.Drawing.Size(336, 119);
             this.dgvSources.TabIndex = 11;
+            this.dgvSources.TabStop = false;
+            this.dgvSources.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvSources_DragDrop);
+            this.dgvSources.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvSources_DragEnter);
             this.dgvSources.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvSources_MouseDown);
             // 
             // panel1
@@ -286,6 +300,7 @@
             // 
             // gbSource
             // 
+            this.gbSource.Controls.Add(this.lDummyFocus);
             this.gbSource.Controls.Add(this.bAddSource);
             this.gbSource.Controls.Add(this.bRemoveSource);
             this.gbSource.Controls.Add(this.tbURL);
@@ -453,13 +468,15 @@
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "menuStrip1";
             // 
-            // FileName
+            // lDummyFocus
             // 
-            this.FileName.DataPropertyName = "FileName";
-            this.FileName.HeaderText = "File name";
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Width = 75;
+            this.lDummyFocus.AutoSize = true;
+            this.lDummyFocus.Location = new System.Drawing.Point(10, 145);
+            this.lDummyFocus.Name = "lDummyFocus";
+            this.lDummyFocus.Size = new System.Drawing.Size(74, 13);
+            this.lDummyFocus.TabIndex = 0;
+            this.lDummyFocus.Text = "Dummy Focus";
+            this.lDummyFocus.Visible = false;
             // 
             // bAddSource
             // 
@@ -502,23 +519,23 @@
             this.bsSources.DataSource = typeof(SMT.Models.ModSource);
             this.bsSources.CurrentItemChanged += new System.EventHandler(this.bsSources_CurrentItemChanged);
             // 
-            // stateButton1
+            // bAddMod
             // 
-            this.stateButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.stateButton1.BackColor = System.Drawing.Color.ForestGreen;
-            this.stateButton1.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.stateButton1.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.stateButton1.EnabledBackColor = System.Drawing.Color.ForestGreen;
-            this.stateButton1.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.stateButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stateButton1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.stateButton1.Location = new System.Drawing.Point(190, 145);
-            this.stateButton1.Name = "stateButton1";
-            this.stateButton1.Size = new System.Drawing.Size(75, 23);
-            this.stateButton1.TabIndex = 6;
-            this.stateButton1.Text = "Add";
-            this.stateButton1.UseVisualStyleBackColor = false;
-            this.stateButton1.Click += new System.EventHandler(this.bAddMod_Click);
+            this.bAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddMod.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAddMod.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAddMod.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAddMod.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAddMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAddMod.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddMod.Location = new System.Drawing.Point(190, 145);
+            this.bAddMod.Name = "bAddMod";
+            this.bAddMod.Size = new System.Drawing.Size(75, 23);
+            this.bAddMod.TabIndex = 6;
+            this.bAddMod.Text = "Add";
+            this.bAddMod.UseVisualStyleBackColor = false;
+            this.bAddMod.Click += new System.EventHandler(this.bAddMod_Click);
             // 
             // bRemoveMod
             // 
@@ -701,7 +718,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewcontrolColumn;
         private Utils.StateButton bBrowse;
-        private Utils.StateButton stateButton1;
+        private Utils.StateButton bAddMod;
         private Utils.StateButton bRemoveMod;
         private System.Windows.Forms.Label lRootError;
         private System.Windows.Forms.Label lVersionError;
@@ -725,6 +742,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lDummyFocus;
     }
 }
 

@@ -103,6 +103,16 @@ namespace SMT
             return false;
         }
 
+        private void Save()
+        {
+            var m = ModsManager.Mods;
+            m.Clear();
+            foreach (var mod in mods)
+                m.Add(mod);
+            ModsManager.NormalizeMods();
+            StorageManager.Sync();
+        }
+
         private void ApplySettings()
         {
             ofdRoot.InitialDirectory = (SettingsManager.HasValidModsLocation ? SettingsManager.ModsLocation : Environment.CurrentDirectory);
@@ -470,7 +480,7 @@ namespace SMT
         {
             if (DialogResult.OK == ofdRoot.ShowDialog())
             {
-                tbRoot.Text = ofdRoot.FileName;
+                tbRoot.Text = Path.GetFileName(ofdRoot.FileName);
                 bsMods.EndEdit();
             }
         }
@@ -507,6 +517,12 @@ namespace SMT
         {
             RunCheckMods();
         }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Save();
+            bsMods.ResetBindings(false);
+            MarkMods();
+        }
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == new PreferencesForm().ShowDialog())
@@ -514,12 +530,10 @@ namespace SMT
             ApplySettings();
         }
 
-
         private void cbManual_CheckedChanged(object sender, EventArgs e)
         {
             tbSourceVersion.Enabled = cbManual.Checked;
         }
-
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -532,17 +546,9 @@ namespace SMT
                                                     "\n\nFix mods: [" + string.Join(", ", invalidMods) + "]" +
                                                     "\n\n Continue?", "Invalid mods", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)))
             {
-                var m = ModsManager.Mods;
-                m.Clear();
-                foreach (var mod in mods)
-                    m.Add(mod);
+                Save();
             }
             else e.Cancel = true;
-        }
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ModsManager.NormalizeMods();
-            StorageManager.Sync();
         }
 
         private void dgvSources_DragDrop(object sender, DragEventArgs e)
@@ -580,5 +586,7 @@ namespace SMT
             }
             bsSources.ResetBindings(false);
         }
+
+       
     }
 }

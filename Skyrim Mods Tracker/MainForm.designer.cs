@@ -30,11 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvMods = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsMods = new System.Windows.Forms.BindingSource(this.components);
             this.gbMod = new System.Windows.Forms.GroupBox();
             this.lRootError = new System.Windows.Forms.Label();
             this.lVersionError = new System.Windows.Forms.Label();
             this.lNameError = new System.Windows.Forms.Label();
+            this.bAddMod = new SMT.Utils.StateButton();
+            this.bRemoveMod = new SMT.Utils.StateButton();
+            this.bBrowse = new SMT.Utils.StateButton();
             this.tbRoot = new System.Windows.Forms.TextBox();
             this.tbVersion = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
@@ -44,8 +52,17 @@
             this.ofdRoot = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvSources = new System.Windows.Forms.DataGridView();
+            this.serverDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.languageDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsSources = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbSource = new System.Windows.Forms.GroupBox();
+            this.lDummyFocus = new System.Windows.Forms.Label();
+            this.bAddSource = new SMT.Utils.StateButton();
+            this.bRemoveSource = new SMT.Utils.StateButton();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.cbManual = new System.Windows.Forms.CheckBox();
             this.lSrcVersionError = new System.Windows.Forms.Label();
@@ -63,33 +80,17 @@
             this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu = new System.Windows.Forms.MenuStrip();
-            this.lDummyFocus = new System.Windows.Forms.Label();
-            this.bAddSource = new SMT.Utils.StateButton();
-            this.bRemoveSource = new SMT.Utils.StateButton();
-            this.bsSources = new System.Windows.Forms.BindingSource(this.components);
-            this.bAddMod = new SMT.Utils.StateButton();
-            this.bRemoveMod = new SMT.Utils.StateButton();
-            this.bBrowse = new SMT.Utils.StateButton();
-            this.bsMods = new System.Windows.Forms.BindingSource(this.components);
-            this.serverDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.languageDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMods)).BeginInit();
             this.gbMod.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSources)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSources)).BeginInit();
             this.panel1.SuspendLayout();
             this.gbSource.SuspendLayout();
             this.ssStatus.SuspendLayout();
             this.msMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSources)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsMods)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvMods
@@ -123,6 +124,30 @@
             this.dgvMods.TabStop = false;
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // versionDataGridViewTextBoxColumn
+            // 
+            this.versionDataGridViewTextBoxColumn.DataPropertyName = "Version";
+            this.versionDataGridViewTextBoxColumn.HeaderText = "Version";
+            this.versionDataGridViewTextBoxColumn.Name = "versionDataGridViewTextBoxColumn";
+            this.versionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.versionDataGridViewTextBoxColumn.Width = 65;
+            // 
+            // stateDataGridViewTextBoxColumn
+            // 
+            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
+            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
+            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stateDataGridViewTextBoxColumn.Width = 55;
+            // 
             // FileName
             // 
             this.FileName.DataPropertyName = "FileName";
@@ -130,6 +155,20 @@
             this.FileName.Name = "FileName";
             this.FileName.ReadOnly = true;
             this.FileName.Width = 75;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.iDDataGridViewTextBoxColumn.Width = 41;
+            // 
+            // bsMods
+            // 
+            this.bsMods.DataSource = typeof(SMT.Models.Mod);
+            this.bsMods.CurrentItemChanged += new System.EventHandler(this.bsMods_CurrentItemChanged);
             // 
             // gbMod
             // 
@@ -188,6 +227,62 @@
             this.lNameError.TabIndex = 7;
             this.lNameError.Text = "Error";
             this.lNameError.Visible = false;
+            // 
+            // bAddMod
+            // 
+            this.bAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddMod.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAddMod.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAddMod.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAddMod.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAddMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAddMod.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddMod.Location = new System.Drawing.Point(190, 145);
+            this.bAddMod.Name = "bAddMod";
+            this.bAddMod.Size = new System.Drawing.Size(75, 23);
+            this.bAddMod.TabIndex = 6;
+            this.bAddMod.Text = "Add";
+            this.bAddMod.UseVisualStyleBackColor = false;
+            this.bAddMod.Click += new System.EventHandler(this.bAddMod_Click);
+            // 
+            // bRemoveMod
+            // 
+            this.bRemoveMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRemoveMod.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveMod.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemoveMod.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemoveMod.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemoveMod.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveMod.Location = new System.Drawing.Point(271, 145);
+            this.bRemoveMod.Name = "bRemoveMod";
+            this.bRemoveMod.Size = new System.Drawing.Size(75, 23);
+            this.bRemoveMod.TabIndex = 5;
+            this.bRemoveMod.Text = "Remove";
+            this.bRemoveMod.UseVisualStyleBackColor = false;
+            this.bRemoveMod.Click += new System.EventHandler(this.bRemoveMod_Click);
+            // 
+            // bBrowse
+            // 
+            this.bBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bBrowse.BackColor = System.Drawing.Color.SkyBlue;
+            this.bBrowse.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bBrowse.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bBrowse.EnabledBackColor = System.Drawing.Color.SkyBlue;
+            this.bBrowse.EnabledForeColor = System.Drawing.Color.Black;
+            this.bBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F);
+            this.bBrowse.ForeColor = System.Drawing.Color.Black;
+            this.bBrowse.Location = new System.Drawing.Point(325, 100);
+            this.bBrowse.Name = "bBrowse";
+            this.bBrowse.Size = new System.Drawing.Size(20, 20);
+            this.bBrowse.TabIndex = 4;
+            this.bBrowse.Text = "..";
+            this.bBrowse.UseVisualStyleBackColor = false;
+            this.bBrowse.Click += new System.EventHandler(this.bBrowse_Click);
             // 
             // tbRoot
             // 
@@ -287,6 +382,51 @@
             this.dgvSources.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvSources_DragEnter);
             this.dgvSources.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvSources_MouseDown);
             // 
+            // serverDataGridViewcontrolColumn
+            // 
+            this.serverDataGridViewcontrolColumn.DataPropertyName = "Server";
+            this.serverDataGridViewcontrolColumn.HeaderText = "Server";
+            this.serverDataGridViewcontrolColumn.Name = "serverDataGridViewcontrolColumn";
+            this.serverDataGridViewcontrolColumn.ReadOnly = true;
+            this.serverDataGridViewcontrolColumn.Width = 61;
+            // 
+            // languageDataGridViewcontrolColumn
+            // 
+            this.languageDataGridViewcontrolColumn.DataPropertyName = "Language";
+            this.languageDataGridViewcontrolColumn.HeaderText = "Language";
+            this.languageDataGridViewcontrolColumn.Name = "languageDataGridViewcontrolColumn";
+            this.languageDataGridViewcontrolColumn.ReadOnly = true;
+            this.languageDataGridViewcontrolColumn.Width = 78;
+            // 
+            // versionDataGridViewcontrolColumn1
+            // 
+            this.versionDataGridViewcontrolColumn1.DataPropertyName = "Version";
+            this.versionDataGridViewcontrolColumn1.HeaderText = "Version";
+            this.versionDataGridViewcontrolColumn1.Name = "versionDataGridViewcontrolColumn1";
+            this.versionDataGridViewcontrolColumn1.ReadOnly = true;
+            this.versionDataGridViewcontrolColumn1.Width = 65;
+            // 
+            // stateDataGridViewcontrolColumn1
+            // 
+            this.stateDataGridViewcontrolColumn1.DataPropertyName = "State";
+            this.stateDataGridViewcontrolColumn1.HeaderText = "State";
+            this.stateDataGridViewcontrolColumn1.Name = "stateDataGridViewcontrolColumn1";
+            this.stateDataGridViewcontrolColumn1.ReadOnly = true;
+            this.stateDataGridViewcontrolColumn1.Width = 55;
+            // 
+            // pathDataGridViewcontrolColumn
+            // 
+            this.pathDataGridViewcontrolColumn.DataPropertyName = "Path";
+            this.pathDataGridViewcontrolColumn.HeaderText = "Path";
+            this.pathDataGridViewcontrolColumn.Name = "pathDataGridViewcontrolColumn";
+            this.pathDataGridViewcontrolColumn.ReadOnly = true;
+            this.pathDataGridViewcontrolColumn.Width = 52;
+            // 
+            // bsSources
+            // 
+            this.bsSources.DataSource = typeof(SMT.Models.ModSource);
+            this.bsSources.CurrentItemChanged += new System.EventHandler(this.bsSources_CurrentItemChanged);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.gbSource);
@@ -318,6 +458,52 @@
             this.gbSource.TabIndex = 4;
             this.gbSource.TabStop = false;
             this.gbSource.Text = "Source";
+            // 
+            // lDummyFocus
+            // 
+            this.lDummyFocus.AutoSize = true;
+            this.lDummyFocus.Location = new System.Drawing.Point(10, 145);
+            this.lDummyFocus.Name = "lDummyFocus";
+            this.lDummyFocus.Size = new System.Drawing.Size(74, 13);
+            this.lDummyFocus.TabIndex = 0;
+            this.lDummyFocus.Text = "Dummy Focus";
+            this.lDummyFocus.Visible = false;
+            // 
+            // bAddSource
+            // 
+            this.bAddSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddSource.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAddSource.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAddSource.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAddSource.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAddSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAddSource.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddSource.Location = new System.Drawing.Point(190, 140);
+            this.bAddSource.Name = "bAddSource";
+            this.bAddSource.Size = new System.Drawing.Size(75, 23);
+            this.bAddSource.TabIndex = 13;
+            this.bAddSource.Text = "Add";
+            this.bAddSource.UseVisualStyleBackColor = false;
+            this.bAddSource.Click += new System.EventHandler(this.bAddSource_Click);
+            // 
+            // bRemoveSource
+            // 
+            this.bRemoveSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRemoveSource.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveSource.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemoveSource.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemoveSource.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemoveSource.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveSource.Location = new System.Drawing.Point(271, 140);
+            this.bRemoveSource.Name = "bRemoveSource";
+            this.bRemoveSource.Size = new System.Drawing.Size(75, 23);
+            this.bRemoveSource.TabIndex = 12;
+            this.bRemoveSource.Text = "Remove";
+            this.bRemoveSource.UseVisualStyleBackColor = false;
+            this.bRemoveSource.Click += new System.EventHandler(this.bRemoveSource_Click);
             // 
             // tbURL
             // 
@@ -461,6 +647,7 @@
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.checkModsToolStripMenuItem,
+            this.saveToolStripMenuItem,
             this.settingsToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
@@ -468,190 +655,12 @@
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "menuStrip1";
             // 
-            // lDummyFocus
+            // saveToolStripMenuItem
             // 
-            this.lDummyFocus.AutoSize = true;
-            this.lDummyFocus.Location = new System.Drawing.Point(10, 145);
-            this.lDummyFocus.Name = "lDummyFocus";
-            this.lDummyFocus.Size = new System.Drawing.Size(74, 13);
-            this.lDummyFocus.TabIndex = 0;
-            this.lDummyFocus.Text = "Dummy Focus";
-            this.lDummyFocus.Visible = false;
-            // 
-            // bAddSource
-            // 
-            this.bAddSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bAddSource.BackColor = System.Drawing.Color.ForestGreen;
-            this.bAddSource.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bAddSource.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bAddSource.EnabledBackColor = System.Drawing.Color.ForestGreen;
-            this.bAddSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bAddSource.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddSource.Location = new System.Drawing.Point(190, 140);
-            this.bAddSource.Name = "bAddSource";
-            this.bAddSource.Size = new System.Drawing.Size(75, 23);
-            this.bAddSource.TabIndex = 13;
-            this.bAddSource.Text = "Add";
-            this.bAddSource.UseVisualStyleBackColor = false;
-            this.bAddSource.Click += new System.EventHandler(this.bAddSource_Click);
-            // 
-            // bRemoveSource
-            // 
-            this.bRemoveSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bRemoveSource.BackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveSource.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bRemoveSource.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bRemoveSource.EnabledBackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bRemoveSource.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveSource.Location = new System.Drawing.Point(271, 140);
-            this.bRemoveSource.Name = "bRemoveSource";
-            this.bRemoveSource.Size = new System.Drawing.Size(75, 23);
-            this.bRemoveSource.TabIndex = 12;
-            this.bRemoveSource.Text = "Remove";
-            this.bRemoveSource.UseVisualStyleBackColor = false;
-            this.bRemoveSource.Click += new System.EventHandler(this.bRemoveSource_Click);
-            // 
-            // bsSources
-            // 
-            this.bsSources.DataSource = typeof(SMT.Models.ModSource);
-            this.bsSources.CurrentItemChanged += new System.EventHandler(this.bsSources_CurrentItemChanged);
-            // 
-            // bAddMod
-            // 
-            this.bAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bAddMod.BackColor = System.Drawing.Color.ForestGreen;
-            this.bAddMod.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bAddMod.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bAddMod.EnabledBackColor = System.Drawing.Color.ForestGreen;
-            this.bAddMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bAddMod.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddMod.Location = new System.Drawing.Point(190, 145);
-            this.bAddMod.Name = "bAddMod";
-            this.bAddMod.Size = new System.Drawing.Size(75, 23);
-            this.bAddMod.TabIndex = 6;
-            this.bAddMod.Text = "Add";
-            this.bAddMod.UseVisualStyleBackColor = false;
-            this.bAddMod.Click += new System.EventHandler(this.bAddMod_Click);
-            // 
-            // bRemoveMod
-            // 
-            this.bRemoveMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bRemoveMod.BackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveMod.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bRemoveMod.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bRemoveMod.EnabledBackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bRemoveMod.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveMod.Location = new System.Drawing.Point(271, 145);
-            this.bRemoveMod.Name = "bRemoveMod";
-            this.bRemoveMod.Size = new System.Drawing.Size(75, 23);
-            this.bRemoveMod.TabIndex = 5;
-            this.bRemoveMod.Text = "Remove";
-            this.bRemoveMod.UseVisualStyleBackColor = false;
-            this.bRemoveMod.Click += new System.EventHandler(this.bRemoveMod_Click);
-            // 
-            // bBrowse
-            // 
-            this.bBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bBrowse.BackColor = System.Drawing.Color.SkyBlue;
-            this.bBrowse.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bBrowse.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bBrowse.EnabledBackColor = System.Drawing.Color.SkyBlue;
-            this.bBrowse.EnabledForeColor = System.Drawing.Color.Black;
-            this.bBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F);
-            this.bBrowse.ForeColor = System.Drawing.Color.Black;
-            this.bBrowse.Location = new System.Drawing.Point(325, 100);
-            this.bBrowse.Name = "bBrowse";
-            this.bBrowse.Size = new System.Drawing.Size(20, 20);
-            this.bBrowse.TabIndex = 4;
-            this.bBrowse.Text = "..";
-            this.bBrowse.UseVisualStyleBackColor = false;
-            this.bBrowse.Click += new System.EventHandler(this.bBrowse_Click);
-            // 
-            // bsMods
-            // 
-            this.bsMods.DataSource = typeof(SMT.Models.Mod);
-            this.bsMods.CurrentItemChanged += new System.EventHandler(this.bsMods_CurrentItemChanged);
-            // 
-            // serverDataGridViewcontrolColumn
-            // 
-            this.serverDataGridViewcontrolColumn.DataPropertyName = "Server";
-            this.serverDataGridViewcontrolColumn.HeaderText = "Server";
-            this.serverDataGridViewcontrolColumn.Name = "serverDataGridViewcontrolColumn";
-            this.serverDataGridViewcontrolColumn.ReadOnly = true;
-            this.serverDataGridViewcontrolColumn.Width = 61;
-            // 
-            // languageDataGridViewcontrolColumn
-            // 
-            this.languageDataGridViewcontrolColumn.DataPropertyName = "Language";
-            this.languageDataGridViewcontrolColumn.HeaderText = "Language";
-            this.languageDataGridViewcontrolColumn.Name = "languageDataGridViewcontrolColumn";
-            this.languageDataGridViewcontrolColumn.ReadOnly = true;
-            this.languageDataGridViewcontrolColumn.Width = 78;
-            // 
-            // versionDataGridViewcontrolColumn1
-            // 
-            this.versionDataGridViewcontrolColumn1.DataPropertyName = "Version";
-            this.versionDataGridViewcontrolColumn1.HeaderText = "Version";
-            this.versionDataGridViewcontrolColumn1.Name = "versionDataGridViewcontrolColumn1";
-            this.versionDataGridViewcontrolColumn1.ReadOnly = true;
-            this.versionDataGridViewcontrolColumn1.Width = 65;
-            // 
-            // stateDataGridViewcontrolColumn1
-            // 
-            this.stateDataGridViewcontrolColumn1.DataPropertyName = "State";
-            this.stateDataGridViewcontrolColumn1.HeaderText = "State";
-            this.stateDataGridViewcontrolColumn1.Name = "stateDataGridViewcontrolColumn1";
-            this.stateDataGridViewcontrolColumn1.ReadOnly = true;
-            this.stateDataGridViewcontrolColumn1.Width = 55;
-            // 
-            // pathDataGridViewcontrolColumn
-            // 
-            this.pathDataGridViewcontrolColumn.DataPropertyName = "Path";
-            this.pathDataGridViewcontrolColumn.HeaderText = "Path";
-            this.pathDataGridViewcontrolColumn.Name = "pathDataGridViewcontrolColumn";
-            this.pathDataGridViewcontrolColumn.ReadOnly = true;
-            this.pathDataGridViewcontrolColumn.Width = 52;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // versionDataGridViewTextBoxColumn
-            // 
-            this.versionDataGridViewTextBoxColumn.DataPropertyName = "Version";
-            this.versionDataGridViewTextBoxColumn.HeaderText = "Version";
-            this.versionDataGridViewTextBoxColumn.Name = "versionDataGridViewTextBoxColumn";
-            this.versionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.versionDataGridViewTextBoxColumn.Width = 65;
-            // 
-            // stateDataGridViewTextBoxColumn
-            // 
-            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
-            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
-            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
-            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stateDataGridViewTextBoxColumn.Width = 55;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            this.iDDataGridViewTextBoxColumn.Width = 41;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -669,13 +678,14 @@
             this.Name = "MainForm";
             this.Text = "Skyrim Mods Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMods)).EndInit();
             this.gbMod.ResumeLayout(false);
             this.gbMod.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSources)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSources)).EndInit();
             this.panel1.ResumeLayout(false);
             this.gbSource.ResumeLayout(false);
             this.gbSource.PerformLayout();
@@ -683,8 +693,6 @@
             this.ssStatus.PerformLayout();
             this.msMenu.ResumeLayout(false);
             this.msMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSources)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsMods)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -743,6 +751,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lDummyFocus;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }
 

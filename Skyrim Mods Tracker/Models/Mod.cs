@@ -74,6 +74,7 @@ namespace SMT.Models
             FileName = FileName.Trim();
             foreach (var src in Sources)
                 src.Normalize();
+            this.UpdateFilename();
         }
     }
 }

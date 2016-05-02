@@ -26,7 +26,7 @@ namespace SMT.Managers
         private const bool DEFAULT_SCAN_MODS_FLAG = false;
         private const string DEFAULT_MODS_LOCATION = "";
         private const bool DEFAULT_PATTERN_NAMING = false;
-        private const string DEFAULT_PATTERN = "(?<{0}>.+)\\s*\\(\\s* v?\\s*(?<{1}>.+)\\s*\\)\\s*\\(\\s*(?<{2}>.+)\\s*\\)";
+        private const string DEFAULT_PATTERN = "^(?<{0}>[^()]+)\\s*(?:\\(\\s*v?\\s*(?<{1}>[^()]+)\\s*\\))?\\s*(?:\\(\\s*(?<{2}>[^()]+)\\s*\\))?";
         private const bool DEFAULT_AUTO_RENAME = false;
         private const bool DEFAULT_USE_BACKUPS = true;
         private const int DEFAULT_BACKUPS_LEVEL = 2;

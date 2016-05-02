@@ -24,19 +24,13 @@ namespace SMT.Managers
             if (nameG == null) return null;
 
             Mod mod = new Mod();
-            mod.Name = nameG.Value;
-
-            if (versionG != null) mod.Version = versionG.Value;
+            mod.Name = nameG.Value.Trim();
+            if (versionG != null) mod.Version = versionG.Value.Trim();
 
             return mod;   
         }
 
-        public static string BuildPatternfilename(this Mod mod)
-        {
-            string modStr = string.Format("{0}({1})({2})", mod.Name, mod.Version, string.Join(",", mod.Sources.Select(s => s.Language.ToShortString())));
-            string modPattern = SettingsManager.DefaultNamePattern;
-            return Regex.Replace(modStr, modPattern, SettingsManager.NamePattern);
-        }
+       
 
         private static Language ParseLanguage(string str)
         {
@@ -137,6 +131,22 @@ namespace SMT.Managers
                         }
                         else src.State = SourceState.UnavailableVersion;
                 }
+            }
+        }
+
+        public static string BuildPatternfilename(this Mod mod)
+        {
+            string modStr = string.Format("{0}{1}{2}", mod.Name.Trim(), (string.IsNullOrWhiteSpace(mod.Version) ? "" : " (" + mod.Version.Trim() + ")"), (mod.Sources.Count > 0 ? " (" + string.Join(",", mod.Sources.Select(s => s.Language.ToShortString()).Distinct().OrderByDescending(s => s)) + ")" : ""));
+            return modStr;
+        }
+        public static void UpdateFilename(this Mod mod)
+        {
+            string ext = Path.GetExtension(mod.FileName); 
+            string newName = mod.BuildPatternfilename() + ext;
+            if (SettingsManager.AutoRename && SettingsManager.HasValidModsLocation)
+            {
+                File.Move(Path.Combine(SettingsManager.ModsLocation, mod.FileName), Path.Combine(SettingsManager.ModsLocation, newName));
+                mod.FileName = newName;
             }
         }
 

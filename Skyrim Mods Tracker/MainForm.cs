@@ -105,12 +105,14 @@ namespace SMT
 
         private void Save()
         {
+            SetUIEnabled(false);
             var m = ModsManager.Mods;
             m.Clear();
             foreach (var mod in mods)
                 m.Add(mod);
             ModsManager.NormalizeMods();
             StorageManager.Sync();
+            SetUIEnabled(true);
         }
 
         private void ApplySettings()
@@ -131,8 +133,8 @@ namespace SMT
             tbRoot.Enabled = isEditable;
             tbVersion.Enabled = isEditable;
             bBrowse.Enabled = isEditable;
-            bAddSource.Enabled = isEditable;
             bRemoveMod.Enabled = isEditable;
+            bAddSource.Enabled = isEditable;
             dgvSources.Enabled = isEditable;
 
             if (!isEditable)
@@ -172,6 +174,14 @@ namespace SMT
             }
             else
                 bsSources.ResumeBinding();
+        }
+
+        private void SetUIEnabled(bool isEnabled)
+        {
+            msMenu.Enabled = isEnabled;
+            dgvMods.Enabled = isEnabled;
+            gbMod.Enabled = isEnabled;
+            gbSource.Enabled = isEnabled;
         }
 
         private void SetDefaultStatus()
@@ -288,6 +298,7 @@ namespace SMT
             spbStatusProgress.Value = 0;
             spbStatusProgress.Visible = true;
             SetStatus("Checking mods...");
+            SetUIEnabled(false);
 
             bgWorker.DoWork += CheckModsWork;
             bgWorker.ProgressChanged += CheckModsWorkProgressChanged;
@@ -321,6 +332,7 @@ namespace SMT
         }
         private void CheckModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            SetUIEnabled(true);
             dgvMods.AutoResizeColumns();
             spbStatusProgress.Value = 0;
             SetDefaultStatus();
@@ -335,6 +347,7 @@ namespace SMT
             spbStatusProgress.Value = 0;
             spbStatusProgress.Visible = true;
             SetStatus("Scanning mods...");
+            SetUIEnabled(false);
 
             bgWorker.DoWork += ScanModsWork;
             bgWorker.ProgressChanged += ScanModsWorkProgressChanged;
@@ -402,6 +415,7 @@ namespace SMT
         }
         private void ScanModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            SetUIEnabled(true);
             dgvMods.AutoResizeColumns();
             SetDefaultStatus();
             bgWorker.DoWork -= ScanModsWork;

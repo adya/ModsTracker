@@ -30,8 +30,6 @@ namespace SMT.Managers
             return mod;   
         }
 
-       
-
         private static Language ParseLanguage(string str)
         {
             Language l = Language.None;

@@ -29,6 +29,11 @@ namespace SMT.Models
         NotTracking,
 
         /// <summary>
+        /// Mod has some sources which has never been updated.
+        /// </summary>
+        NotChecked,
+
+        /// <summary>
         /// Mod has one or more sources with different version.
         /// </summary>
         Outdated,

@@ -162,6 +162,8 @@ namespace SMT
             tbSourceVersion.Enabled = isEditable && (cbManual.Enabled && cbManual.Checked);
             tbURL.Enabled = isEditable;
             bRemoveSource.Enabled = isEditable;
+            bUpdate.Enabled = isEditable;
+
             if (!isEditable)
             {
                 dgvSources.ClearSelection();
@@ -426,18 +428,27 @@ namespace SMT
         private void bsMods_CurrentItemChanged(object sender, EventArgs e)
         {
             if (bsMods.Current == null) { SetModEditable(false); return; }
-           
-            if (selectedMod != null) SaveSources(selectedMod);
+
+            if (selectedMod != null)
+            {
+                selectedMod.UpdateState();
+                MarkMod(mods.IndexOf(selectedMod));
+                SaveSources(selectedMod);
+            }
             selectedMod = bsMods.Current as Mod;
             sources = new BindingList<ModSource>(selectedMod.Sources.ToList());
             bsSources.DataSource = sources;
             dgvSources.DataSource = bsSources;
             MarkSources();
             dgvSources.ClearSelection();
+            SetModEditable(mods.Count > 0);
         }
         private void bsSources_CurrentItemChanged(object sender, EventArgs e)
         {
             ValidateSourceFields();
+            SetSourceEditable(sources.Count > 0);
+            if (bsSources.Current != null)
+                bUpdate.Enabled = (bsSources.Current as ModSource).State == SourceState.Update;
         }
 
         private void dgvMods_MouseDown(object sender, MouseEventArgs e)
@@ -519,7 +530,7 @@ namespace SMT
         private void bRemoveSource_Click(object sender, EventArgs e)
         {
             bsSources.RemoveCurrent();
-            SetSourceEditable(false);
+            SetSourceEditable(sources.Count > 0);
             //       if (sources.Count > 0) EditRow(dgvSources, sources.Count - 1);
         }
 
@@ -567,6 +578,7 @@ namespace SMT
 
         private void dgvSources_DragDrop(object sender, DragEventArgs e)
         {
+            var frmts = e.Data.GetFormats();
             if (e.Data.GetDataPresent(DDText))
                 AddModSource(e.Data.GetData(DDText) as string);
             else if (e.Data.GetDataPresent(DDChromeBookmarks))
@@ -599,8 +611,17 @@ namespace SMT
                 SetSourceEditable(true);
             }
             bsSources.ResetBindings(false);
+            if (selectedMod != null)
+            {
+                selectedMod.UpdateState();
+                bsMods.ResetCurrentItem();
+                MarkMod(mods.IndexOf(selectedMod));
+            }
         }
 
-       
+        private void bUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

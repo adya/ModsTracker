@@ -83,12 +83,15 @@ namespace SMT.Managers
 
         #region Mod Extensions
 
+        public static void UpdateState(this Mod mod)
+        {
+            if (mod.Sources == null || mod.Sources.Count == 0) mod.State = ModState.NotTracking;
+            else mod.State = ModState.NotChecked;
+            if (!mod.HasValidFileName) mod.State = ModState.MissedFile;
+        }
         public static void CheckUpdates(this Mod mod)
         {
-            if (mod.Sources == null || mod.Sources.Count == 0) { mod.State = ModState.NotTracking; return; }
-
-            if (!mod.HasValidFileName) mod.State = ModState.MissedFile;
-
+            mod.UpdateState();
             using (WebClient client = new WebClient())
             {
                 client.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";

@@ -1,5 +1,5 @@
 {
-  "Updated": "05/03/2016 12:20",
+  "Updated": "05/04/2016 02:07",
   "Version": "1.0b",
   "Servers": [
     {
@@ -25,94 +25,255 @@
       "URL": "http://nexusmods.com",
       "Name": "Nexus old",
       "ID": 962540621
+    },
+    {
+      "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
+      "URL": "http://www.nexusmods.com",
+      "Name": "Nexus old",
+      "ID": 1039859460
     }
   ],
   "Mods": [
     {
       "Version": "4.1",
-      "FileName": "83 Willows 101 Bugs HD (4.1).7z",
-      "State": 3,
-      "Sources": [],
+      "FileName": "83 Willows 101 Bugs HD (4.1) (RU,EN).7z",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/skyrim/mods/4955/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "4.1",
+          "State": 5,
+          "ID": 756701033
+        },
+        {
+          "Path": "/mods/17067",
+          "Server": 145814667,
+          "Language": 1,
+          "Version": "4.1",
+          "State": 5,
+          "ID": 1525094829
+        }
+      ],
       "Name": "83 Willows 101 Bugs HD",
       "ID": 710663186
     },
     {
       "Version": "2.3.1",
-      "FileName": "Achieve That (2.3.1).rar",
-      "State": 3,
-      "Sources": [],
+      "FileName": "Achieve That (2.3.1) (RU).rar",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/load/tes_v_skyrim/gejmplej/1/247-1-0-15182",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "2.3.1",
+          "State": 5,
+          "ID": 85264392
+        }
+      ],
       "Name": "Achieve That",
       "ID": 1023806119
     },
     {
-      "Version": "2",
-      "FileName": "Alchemy And Enchanting Tables (2).rar",
-      "State": 3,
-      "Sources": [],
+      "Version": "1",
+      "FileName": "Alchemy And Enchanting Tables (1) (NO).rar",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/skyrim/mods/2043/?",
+          "Server": 1039859460,
+          "Language": 0,
+          "Version": "1",
+          "State": 5,
+          "ID": 1796755792
+        }
+      ],
       "Name": "Alchemy And Enchanting Tables",
       "ID": 406052591
     },
     {
-      "Version": "1.1",
-      "FileName": "All Tamriel Books (1.1).rar",
-      "State": 3,
-      "Sources": [],
+      "Version": "1.1.0",
+      "FileName": "All Tamriel Books (1.1.0) (RU).rar",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/load/tes_v_skyrim/predmety/1/304-1-0-16347",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "1.1.0",
+          "State": 5,
+          "ID": 1338081148
+        }
+      ],
       "Name": "All Tamriel Books",
       "ID": 1399143814
     },
     {
-      "Version": "6.0",
-      "FileName": "Andragorn's Armoury (6.0).7z",
-      "State": 3,
-      "Sources": [],
+      "Version": "6",
+      "FileName": "Andragorn's Armoury (6) (RU,NO).7z",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/skyrim/mods/10135/?",
+          "Server": 1039859460,
+          "Language": 0,
+          "Version": "6",
+          "State": 5,
+          "ID": 767832364
+        },
+        {
+          "Path": "/load/tes_v_skyrim/oruzhie/248-1-0-9799",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "6",
+          "State": 5,
+          "ID": 1809644903
+        }
+      ],
       "Name": "Andragorn's Armoury",
       "ID": 1666794571
     },
     {
-      "Version": "RU",
-      "FileName": "Archery Pro - Beta b (RU).7z",
-      "State": 3,
-      "Sources": [],
+      "Version": "8 in 1",
+      "FileName": "Archery Pro - Beta b (8 in 1) (RU).7z",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/load/tes_v_skyrim/gejmplej/1/247-1-0-11432",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "8 in 1",
+          "State": 5,
+          "ID": 387226041
+        }
+      ],
       "Name": "Archery Pro - Beta b",
       "ID": 41305767
     },
     {
       "Version": "3.6",
-      "FileName": "Armor Compilation (3.6).7z",
-      "State": 3,
-      "Sources": [],
+      "FileName": "Armor Compilation (3.6) (RU,EN).7z",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/skyrim/mods/10277/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "3.6",
+          "State": 5,
+          "ID": 554865401
+        },
+        {
+          "Path": "/load/249-1-0-9776",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "3.6",
+          "State": 5,
+          "ID": 241752363
+        }
+      ],
       "Name": "Armor Compilation",
       "ID": 1807949604
     },
     {
       "Version": "3.0",
-      "FileName": "Ashara Erin and Sienna Followers (3.0).rar",
-      "State": 3,
-      "Sources": [],
+      "FileName": "Ashara Erin and Sienna Followers (3.0) (RU,EN).rar",
+      "State": 5,
+      "Sources": [
+        {
+          "Path": "/load/251-1-0-15580",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "5.1",
+          "State": 6,
+          "ID": 1777851737
+        },
+        {
+          "Path": "/skyrim/mods/32978/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "",
+          "State": 4,
+          "ID": 1276119885
+        }
+      ],
       "Name": "Ashara Erin and Sienna Followers",
       "ID": 370778636
     },
     {
       "Version": "1.7",
-      "FileName": "B-D-Y-E-B Shield Mod (1.7).7z",
-      "State": 3,
-      "Sources": [],
+      "FileName": "B-D-Y-E-B Shield Mod (1.7) (NO,EN).7z",
+      "State": 5,
+      "Sources": [
+        {
+          "Path": "/skyrim/mods/34433/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "1.8",
+          "State": 6,
+          "ID": 1464197357
+        },
+        {
+          "Path": "/load/249-1-0-15758",
+          "Server": 2117186640,
+          "Language": 0,
+          "Version": "1.8",
+          "State": 6,
+          "ID": 1040888743
+        }
+      ],
       "Name": "B-D-Y-E-B Shield Mod",
       "ID": 44856731
     },
     {
       "Version": "3.0",
-      "FileName": "BadGremlins Great JarHunt (3.0).7z",
-      "State": 3,
-      "Sources": [],
+      "FileName": "BadGremlins Great JarHunt (3.0) (RU,EN).7z",
+      "State": 5,
+      "Sources": [
+        {
+          "Path": "/load/tes_v_skyrim/predmety/1/304-1-0-14411",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "3.1",
+          "State": 6,
+          "ID": 1837300830
+        },
+        {
+          "Path": "/skyrim/mods/25956/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "3.1",
+          "State": 6,
+          "ID": 1777803802
+        }
+      ],
       "Name": "BadGremlins Great JarHunt",
       "ID": 1912438767
     },
     {
       "Version": "2.0",
-      "FileName": "Be a Milk Drinker (2.0).rar",
-      "State": 3,
-      "Sources": [],
+      "FileName": "Be a Milk Drinker (2.0) (RU,EN).rar",
+      "State": 5,
+      "Sources": [
+        {
+          "Path": "/load/247-1-0-12930",
+          "Server": 2117186640,
+          "Language": 1,
+          "Version": "2.2",
+          "State": 6,
+          "ID": 847970964
+        },
+        {
+          "Path": "/skyrim/mods/17836/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "2.3",
+          "State": 6,
+          "ID": 323102227
+        }
+      ],
       "Name": "Be a Milk Drinker",
       "ID": 1825613656
     },

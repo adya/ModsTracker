@@ -66,6 +66,7 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bUpdate = new SMT.Utils.StateButton();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
             this.bsSources = new System.Windows.Forms.BindingSource(this.components);
@@ -120,7 +121,7 @@
             this.dgvMods.ReadOnly = true;
             this.dgvMods.RowHeadersVisible = false;
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMods.Size = new System.Drawing.Size(629, 504);
+            this.dgvMods.Size = new System.Drawing.Size(698, 537);
             this.dgvMods.TabIndex = 10;
             this.dgvMods.TabStop = false;
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
@@ -151,7 +152,7 @@
             this.gbMod.Controls.Add(this.lName);
             this.gbMod.Location = new System.Drawing.Point(3, 3);
             this.gbMod.Name = "gbMod";
-            this.gbMod.Size = new System.Drawing.Size(354, 174);
+            this.gbMod.Size = new System.Drawing.Size(406, 174);
             this.gbMod.TabIndex = 1;
             this.gbMod.TabStop = false;
             this.gbMod.Text = "Mod";
@@ -184,7 +185,7 @@
             // 
             this.lNameError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lNameError.AutoSize = true;
-            this.lNameError.Location = new System.Drawing.Point(61, 43);
+            this.lNameError.Location = new System.Drawing.Point(61, 44);
             this.lNameError.Name = "lNameError";
             this.lNameError.Size = new System.Drawing.Size(29, 13);
             this.lNameError.TabIndex = 7;
@@ -208,7 +209,7 @@
             this.tbVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Version", true));
             this.tbVersion.Location = new System.Drawing.Point(55, 60);
             this.tbVersion.Name = "tbVersion";
-            this.tbVersion.Size = new System.Drawing.Size(290, 20);
+            this.tbVersion.Size = new System.Drawing.Size(342, 20);
             this.tbVersion.TabIndex = 2;
             // 
             // tbName
@@ -218,7 +219,7 @@
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Name", true));
             this.tbName.Location = new System.Drawing.Point(55, 20);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(290, 20);
+            this.tbName.Size = new System.Drawing.Size(342, 20);
             this.tbName.TabIndex = 1;
             // 
             // lRoot
@@ -255,7 +256,7 @@
             this.groupBox1.Controls.Add(this.dgvSources);
             this.groupBox1.Location = new System.Drawing.Point(3, 183);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(354, 147);
+            this.groupBox1.Size = new System.Drawing.Size(406, 175);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sources";
@@ -282,7 +283,7 @@
             this.dgvSources.ReadOnly = true;
             this.dgvSources.RowHeadersVisible = false;
             this.dgvSources.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSources.Size = new System.Drawing.Size(336, 119);
+            this.dgvSources.Size = new System.Drawing.Size(387, 150);
             this.dgvSources.TabIndex = 11;
             this.dgvSources.TabStop = false;
             this.dgvSources.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvSources_DragDrop);
@@ -295,14 +296,17 @@
             this.panel1.Controls.Add(this.gbMod);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(644, 24);
+            this.panel1.Location = new System.Drawing.Point(716, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 512);
+            this.panel1.Size = new System.Drawing.Size(412, 545);
             this.panel1.TabIndex = 4;
             // 
             // gbSource
             // 
+            this.gbSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbSource.Controls.Add(this.lDummyFocus);
+            this.gbSource.Controls.Add(this.bUpdate);
             this.gbSource.Controls.Add(this.bAddSource);
             this.gbSource.Controls.Add(this.bRemoveSource);
             this.gbSource.Controls.Add(this.tbURL);
@@ -314,9 +318,9 @@
             this.gbSource.Controls.Add(this.cbLanguage);
             this.gbSource.Controls.Add(this.lLanguage);
             this.gbSource.Controls.Add(this.lServer);
-            this.gbSource.Location = new System.Drawing.Point(3, 336);
+            this.gbSource.Location = new System.Drawing.Point(3, 364);
             this.gbSource.Name = "gbSource";
-            this.gbSource.Size = new System.Drawing.Size(354, 169);
+            this.gbSource.Size = new System.Drawing.Size(406, 169);
             this.gbSource.TabIndex = 4;
             this.gbSource.TabStop = false;
             this.gbSource.Text = "Source";
@@ -324,7 +328,7 @@
             // lDummyFocus
             // 
             this.lDummyFocus.AutoSize = true;
-            this.lDummyFocus.Location = new System.Drawing.Point(10, 145);
+            this.lDummyFocus.Location = new System.Drawing.Point(145, 145);
             this.lDummyFocus.Name = "lDummyFocus";
             this.lDummyFocus.Size = new System.Drawing.Size(74, 13);
             this.lDummyFocus.TabIndex = 0;
@@ -333,16 +337,20 @@
             // 
             // tbURL
             // 
+            this.tbURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "URL", true));
             this.tbURL.Location = new System.Drawing.Point(70, 20);
             this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(275, 20);
+            this.tbURL.Size = new System.Drawing.Size(327, 20);
             this.tbURL.TabIndex = 11;
             // 
             // cbManual
             // 
+            this.cbManual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbManual.AutoSize = true;
-            this.cbManual.Location = new System.Drawing.Point(331, 103);
+            this.cbManual.Location = new System.Drawing.Point(382, 103);
             this.cbManual.Name = "cbManual";
             this.cbManual.Size = new System.Drawing.Size(15, 14);
             this.cbManual.TabIndex = 9;
@@ -364,7 +372,7 @@
             // 
             this.lURLError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lURLError.AutoSize = true;
-            this.lURLError.Location = new System.Drawing.Point(76, 43);
+            this.lURLError.Location = new System.Drawing.Point(76, 44);
             this.lURLError.Name = "lURLError";
             this.lURLError.Size = new System.Drawing.Size(29, 13);
             this.lURLError.TabIndex = 7;
@@ -373,10 +381,12 @@
             // 
             // tbSourceVersion
             // 
+            this.tbSourceVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSourceVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Version", true));
             this.tbSourceVersion.Location = new System.Drawing.Point(70, 100);
             this.tbSourceVersion.Name = "tbSourceVersion";
-            this.tbSourceVersion.Size = new System.Drawing.Size(250, 20);
+            this.tbSourceVersion.Size = new System.Drawing.Size(306, 20);
             this.tbSourceVersion.TabIndex = 8;
             // 
             // lSrcVersion
@@ -390,12 +400,14 @@
             // 
             // cbLanguage
             // 
+            this.cbLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Language", true));
             this.cbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLanguage.FormattingEnabled = true;
             this.cbLanguage.Location = new System.Drawing.Point(70, 60);
             this.cbLanguage.Name = "cbLanguage";
-            this.cbLanguage.Size = new System.Drawing.Size(275, 21);
+            this.cbLanguage.Size = new System.Drawing.Size(327, 21);
             this.cbLanguage.TabIndex = 5;
             // 
             // lLanguage
@@ -421,9 +433,9 @@
             this.ssStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.spbStatusProgress,
             this.slStatusTitle});
-            this.ssStatus.Location = new System.Drawing.Point(0, 514);
+            this.ssStatus.Location = new System.Drawing.Point(0, 547);
             this.ssStatus.Name = "ssStatus";
-            this.ssStatus.Size = new System.Drawing.Size(644, 22);
+            this.ssStatus.Size = new System.Drawing.Size(716, 22);
             this.ssStatus.TabIndex = 11;
             this.ssStatus.Text = "statusStrip1";
             // 
@@ -477,7 +489,7 @@
             this.settingsToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
-            this.msMenu.Size = new System.Drawing.Size(1004, 24);
+            this.msMenu.Size = new System.Drawing.Size(1128, 24);
             this.msMenu.TabIndex = 2;
             this.msMenu.Text = "menuStrip1";
             // 
@@ -487,6 +499,24 @@
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // bUpdate
+            // 
+            this.bUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bUpdate.BackColor = System.Drawing.Color.GreenYellow;
+            this.bUpdate.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bUpdate.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bUpdate.EnabledBackColor = System.Drawing.Color.GreenYellow;
+            this.bUpdate.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bUpdate.Location = new System.Drawing.Point(9, 140);
+            this.bUpdate.Name = "bUpdate";
+            this.bUpdate.Size = new System.Drawing.Size(130, 23);
+            this.bUpdate.TabIndex = 13;
+            this.bUpdate.Text = "Update from this source";
+            this.bUpdate.UseVisualStyleBackColor = false;
+            this.bUpdate.Click += new System.EventHandler(this.bUpdate_Click);
             // 
             // bAddSource
             // 
@@ -498,7 +528,7 @@
             this.bAddSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
             this.bAddSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bAddSource.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddSource.Location = new System.Drawing.Point(190, 140);
+            this.bAddSource.Location = new System.Drawing.Point(242, 140);
             this.bAddSource.Name = "bAddSource";
             this.bAddSource.Size = new System.Drawing.Size(75, 23);
             this.bAddSource.TabIndex = 13;
@@ -516,7 +546,7 @@
             this.bRemoveSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
             this.bRemoveSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bRemoveSource.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveSource.Location = new System.Drawing.Point(271, 140);
+            this.bRemoveSource.Location = new System.Drawing.Point(323, 140);
             this.bRemoveSource.Name = "bRemoveSource";
             this.bRemoveSource.Size = new System.Drawing.Size(75, 23);
             this.bRemoveSource.TabIndex = 12;
@@ -539,7 +569,7 @@
             this.bAddMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
             this.bAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bAddMod.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddMod.Location = new System.Drawing.Point(190, 145);
+            this.bAddMod.Location = new System.Drawing.Point(242, 145);
             this.bAddMod.Name = "bAddMod";
             this.bAddMod.Size = new System.Drawing.Size(75, 23);
             this.bAddMod.TabIndex = 6;
@@ -557,7 +587,7 @@
             this.bRemoveMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
             this.bRemoveMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bRemoveMod.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveMod.Location = new System.Drawing.Point(271, 145);
+            this.bRemoveMod.Location = new System.Drawing.Point(323, 145);
             this.bRemoveMod.Name = "bRemoveMod";
             this.bRemoveMod.Size = new System.Drawing.Size(75, 23);
             this.bRemoveMod.TabIndex = 5;
@@ -579,7 +609,7 @@
             this.bBrowse.ForeColor = System.Drawing.Color.Black;
             this.bBrowse.Location = new System.Drawing.Point(325, 100);
             this.bBrowse.Name = "bBrowse";
-            this.bBrowse.Size = new System.Drawing.Size(20, 20);
+            this.bBrowse.Size = new System.Drawing.Size(72, 20);
             this.bBrowse.TabIndex = 4;
             this.bBrowse.Text = "..";
             this.bBrowse.UseVisualStyleBackColor = false;
@@ -667,7 +697,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 536);
+            this.ClientSize = new System.Drawing.Size(1128, 569);
             this.Controls.Add(this.ssStatus);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvMods);
@@ -754,6 +784,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lDummyFocus;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private Utils.StateButton bUpdate;
     }
 }
 

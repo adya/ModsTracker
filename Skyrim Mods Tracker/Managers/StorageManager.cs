@@ -12,7 +12,7 @@ namespace SMT.Managers
     {
         private const string STORAGE_FILE = "smt";
         private const string STORAGE_EXT = ".json";
-        private const string STORAGE_VERSION = "1.0b";
+        private const string STORAGE_VERSION = "1.1b";
 
         private const string STORAGE_SERVERS_KEY = "Servers";
         private const string STORAGE_MODS_KEY = "Mods";

@@ -85,18 +85,29 @@ namespace SMT.Managers
 
         public static void UpdateState(this Mod mod)
         {
-            if (mod.Sources == null || mod.Sources.Count == 0) mod.State = ModState.NotTracking;
-            else mod.State = ModState.NotChecked;
-            if (!mod.HasValidFileName) mod.State = ModState.MissedFile;
+            if (string.IsNullOrWhiteSpace(mod.FileName))
+                mod.State = ModState.MissedFile;
+            else if (!mod.HasValidFileName)
+                mod.State = ModState.InvlaidFilePath;
+            else if (mod.Sources == null || mod.Sources.Count == 0)
+                mod.State = ModState.NotTracking;
+            else if (mod.Sources.Count(s => s.State == SourceState.Update) > 0)
+                mod.State = ModState.Outdated;
+            else if (mod.Sources.Count(s => s.State == SourceState.UnknownServer ||
+                                            s.State == SourceState.BrokenServer ||
+                                            s.State == SourceState.UnavailableVersion ||
+                                            s.State == SourceState.UnreachablePage) > 0)
+                mod.State = ModState.NotTracking;
+            else
+                mod.State = ModState.UpToDate;
         }
         public static void CheckUpdates(this Mod mod)
         {
-            mod.UpdateState();
             using (WebClient client = new WebClient())
             {
-                client.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
+                client.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
                 client.Encoding = Encoding.UTF8;
-                bool hasUpdateSource = false;
+                
                 foreach (var src in mod.Sources)
                 {
                     if (src.Server == null)
@@ -109,30 +120,27 @@ namespace SMT.Managers
                         src.State = SourceState.BrokenServer;
                         continue;
                     }
+                    client.Headers[HttpRequestHeader.Cookie] = src.Server.Cookies;
                     string pattern = src.Server.VersionPattern;
                     string htmlCode = "";
+
                     try { htmlCode = client.DownloadString(src.URL); }
-                    catch (Exception e) { src.State = SourceState.UnreachablePage; }
+                    catch (Exception e) { src.State = SourceState.UnreachablePage; return; }
 
                     Match m = Regex.Match(htmlCode, pattern);
-                        if (m.Success)
-                        {
-                            src.Version = m.Groups[1].Value;
-                            if (mod.Version.Equals(src.Version))
-                            {
-                                if (!hasUpdateSource) mod.State = ModState.UpToDate; // ensures that mod will have outdated state if at least one source has update
-                                src.State = SourceState.Available;
-                            }
-                            else
-                            {
-                                hasUpdateSource = true;
-                                mod.State = ModState.Outdated;
-                                src.State = SourceState.Update;
-                            }
-                        }
-                        else src.State = SourceState.UnavailableVersion;
+                    if (m.Success)
+                    {
+                        src.Version = m.Groups[1].Value;
+                        if (mod.Version.Equals(src.Version))
+                            src.State = SourceState.Available;
+                        else
+                            src.State = SourceState.Update;
+                    }
+                    else
+                        src.State = SourceState.UnavailableVersion;
                 }
             }
+            mod.UpdateState();
         }
 
         public static string BuildPatternfilename(this Mod mod)

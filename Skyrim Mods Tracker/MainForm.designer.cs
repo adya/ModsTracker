@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dgvMods = new System.Windows.Forms.DataGridView();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbMod = new System.Windows.Forms.GroupBox();
             this.lRootError = new System.Windows.Forms.Label();
             this.lVersionError = new System.Windows.Forms.Label();
@@ -66,6 +66,25 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn4 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn5 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn6 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn7 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn8 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn9 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn10 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn11 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn12 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn13 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn14 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn15 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn16 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.State = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.bUpdate = new SMT.Utils.StateButton();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
@@ -74,15 +93,14 @@
             this.bRemoveMod = new SMT.Utils.StateButton();
             this.bBrowse = new SMT.Utils.StateButton();
             this.bsMods = new System.Windows.Forms.BindingSource(this.components);
-            this.serverDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.languageDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewcontrolColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serverDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.languageDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionModDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateModDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.gbMod.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -111,7 +129,7 @@
             this.dgvMods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.versionDataGridViewTextBoxColumn,
-            this.stateDataGridViewTextBoxColumn,
+            this.State,
             this.FileName,
             this.iDDataGridViewTextBoxColumn});
             this.dgvMods.DataSource = this.bsMods;
@@ -124,15 +142,8 @@
             this.dgvMods.Size = new System.Drawing.Size(698, 537);
             this.dgvMods.TabIndex = 10;
             this.dgvMods.TabStop = false;
+            this.dgvMods.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellContentClick);
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
-            // 
-            // FileName
-            // 
-            this.FileName.DataPropertyName = "FileName";
-            this.FileName.HeaderText = "File name";
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Width = 75;
             // 
             // gbMod
             // 
@@ -271,11 +282,11 @@
             this.dgvSources.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSources.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSources.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.serverDataGridViewcontrolColumn,
-            this.languageDataGridViewcontrolColumn,
-            this.versionDataGridViewcontrolColumn1,
-            this.stateDataGridViewcontrolColumn1,
-            this.pathDataGridViewcontrolColumn});
+            this.serverDataGridViewLinkColumn,
+            this.languageDataGridViewTextColumn,
+            this.versionModDataGridViewTextColumn,
+            this.stateModDataGridViewTextColumn,
+            this.pathDataGridViewLinkColumn});
             this.dgvSources.DataSource = this.bsSources;
             this.dgvSources.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvSources.Location = new System.Drawing.Point(10, 19);
@@ -286,6 +297,7 @@
             this.dgvSources.Size = new System.Drawing.Size(387, 150);
             this.dgvSources.TabIndex = 11;
             this.dgvSources.TabStop = false;
+            this.dgvSources.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSources_CellContentClick);
             this.dgvSources.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvSources_DragDrop);
             this.dgvSources.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvSources_DragEnter);
             this.dgvSources.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvSources_MouseDown);
@@ -500,6 +512,163 @@
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.DataPropertyName = "State";
+            this.dataGridViewButtonColumn1.HeaderText = "State";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.Width = 36;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.DataPropertyName = "State";
+            this.dataGridViewButtonColumn2.HeaderText = "State";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            this.dataGridViewButtonColumn2.ReadOnly = true;
+            this.dataGridViewButtonColumn2.Width = 36;
+            // 
+            // dataGridViewButtonColumn3
+            // 
+            this.dataGridViewButtonColumn3.DataPropertyName = "State";
+            this.dataGridViewButtonColumn3.HeaderText = "State";
+            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            this.dataGridViewButtonColumn3.ReadOnly = true;
+            this.dataGridViewButtonColumn3.Width = 36;
+            // 
+            // dataGridViewButtonColumn4
+            // 
+            this.dataGridViewButtonColumn4.DataPropertyName = "State";
+            this.dataGridViewButtonColumn4.HeaderText = "State";
+            this.dataGridViewButtonColumn4.Name = "dataGridViewButtonColumn4";
+            this.dataGridViewButtonColumn4.ReadOnly = true;
+            this.dataGridViewButtonColumn4.Width = 36;
+            // 
+            // dataGridViewButtonColumn5
+            // 
+            this.dataGridViewButtonColumn5.DataPropertyName = "State";
+            this.dataGridViewButtonColumn5.HeaderText = "State";
+            this.dataGridViewButtonColumn5.Name = "dataGridViewButtonColumn5";
+            this.dataGridViewButtonColumn5.ReadOnly = true;
+            this.dataGridViewButtonColumn5.Width = 36;
+            // 
+            // dataGridViewButtonColumn6
+            // 
+            this.dataGridViewButtonColumn6.DataPropertyName = "State";
+            this.dataGridViewButtonColumn6.HeaderText = "State";
+            this.dataGridViewButtonColumn6.Name = "dataGridViewButtonColumn6";
+            this.dataGridViewButtonColumn6.ReadOnly = true;
+            this.dataGridViewButtonColumn6.Width = 36;
+            // 
+            // dataGridViewButtonColumn7
+            // 
+            this.dataGridViewButtonColumn7.DataPropertyName = "State";
+            this.dataGridViewButtonColumn7.HeaderText = "State";
+            this.dataGridViewButtonColumn7.Name = "dataGridViewButtonColumn7";
+            this.dataGridViewButtonColumn7.ReadOnly = true;
+            this.dataGridViewButtonColumn7.Width = 36;
+            // 
+            // dataGridViewButtonColumn8
+            // 
+            this.dataGridViewButtonColumn8.DataPropertyName = "State";
+            this.dataGridViewButtonColumn8.HeaderText = "State";
+            this.dataGridViewButtonColumn8.Name = "dataGridViewButtonColumn8";
+            this.dataGridViewButtonColumn8.ReadOnly = true;
+            this.dataGridViewButtonColumn8.Width = 36;
+            // 
+            // dataGridViewButtonColumn9
+            // 
+            this.dataGridViewButtonColumn9.DataPropertyName = "State";
+            this.dataGridViewButtonColumn9.HeaderText = "State";
+            this.dataGridViewButtonColumn9.Name = "dataGridViewButtonColumn9";
+            this.dataGridViewButtonColumn9.ReadOnly = true;
+            this.dataGridViewButtonColumn9.Width = 36;
+            // 
+            // dataGridViewButtonColumn10
+            // 
+            this.dataGridViewButtonColumn10.DataPropertyName = "State";
+            this.dataGridViewButtonColumn10.HeaderText = "State";
+            this.dataGridViewButtonColumn10.Name = "dataGridViewButtonColumn10";
+            this.dataGridViewButtonColumn10.ReadOnly = true;
+            this.dataGridViewButtonColumn10.Width = 36;
+            // 
+            // dataGridViewButtonColumn11
+            // 
+            this.dataGridViewButtonColumn11.DataPropertyName = "State";
+            this.dataGridViewButtonColumn11.HeaderText = "State";
+            this.dataGridViewButtonColumn11.Name = "dataGridViewButtonColumn11";
+            this.dataGridViewButtonColumn11.ReadOnly = true;
+            this.dataGridViewButtonColumn11.Width = 36;
+            // 
+            // dataGridViewButtonColumn12
+            // 
+            this.dataGridViewButtonColumn12.DataPropertyName = "State";
+            this.dataGridViewButtonColumn12.HeaderText = "State";
+            this.dataGridViewButtonColumn12.Name = "dataGridViewButtonColumn12";
+            this.dataGridViewButtonColumn12.ReadOnly = true;
+            this.dataGridViewButtonColumn12.Width = 36;
+            // 
+            // dataGridViewButtonColumn13
+            // 
+            this.dataGridViewButtonColumn13.DataPropertyName = "State";
+            this.dataGridViewButtonColumn13.HeaderText = "State";
+            this.dataGridViewButtonColumn13.Name = "dataGridViewButtonColumn13";
+            this.dataGridViewButtonColumn13.ReadOnly = true;
+            this.dataGridViewButtonColumn13.Width = 36;
+            // 
+            // dataGridViewButtonColumn14
+            // 
+            this.dataGridViewButtonColumn14.DataPropertyName = "State";
+            this.dataGridViewButtonColumn14.HeaderText = "State";
+            this.dataGridViewButtonColumn14.Name = "dataGridViewButtonColumn14";
+            this.dataGridViewButtonColumn14.ReadOnly = true;
+            this.dataGridViewButtonColumn14.Width = 36;
+            // 
+            // dataGridViewButtonColumn15
+            // 
+            this.dataGridViewButtonColumn15.DataPropertyName = "State";
+            this.dataGridViewButtonColumn15.HeaderText = "State";
+            this.dataGridViewButtonColumn15.Name = "dataGridViewButtonColumn15";
+            this.dataGridViewButtonColumn15.ReadOnly = true;
+            this.dataGridViewButtonColumn15.Width = 36;
+            // 
+            // dataGridViewButtonColumn16
+            // 
+            this.dataGridViewButtonColumn16.DataPropertyName = "State";
+            this.dataGridViewButtonColumn16.HeaderText = "State";
+            this.dataGridViewButtonColumn16.Name = "dataGridViewButtonColumn16";
+            this.dataGridViewButtonColumn16.ReadOnly = true;
+            this.dataGridViewButtonColumn16.Width = 36;
+            // 
+            // State
+            // 
+            this.State.DataPropertyName = "StateString";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            this.State.DefaultCellStyle = dataGridViewCellStyle1;
+            this.State.HeaderText = "State";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            this.State.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.State.Width = 55;
+            // 
+            // FileName
+            // 
+            this.FileName.DataPropertyName = "FileName";
+            this.FileName.HeaderText = "File name";
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Width = 75;
+            // 
+            // dataGridViewLinkColumn1
+            // 
+            this.dataGridViewLinkColumn1.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn1.HeaderText = "Server";
+            this.dataGridViewLinkColumn1.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
+            this.dataGridViewLinkColumn1.TrackVisitedState = false;
+            this.dataGridViewLinkColumn1.Width = 42;
+            // 
             // bUpdate
             // 
             this.bUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -618,47 +787,8 @@
             // bsMods
             // 
             this.bsMods.DataSource = typeof(SMT.Models.Mod);
+            this.bsMods.CurrentChanged += new System.EventHandler(this.bsMods_CurrentChanged);
             this.bsMods.CurrentItemChanged += new System.EventHandler(this.bsMods_CurrentItemChanged);
-            // 
-            // serverDataGridViewcontrolColumn
-            // 
-            this.serverDataGridViewcontrolColumn.DataPropertyName = "Server";
-            this.serverDataGridViewcontrolColumn.HeaderText = "Server";
-            this.serverDataGridViewcontrolColumn.Name = "serverDataGridViewcontrolColumn";
-            this.serverDataGridViewcontrolColumn.ReadOnly = true;
-            this.serverDataGridViewcontrolColumn.Width = 61;
-            // 
-            // languageDataGridViewcontrolColumn
-            // 
-            this.languageDataGridViewcontrolColumn.DataPropertyName = "Language";
-            this.languageDataGridViewcontrolColumn.HeaderText = "Language";
-            this.languageDataGridViewcontrolColumn.Name = "languageDataGridViewcontrolColumn";
-            this.languageDataGridViewcontrolColumn.ReadOnly = true;
-            this.languageDataGridViewcontrolColumn.Width = 78;
-            // 
-            // versionDataGridViewcontrolColumn1
-            // 
-            this.versionDataGridViewcontrolColumn1.DataPropertyName = "Version";
-            this.versionDataGridViewcontrolColumn1.HeaderText = "Version";
-            this.versionDataGridViewcontrolColumn1.Name = "versionDataGridViewcontrolColumn1";
-            this.versionDataGridViewcontrolColumn1.ReadOnly = true;
-            this.versionDataGridViewcontrolColumn1.Width = 65;
-            // 
-            // stateDataGridViewcontrolColumn1
-            // 
-            this.stateDataGridViewcontrolColumn1.DataPropertyName = "State";
-            this.stateDataGridViewcontrolColumn1.HeaderText = "State";
-            this.stateDataGridViewcontrolColumn1.Name = "stateDataGridViewcontrolColumn1";
-            this.stateDataGridViewcontrolColumn1.ReadOnly = true;
-            this.stateDataGridViewcontrolColumn1.Width = 55;
-            // 
-            // pathDataGridViewcontrolColumn
-            // 
-            this.pathDataGridViewcontrolColumn.DataPropertyName = "Path";
-            this.pathDataGridViewcontrolColumn.HeaderText = "Path";
-            this.pathDataGridViewcontrolColumn.Name = "pathDataGridViewcontrolColumn";
-            this.pathDataGridViewcontrolColumn.ReadOnly = true;
-            this.pathDataGridViewcontrolColumn.Width = 52;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -676,14 +806,6 @@
             this.versionDataGridViewTextBoxColumn.ReadOnly = true;
             this.versionDataGridViewTextBoxColumn.Width = 65;
             // 
-            // stateDataGridViewTextBoxColumn
-            // 
-            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
-            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
-            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
-            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.stateDataGridViewTextBoxColumn.Width = 55;
-            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -692,6 +814,48 @@
             this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             this.iDDataGridViewTextBoxColumn.Visible = false;
             this.iDDataGridViewTextBoxColumn.Width = 41;
+            // 
+            // serverDataGridViewLinkColumn
+            // 
+            this.serverDataGridViewLinkColumn.DataPropertyName = "Server";
+            this.serverDataGridViewLinkColumn.HeaderText = "Server";
+            this.serverDataGridViewLinkColumn.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.serverDataGridViewLinkColumn.Name = "serverDataGridViewLinkColumn";
+            this.serverDataGridViewLinkColumn.ReadOnly = true;
+            this.serverDataGridViewLinkColumn.TrackVisitedState = false;
+            this.serverDataGridViewLinkColumn.Width = 42;
+            // 
+            // languageDataGridViewTextColumn
+            // 
+            this.languageDataGridViewTextColumn.DataPropertyName = "Language";
+            this.languageDataGridViewTextColumn.HeaderText = "Language";
+            this.languageDataGridViewTextColumn.Name = "languageDataGridViewTextColumn";
+            this.languageDataGridViewTextColumn.ReadOnly = true;
+            this.languageDataGridViewTextColumn.Width = 78;
+            // 
+            // versionModDataGridViewTextColumn
+            // 
+            this.versionModDataGridViewTextColumn.DataPropertyName = "Version";
+            this.versionModDataGridViewTextColumn.HeaderText = "Version";
+            this.versionModDataGridViewTextColumn.Name = "versionModDataGridViewTextColumn";
+            this.versionModDataGridViewTextColumn.ReadOnly = true;
+            this.versionModDataGridViewTextColumn.Width = 65;
+            // 
+            // stateModDataGridViewTextColumn
+            // 
+            this.stateModDataGridViewTextColumn.DataPropertyName = "StateString";
+            this.stateModDataGridViewTextColumn.HeaderText = "State";
+            this.stateModDataGridViewTextColumn.Name = "stateModDataGridViewTextColumn";
+            this.stateModDataGridViewTextColumn.ReadOnly = true;
+            this.stateModDataGridViewTextColumn.Width = 55;
+            // 
+            // pathDataGridViewLinkColumn
+            // 
+            this.pathDataGridViewLinkColumn.DataPropertyName = "Path";
+            this.pathDataGridViewLinkColumn.HeaderText = "Path";
+            this.pathDataGridViewLinkColumn.Name = "pathDataGridViewLinkColumn";
+            this.pathDataGridViewLinkColumn.ReadOnly = true;
+            this.pathDataGridViewLinkColumn.Width = 33;
             // 
             // MainForm
             // 
@@ -752,11 +916,6 @@
         private System.Windows.Forms.Label lLanguage;
         private System.Windows.Forms.Label lServer;
         private System.Windows.Forms.BindingSource bsSources;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewcontrolColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewcontrolColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewcontrolColumn;
         private Utils.StateButton bBrowse;
         private Utils.StateButton bAddMod;
         private Utils.StateButton bRemoveMod;
@@ -777,14 +936,36 @@
         private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMenu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lDummyFocus;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private Utils.StateButton bUpdate;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn3;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn4;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn5;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn6;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn7;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn8;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn9;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn10;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn11;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn12;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn13;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn14;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn15;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn State;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
+        private System.Windows.Forms.DataGridViewLinkColumn serverDataGridViewLinkColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionModDataGridViewTextColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateModDataGridViewTextColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn pathDataGridViewLinkColumn;
     }
 }
 

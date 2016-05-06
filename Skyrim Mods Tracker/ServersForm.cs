@@ -43,9 +43,11 @@ namespace SMT
                 tbName.Clear();
                 tbPattern.Clear();
                 tbURL.Clear();
+                tbCookies.Clear();
                 tbName.ClearMessage();
                 tbURL.ClearMessage();
                 tbPattern.ClearMessage();
+                tbCookies.ClearMessage();
             }
             else
                 bsServers.ResumeBinding();
@@ -53,6 +55,7 @@ namespace SMT
             tbName.Enabled = isEditable;
             tbURL.Enabled = isEditable;
             tbPattern.Enabled = isEditable;
+            tbCookies.Enabled = isEditable;
             bRemove.Enabled = isEditable;
         }
 

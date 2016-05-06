@@ -48,6 +48,11 @@ namespace SMT.Models
         public bool IsValid { get { return HasValidName && HasValidURL && this.HasValidPattern; } }
 
 
+        /// <summary>
+        /// Cookies for server page in case server requires to be logged in in order tp access content.
+        /// </summary>
+        public string Cookies { get; set; }
+
         [JsonConstructor]
         protected Server(int id) : base(id) {}
         public Server() : base() {}

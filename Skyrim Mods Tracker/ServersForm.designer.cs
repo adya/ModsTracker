@@ -37,8 +37,10 @@
             this.lPatternError = new System.Windows.Forms.Label();
             this.lURLError = new System.Windows.Forms.Label();
             this.lNameError = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lPattern = new System.Windows.Forms.Label();
             this.lURL = new System.Windows.Forms.Label();
+            this.tbCookies = new System.Windows.Forms.TextBox();
             this.tbPattern = new System.Windows.Forms.TextBox();
             this.lName = new System.Windows.Forms.Label();
             this.tbURL = new System.Windows.Forms.TextBox();
@@ -46,7 +48,6 @@
             this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uRLDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServerAvailable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.versionPatternDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsServers)).BeginInit();
@@ -69,7 +70,6 @@
             this.nameDataGridViewcontrolColumn,
             this.ID,
             this.uRLDataGridViewcontrolColumn,
-            this.ServerAvailable,
             this.versionPatternDataGridViewcontrolColumn});
             this.dgvServers.DataSource = this.bsServers;
             this.dgvServers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -94,8 +94,10 @@
             this.gbDetails.Controls.Add(this.lPatternError);
             this.gbDetails.Controls.Add(this.lURLError);
             this.gbDetails.Controls.Add(this.lNameError);
+            this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.lPattern);
             this.gbDetails.Controls.Add(this.lURL);
+            this.gbDetails.Controls.Add(this.tbCookies);
             this.gbDetails.Controls.Add(this.tbPattern);
             this.gbDetails.Controls.Add(this.lName);
             this.gbDetails.Controls.Add(this.tbURL);
@@ -172,6 +174,15 @@
             this.lNameError.Text = "Error";
             this.lNameError.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 142);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Cookies:";
+            // 
             // lPattern
             // 
             this.lPattern.AutoSize = true;
@@ -190,12 +201,20 @@
             this.lURL.TabIndex = 3;
             this.lURL.Text = "URL:";
             // 
+            // tbCookies
+            // 
+            this.tbCookies.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "Cookies", true));
+            this.tbCookies.Location = new System.Drawing.Point(60, 139);
+            this.tbCookies.Name = "tbCookies";
+            this.tbCookies.Size = new System.Drawing.Size(184, 20);
+            this.tbCookies.TabIndex = 2;
+            // 
             // tbPattern
             // 
             this.tbPattern.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "VersionPattern", true));
-            this.tbPattern.Location = new System.Drawing.Point(54, 100);
+            this.tbPattern.Location = new System.Drawing.Point(60, 100);
             this.tbPattern.Name = "tbPattern";
-            this.tbPattern.Size = new System.Drawing.Size(190, 20);
+            this.tbPattern.Size = new System.Drawing.Size(184, 20);
             this.tbPattern.TabIndex = 2;
             // 
             // lName
@@ -210,17 +229,17 @@
             // tbURL
             // 
             this.tbURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "URL", true));
-            this.tbURL.Location = new System.Drawing.Point(54, 60);
+            this.tbURL.Location = new System.Drawing.Point(60, 60);
             this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(190, 20);
+            this.tbURL.Size = new System.Drawing.Size(184, 20);
             this.tbURL.TabIndex = 1;
             // 
             // tbName
             // 
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "Name", true));
-            this.tbName.Location = new System.Drawing.Point(54, 20);
+            this.tbName.Location = new System.Drawing.Point(60, 20);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(190, 20);
+            this.tbName.Size = new System.Drawing.Size(184, 20);
             this.tbName.TabIndex = 0;
             // 
             // nameDataGridViewcontrolColumn
@@ -247,14 +266,6 @@
             this.uRLDataGridViewcontrolColumn.Name = "uRLDataGridViewcontrolColumn";
             this.uRLDataGridViewcontrolColumn.ReadOnly = true;
             this.uRLDataGridViewcontrolColumn.Width = 52;
-            // 
-            // ServerAvailable
-            // 
-            this.ServerAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ServerAvailable.HeaderText = "Status";
-            this.ServerAvailable.Name = "ServerAvailable";
-            this.ServerAvailable.ReadOnly = true;
-            this.ServerAvailable.Width = 41;
             // 
             // versionPatternDataGridViewcontrolColumn
             // 
@@ -303,10 +314,11 @@
         private System.Windows.Forms.Label lNameError;
         private Utils.StateButton bRemove;
         private Utils.StateButton bAdd;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbCookies;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewcontrolColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ServerAvailable;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewcontrolColumn;
     }
 }

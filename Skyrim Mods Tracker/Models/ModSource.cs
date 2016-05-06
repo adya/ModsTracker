@@ -74,6 +74,9 @@ namespace SMT.Models
 
         public SourceState State { get; set; }
 
+        [JsonIgnore]
+        public string StateString { get { return State.GetDescription(); } }
+
         public ModSource() : base(){}
         protected ModSource(int id) : base(id) { }
 

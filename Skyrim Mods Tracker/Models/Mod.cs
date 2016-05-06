@@ -28,6 +28,9 @@ namespace SMT.Models
         /// </summary>
         public ModState State { get; set; }
 
+        [JsonIgnore]
+        public string StateString { get { return State.GetDescription(); } }
+
         /// <summary>
         /// Sources at which this mod is available.
         /// </summary>

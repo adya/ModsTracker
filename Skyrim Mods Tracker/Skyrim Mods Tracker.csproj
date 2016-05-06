@@ -93,7 +93,6 @@
     <Compile Include="ServersForm.designer.cs">
       <DependentUpon>ServersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\EnumParsing.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\StateButton.cs">
       <SubType>Component</SubType>

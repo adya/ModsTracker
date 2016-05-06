@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,23 @@ namespace SMT
     {
         private const string DDChromeBookmarks = "chromium/x-bookmark-entries";
         private const string DDText = "Text";
+
+        private enum SourcesColumns
+        {
+            Server = 0,
+            Language = 1,
+            Version = 2,
+            State = 3,
+            Path = 4
+        }
+
+        private enum ModColumns
+        {
+            Name = 0,
+            Version = 1,
+            State = 2,
+            File = 3
+        }
 
         private BindingList<Mod> mods;
         private Mod selectedMod;
@@ -162,7 +180,6 @@ namespace SMT
             tbSourceVersion.Enabled = isEditable && (cbManual.Enabled && cbManual.Checked);
             tbURL.Enabled = isEditable;
             bRemoveSource.Enabled = isEditable;
-            bUpdate.Enabled = isEditable;
 
             if (!isEditable)
             {
@@ -173,6 +190,7 @@ namespace SMT
                 tbSourceVersion.Clear();
                 tbSourceVersion.ClearMessage();
                 tbURL.ClearMessage();
+                bUpdate.Enabled = false;
             }
             else
                 bsSources.ResumeBinding();
@@ -255,22 +273,26 @@ namespace SMT
         }
         private void MarkMod(int index)
         {
+            if (index < 0 || index >= mods.Count) return;
             Mod mod = mods[index];
+            DataGridViewRow row = dgvMods.Rows[index];
+            DataGridViewCell cell = row.Cells[(int)ModColumns.State];
+
             if (mod.State != ModState.NotTracking && mod.State != ModState.Undefined &&
                 mod.Sources.Select(s => s.State).Where(state => state == SourceState.UnknownServer ||
                                                                 state == SourceState.UnreachablePage ||
                                                                 state == SourceState.UnavailableVersion).Count() > 0)
             {
-                dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.Aqua;
+                row.DefaultCellStyle.BackColor = Color.Aqua;
             }
 
             switch (mod.State)
             {
                 case ModState.Undefined:
-                case ModState.NotTracking: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.LightPink; break;
-                case ModState.MissedFile: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220); break;
-                case ModState.UpToDate: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.LightGreen; break;
-                case ModState.Outdated: dgvMods.Rows[index].DefaultCellStyle.BackColor = Color.Orange; break;
+                case ModState.NotTracking: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                case ModState.MissedFile: row.DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220); break;
+                case ModState.UpToDate: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
+                case ModState.Outdated: row.DefaultCellStyle.BackColor = Color.Orange; break;
                 default: break;
             }
         }
@@ -280,23 +302,29 @@ namespace SMT
             for(int i=0; i< sources.Count;i++)
             {
                 ModSource src = sources[i];
+                DataGridViewRow row = dgvSources.Rows[i];
+                DataGridViewLinkCell serverCell = row.Cells[(int)SourcesColumns.Server] as DataGridViewLinkCell;
+                DataGridViewLinkCell pathCell = row.Cells[(int)SourcesColumns.Path] as DataGridViewLinkCell;
+
+                serverCell.LinkBehavior = (src.HasValidURL ? LinkBehavior.AlwaysUnderline : LinkBehavior.NeverUnderline);
+                pathCell.LinkBehavior = serverCell.LinkBehavior;
                 switch (src.State)
                 {
                     default:
-                    case SourceState.Undefined: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.UnknownServer: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.BrokenServer: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.UnreachablePage: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.UnavailableVersion: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.Available: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen; break;
-                    case SourceState.Update: dgvSources.Rows[i].DefaultCellStyle.BackColor = Color.Orange; break;
+                    case SourceState.Undefined: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.UnknownServer: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.BrokenServer: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.UnreachablePage: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.UnavailableVersion: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case SourceState.Available: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
+                    case SourceState.Update: row.DefaultCellStyle.BackColor = Color.Orange; break;
                 }
             }
         }
 
-        private void RunCheckMods()
+        private void RunCheckMods(IList<Mod> checkMods)
         {
-            spbStatusProgress.Maximum = mods.Count;
+            spbStatusProgress.Maximum = checkMods.Count();
             spbStatusProgress.Value = 0;
             spbStatusProgress.Visible = true;
             SetStatus("Checking mods...");
@@ -305,17 +333,19 @@ namespace SMT
             bgWorker.DoWork += CheckModsWork;
             bgWorker.ProgressChanged += CheckModsWorkProgressChanged;
             bgWorker.RunWorkerCompleted += CheckModsWorkCompleted;
-            bgWorker.RunWorkerAsync();
+            bgWorker.RunWorkerAsync(checkMods);
         }
         private void CheckModsWork(object sender, DoWorkEventArgs e)
         {
-
-            for (int i = 0; i < mods.Count; i++)
+            var checkMods = e.Argument as IList<Mod>;
+            int total = checkMods.Count;
+            for (int i = 0; i < total; i++)
             {
-                int progress = (int)(((double)i / (double)mods.Count) * 100);
-                (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, false }); // mod, index, isProcessed
-                mods[i].CheckUpdates();
-                (sender as BackgroundWorker).ReportProgress(progress, new object[] { mods[i], i, true }); // mod, index, isProcessed
+                Mod cur = checkMods[i];
+                int progress = (int)(((double)i / (double)checkMods.Count) * 100);
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { cur, i, total, false }); // mod, index, total, isProcessed
+                cur.CheckUpdates();
+                (sender as BackgroundWorker).ReportProgress(progress, new object[] { cur, i, total, true }); // mod, index, total, isProcessed
             }
         }
         private void CheckModsWorkProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -323,13 +353,14 @@ namespace SMT
             var userState = e.UserState as object[];
             var mod = userState[0] as Mod;
             var index = (int)userState[1];
-            var isCompleted = (bool)userState[2];
+            var total = (int)userState[2];
+            var isCompleted = (bool)userState[3];
             string format = "{4}% ({2}/{3}). Checking '{0}'...{1}";
-            SetStatus(string.Format(format, mod.Name, (isCompleted ? "Done" : ""), index + 1, mods.Count, e.ProgressPercentage));
+            SetStatus(string.Format(format, mod.Name, (isCompleted ? "Done" : ""), index + 1, total, e.ProgressPercentage));
             if (isCompleted)
             {
                 spbStatusProgress.Value++;
-                MarkMod(index);
+                MarkMod(mods.IndexOf(mod));
             }
         }
         private void CheckModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -387,7 +418,7 @@ namespace SMT
                 {
                     var difVersion = duplicates.FirstOrDefault(m => !m.Version.Equals(mod.Version));
                     var sameVersion = duplicates.FirstOrDefault(m => m.Version.Equals(mod.Version));
-                    if (difVersion != null)
+                    if (sameVersion == null && difVersion != null)
                     {
                         pendingDialogs++;
                         if (DialogResult.Yes == MessageBox.Show(this, string.Format("Found mod '{0}', which already exists in database, but has different version.\n\nDatabase version: '{1}'\nFile version: '{2}'\nDo you want to use version file version?", mod.Name, difVersion.Version, mod.Version), "Duplicated mod", MessageBoxButtons.YesNo))
@@ -395,13 +426,12 @@ namespace SMT
                             difVersion.Version = mod.Version;
                             pendingDialogs--;
                         }
-                        else if (sameVersion == null)
-                        {
+                        else
+                        { 
                             added = true;
                             mods.Add(mod);
-
+                            pendingDialogs--;
                         }
-                        else pendingDialogs--;
                     }
                 }
                 else {
@@ -425,21 +455,26 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= ScanModsWorkCompleted;
         }
 
+        private void bsMods_CurrentChanged(object sender, EventArgs e)
+        {
+            if (bsMods.Current == null) { return; }
+            (bsMods.Current as Mod).UpdateState();
+            MarkMod(bsMods.Position);
+        }
+
         private void bsMods_CurrentItemChanged(object sender, EventArgs e)
         {
             if (bsMods.Current == null) { SetModEditable(false); return; }
 
             if (selectedMod != null)
             {
-                selectedMod.UpdateState();
-                MarkMod(mods.IndexOf(selectedMod));
+                MarkMod(bsMods.Position);
                 SaveSources(selectedMod);
             }
             selectedMod = bsMods.Current as Mod;
             sources = new BindingList<ModSource>(selectedMod.Sources.ToList());
             bsSources.DataSource = sources;
             dgvSources.DataSource = bsSources;
-            MarkSources();
             dgvSources.ClearSelection();
             SetModEditable(mods.Count > 0);
         }
@@ -449,6 +484,22 @@ namespace SMT
             SetSourceEditable(sources.Count > 0);
             if (bsSources.Current != null)
                 bUpdate.Enabled = (bsSources.Current as ModSource).State == SourceState.Update;
+        }
+
+        private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == (int)ModColumns.State) // "State cell except header"
+                RunCheckMods(new Mod[] { mods[e.RowIndex] });
+        }
+
+        private void dgvSources_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == (int)SourcesColumns.Server || e.ColumnIndex == (int)SourcesColumns.Path)
+            {
+                var src = sources[e.RowIndex];
+                if (src.HasValidURL)
+                    Process.Start(src.URL);
+            }
         }
 
         private void dgvMods_MouseDown(object sender, MouseEventArgs e)
@@ -540,7 +591,7 @@ namespace SMT
         }
         private void checkModsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunCheckMods();
+            RunCheckMods(mods);
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -611,17 +662,28 @@ namespace SMT
                 SetSourceEditable(true);
             }
             bsSources.ResetBindings(false);
-            if (selectedMod != null)
+            if (bsMods.Current != null)
             {
-                selectedMod.UpdateState();
+                (bsMods.Current as Mod).UpdateState();
                 bsMods.ResetCurrentItem();
-                MarkMod(mods.IndexOf(selectedMod));
+                MarkMod(bsMods.Position);
             }
         }
 
         private void bUpdate_Click(object sender, EventArgs e)
         {
+            var src = bsSources.Current as ModSource;
+            var mod = bsMods.Current as Mod;
+            if (src != null && mod != null)
+            {
+                mod.Version = src.Version;
+                bsMods.EndEdit();
+                bsMods.ResetCurrentItem();
+                mod.UpdateState();
+            }
 
         }
+
+      
     }
 }

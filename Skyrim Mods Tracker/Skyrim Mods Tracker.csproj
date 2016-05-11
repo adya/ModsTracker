@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonConverters\ServerJsonConverter.cs" />
+    <Compile Include="JsonConverters\VersionJsonConverter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +80,7 @@
     <Compile Include="Models\Mod.cs" />
     <Compile Include="Models\ModSource.cs" />
     <Compile Include="Models\Server.cs" />
+    <Compile Include="Models\Version.cs" />
     <Compile Include="PreferencesForm.cs">
       <SubType>Form</SubType>
     </Compile>

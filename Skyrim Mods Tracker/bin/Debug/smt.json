@@ -1,5 +1,5 @@
 {
-  "Updated": "05/06/2016 20:23",
+  "Updated": "05/12/2016 00:23",
   "Version": "1.1b",
   "Servers": [
     {
@@ -12,28 +12,28 @@
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "https://nexusmods.com",
-      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)",
+      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus",
       "ID": 1273431505
     },
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://skyrim.nexusmods.com",
-      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)",
+      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
       "ID": 145814667
     },
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://nexusmods.com",
-      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)",
+      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
       "ID": 962540621
     },
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://www.nexusmods.com",
-      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)",
+      "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
       "ID": 1039859460
     },
@@ -48,7 +48,7 @@
   "Mods": [
     {
       "Version": "4.1",
-      "FileName": "83 Willows 101 Bugs HD (4.1) (RU,EN).7z",
+      "FileName": "83 Willows 101 Bugs HD (4.1) (RU, EN).7z",
       "State": 6,
       "Sources": [
         {
@@ -124,7 +124,7 @@
     },
     {
       "Version": "6",
-      "FileName": "Andragorn's Armoury (6) (RU,NO).7z",
+      "FileName": "Andragorn's Armoury (6) (RU, NO).7z",
       "State": 6,
       "Sources": [
         {
@@ -166,7 +166,7 @@
     },
     {
       "Version": "3.6",
-      "FileName": "Armor Compilation (3.6) (RU,EN).7z",
+      "FileName": "Armor Compilation (3.6) (RU, EN).7z",
       "State": 6,
       "Sources": [
         {
@@ -191,7 +191,7 @@
     },
     {
       "Version": "3.0",
-      "FileName": "Ashara Erin and Sienna Followers (3.0) (RU,EN).rar",
+      "FileName": "Ashara Erin and Sienna Followers (3.0) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
@@ -206,8 +206,8 @@
           "Path": "/skyrim/mods/32978/?",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "",
-          "State": 4,
+          "Version": "5.1",
+          "State": 6,
           "ID": 1276119885
         }
       ],
@@ -215,24 +215,24 @@
       "ID": 370778636
     },
     {
-      "Version": "1.7",
-      "FileName": "B-D-Y-E-B Shield Mod (1.7) (NO,EN).7z",
-      "State": 5,
+      "Version": "1.8",
+      "FileName": "B-D-Y-E-B Shield Mod (1.8) (RU, EN).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/34433/?",
           "Server": 1039859460,
           "Language": 2,
           "Version": "1.8",
-          "State": 6,
+          "State": 5,
           "ID": 1464197357
         },
         {
           "Path": "/load/249-1-0-15758",
           "Server": 2117186640,
-          "Language": 0,
+          "Language": 1,
           "Version": "1.8",
-          "State": 6,
+          "State": 5,
           "ID": 1040888743
         }
       ],
@@ -240,16 +240,16 @@
       "ID": 44856731
     },
     {
-      "Version": "3.0",
-      "FileName": "BadGremlins Great JarHunt (3.0) (RU,EN).7z",
-      "State": 5,
+      "Version": "3.1",
+      "FileName": "BadGremlins Great JarHunt (3.1) (RU, EN).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/predmety/1/304-1-0-14411",
           "Server": 2117186640,
           "Language": 1,
           "Version": "3.1",
-          "State": 6,
+          "State": 5,
           "ID": 1837300830
         },
         {
@@ -257,7 +257,7 @@
           "Server": 1039859460,
           "Language": 2,
           "Version": "3.1",
-          "State": 6,
+          "State": 5,
           "ID": 1777803802
         }
       ],
@@ -266,7 +266,7 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Be a Milk Drinker (2.0) (RU,EN).rar",
+      "FileName": "Be a Milk Drinker (2.0) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
@@ -308,7 +308,7 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Book Covers Skyrim (3.1) (RU,NO).7z",
+      "FileName": "Book Covers Skyrim (3.1) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -316,23 +316,23 @@
           "Server": 1039859460,
           "Language": 1,
           "Version": "3.1",
-          "State": 6,
+          "State": 5,
           "ID": 2090886713
         },
         {
           "Path": "/load/252-1-0-16260",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "2.0.4A",
-          "State": 6,
+          "Version": "2.0.4 A",
+          "State": 7,
           "ID": 410514562
         },
         {
           "Path": "/mods/35399/?",
           "Server": 145814667,
-          "Language": 0,
-          "Version": "3.4",
-          "State": 5,
+          "Language": 2,
+          "Version": "3.5",
+          "State": 6,
           "ID": 2110298723
         }
       ],
@@ -341,7 +341,7 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Book Covers Skyrim - Hotfix (3.1) (RU,EN).7z",
+      "FileName": "Book Covers Skyrim - Hotfix (3.1) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -356,15 +356,15 @@
           "Path": "/load/252-1-0-16260",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "2.0.4A",
-          "State": 6,
+          "Version": "2.0.4 A",
+          "State": 7,
           "ID": 2029841398
         },
         {
           "Path": "/mods/35399/?",
           "Server": 145814667,
           "Language": 2,
-          "Version": "3.4",
+          "Version": "3.5",
           "State": 6,
           "ID": 2074897480
         }
@@ -374,7 +374,7 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Book Covers Skyrim - Paper Textures (3.1) (RU,EN).7z",
+      "FileName": "Book Covers Skyrim - Paper Textures (3.1) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -389,15 +389,15 @@
           "Path": "/load/252-1-0-16260",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "2.0.4A",
-          "State": 6,
+          "Version": "2.0.4 A",
+          "State": 7,
           "ID": 1087180229
         },
         {
           "Path": "/mods/35399/?",
           "Server": 145814667,
           "Language": 2,
-          "Version": "3.4",
+          "Version": "3.5",
           "State": 6,
           "ID": 993410040
         }
@@ -441,7 +441,7 @@
     },
     {
       "Version": "2.2",
-      "FileName": "Bucklers - Shields and other Armours (2.2) (RU,EN).7z",
+      "FileName": "Bucklers - Shields and other Armours (2.2) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -509,14 +509,14 @@
     {
       "Version": "1.2",
       "FileName": "Catwalk (1.2) (NO).rar",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/mods/5053?",
           "Server": 145814667,
           "Language": 0,
           "Version": "1.0",
-          "State": 6,
+          "State": 7,
           "ID": 428599894
         }
       ],
@@ -524,8 +524,8 @@
       "ID": 1293153077
     },
     {
-      "Version": "3.0b",
-      "FileName": "Chesko Wearable Lanterns (3.0b) (RU).rar",
+      "Version": "3.0 b",
+      "FileName": "Chesko Wearable Lanterns (3.0 b) (RU).rar",
       "State": 5,
       "Sources": [
         {
@@ -540,7 +540,7 @@
           "Path": "/load/tes_v_skyrim/predmety/1/304-1-0-11980",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "3.0b",
+          "Version": "3.0 b",
           "State": 5,
           "ID": 411864125
         }
@@ -550,15 +550,15 @@
     },
     {
       "Version": "no",
-      "FileName": "Chocolate Glazed Sweetroll (no) (RU,EN).zip",
-      "State": 5,
+      "FileName": "Chocolate Glazed Sweetroll (no) (RU, EN).zip",
+      "State": 3,
       "Sources": [
         {
           "Path": "/skyrim/mods/4628/?",
           "Server": 1039859460,
           "Language": 2,
           "Version": "1.0",
-          "State": 6,
+          "State": 7,
           "ID": 1555995403
         },
         {
@@ -590,7 +590,7 @@
           "Path": "/skyrim/mods/17802/?",
           "Server": 1039859460,
           "Language": 1,
-          "Version": "v5.0",
+          "Version": "5.0",
           "State": 6,
           "ID": 74215405
         },
@@ -599,7 +599,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 1221680941
         }
       ],
@@ -623,7 +623,7 @@
           "Path": "/skyrim/mods/17802/?",
           "Server": 1039859460,
           "Language": 1,
-          "Version": "v5.0",
+          "Version": "5.0",
           "State": 6,
           "ID": 1167743180
         },
@@ -632,7 +632,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 546073893
         }
       ],
@@ -656,7 +656,7 @@
           "Path": "/skyrim/mods/17802/?",
           "Server": 1039859460,
           "Language": 1,
-          "Version": "v5.0",
+          "Version": "5.0",
           "State": 6,
           "ID": 1808211863
         },
@@ -665,7 +665,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 104774522
         }
       ],
@@ -674,7 +674,7 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Climates Of Tamriel - Sounds (3.1) (RU,NO).7z",
+      "FileName": "Climates Of Tamriel - Sounds (3.1) (RU, NO).7z",
       "State": 5,
       "Sources": [
         {
@@ -689,7 +689,7 @@
           "Path": "/skyrim/mods/17802/?",
           "Server": 1039859460,
           "Language": 1,
-          "Version": "v5.0",
+          "Version": "5.0",
           "State": 6,
           "ID": 431052170
         },
@@ -698,7 +698,7 @@
           "Server": 557347589,
           "Language": 0,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 38694034
         }
       ],
@@ -715,7 +715,7 @@
     },
     {
       "Version": "1.4",
-      "FileName": "Companion Valfar (1.4) (RU,EN).7z",
+      "FileName": "Companion Valfar (1.4) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -748,15 +748,15 @@
     },
     {
       "Version": "5.0",
-      "FileName": "Convenient Horses (5.0) (RU,EN).7z",
-      "State": 5,
+      "FileName": "Convenient Horses (5.0) (RU, EN).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/gejmplej/1/247-1-0-13383",
           "Server": 2117186640,
           "Language": 1,
           "Version": "5",
-          "State": 6,
+          "State": 7,
           "ID": 1195309402
         },
         {
@@ -772,7 +772,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 1280090290
         }
       ],
@@ -782,14 +782,14 @@
     {
       "Version": "NO",
       "FileName": "Convenient Horses - Alternate Textures (NO) (NO).zip",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/14950/?",
           "Server": 1039859460,
           "Language": 0,
           "Version": "5.0",
-          "State": 6,
+          "State": 7,
           "ID": 1098440121
         }
       ],
@@ -798,15 +798,15 @@
     },
     {
       "Version": "no",
-      "FileName": "Craftable Clothes and Robes (no) (RU,EN).rar",
-      "State": 5,
+      "FileName": "Craftable Clothes and Robes (no) (RU, EN).rar",
+      "State": 3,
       "Sources": [
         {
           "Path": "/skyrim/mods/20586/?",
           "Server": 1039859460,
           "Language": 2,
           "Version": "1.4",
-          "State": 6,
+          "State": 7,
           "ID": 2056299861
         },
         {
@@ -823,7 +823,7 @@
     },
     {
       "Version": "2.5.5",
-      "FileName": "Daedric Armor and weapon Improvement (2.5.5) (RU,NO).7z",
+      "FileName": "Daedric Armor and weapon Improvement (2.5.5) (RU, NO).7z",
       "State": 5,
       "Sources": [
         {
@@ -848,7 +848,7 @@
     },
     {
       "Version": "6.3.5",
-      "FileName": "Deadly Dragons (6.3.5) (RU,EN).7z",
+      "FileName": "Deadly Dragons (6.3.5) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -863,7 +863,7 @@
           "Path": "/mods/3829/?",
           "Server": 145814667,
           "Language": 2,
-          "Version": "6.4.1b",
+          "Version": "6.4.1 b",
           "State": 6,
           "ID": 642413367
         },
@@ -872,7 +872,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 1032586954
         }
       ],
@@ -881,7 +881,7 @@
     },
     {
       "Version": "4.4.0",
-      "FileName": "Deadly DragonsArmory (4.4.0) (RU,NO).7z",
+      "FileName": "Deadly DragonsArmory (4.4.0) (RU, NO).7z",
       "State": 6,
       "Sources": [
         {
@@ -931,7 +931,7 @@
     },
     {
       "Version": "1.51",
-      "FileName": "DIMONIZED UNP female body (1.51) (RU,EN).7z",
+      "FileName": "DIMONIZED UNP female body (1.51) (RU, EN).7z",
       "State": 6,
       "Sources": [
         {
@@ -946,8 +946,8 @@
           "Path": "/skyrim/mods/6709/?",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "",
-          "State": 4,
+          "Version": "1.51",
+          "State": 5,
           "ID": 454571295
         }
       ],
@@ -998,14 +998,14 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Drachis Argonians (1.0) (RU,EN).7z",
+      "FileName": "Drachis Argonians (1.0) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
           "Path": "/load/252-1-0-7754",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "1.3 и 1.0",
+          "Version": "1.3",
           "State": 6,
           "ID": 1195499230
         },
@@ -1082,14 +1082,14 @@
     },
     {
       "Version": "2.1",
-      "FileName": "Elemental Arrows (2.1) (RU,EN).rar",
+      "FileName": "Elemental Arrows (2.1) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
           "Path": "/skyrim/mods/49983/?",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "v2.1.2",
+          "Version": "2.1.2",
           "State": 6,
           "ID": 278777562
         },
@@ -1123,15 +1123,15 @@
       "ID": 1647703899
     },
     {
-      "Version": "3.6a",
-      "FileName": "Enhanced Blood Textures (3.6a) (NO).7z",
+      "Version": "3.6 a",
+      "FileName": "Enhanced Blood Textures (3.6 a) (NO).7z",
       "State": 5,
       "Sources": [
         {
           "Path": "/mods/60",
           "Server": 145814667,
           "Language": 0,
-          "Version": "3.6c",
+          "Version": "3.6 c",
           "State": 6,
           "ID": 959660431
         },
@@ -1139,8 +1139,8 @@
           "Path": "/load/252-1-0-7501",
           "Server": 2117186640,
           "Language": 0,
-          "Version": "3.5d",
-          "State": 6,
+          "Version": "3.5 d",
+          "State": 7,
           "ID": 2140533979
         }
       ],
@@ -1156,7 +1156,7 @@
           "Path": "/mods/60",
           "Server": 145814667,
           "Language": 0,
-          "Version": "3.6c",
+          "Version": "3.6 c",
           "State": 6,
           "ID": 1816075889
         },
@@ -1164,7 +1164,7 @@
           "Path": "/load/252-1-0-7501",
           "Server": 2117186640,
           "Language": 0,
-          "Version": "3.5d",
+          "Version": "3.5 d",
           "State": 6,
           "ID": 427489501
         }
@@ -1174,8 +1174,8 @@
     },
     {
       "Version": "1.4",
-      "FileName": "Fleetford (1.4) (RU,EN).rar",
-      "State": 5,
+      "FileName": "Fleetford (1.4) (RU, EN).rar",
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/254-1-0-11750",
@@ -1189,8 +1189,8 @@
           "Path": "/skyrim/mods/16188/?",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "v1.4",
-          "State": 6,
+          "Version": "1.4",
+          "State": 5,
           "ID": 346831631
         }
       ],
@@ -1216,7 +1216,7 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Forgotten Windmill (1.0) (RU,EN).7z",
+      "FileName": "Forgotten Windmill (1.0) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -1240,8 +1240,8 @@
       "ID": 61305167
     },
     {
-      "Version": "1.02",
-      "FileName": "Fox Alchemists (1.02).zip",
+      "Version": "1.2",
+      "FileName": "Fox Alchemists (1.2).zip",
       "State": 3,
       "Sources": [],
       "Name": "Fox Alchemists",
@@ -1282,7 +1282,7 @@
     },
     {
       "Version": "1.3",
-      "FileName": "Grimoas Plantigrade Feet For Beast Races (1.3) (RU,EN).7z",
+      "FileName": "Grimoas Plantigrade Feet For Beast Races (1.3) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -1308,14 +1308,14 @@
     {
       "Version": "1.0",
       "FileName": "HD Kajiit Textures (1.0) (EN).7z",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/mods/1581",
           "Server": 145814667,
           "Language": 2,
-          "Version": "v1.0",
-          "State": 6,
+          "Version": "1.0",
+          "State": 5,
           "ID": 1361867474
         }
       ],
@@ -1325,14 +1325,14 @@
     {
       "Version": "1.1",
       "FileName": "HD Ore And Ingots (1.1) (NO).7z",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/9912/?",
           "Server": 1039859460,
           "Language": 0,
           "Version": "1.0",
-          "State": 6,
+          "State": 7,
           "ID": 1508277473
         }
       ],
@@ -1434,7 +1434,7 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Hoth (2.0) (NO,EN).7z",
+      "FileName": "Hoth (2.0) (NO, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -1509,7 +1509,7 @@
     },
     {
       "Version": "7.1",
-      "FileName": "Immersive Armours UNP (7.1) (RU,NO).7z",
+      "FileName": "Immersive Armours UNP (7.1) (RU, NO).7z",
       "State": 5,
       "Sources": [
         {
@@ -1525,7 +1525,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 959198120
         }
       ],
@@ -1549,7 +1549,7 @@
           "Path": "/load/tes_v_skyrim/gejmplej/1/247-1-0-11386",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "3 in 1",
+          "Version": "3 in",
           "State": 6,
           "ID": 354881000
         }
@@ -1585,14 +1585,14 @@
     {
       "Version": "1.0",
       "FileName": "Improved Weapon Impact EFFECTS Correct Metal (1.0) (NO).7z",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/10445/?",
           "Server": 1039859460,
           "Language": 0,
           "Version": "1",
-          "State": 6,
+          "State": 7,
           "ID": 852212762
         }
       ],
@@ -1626,7 +1626,7 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Ishs Souls to Perks (1.0) (RU,EN).7z",
+      "FileName": "Ishs Souls to Perks (1.0) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -1667,23 +1667,23 @@
       "ID": 1409345364
     },
     {
-      "Version": "13D",
-      "FileName": "JaySuS Swords (13D) (RU).7z",
-      "State": 5,
+      "Version": "13 D",
+      "FileName": "JaySuS Swords (13 D) (RU).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/1002/?",
           "Server": 1039859460,
           "Language": 1,
-          "Version": "V13D",
-          "State": 6,
+          "Version": "13 D",
+          "State": 5,
           "ID": 793302534
         },
         {
           "Path": "/load/248-1-0-7745",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "13D",
+          "Version": "13 D",
           "State": 5,
           "ID": 896868616
         }
@@ -1693,7 +1693,7 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Jewels of the nord (1.2) (RU,EN).rar",
+      "FileName": "Jewels of the nord (1.2) (RU, EN).rar",
       "State": 6,
       "Sources": [
         {
@@ -1718,7 +1718,7 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Langleys Ingots Retexture (1.0) (RU,EN).7z",
+      "FileName": "Langleys Ingots Retexture (1.0) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -1743,7 +1743,7 @@
     },
     {
       "Version": "1.0",
-      "FileName": "LFox Improved Shouts (1.0) (RU,EN).7z",
+      "FileName": "LFox Improved Shouts (1.0) (RU, EN).7z",
       "State": 6,
       "Sources": [
         {
@@ -1768,7 +1768,7 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Lilium Follower - Standalone - New Spells (2.0) (RU,EN).7z",
+      "FileName": "Lilium Follower - Standalone - New Spells (2.0) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -1818,7 +1818,7 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Lost Longswords (1.1) (RU,EN).rar",
+      "FileName": "Lost Longswords (1.1) (RU, EN).rar",
       "State": 6,
       "Sources": [
         {
@@ -1843,7 +1843,7 @@
     },
     {
       "Version": "1.7",
-      "FileName": "Marriage Dynamic Outfits (1.7) (RU,EN).rar",
+      "FileName": "Marriage Dynamic Outfits (1.7) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
@@ -1867,15 +1867,15 @@
       "ID": 2137911572
     },
     {
-      "Version": "3.05",
-      "FileName": "More Slots for Enchanting (3.05) (RU,EN).rar",
+      "Version": "3.5",
+      "FileName": "More Slots for Enchanting (3.5) (RU, EN).rar",
       "State": 6,
       "Sources": [
         {
           "Path": "/load/278-1-0-13640",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "3.05",
+          "Version": "3.5",
           "State": 5,
           "ID": 770207852
         },
@@ -1883,7 +1883,7 @@
           "Path": "/skyrim/mods/22844/?",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "3.05",
+          "Version": "3.5",
           "State": 5,
           "ID": 1419912123
         }
@@ -1893,7 +1893,7 @@
     },
     {
       "Version": "1.6",
-      "FileName": "More Village Animals (1.6) (RU,EN).rar",
+      "FileName": "More Village Animals (1.6) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
@@ -1919,14 +1919,14 @@
     {
       "Version": "no",
       "FileName": "NMFWLM (no) (NO).rar",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/252-1-0-12554",
           "Server": 2117186640,
           "Language": 0,
           "Version": "5.1",
-          "State": 6,
+          "State": 7,
           "ID": 2044186133
         }
       ],
@@ -1951,15 +1951,15 @@
       "ID": 1792009033
     },
     {
-      "Version": "2.01 to v2.02",
-      "FileName": "OBIS - Organized Bandits In Skyrim (2.01 to v2.02) (NO).7z",
+      "Version": "2.1 to",
+      "FileName": "OBIS - Organized Bandits In Skyrim (2.1 to) (NO).7z",
       "State": 5,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/gejmplej/obis_organizovannaja_prestupnost_skajrima/247-1-0-18793",
           "Server": 2117186640,
           "Language": 0,
-          "Version": "2.02",
+          "Version": "2.2",
           "State": 6,
           "ID": 1973242288
         }
@@ -1977,7 +1977,7 @@
     },
     {
       "Version": "0.9",
-      "FileName": "Open Dragon Priest Masks (0.9) (RU,EN).7z",
+      "FileName": "Open Dragon Priest Masks (0.9) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -2019,7 +2019,7 @@
     },
     {
       "Version": "0.3",
-      "FileName": "Pets of Skyrim (0.3) (RU,EN).7z",
+      "FileName": "Pets of Skyrim (0.3) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -2051,17 +2051,25 @@
       "ID": 847217639
     },
     {
-      "Version": "1.9Final",
-      "FileName": "Portal - Dynamically Placed Teleportation (1.9Final) (RU).7z",
-      "State": 5,
+      "Version": "1.9",
+      "FileName": "Portal - Dynamically Placed Teleportation (1.9) (RU, EN).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/277-1-0-13610",
           "Server": 2117186640,
           "Language": 1,
           "Version": "1.2",
-          "State": 6,
+          "State": 7,
           "ID": 730994440
+        },
+        {
+          "Path": "/skyrim/mods/29447/?",
+          "Server": 1039859460,
+          "Language": 2,
+          "Version": "1.9",
+          "State": 5,
+          "ID": 997083604
         }
       ],
       "Name": "Portal - Dynamically Placed Teleportation",
@@ -2070,14 +2078,14 @@
     {
       "Version": "0.1",
       "FileName": "Powerful potions (0.1) (RU).rar",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/247-1-0-9805",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "V 0.1",
-          "State": 6,
+          "Version": "0.1",
+          "State": 5,
           "ID": 929872583
         }
       ],
@@ -2111,7 +2119,7 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Reweighed Potions (1.2) (RU,EN).7z",
+      "FileName": "Reweighed Potions (1.2) (RU, EN).7z",
       "State": 6,
       "Sources": [
         {
@@ -2186,24 +2194,24 @@
       "ID": 1821712066
     },
     {
-      "Version": ".1.9.32",
-      "FileName": "Rus Names fix (.1.9.32).rar",
+      "Version": "1.9.32",
+      "FileName": "Rus Names fix (1.9.32).rar",
       "State": 3,
       "Sources": [],
       "Name": "Rus Names fix",
       "ID": 1642648812
     },
     {
-      "Version": ".1.1",
-      "FileName": "Rusty Traders Magic Arrows (.1.1) (RU,EN).7z",
+      "Version": "1.1",
+      "FileName": "Rusty Traders Magic Arrows (1.1) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
           "Path": "/load/277-1-0-13899",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "1,1",
-          "State": 6,
+          "Version": "1",
+          "State": 7,
           "ID": 1116188847
         },
         {
@@ -2244,7 +2252,7 @@
           "Path": "/mods/2146",
           "Server": 145814667,
           "Language": 0,
-          "Version": "3.0beta",
+          "Version": "3.0 beta",
           "State": 6,
           "ID": 1609426808
         }
@@ -2253,8 +2261,8 @@
       "ID": 1325564914
     },
     {
-      "Version": "5.0final",
-      "FileName": "Shady Tales (5.0final) (NO).rar",
+      "Version": "5.0 final",
+      "FileName": "Shady Tales (5.0 final) (NO).rar",
       "State": 5,
       "Sources": [
         {
@@ -2272,14 +2280,14 @@
     {
       "Version": "3.0",
       "FileName": "Silly Level of Detail - Potions and Poisons (3.0) (NO).7z",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/mods/4259",
           "Server": 145814667,
           "Language": 0,
-          "Version": "v3.0",
-          "State": 6,
+          "Version": "3.0",
+          "State": 5,
           "ID": 1035666458
         },
         {
@@ -2295,24 +2303,24 @@
       "ID": 2077320428
     },
     {
-      "Version": "1.0final",
-      "FileName": "Silly Level of Detail - Wine Cellar (1.0final) (RU,EN).7z",
-      "State": 5,
+      "Version": "1.0 final",
+      "FileName": "Silly Level of Detail - Wine Cellar (1.0 final) (RU, EN).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/4260/",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "v1.00",
-          "State": 6,
+          "Version": "1.0",
+          "State": 7,
           "ID": 1069128515
         },
         {
           "Path": "/load/252-1-0-8829",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "1.00",
-          "State": 6,
+          "Version": "1.0",
+          "State": 7,
           "ID": 104397972
         }
       ],
@@ -2328,8 +2336,8 @@
       "ID": 1195414642
     },
     {
-      "Version": "1.1a",
-      "FileName": "Skyforge Shields (1.1a) (RU,EN).rar",
+      "Version": "1.1 a",
+      "FileName": "Skyforge Shields (1.1 a) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
@@ -2344,7 +2352,7 @@
           "Path": "/load/249-1-0-14510",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "2.0.b",
+          "Version": "2.0 b",
           "State": 6,
           "ID": 323417616
         }
@@ -2361,7 +2369,7 @@
           "Path": "/mods/24913/?tab=2",
           "Server": 145814667,
           "Language": 1,
-          "Version": "6.5.2b",
+          "Version": "6.5.2 b",
           "State": 6,
           "ID": 2011157932
         },
@@ -2370,7 +2378,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 1205480376
         }
       ],
@@ -2454,7 +2462,7 @@
     },
     {
       "Version": "4.1",
-      "FileName": "SkyUI (4.1) (RU,EN).7z",
+      "FileName": "SkyUI (4.1) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -2479,7 +2487,7 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Solitude Public Bathhouse (1.0) (RU,EN).rar",
+      "FileName": "Solitude Public Bathhouse (1.0) (RU, EN).rar",
       "State": 6,
       "Sources": [
         {
@@ -2511,8 +2519,8 @@
       "ID": 1155055955
     },
     {
-      "Version": "1.72 to v1.74",
-      "FileName": "Static Mesh Improvement Mod - SMIM (1.72 to v1.74) (RU,EN).7z",
+      "Version": "1.72 to",
+      "FileName": "Static Mesh Improvement Mod - SMIM (1.72 to) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -2520,7 +2528,7 @@
           "Server": 2117186640,
           "Language": 1,
           "Version": "1.26",
-          "State": 6,
+          "State": 7,
           "ID": 1380595238
         },
         {
@@ -2538,7 +2546,7 @@
     {
       "Version": "3.0",
       "FileName": "Tauriel Companion from The Hobbit (3.0) (RU).7z",
-      "State": 6,
+      "State": 3,
       "Sources": [
         {
           "Path": "/skyrim/mods/21489/?",
@@ -2562,7 +2570,7 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Telekinetic Push (1.1) (RU,EN).rar",
+      "FileName": "Telekinetic Push (1.1) (RU, EN).rar",
       "State": 5,
       "Sources": [
         {
@@ -2570,7 +2578,7 @@
           "Server": 1039859460,
           "Language": 2,
           "Version": "1.0",
-          "State": 6,
+          "State": 7,
           "ID": 664431921
         },
         {
@@ -2638,7 +2646,7 @@
     },
     {
       "Version": "3.4",
-      "FileName": "The Ruffled Feather - W.A.T.E.R (3.4) (RU,EN).7z",
+      "FileName": "The Ruffled Feather - W.A.T.E.R (3.4) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -2694,24 +2702,24 @@
       "ID": 1018655551
     },
     {
-      "Version": "12j b15",
-      "FileName": "Ultimate Follower Overhaul (12j b15) (RU,EN).7z",
-      "State": 5,
+      "Version": "12 j",
+      "FileName": "Ultimate Follower Overhaul (12 j) (RU, EN).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/skyrim/mods/16569/",
           "Server": 1039859460,
           "Language": 1,
-          "Version": "1.2j.b15",
-          "State": 6,
+          "Version": "1.2 j",
+          "State": 7,
           "ID": 833076978
         },
         {
           "Path": "/skyrim/mods/14037/",
           "Server": 1039859460,
           "Language": 2,
-          "Version": "1.2j.b15",
-          "State": 6,
+          "Version": "1.2 j",
+          "State": 7,
           "ID": 1930772949
         }
       ],
@@ -2745,7 +2753,7 @@
     },
     {
       "Version": "1.3.2",
-      "FileName": "Unexpected Blades (1.3.2) (RU,NO).7z",
+      "FileName": "Unexpected Blades (1.3.2) (RU, NO).7z",
       "State": 6,
       "Sources": [
         {
@@ -2770,7 +2778,7 @@
     },
     {
       "Version": "2.2",
-      "FileName": "Unicorn (2.2) (RU,EN).7z",
+      "FileName": "Unicorn (2.2) (RU, EN).7z",
       "State": 6,
       "Sources": [
         {
@@ -2795,15 +2803,15 @@
     },
     {
       "Version": "5.0",
-      "FileName": "Unique Region Names (5.0) (RU,NO).7z",
-      "State": 5,
+      "FileName": "Unique Region Names (5.0) (RU, NO).7z",
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/chiterskie_predmety_prochee/1/278-1-0-11279",
           "Server": 2117186640,
           "Language": 0,
           "Version": "5",
-          "State": 6,
+          "State": 7,
           "ID": 803555530
         },
         {
@@ -2811,7 +2819,7 @@
           "Server": 1039859460,
           "Language": 0,
           "Version": "5",
-          "State": 6,
+          "State": 7,
           "ID": 142262363
         },
         {
@@ -2819,7 +2827,7 @@
           "Server": 557347589,
           "Language": 1,
           "Version": "",
-          "State": 6,
+          "State": 7,
           "ID": 1917753488
         }
       ],
@@ -2827,8 +2835,8 @@
       "ID": 874278302
     },
     {
-      "Version": "1.1.9a",
-      "FileName": "Unofficial High Resolution Patch (1.1.9a).7z",
+      "Version": "1.1.9 a",
+      "FileName": "Unofficial High Resolution Patch (1.1.9 a).7z",
       "State": 3,
       "Sources": [],
       "Name": "Unofficial High Resolution Patch",
@@ -2837,14 +2845,14 @@
     {
       "Version": "1.0",
       "FileName": "UNP Barkeeper Slightly Transparent (1.0) (RU).7z",
-      "State": 5,
+      "State": 6,
       "Sources": [
         {
           "Path": "/load/249-1-0-10212",
           "Server": 2117186640,
           "Language": 1,
           "Version": "1",
-          "State": 6,
+          "State": 7,
           "ID": 1489512863
         }
       ],
@@ -2878,7 +2886,7 @@
     },
     {
       "Version": "2.3",
-      "FileName": "UNP Fitness Body - Also CBBE (2.3) (RU,NO).7z",
+      "FileName": "UNP Fitness Body - Also CBBE (2.3) (RU, NO).7z",
       "State": 5,
       "Sources": [
         {
@@ -2893,8 +2901,8 @@
           "Path": "/skyrim/mods/16731/?",
           "Server": 1039859460,
           "Language": 0,
-          "Version": "",
-          "State": 4,
+          "Version": "5.2",
+          "State": 6,
           "ID": 1165107177
         }
       ],
@@ -2928,14 +2936,14 @@
     },
     {
       "Version": "1.422",
-      "FileName": "Wet and Cold (1.422) (RU,EN).7z",
+      "FileName": "Wet and Cold (1.422) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/gejmplej/wet_and_cold/247-1-0-16791",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "2.02",
+          "Version": "2.2",
           "State": 6,
           "ID": 1255708104
         },
@@ -2943,7 +2951,7 @@
           "Path": "/mods/27563/",
           "Server": 145814667,
           "Language": 2,
-          "Version": "2.02",
+          "Version": "2.2",
           "State": 6,
           "ID": 2050783073
         }
@@ -2952,15 +2960,15 @@
       "ID": 1968475653
     },
     {
-      "Version": "1.09",
-      "FileName": "Wet and Cold - Ashes (1.09) (RU,EN).7z",
+      "Version": "1.9",
+      "FileName": "Wet and Cold - Ashes (1.9) (RU, EN).7z",
       "State": 5,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/gejmplej/syrost_i_kholod_pepel_wet_and_cold_ashes/247-1-0-16793",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "1.09",
+          "Version": "1.9",
           "State": 5,
           "ID": 273625192
         },
@@ -3011,8 +3019,8 @@
       "ID": 460821785
     },
     {
-      "Version": "1.1.1a",
-      "FileName": "When Vampires Attack (1.1.1a) (EN).7z",
+      "Version": "1.1.1 a",
+      "FileName": "When Vampires Attack (1.1.1 a) (EN).7z",
       "State": 5,
       "Sources": [
         {
@@ -3028,15 +3036,15 @@
       "ID": 699243900
     },
     {
-      "Version": "1.01",
-      "FileName": "Wonders of Weather (1.01) (RU).7z",
+      "Version": "1.1",
+      "FileName": "Wonders of Weather (1.1) (RU).7z",
       "State": 6,
       "Sources": [
         {
           "Path": "/load/tes_v_skyrim/graficheskie_modifikacii/wonders_of_weather_chudesa_pogody/279-1-0-19576?lj1RHo",
           "Server": 2117186640,
           "Language": 1,
-          "Version": "1.01",
+          "Version": "1.1",
           "State": 5,
           "ID": 120669314
         }
@@ -3053,8 +3061,8 @@
       "ID": 1482820379
     },
     {
-      "Version": "2.01",
-      "FileName": "OBIS - Organized Bandits In Skyrim (2.01).7z",
+      "Version": "2.1",
+      "FileName": "OBIS - Organized Bandits In Skyrim (2.1).7z",
       "State": 3,
       "Sources": [],
       "Name": "OBIS - Organized Bandits In Skyrim",
@@ -3091,6 +3099,39 @@
       "Sources": [],
       "Name": "Unofficial Skyrim Patch",
       "ID": 1472098706
+    },
+    {
+      "Version": "1.1",
+      "FileName": "JS Dragon Claws (1.1) (NO).rar",
+      "State": 6,
+      "Sources": [
+        {
+          "Path": "/load/tes_v_skyrim/replejsery/js_dragon_claws/252-1-0-21396",
+          "Server": 2117186640,
+          "Language": 0,
+          "Version": "1.1",
+          "State": 5,
+          "ID": 1698630582
+        },
+        {
+          "Path": "/skyrim/mods/75377/?tab=2&navtag=http%3A%2F%2Fwww.nexusmods.com%2Fskyrim%2Fajax%2Fmodfiles%2F%3Fid%3D75377&pUp=1",
+          "Server": 1039859460,
+          "Language": 0,
+          "Version": "1.1",
+          "State": 5,
+          "ID": 659328034
+        }
+      ],
+      "Name": "JS Dragon Claws",
+      "ID": 1826371333
+    },
+    {
+      "Version": "",
+      "FileName": "14411_BadGremlins.7z",
+      "State": 3,
+      "Sources": [],
+      "Name": "14411_BadGremlins",
+      "ID": 228257706
     }
   ]
 }

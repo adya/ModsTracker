@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dgvMods = new System.Windows.Forms.DataGridView();
+            this.State = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbMod = new System.Windows.Forms.GroupBox();
             this.lRootError = new System.Windows.Forms.Label();
             this.lVersionError = new System.Windows.Forms.Label();
@@ -82,9 +84,8 @@
             this.dataGridViewButtonColumn14 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn15 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn16 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.State = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.bUpdate = new SMT.Utils.StateButton();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
@@ -99,7 +100,7 @@
             this.serverDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.languageDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionModDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateModDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourceStateString = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pathDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.gbMod.SuspendLayout();
@@ -144,6 +145,27 @@
             this.dgvMods.TabStop = false;
             this.dgvMods.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellContentClick);
             this.dgvMods.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvMods_MouseDown);
+            // 
+            // State
+            // 
+            this.State.DataPropertyName = "StateString";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            this.State.DefaultCellStyle = dataGridViewCellStyle1;
+            this.State.HeaderText = "State";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            this.State.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.State.Width = 55;
+            // 
+            // FileName
+            // 
+            this.FileName.DataPropertyName = "FileName";
+            this.FileName.HeaderText = "File name";
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Width = 75;
             // 
             // gbMod
             // 
@@ -285,7 +307,7 @@
             this.serverDataGridViewLinkColumn,
             this.languageDataGridViewTextColumn,
             this.versionModDataGridViewTextColumn,
-            this.stateModDataGridViewTextColumn,
+            this.SourceStateString,
             this.pathDataGridViewLinkColumn});
             this.dgvSources.DataSource = this.bsSources;
             this.dgvSources.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -639,27 +661,6 @@
             this.dataGridViewButtonColumn16.ReadOnly = true;
             this.dataGridViewButtonColumn16.Width = 36;
             // 
-            // State
-            // 
-            this.State.DataPropertyName = "StateString";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            this.State.DefaultCellStyle = dataGridViewCellStyle1;
-            this.State.HeaderText = "State";
-            this.State.Name = "State";
-            this.State.ReadOnly = true;
-            this.State.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.State.Width = 55;
-            // 
-            // FileName
-            // 
-            this.FileName.DataPropertyName = "FileName";
-            this.FileName.HeaderText = "File name";
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Width = 75;
-            // 
             // dataGridViewLinkColumn1
             // 
             this.dataGridViewLinkColumn1.DataPropertyName = "Server";
@@ -668,6 +669,15 @@
             this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
             this.dataGridViewLinkColumn1.TrackVisitedState = false;
             this.dataGridViewLinkColumn1.Width = 42;
+            // 
+            // dataGridViewLinkColumn2
+            // 
+            this.dataGridViewLinkColumn2.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn2.HeaderText = "Server";
+            this.dataGridViewLinkColumn2.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn2.Name = "dataGridViewLinkColumn2";
+            this.dataGridViewLinkColumn2.TrackVisitedState = false;
+            this.dataGridViewLinkColumn2.Width = 42;
             // 
             // bUpdate
             // 
@@ -841,13 +851,13 @@
             this.versionModDataGridViewTextColumn.ReadOnly = true;
             this.versionModDataGridViewTextColumn.Width = 65;
             // 
-            // stateModDataGridViewTextColumn
+            // SourceStateString
             // 
-            this.stateModDataGridViewTextColumn.DataPropertyName = "StateString";
-            this.stateModDataGridViewTextColumn.HeaderText = "State";
-            this.stateModDataGridViewTextColumn.Name = "stateModDataGridViewTextColumn";
-            this.stateModDataGridViewTextColumn.ReadOnly = true;
-            this.stateModDataGridViewTextColumn.Width = 55;
+            this.SourceStateString.DataPropertyName = "StateString";
+            this.SourceStateString.HeaderText = "State";
+            this.SourceStateString.Name = "SourceStateString";
+            this.SourceStateString.ReadOnly = true;
+            this.SourceStateString.Width = 55;
             // 
             // pathDataGridViewLinkColumn
             // 
@@ -964,8 +974,9 @@
         private System.Windows.Forms.DataGridViewLinkColumn serverDataGridViewLinkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn languageDataGridViewTextColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionModDataGridViewTextColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stateModDataGridViewTextColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SourceStateString;
         private System.Windows.Forms.DataGridViewLinkColumn pathDataGridViewLinkColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn2;
     }
 }
 

@@ -8,7 +8,7 @@ namespace SMT.Models
 {
     class ModSource : SMTModel, IValidatable, IStateful<SourceState>, IVersioning, IRemote
     {
-        private string version;
+        private Version version;
 
         /// <summary>
         /// Relative url to the source's web-page.
@@ -29,7 +29,7 @@ namespace SMT.Models
         /// <summary>
         /// Latest version available at this source.
         /// </summary>
-        public string Version { get { return version; } set { version = StringUtils.NonNull(value); } }
+        public string Version { get { return version.Value; } set { version.Value = value; } }
 
         /// <summary>
         /// Absolute url to the source's web-page.
@@ -37,31 +37,31 @@ namespace SMT.Models
         [JsonIgnore]
         public string URL
         {
-            get { return (HasValidURL ? ModsManager.BuildModSourceURL(this) : ""); }
+            get { return (HasValidURL && HasKnownServer ? ModsManager.BuildModSourceURL(this) : Path); }
             set
             {
                 Uri uri = null;
-                HasValidURL = !string.IsNullOrWhiteSpace(value) && ModsManager.TryBuildModSourceURL(value, out uri);;
+                HasValidURL = !string.IsNullOrWhiteSpace(value) && ModsManager.TryBuildModSourceURL(value, out uri); ;
                 if (HasValidURL)
                 {
                     Server = ServersManager.ServerWithURL(uri);
-                    HasValidURL = (Server != null);
-                    Path = uri.PathAndQuery;
-                }
-                else
-                { 
-                    Path = "";
-                    Server = null;
+                    Path = ((Server != null) ? uri.PathAndQuery : value.Trim());
                 }
             }
         }
 
         /// <summary>
         /// Flag indicating whether the source has a valid url or not. <para/>
-        /// Note: This includes validating server using the list of known servers.
+        /// Note: This only validates url format.
         /// </summary>
         [JsonIgnore]
         public bool HasValidURL { get; protected set; }
+
+        /// <summary>
+        /// Flag indicating whether the source has a url domain of known server or not.
+        /// </summary>
+        [JsonIgnore]
+        public bool HasKnownServer { get { return Server != null; } }
 
         /// <summary>
         /// Checks whether the source a has valid version or not.
@@ -70,7 +70,7 @@ namespace SMT.Models
         public bool HasValidVersion { get { return Version != null; } }
 
         [JsonIgnore]
-        public bool IsValid { get { return HasValidURL && HasValidVersion; }}
+        public bool IsValid { get { return HasValidURL && HasKnownServer && HasValidVersion; }}
 
         public SourceState State { get; set; }
 
@@ -85,14 +85,13 @@ namespace SMT.Models
             Path = "";
             Server = null;
             Language = Language.None;
-            Version = "";
+            version = new Version();
             HasValidURL = false; 
         }
 
         public override void Normalize()
         {
             Path = Path.Trim();
-            Version = Version.Trim();
         }
 
         [JsonConstructor]

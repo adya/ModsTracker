@@ -1,5 +1,4 @@
 ﻿using SMT.Models;
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.IO;
 using SMT.Utils;
+using System;
 
 namespace SMT.Managers
 {
@@ -29,6 +29,8 @@ namespace SMT.Managers
 
             return mod;   
         }
+
+        public static void UpdateStates() { foreach (var mod in Mods) mod.UpdateState(); }
 
         private static Language ParseLanguage(string str)
         {
@@ -66,6 +68,8 @@ namespace SMT.Managers
             return success;
         }
 
+       
+
         public static bool TryBuildModSource(string url, out ModSource src)
         {
             Uri uri;
@@ -81,10 +85,32 @@ namespace SMT.Managers
             
         }
 
+        public static void UpdateState(this ModSource src, Mod mod)
+        {
+            if (src.State == SourceState.UnreachablePage || 
+                src.State == SourceState.UnavailableVersion) return; // there was an error while updating info, and therefore we can't update state
+
+            if (!src.HasKnownServer)
+                src.State = SourceState.UnknownServer;
+            else if (!src.Server.HasValidPattern)
+                src.State = SourceState.BrokenServer;
+            else
+            {
+                switch (mod.Version.CompareTo(src.Version))
+                {
+                    default:
+                    case 0: src.State = SourceState.Available; break;
+                    case -1: src.State = SourceState.Update; break;
+                    case 1: src.State = SourceState.Outdated; break;
+                }
+            }
+        }   
+
         #region Mod Extensions
 
         public static void UpdateState(this Mod mod)
         {
+            foreach (var src in mod.Sources) src.UpdateState(mod);
             if (string.IsNullOrWhiteSpace(mod.FileName))
                 mod.State = ModState.MissedFile;
             else if (!mod.HasValidFileName)
@@ -101,6 +127,7 @@ namespace SMT.Managers
             else
                 mod.State = ModState.UpToDate;
         }
+
         public static void CheckUpdates(this Mod mod)
         {
             using (WebClient client = new WebClient())
@@ -125,16 +152,19 @@ namespace SMT.Managers
                     string htmlCode = "";
 
                     try { htmlCode = client.DownloadString(src.URL); }
-                    catch (Exception e) { src.State = SourceState.UnreachablePage; return; }
+                    catch (Exception e) { src.State = SourceState.UnreachablePage; continue; }
 
                     Match m = Regex.Match(htmlCode, pattern);
                     if (m.Success)
                     {
                         src.Version = m.Groups[1].Value;
-                        if (mod.Version.Equals(src.Version))
-                            src.State = SourceState.Available;
-                        else
-                            src.State = SourceState.Update;
+                        switch (mod.Version.CompareTo(src.Version))
+                        {
+                            default:
+                            case 0: src.State = SourceState.Available; break;
+                            case -1: src.State = SourceState.Update; break;
+                            case 1: src.State = SourceState.Outdated; break;
+                        }
                     }
                     else
                         src.State = SourceState.UnavailableVersion;
@@ -143,19 +173,22 @@ namespace SMT.Managers
             mod.UpdateState();
         }
 
-        public static string BuildPatternfilename(this Mod mod)
+        public static string BuildPatternFilename(this Mod mod)
         {
-            string modStr = string.Format("{0}{1}{2}", mod.Name.Trim(), (string.IsNullOrWhiteSpace(mod.Version) ? "" : " (" + mod.Version.Trim() + ")"), (mod.Sources.Count > 0 ? " (" + string.Join(",", mod.Sources.Select(s => s.Language.ToShortString()).Distinct().OrderByDescending(s => s)) + ")" : ""));
+            string modStr = string.Format("{0}{1}{2}{3}", mod.Name.Trim(), (string.IsNullOrWhiteSpace(mod.Version) ? "" : " (" + mod.Version + ")"), (mod.Sources.Count > 0 ? " (" + string.Join(", ", mod.Sources.Select(s => s.Language.ToShortString()).Distinct().OrderByDescending(s => s)) + ")" : ""), Path.GetExtension(mod.FileName));
             return modStr;
         }
         public static void UpdateFilename(this Mod mod)
         {
-            string ext = Path.GetExtension(mod.FileName); 
-            string newName = mod.BuildPatternfilename() + ext;
+            string newName = mod.BuildPatternFilename();
             if (SettingsManager.AutoRename && SettingsManager.HasValidModsLocation)
             {
-                File.Move(Path.Combine(SettingsManager.ModsLocation, mod.FileName), Path.Combine(SettingsManager.ModsLocation, newName));
-                mod.FileName = newName;
+                if (File.Exists(Path.Combine(SettingsManager.ModsLocation, mod.FileName)) && 
+                    !File.Exists(Path.Combine(SettingsManager.ModsLocation, newName)))
+                {
+                    File.Move(Path.Combine(SettingsManager.ModsLocation, mod.FileName), Path.Combine(SettingsManager.ModsLocation, newName));
+                    mod.FileName = newName;
+                }
             }
         }
 

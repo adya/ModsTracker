@@ -85,6 +85,7 @@ namespace SMT
 
             SetModEditable(false);
             SetSourceEditable(false);
+            ModsManager.UpdateStates();
             MarkMods();
         }
 
@@ -131,6 +132,8 @@ namespace SMT
             ModsManager.NormalizeMods();
             StorageManager.Sync();
             SetUIEnabled(true);
+            ModsManager.UpdateStates();
+            MarkMods();
         }
 
         private void ApplySettings()
@@ -199,7 +202,6 @@ namespace SMT
         private void SetUIEnabled(bool isEnabled)
         {
             msMenu.Enabled = isEnabled;
-            dgvMods.Enabled = isEnabled;
             gbMod.Enabled = isEnabled;
             gbSource.Enabled = isEnabled;
         }
@@ -250,6 +252,7 @@ namespace SMT
             var cur = bsSources.Current as ModSource;
             if (cur == null) return;
             if (!cur.HasValidURL) tbURL.SetError("Malformed URL.");
+            else if (!cur.HasKnownServer) tbURL.SetError("Uknown server domain.");
             else tbURL.SetValidMessage();
         }
         private void ValidateSourceVersion()
@@ -283,18 +286,20 @@ namespace SMT
                                                                 state == SourceState.UnreachablePage ||
                                                                 state == SourceState.UnavailableVersion).Count() > 0)
             {
-                row.DefaultCellStyle.BackColor = Color.Aqua;
+                row.DefaultCellStyle.BackColor = Color.PaleVioletRed;
             }
 
             switch (mod.State)
             {
                 case ModState.Undefined:
                 case ModState.NotTracking: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                case ModState.InvlaidFilePath: row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow; break;
                 case ModState.MissedFile: row.DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220); break;
                 case ModState.UpToDate: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
                 case ModState.Outdated: row.DefaultCellStyle.BackColor = Color.Orange; break;
                 default: break;
             }
+            MarkSources();
         }
 
         private void MarkSources()
@@ -318,12 +323,14 @@ namespace SMT
                     case SourceState.UnavailableVersion: row.DefaultCellStyle.BackColor = Color.LightPink; break;
                     case SourceState.Available: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
                     case SourceState.Update: row.DefaultCellStyle.BackColor = Color.Orange; break;
+                    case SourceState.Outdated: row.DefaultCellStyle.BackColor = Color.LightCyan; break;
                 }
             }
         }
 
         private void RunCheckMods(IList<Mod> checkMods)
         {
+            if (bgWorker.IsBusy) return;
             spbStatusProgress.Maximum = checkMods.Count();
             spbStatusProgress.Value = 0;
             spbStatusProgress.Visible = true;
@@ -376,6 +383,7 @@ namespace SMT
 
         private void RunScanMods()
         {
+            if (bgWorker.IsBusy) return;
             spbStatusProgress.Maximum = Directory.GetFiles(SettingsManager.ModsLocation).Length + Directory.GetDirectories(SettingsManager.ModsLocation).Length;
             spbStatusProgress.Value = 0;
             spbStatusProgress.Visible = true;
@@ -465,12 +473,7 @@ namespace SMT
         private void bsMods_CurrentItemChanged(object sender, EventArgs e)
         {
             if (bsMods.Current == null) { SetModEditable(false); return; }
-
-            if (selectedMod != null)
-            {
-                MarkMod(bsMods.Position);
-                SaveSources(selectedMod);
-            }
+          
             selectedMod = bsMods.Current as Mod;
             sources = new BindingList<ModSource>(selectedMod.Sources.ToList());
             bsSources.DataSource = sources;
@@ -541,6 +544,12 @@ namespace SMT
             bsMods.ResetCurrentItem();
             (sender as TextBox).TextChanged += OnModTextChanged;
             ValidateModFields();
+            var cur = bsMods.Current as Mod;
+            if (cur != null)
+            {
+                cur.UpdateState();
+                MarkMod(bsMods.Position);
+            }
         }
         private void OnSourceTextChanged(object sender, EventArgs e)
         {
@@ -550,6 +559,7 @@ namespace SMT
             bsSources.ResetCurrentItem();
             (sender as TextBox).TextChanged += OnSourceTextChanged;
             ValidateSourceFields();
+            MarkSources();
         }
 
         private void bBrowse_Click(object sender, EventArgs e)
@@ -570,7 +580,6 @@ namespace SMT
         {
             bsMods.RemoveCurrent();
             SetModEditable(mods.Count > 0);
-            //  if (mods.Count > 0) EditRow(dgvMods, mods.Count - 1);
         }
         private void bAddSource_Click(object sender, EventArgs e)
         {
@@ -582,7 +591,6 @@ namespace SMT
         {
             bsSources.RemoveCurrent();
             SetSourceEditable(sources.Count > 0);
-            //       if (sources.Count > 0) EditRow(dgvSources, sources.Count - 1);
         }
 
         private void serversToolStripMenuItem_Click(object sender, EventArgs e)
@@ -616,11 +624,15 @@ namespace SMT
 
             var invalidMods = mods.Where(m => !m.IsValid || m.Sources.Count(s => !s.IsValid) != 0).Select(m => m.Name).ToList();
 
-            if (invalidMods.Count == 0 ||
-                (DialogResult.OK == MessageBox.Show("Some of the mods has invalid configuration or broken sources.\n" +
+            if (invalidMods.Count == 0)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Do you want to save any changes?", "Saving data", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    Save();
+            }
+            else if (DialogResult.OK == MessageBox.Show("Some of the mods has invalid configuration or broken sources.\n" +
                                                     "Closing this window will save these configurations and may break some of the tracking features." +
                                                     "\n\nFix mods: [" + string.Join(", ", invalidMods) + "]" +
-                                                    "\n\n Continue?", "Invalid mods", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)))
+                                                    "\n\n Continue?", "Invalid mods", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2))
             {
                 Save();
             }
@@ -680,6 +692,8 @@ namespace SMT
                 bsMods.EndEdit();
                 bsMods.ResetCurrentItem();
                 mod.UpdateState();
+                MarkMod(bsMods.Position);
+                MarkSources();
             }
 
         }

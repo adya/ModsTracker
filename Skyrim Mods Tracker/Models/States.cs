@@ -89,19 +89,7 @@ namespace SMT.Models
         /// Source is valid and available.
         /// </summary>
         [Description("OK")]
-        Available,
-
-        /// <summary>
-        /// Source has a greater version than version of the source's mod.
-        /// </summary>
-        [Description("Has Update")]
-        Update,
-
-        /// <summary>
-        /// Source has a smaller version than version of the source's mod.
-        /// </summary>
-        [Description("Outdated")]
-        Outdated
+        Available
     }
 
     public static class EnumDescriptionExtension

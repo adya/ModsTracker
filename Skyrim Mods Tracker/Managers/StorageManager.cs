@@ -12,10 +12,11 @@ namespace SMT.Managers
     {
         private const string STORAGE_FILE = "smt";
         private const string STORAGE_EXT = ".json";
-        private const string STORAGE_VERSION = "1.1b";
+        private const string STORAGE_VERSION = "1.5";
 
         private const string STORAGE_SERVERS_KEY = "Servers";
         private const string STORAGE_MODS_KEY = "Mods";
+        private const string STORAGE_SOURCES_KEY = "Sources";
         private const string STORAGE_VERSION_KEY = "Version";
         private const string STORAGE_DATE_KEY = "Updated";
 
@@ -37,6 +38,7 @@ namespace SMT.Managers
             data.Set(STORAGE_DATE_KEY, DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
             data.Set(STORAGE_VERSION_KEY, STORAGE_VERSION);
             data.Set(STORAGE_SERVERS_KEY, new HashSet<Server>());
+            data.Set(STORAGE_SOURCES_KEY, new HashSet<Source>());
             data.Set(STORAGE_MODS_KEY, new HashSet<Mod>());
         }
 
@@ -53,6 +55,11 @@ namespace SMT.Managers
             {
                 storageData.Set(STORAGE_SERVERS_KEY, (value as JArray).ToObject<HashSet<Server>>());
                 storageData.TryCopy(STORAGE_SERVERS_KEY, data);
+            }
+            if (storageData.TryGetValue(STORAGE_SOURCES_KEY, out value))
+            {
+                storageData.Set(STORAGE_SOURCES_KEY, (value as JArray).ToObject<HashSet<Source>>());
+                storageData.TryCopy(STORAGE_SOURCES_KEY, data);
             }
             if (storageData.TryGetValue(STORAGE_MODS_KEY, out value))
             {
@@ -89,6 +96,8 @@ namespace SMT.Managers
                 return STORAGE_MODS_KEY;
             else if (t.Equals(typeof(Server)))
                 return STORAGE_SERVERS_KEY;
+            else if (t.Equals(typeof(Source)))
+                return STORAGE_SOURCES_KEY;
             else
                 throw new ArgumentException("No defined key for type " + t.ToString());
         }

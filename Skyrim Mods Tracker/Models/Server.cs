@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using SMT.Managers;
+using SMT.Models.PropertyInterfaces;
+using System.Collections.Generic;
 
 namespace SMT.Models
 {
-    class Server : SMTNamedModel, IRemote, IValidatable
+    class Server : SMTNamedModel, IRemote, IValidatable, ILocalizable
     {
         [JsonIgnore]
         private string url;
@@ -25,11 +27,19 @@ namespace SMT.Models
         }
 
         /// <summary>
+        /// Represents primary language of the server.
+        /// </summary>
+        public Language Language { get; set; }
+
+        /// <summary>
         /// Flag indicating whether the server has a valid url or not.
         /// </summary>
         [JsonIgnore]
         public bool HasValidURL { get; private set; }
 
+        /// <summary>
+        /// Flag indicating whether the server has a valid pattern or not.
+        /// </summary>
         [JsonIgnore]
         public bool HasValidPattern
         {

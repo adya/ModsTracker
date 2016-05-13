@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
 using SMT.JsonConverters;
 using SMT.Managers;
+using SMT.Models.PropertyInterfaces;
 using SMT.Utils;
 using System;
 
 namespace SMT.Models
 {
-    class ModSource : SMTModel, IValidatable, IStateful<SourceState>, IVersioning, IRemote
+    class Source : SMTNamedModel, IValidatable, IStateful<SourceState>, IVersioning, IRemote, ILocalizable
     {
-        private Version version;
-
         /// <summary>
         /// Relative url to the source's web-page.
         /// </summary>
@@ -29,7 +28,7 @@ namespace SMT.Models
         /// <summary>
         /// Latest version available at this source.
         /// </summary>
-        public string Version { get { return version.Value; } set { version.Value = value; } }
+        public Version Version { get; set; }
 
         /// <summary>
         /// Absolute url to the source's web-page.
@@ -37,11 +36,11 @@ namespace SMT.Models
         [JsonIgnore]
         public string URL
         {
-            get { return (HasValidURL && HasKnownServer ? ModsManager.BuildModSourceURL(this) : Path); }
+            get { return (HasValidURL && HasKnownServer ? SourcesManager.BuildModSourceURL(this) : Path); }
             set
             {
                 Uri uri = null;
-                HasValidURL = !string.IsNullOrWhiteSpace(value) && ModsManager.TryBuildModSourceURL(value, out uri); ;
+                HasValidURL = !string.IsNullOrWhiteSpace(value) && SourcesManager.TryBuildModSourceURL(value, out uri); ;
                 if (HasValidURL)
                 {
                     Server = ServersManager.ServerWithURL(uri);
@@ -77,15 +76,25 @@ namespace SMT.Models
         [JsonIgnore]
         public string StateString { get { return State.GetDescription(); } }
 
-        public ModSource() : base(){}
-        protected ModSource(int id) : base(id) { }
+        public Source() : base(){}
+        protected Source(int id) : base(id) { }
+
+        [JsonConstructor]
+        private Source(int id, string path, Server server, Language lang, string version) : base(id)
+        {
+            URL = SourcesManager.BuildModSourceURL(server, path);
+            Language = lang;
+            Version = new Version(version);
+            Normalize();
+        }
 
         protected override void Init()
         {
+            base.Init();
             Path = "";
             Server = null;
             Language = Language.None;
-            version = new Version();
+            Version = new Version();
             HasValidURL = false; 
         }
 
@@ -94,13 +103,15 @@ namespace SMT.Models
             Path = Path.Trim();
         }
 
-        [JsonConstructor]
-        private ModSource(int id, string path, Server server, Language lang, string version) : base(id)
+        public void UpdateState()
         {
-            URL = ModsManager.BuildModSourceURL(server, path);
-            Language = lang;
-            Version = version;
-            Normalize();
+            if (State == SourceState.UnreachablePage ||
+                State == SourceState.UnavailableVersion) return; // there was an error while updating info, and therefore we can't update state
+
+            if (!HasKnownServer)
+                State = SourceState.UnknownServer;
+            else if (!Server.HasValidPattern)
+                State = SourceState.BrokenServer;
         }
     }
 }

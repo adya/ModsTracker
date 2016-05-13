@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SMT.Models.PropertyInterfaces;
 using SMT.Utils;
 
 namespace SMT.Models

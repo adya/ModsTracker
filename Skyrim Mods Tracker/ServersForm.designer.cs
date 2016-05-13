@@ -30,8 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvServers = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serverLanguageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uRLDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionPatternDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsServers = new System.Windows.Forms.BindingSource(this.components);
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.cbServerLanguage = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.bAdd = new SMT.Utils.StateButton();
             this.bRemove = new SMT.Utils.StateButton();
             this.lPatternError = new System.Windows.Forms.Label();
@@ -45,13 +52,14 @@
             this.lName = new System.Windows.Forms.Label();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
-            this.nameDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uRLDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionPatternDataGridViewcontrolColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsServers)).BeginInit();
             this.gbDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvServers
@@ -59,28 +67,71 @@
             this.dgvServers.AllowUserToAddRows = false;
             this.dgvServers.AllowUserToDeleteRows = false;
             this.dgvServers.AllowUserToResizeRows = false;
-            this.dgvServers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvServers.AutoGenerateColumns = false;
             this.dgvServers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvServers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvServers.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvServers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvServers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvServers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewcontrolColumn,
             this.ID,
+            this.serverLanguageDataGridViewTextBoxColumn,
             this.uRLDataGridViewcontrolColumn,
             this.versionPatternDataGridViewcontrolColumn});
             this.dgvServers.DataSource = this.bsServers;
+            this.dgvServers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvServers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvServers.Location = new System.Drawing.Point(12, 12);
+            this.dgvServers.EnableHeadersVisualStyles = false;
+            this.dgvServers.Location = new System.Drawing.Point(0, 0);
             this.dgvServers.Name = "dgvServers";
             this.dgvServers.ReadOnly = true;
             this.dgvServers.RowHeadersVisible = false;
             this.dgvServers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServers.Size = new System.Drawing.Size(416, 243);
+            this.dgvServers.Size = new System.Drawing.Size(423, 261);
             this.dgvServers.TabIndex = 5;
             this.dgvServers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvServers_MouseDown);
+            // 
+            // nameDataGridViewcontrolColumn
+            // 
+            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
+            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
+            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
+            this.nameDataGridViewcontrolColumn.ReadOnly = true;
+            this.nameDataGridViewcontrolColumn.Width = 59;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 42;
+            // 
+            // serverLanguageDataGridViewTextBoxColumn
+            // 
+            this.serverLanguageDataGridViewTextBoxColumn.DataPropertyName = "Language";
+            this.serverLanguageDataGridViewTextBoxColumn.HeaderText = "Language";
+            this.serverLanguageDataGridViewTextBoxColumn.Name = "serverLanguageDataGridViewTextBoxColumn";
+            this.serverLanguageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.serverLanguageDataGridViewTextBoxColumn.Width = 79;
+            // 
+            // uRLDataGridViewcontrolColumn
+            // 
+            this.uRLDataGridViewcontrolColumn.DataPropertyName = "URL";
+            this.uRLDataGridViewcontrolColumn.HeaderText = "URL";
+            this.uRLDataGridViewcontrolColumn.Name = "uRLDataGridViewcontrolColumn";
+            this.uRLDataGridViewcontrolColumn.ReadOnly = true;
+            this.uRLDataGridViewcontrolColumn.Width = 53;
+            // 
+            // versionPatternDataGridViewcontrolColumn
+            // 
+            this.versionPatternDataGridViewcontrolColumn.DataPropertyName = "VersionPattern";
+            this.versionPatternDataGridViewcontrolColumn.HeaderText = "Version pattern";
+            this.versionPatternDataGridViewcontrolColumn.Name = "versionPatternDataGridViewcontrolColumn";
+            this.versionPatternDataGridViewcontrolColumn.ReadOnly = true;
+            this.versionPatternDataGridViewcontrolColumn.Width = 102;
             // 
             // bsServers
             // 
@@ -89,6 +140,10 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbDetails.Controls.Add(this.cbServerLanguage);
+            this.gbDetails.Controls.Add(this.label2);
             this.gbDetails.Controls.Add(this.bAdd);
             this.gbDetails.Controls.Add(this.bRemove);
             this.gbDetails.Controls.Add(this.lPatternError);
@@ -102,16 +157,37 @@
             this.gbDetails.Controls.Add(this.lName);
             this.gbDetails.Controls.Add(this.tbURL);
             this.gbDetails.Controls.Add(this.tbName);
-            this.gbDetails.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gbDetails.Location = new System.Drawing.Point(434, 0);
+            this.gbDetails.Location = new System.Drawing.Point(4, 3);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Size = new System.Drawing.Size(250, 261);
+            this.gbDetails.Size = new System.Drawing.Size(250, 255);
             this.gbDetails.TabIndex = 1;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Server";
             // 
+            // cbServerLanguage
+            // 
+            this.cbServerLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbServerLanguage.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.cbServerLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbServerLanguage.FormattingEnabled = true;
+            this.cbServerLanguage.Location = new System.Drawing.Point(75, 100);
+            this.cbServerLanguage.Name = "cbServerLanguage";
+            this.cbServerLanguage.Size = new System.Drawing.Size(169, 21);
+            this.cbServerLanguage.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Language:";
+            // 
             // bAdd
             // 
+            this.bAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bAdd.BackColor = System.Drawing.Color.ForestGreen;
             this.bAdd.DisabledBackColor = System.Drawing.Color.LightGray;
             this.bAdd.DisabledForeColor = System.Drawing.Color.DimGray;
@@ -119,7 +195,7 @@
             this.bAdd.EnabledForeColor = System.Drawing.SystemColors.ControlText;
             this.bAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAdd.Location = new System.Drawing.Point(89, 232);
+            this.bAdd.Location = new System.Drawing.Point(88, 223);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(75, 23);
             this.bAdd.TabIndex = 7;
@@ -129,6 +205,7 @@
             // 
             // bRemove
             // 
+            this.bRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bRemove.BackColor = System.Drawing.Color.LightCoral;
             this.bRemove.DisabledBackColor = System.Drawing.Color.LightGray;
             this.bRemove.DisabledForeColor = System.Drawing.Color.DimGray;
@@ -136,7 +213,7 @@
             this.bRemove.EnabledForeColor = System.Drawing.Color.Black;
             this.bRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bRemove.ForeColor = System.Drawing.Color.Black;
-            this.bRemove.Location = new System.Drawing.Point(170, 232);
+            this.bRemove.Location = new System.Drawing.Point(169, 223);
             this.bRemove.Name = "bRemove";
             this.bRemove.Size = new System.Drawing.Size(75, 23);
             this.bRemove.TabIndex = 6;
@@ -147,7 +224,7 @@
             // lPatternError
             // 
             this.lPatternError.AutoSize = true;
-            this.lPatternError.Location = new System.Drawing.Point(60, 123);
+            this.lPatternError.Location = new System.Drawing.Point(81, 163);
             this.lPatternError.Name = "lPatternError";
             this.lPatternError.Size = new System.Drawing.Size(29, 13);
             this.lPatternError.TabIndex = 5;
@@ -157,7 +234,7 @@
             // lURLError
             // 
             this.lURLError.AutoSize = true;
-            this.lURLError.Location = new System.Drawing.Point(60, 83);
+            this.lURLError.Location = new System.Drawing.Point(81, 83);
             this.lURLError.Name = "lURLError";
             this.lURLError.Size = new System.Drawing.Size(29, 13);
             this.lURLError.TabIndex = 5;
@@ -167,7 +244,7 @@
             // lNameError
             // 
             this.lNameError.AutoSize = true;
-            this.lNameError.Location = new System.Drawing.Point(60, 43);
+            this.lNameError.Location = new System.Drawing.Point(81, 43);
             this.lNameError.Name = "lNameError";
             this.lNameError.Size = new System.Drawing.Size(29, 13);
             this.lNameError.TabIndex = 5;
@@ -177,7 +254,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 142);
+            this.label1.Location = new System.Drawing.Point(10, 183);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 3;
@@ -186,7 +263,7 @@
             // lPattern
             // 
             this.lPattern.AutoSize = true;
-            this.lPattern.Location = new System.Drawing.Point(10, 103);
+            this.lPattern.Location = new System.Drawing.Point(10, 143);
             this.lPattern.Name = "lPattern";
             this.lPattern.Size = new System.Drawing.Size(44, 13);
             this.lPattern.TabIndex = 3;
@@ -203,18 +280,22 @@
             // 
             // tbCookies
             // 
+            this.tbCookies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCookies.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "Cookies", true));
-            this.tbCookies.Location = new System.Drawing.Point(60, 139);
+            this.tbCookies.Location = new System.Drawing.Point(75, 180);
             this.tbCookies.Name = "tbCookies";
-            this.tbCookies.Size = new System.Drawing.Size(184, 20);
+            this.tbCookies.Size = new System.Drawing.Size(169, 20);
             this.tbCookies.TabIndex = 2;
             // 
             // tbPattern
             // 
+            this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPattern.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "VersionPattern", true));
-            this.tbPattern.Location = new System.Drawing.Point(60, 100);
+            this.tbPattern.Location = new System.Drawing.Point(75, 140);
             this.tbPattern.Name = "tbPattern";
-            this.tbPattern.Size = new System.Drawing.Size(184, 20);
+            this.tbPattern.Size = new System.Drawing.Size(169, 20);
             this.tbPattern.TabIndex = 2;
             // 
             // lName
@@ -228,60 +309,47 @@
             // 
             // tbURL
             // 
+            this.tbURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "URL", true));
-            this.tbURL.Location = new System.Drawing.Point(60, 60);
+            this.tbURL.Location = new System.Drawing.Point(75, 60);
             this.tbURL.Name = "tbURL";
-            this.tbURL.Size = new System.Drawing.Size(184, 20);
+            this.tbURL.Size = new System.Drawing.Size(169, 20);
             this.tbURL.TabIndex = 1;
             // 
             // tbName
             // 
+            this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsServers, "Name", true));
-            this.tbName.Location = new System.Drawing.Point(60, 20);
+            this.tbName.Location = new System.Drawing.Point(75, 20);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(184, 20);
+            this.tbName.Size = new System.Drawing.Size(169, 20);
             this.tbName.TabIndex = 0;
             // 
-            // nameDataGridViewcontrolColumn
+            // splitContainer1
             // 
-            this.nameDataGridViewcontrolColumn.DataPropertyName = "Name";
-            this.nameDataGridViewcontrolColumn.HeaderText = "Name";
-            this.nameDataGridViewcontrolColumn.Name = "nameDataGridViewcontrolColumn";
-            this.nameDataGridViewcontrolColumn.ReadOnly = true;
-            this.nameDataGridViewcontrolColumn.Width = 58;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // ID
+            // splitContainer1.Panel1
             // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 41;
+            this.splitContainer1.Panel1.Controls.Add(this.dgvServers);
             // 
-            // uRLDataGridViewcontrolColumn
+            // splitContainer1.Panel2
             // 
-            this.uRLDataGridViewcontrolColumn.DataPropertyName = "URL";
-            this.uRLDataGridViewcontrolColumn.HeaderText = "URL";
-            this.uRLDataGridViewcontrolColumn.Name = "uRLDataGridViewcontrolColumn";
-            this.uRLDataGridViewcontrolColumn.ReadOnly = true;
-            this.uRLDataGridViewcontrolColumn.Width = 52;
-            // 
-            // versionPatternDataGridViewcontrolColumn
-            // 
-            this.versionPatternDataGridViewcontrolColumn.DataPropertyName = "VersionPattern";
-            this.versionPatternDataGridViewcontrolColumn.HeaderText = "Version pattern";
-            this.versionPatternDataGridViewcontrolColumn.Name = "versionPatternDataGridViewcontrolColumn";
-            this.versionPatternDataGridViewcontrolColumn.ReadOnly = true;
-            this.versionPatternDataGridViewcontrolColumn.Width = 101;
+            this.splitContainer1.Panel2.Controls.Add(this.gbDetails);
+            this.splitContainer1.Size = new System.Drawing.Size(684, 261);
+            this.splitContainer1.SplitterDistance = 423;
+            this.splitContainer1.TabIndex = 6;
             // 
             // ServersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 261);
-            this.Controls.Add(this.gbDetails);
-            this.Controls.Add(this.dgvServers);
+            this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximumSize = new System.Drawing.Size(1200, 1500);
             this.MinimumSize = new System.Drawing.Size(700, 300);
@@ -294,6 +362,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsServers)).EndInit();
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -316,8 +388,12 @@
         private Utils.StateButton bAdd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbCookies;
+        private System.Windows.Forms.ComboBox cbServerLanguage;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewcontrolColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serverLanguageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn uRLDataGridViewcontrolColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionPatternDataGridViewcontrolColumn;
     }

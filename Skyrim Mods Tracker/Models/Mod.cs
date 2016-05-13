@@ -3,23 +3,31 @@ using SMT.Managers;
 using System.Collections.Generic;
 using SMT.Utils;
 using System.IO;
+using SMT.JsonConverters;
+using System.Linq;
+using SMT.Models.PropertyInterfaces;
+using System;
 
 namespace SMT.Models
 {
-    class Mod : SMTNamedModel, IStateful<ModState>, IVersioning, IValidatable
+    class Mod : SMTNamedModel, IStateful<ModState>, IVersioning, IValidatable, ILocalizable
     {
         private string filename;
-        private Version version;
 
         /// <summary>
         /// Mod's version.
         /// </summary>
-        public string Version { get { return version.Value; } set { version.Value = value; } }
+        public Version Version { get; set; }
 
         /// <summary>
         /// Name of the mod's file.
         /// </summary>
         public string FileName { get { return filename; } set { filename = StringUtils.NonNull(value); } }
+
+        /// <summary>
+        /// Represents localization language of the mod.
+        /// </summary>
+        public Language Language { get; set; }
 
         /// <summary>
         /// Mod's state
@@ -32,7 +40,8 @@ namespace SMT.Models
         /// <summary>
         /// Sources at which this mod is available.
         /// </summary>
-        public HashSet<ModSource> Sources { get; private set; }
+        [JsonConverter(typeof(SourcesIDJsonConverter))]
+        public HashSet<Source> Sources { get; private set; }
 
         /// <summary>
         /// Checks whether the mod a has valid version or not.
@@ -57,6 +66,8 @@ namespace SMT.Models
         [JsonIgnore]
         public bool IsValid { get { return HasValidName && HasValidVersion && HasValidFileName; } }
 
+    
+
         public Mod() : base() { }
 
         [JsonConstructor]
@@ -65,9 +76,9 @@ namespace SMT.Models
         protected override void Init()
         {
             base.Init();
-            version = new Version();
+            Version = new Version();
             FileName = "";
-            Sources = new HashSet<ModSource>();
+            Sources = new HashSet<Source>();
         }
 
         public override void Normalize()
@@ -76,6 +87,29 @@ namespace SMT.Models
             foreach (var src in Sources)
                 src.Normalize();
             this.UpdateFilename();
+        }
+
+        public void UpdateState()
+        {
+            if (string.IsNullOrWhiteSpace(FileName))
+                State = ModState.MissedFile;
+            else if (!HasValidFileName)
+                State = ModState.InvlaidFilePath;
+            else if (Sources == null || Sources.Count == 0)
+                State = ModState.NotTracking;
+            else if (Sources.Count(s => s.State != SourceState.Available) > 0)
+                State = ModState.NotTracking;
+            else if (Sources.Count(s => Version.CompareTo(s.Version) == VersionComparison.Greater) > 0)
+                State = ModState.Outdated;
+            else
+                State = ModState.UpToDate;
+        }
+
+        public void CheckUpdate()
+        {
+            foreach (var src in Sources)
+                src.CheckUpdate();
+            UpdateState();
         }
     }
 }

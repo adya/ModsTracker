@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using SMT.JsonConverters;
+using SMT.Models.PropertyInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SMT.Models
 {
+    [JsonConverter(typeof(VersionJsonConverter))]
     class Version : IValidatable, IComparable<Version>, IComparable<string>
     {
         private const string VERSION_PATTERN = "^v?(?:(\\d+)\\.?)+\\s*([a-zA-Z]+)?\\s*$";
@@ -20,7 +23,7 @@ namespace SMT.Models
 
         public bool HasStage { get { return !string.IsNullOrWhiteSpace(stage); } }
 
-        public Version() { rawValue = ""; }
+        public Version() : this("") { }
 
         public Version(string version)
         {
@@ -29,7 +32,7 @@ namespace SMT.Models
 
         public string Value {
             get { return rawValue; }
-            set { rawValue = value; ParseVersion(); }
+            set { rawValue = (value != null ? value : ""); ParseVersion(); }
         }
 
         private void ParseVersion()
@@ -84,8 +87,8 @@ namespace SMT.Models
         public int CompareTo(string other) { return CompareTo(new Version(other)); }
         public int CompareTo(Version other)
         {
-            if (other == null) return 1;
-            if (Equals(other)) return 0;
+            if (other == null) return VersionComparison.Greater;
+            if (Equals(other)) return VersionComparison.Equal;
             if (!IsValid || !other.IsValid) return Value.CompareTo(other.Value); // if one of the version has invalid format compare them as raw strings
 
             int[] comps1 = components;
@@ -99,11 +102,11 @@ namespace SMT.Models
 
             for (int i = 0; i < minLength; i++)
             {
-                if (comps1[i] > comps2[i]) return 1;
-                else if (comps1[i] < comps2[i]) return -1;
+                if (comps1[i] > comps2[i]) return VersionComparison.Greater;
+                else if (comps1[i] < comps2[i]) return VersionComparison.Smaller;
             }
 
-            if (isDifLength) return (comps1.Length > comps2.Length ? 1 : -1); // while common part is the same, but lengths are different - greater will be version with extra components.
+            if (isDifLength) return (comps1.Length > comps2.Length ? VersionComparison.Greater : VersionComparison.Smaller); // while common part is the same, but lengths are different - greater will be version with extra components.
             else if (stage1 != "" || stage2 != "") // if components are completely idential check stage parts if any.
                 return stage1.CompareTo(stage2);
             else return 0;
@@ -114,5 +117,12 @@ namespace SMT.Models
         {
             return Value;
         }
+    }
+
+    public static class VersionComparison
+    {
+        public const int Smaller = -1;
+        public const int Equal = 0;
+        public const int Greater = 1;
     }
 }

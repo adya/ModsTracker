@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace SMT.Models.PropertyInterfaces
 {
     /// <summary>
-    /// Entity with name.
+    /// Entity with set of languages<para/>
+    /// Note: Currently not used.
     /// </summary>
-    interface INamed
+    interface IMultiLocalizable : ILocalizable
     {
-        string Name { get; set; }
-        bool HasValidName { get; }
+        HashSet<Language> Languages { get; set; }
     }
 }

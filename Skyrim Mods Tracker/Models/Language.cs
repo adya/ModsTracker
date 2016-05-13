@@ -5,76 +5,34 @@ using System.Linq;
 
 namespace SMT.Models
 {
-    enum Language {
-        
+
+    public enum Language
+    {
+        Unknown = -1,
         None,
-        [Name("RU")]
         Russian,
-        [Name("EN")]
         English
     }
 
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
-    public class NameAttribute : Attribute
+    public static class LanguageNames
     {
-        public readonly string[] Names;
+        private static Dictionary<Language, string> langNames;
 
-        public NameAttribute(string name)
+        static LanguageNames()
         {
-            if (name == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            Names = new[] { name };
+            langNames = new Dictionary<Language, string>();
+            langNames.Add(Language.None, "NO");
+            langNames.Add(Language.Russian, "RU");
+            langNames.Add(Language.English, "EN");
         }
 
-        public NameAttribute(params string[] names)
-        {
-            if (names == null || names.Any(x => x == null))
-            {
-                throw new ArgumentNullException();
-            }
+       
+        public static Language GetLanguage(string name) { return (langNames.ContainsValue(name.ToUpper()) ? langNames.First(kvp => kvp.Value.Equals(name.ToUpper())).Key : Language.Unknown); }
 
-            Names = names;
-        }
+        public static string GetName(this Language lang) { return langNames[lang]; }
+
+        public static string ToShortString(this Language lang) { return lang.GetName(); }
     }
 
-    public static class ParseEnum
-    {
-        public static TEnum Parse<TEnum>(string value) where TEnum : struct
-        {
-            return ParseEnumImpl<TEnum>.Values[value];
-        }
 
-        public static bool TryParse<TEnum>(string value, out TEnum result) where TEnum : struct
-        {
-            return ParseEnumImpl<TEnum>.Values.TryGetValue(value, out result);
-        }
-
-        private static class ParseEnumImpl<TEnum> where TEnum : struct
-        {
-            public static readonly Dictionary<string, TEnum> Values = new Dictionary<string, TEnum>();
-
-            static ParseEnumImpl()
-            {
-                var nameAttributes = typeof(TEnum)
-                    .GetFields()
-                    .Select(x => new
-                    {
-                        Value = x,
-                        Names = x.GetCustomAttributes(typeof(NameAttribute), false)
-                            .Cast<NameAttribute>()
-                    });
-
-                var degrouped = nameAttributes.SelectMany(
-                    x => x.Names.SelectMany(y => y.Names),
-                    (x, y) => new { Value = x.Value, Name = y });
-
-                Values = degrouped.ToDictionary(
-                    x => x.Name,
-                    x => (TEnum)x.Value.GetValue(null));
-            }
-        }
-    }
 }

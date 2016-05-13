@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SMT.Models
+﻿
+namespace SMT.Models.PropertyInterfaces
 {
+    /// <summary>
+    /// Entity with version.
+    /// </summary>
     interface IVersioning
     {
-        string Version { get; set; }
+        Version Version { get; set; }
         bool HasValidVersion { get; }
     }
 }

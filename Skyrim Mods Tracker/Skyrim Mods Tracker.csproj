@@ -56,8 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonConverters\ServerJsonConverter.cs" />
     <Compile Include="JsonConverters\VersionJsonConverter.cs" />
+    <Compile Include="JsonConverters\SourcesJsonConverter.cs" />
+    <Compile Include="JsonConverters\ServerJsonConverter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,7 +68,10 @@
     <Compile Include="Managers\ModsManager.cs" />
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
+    <Compile Include="Managers\SourcesManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
+    <Compile Include="Models\PropertyInterfaces\ILocalizable.cs" />
+    <Compile Include="Models\PropertyInterfaces\IMultiLocalizable.cs" />
     <Compile Include="Models\PropertyInterfaces\INamed.cs" />
     <Compile Include="Models\PropertyInterfaces\IValidatable.cs" />
     <Compile Include="Models\SMTNamedModel.cs" />
@@ -78,7 +82,7 @@
     <Compile Include="Models\SMTModel.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Mod.cs" />
-    <Compile Include="Models\ModSource.cs" />
+    <Compile Include="Models\Source.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Models\Version.cs" />
     <Compile Include="PreferencesForm.cs">

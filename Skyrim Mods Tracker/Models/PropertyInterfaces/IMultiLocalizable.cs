@@ -10,7 +10,7 @@ namespace SMT.Models.PropertyInterfaces
     /// Entity with set of languages<para/>
     /// Note: Currently not used.
     /// </summary>
-    interface IMultiLocalizable : ILocalizable
+    interface IMultiLocalizable
     {
         HashSet<Language> Languages { get; set; }
     }

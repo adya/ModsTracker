@@ -7,7 +7,7 @@ using System;
 
 namespace SMT.Models
 {
-    class Source : SMTNamedModel, IValidatable, IStateful<SourceState>, IVersioning, IRemote, ILocalizable
+    class Source : SMTNamedModel<Source>, IValidatable, IStateful<SourceState>, IVersioning, IRemote, ILocalizable
     {
         /// <summary>
         /// Relative url to the source's web-page.
@@ -29,6 +29,17 @@ namespace SMT.Models
         /// Latest version available at this source.
         /// </summary>
         public Version Version { get; set; }
+
+        /// <summary>
+        /// State of the source.
+        /// </summary>
+        public SourceState State { get; set; }
+
+        /// <summary>
+        /// String representation of the sources's state.
+        /// </summary>
+        [JsonIgnore]
+        public string StateString { get { return State.GetDescription(); } }
 
         /// <summary>
         /// Absolute url to the source's web-page.
@@ -71,10 +82,6 @@ namespace SMT.Models
         [JsonIgnore]
         public bool IsValid { get { return HasValidURL && HasKnownServer && HasValidVersion; }}
 
-        public SourceState State { get; set; }
-
-        [JsonIgnore]
-        public string StateString { get { return State.GetDescription(); } }
 
         public Source() : base(){}
         protected Source(int id) : base(id) { }
@@ -112,6 +119,17 @@ namespace SMT.Models
                 State = SourceState.UnknownServer;
             else if (!Server.HasValidPattern)
                 State = SourceState.BrokenServer;
+        }
+
+        public override void CopyTo(Source source)
+        {
+            base.CopyTo(source);
+            if (source == null) return;
+            source.Path = this.Path;
+            source.Server = this.Server;
+            source.Language = this.Language;
+            source.Version = this.Version;
+            source.HasValidURL = this.HasValidURL;
         }
     }
 }

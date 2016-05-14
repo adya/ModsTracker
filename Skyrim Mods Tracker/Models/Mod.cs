@@ -7,10 +7,11 @@ using SMT.JsonConverters;
 using System.Linq;
 using SMT.Models.PropertyInterfaces;
 using System;
+using SMT.Actions.ModsActions;
 
 namespace SMT.Models
 {
-    class Mod : SMTNamedModel, IStateful<ModState>, IVersioning, IValidatable, ILocalizable
+    class Mod : SMTNamedModel<Mod>, IStateful<ModState>, IVersioning, IValidatable, ILocalizable
     {
         private string filename;
 
@@ -18,6 +19,7 @@ namespace SMT.Models
         /// Mod's version.
         /// </summary>
         public Version Version { get; set; }
+
 
         /// <summary>
         /// Name of the mod's file.
@@ -66,8 +68,6 @@ namespace SMT.Models
         [JsonIgnore]
         public bool IsValid { get { return HasValidName && HasValidVersion && HasValidFileName; } }
 
-    
-
         public Mod() : base() { }
 
         [JsonConstructor]
@@ -110,6 +110,17 @@ namespace SMT.Models
             foreach (var src in Sources)
                 src.CheckUpdate();
             UpdateState();
+        }
+
+        public override void CopyTo(Mod mod)
+        {
+            base.CopyTo(mod);
+            if (mod == null) return;
+            mod.Version = Version;
+            mod.FileName = FileName;
+            mod.State = State;
+            mod.Language = Language;
+            mod.Sources = mod.Sources;
         }
     }
 }

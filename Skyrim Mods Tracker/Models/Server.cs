@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SMT.Models
 {
-    class Server : SMTNamedModel, IRemote, IValidatable, ILocalizable
+    class Server : SMTNamedModel<Server>, IRemote, IValidatable, ILocalizable, IStateful<ServerState>
     {
         [JsonIgnore]
         private string url;
@@ -30,6 +30,8 @@ namespace SMT.Models
         /// Represents primary language of the server.
         /// </summary>
         public Language Language { get; set; }
+
+        public ServerState State { get; set; }
 
         /// <summary>
         /// Flag indicating whether the server has a valid url or not.
@@ -72,6 +74,17 @@ namespace SMT.Models
             base.Init();
             URL = "";
             VersionPattern = "";
+        }
+
+        public override void CopyTo(Server server)
+        {
+            base.CopyTo(server);
+            if (server == null) return;
+            server.VersionPattern = this.VersionPattern;
+            server.URL = this.URL;
+            server.Language = this.Language;
+            server.State = this.State;
+            server.Cookies = this.Cookies;
         }
     }
 }

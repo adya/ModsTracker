@@ -73,9 +73,9 @@ namespace SMT.Managers
         /// </summary>
         /// <typeparam name="T">Target type.</typeparam>
         /// <returns>Returns HashSet of stored items of specified type. </returns>
-        public static HashSet<T> Get<T>() where T : SMTModel { return data[KeyForType(typeof(T))]; }
+        public static HashSet<T> Get<T>() where T : SMTModel<T> { return data[KeyForType(typeof(T))]; }
 
-        public static void Set<T>(HashSet<T> items) where T : SMTModel
+        public static void Set<T>(HashSet<T> items) where T : SMTModel<T>
         {
             if (items == null) return;
             string key = KeyForType(typeof(T));

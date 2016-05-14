@@ -91,6 +91,13 @@ namespace SMT.Models
         [Description("OK")]
         Available
     }
+    /// <summary>
+    /// TODO: Server states
+    /// </summary>
+    public enum ServerState
+    {
+
+    }
 
     public static class EnumDescriptionExtension
     {

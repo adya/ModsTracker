@@ -2,7 +2,7 @@
 
 namespace SMT.Models
 {
-    abstract class SMTModel
+    public abstract class SMTModel<T> where T : SMTModel<T>
     {
         /// <summary>
         /// Model's id.
@@ -26,10 +26,14 @@ namespace SMT.Models
         public override bool Equals(object other)
         {
             if (other == null || !GetType().Equals(other.GetType())) return false;
-            return ((other as SMTModel).ID == this.ID);
+            return ((other as SMTModel<T>).ID == this.ID);
         }
 
         public override int GetHashCode() { return ID; }
+
+        public abstract T Clone();
+
+        public abstract void CopyTo(T model);
     }
  
 }

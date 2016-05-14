@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using SMT.Models.PropertyInterfaces;
 using SMT.Utils;
 
 namespace SMT.Models
 {
-    abstract class SMTNamedModel : SMTModel, INamed
+    public abstract class SMTNamedModel<T> : SMTModel<T>, INamed where T : SMTNamedModel<T>, new()
     {
         private string name; // field for preventing null values.
 
@@ -30,5 +31,18 @@ namespace SMT.Models
         }
 
         public override string ToString() { return Name; }
+
+        public override T Clone()
+        {
+            T model = new T();
+            this.CopyTo(model);
+            return model;
+        }
+
+        public override void CopyTo(T model)
+        {
+            if (model == null) return;
+            model.Name = this.Name;
+        }
     }
 }

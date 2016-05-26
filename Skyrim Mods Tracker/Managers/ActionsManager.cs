@@ -14,14 +14,6 @@ namespace SMT.Managers
         private const int NO_ACTIONS = -1;
         private const int DEFAULT_CAPACITY = 100;
 
-        private static ActionsManager manager;
-
-        public static ActionsManager getManager()
-        {
-            if (manager == null) manager = new ActionsManager();
-            return manager;
-        }
-
         private LimitedList<IAction> actions;
 
         public int CurrentActionIndex { get; private set; }
@@ -33,12 +25,13 @@ namespace SMT.Managers
             set { capacity = value; actions.Extend(capacity); }
         }
 
-        private ActionsManager()
+        public ActionsManager(int capacity)
         {
-            capacity = DEFAULT_CAPACITY;
+            this.capacity = capacity;
             CurrentActionIndex = NO_ACTIONS;
             actions = new LimitedList<IAction>(capacity);
         }
+        public ActionsManager() : this(DEFAULT_CAPACITY) { }
 
         public int PerformedActionsCount { get { return actions.Count; } }
 

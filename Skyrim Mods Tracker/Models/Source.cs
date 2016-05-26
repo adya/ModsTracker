@@ -2,7 +2,6 @@
 using SMT.JsonConverters;
 using SMT.Managers;
 using SMT.Models.PropertyInterfaces;
-using SMT.Utils;
 using System;
 
 namespace SMT.Models

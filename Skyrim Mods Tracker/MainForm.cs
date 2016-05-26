@@ -37,9 +37,13 @@ namespace SMT
             File = 3
         }
 
-        private BindingList<Mod> mods;
+        private List<Mod> mods;
         private Mod selectedMod;
-        private BindingList<Source> sources;
+        private int selectedModIndex;
+
+        private List<Source> sources;
+        private Source selectedSource;
+        private int selectedSorceIndex;
 
         private BackgroundWorker bgWorker;
         private int pendingDialogs; // used to update status when dialogs are pending
@@ -48,10 +52,7 @@ namespace SMT
         {
             InitializeComponent();
 
-            mods = new BindingList<Mod>(ModsManager.Mods.ToList());
-            sources = new BindingList<Source>();
-            bsMods.DataSource = mods;
-
+            mods = ModsManager.Mods.ToList();
             cbSourceLanguage.DataSource = Enum.GetValues(typeof(Language));
 
             bgWorker = new BackgroundWorker();
@@ -88,7 +89,15 @@ namespace SMT
             MarkMods();
         }
 
+        #region Manual "Data Binding"
 
+        private void SelectMod(int index) { if (index < 0 || index >= mods.Count) return; selectedModIndex = index; selectedMod = mods[selectedModIndex]; }
+        private void LoadSelectedMod() { tbModName.Text = selectedMod.Name; }
+        private void AddMod() { dgvMods.Rows.Add(); mods.Add(new Mod()); }
+        private void RemoveMod(int index) { if (index < 0 || index >= mods.Count) return; mods.RemoveAt(index); dgvMods.Rows.RemoveAt(index); }
+
+
+        #endregion
 
         private bool SaveSources(Mod mod, bool supressWarning = false)
         {
@@ -149,7 +158,6 @@ namespace SMT
             if (!isEditable)
             {
                 dgvMods.ClearSelection();
-                bsMods.SuspendBinding();
                 tbModName.Clear();
                 tbModRoot.Clear();
                 tbModVersion.Clear();
@@ -160,7 +168,6 @@ namespace SMT
                 dgvSources.DataSource = null;
             }
             else {
-                bsMods.ResumeBinding();
                 MarkSources();
             }
         }
@@ -175,7 +182,6 @@ namespace SMT
             if (!isEditable)
             {
                 dgvSources.ClearSelection();
-                bsSources.SuspendBinding();
                 cbSourceLanguage.SelectedIndex = -1;
                 tbSourceURL.Clear();
                 tbSourceVersion.Clear();
@@ -183,8 +189,6 @@ namespace SMT
                 tbSourceURL.ClearMessage();
                 bUpdate.Enabled = false;
             }
-            else
-                bsSources.ResumeBinding();
         }
 
         private void SetUIEnabled(bool isEnabled)
@@ -207,29 +211,25 @@ namespace SMT
 
         private void ValidateModName()
         {
-            var cur = bsMods.Current as Mod;
-            if (cur == null) return;
-            if (!cur.HasValidName) tbModName.SetError("Name must not be empty.");
-            else if (!cur.HasUniqueName()) tbModName.SetWarning("Name must be unique.");
+            if (selectedMod == null) return;
+            if (!selectedMod.HasValidName) tbModName.SetError("Name must not be empty.");
+            else if (!selectedMod.HasUniqueName()) tbModName.SetWarning("Name must be unique.");
             else tbModName.SetValidMessage();
         }
         private void ValidateModVersion()
         {
-            var cur = bsMods.Current as Mod;
-            if (cur == null) return;
-            if (!cur.HasValidVersion) tbModVersion.SetError("Version must not be empty.");
+            if (selectedMod == null) return;
+            if (!selectedMod.HasValidVersion) tbModVersion.SetError("Version must not be empty.");
             else tbModVersion.SetValidMessage();
         }
         private void ValidateModFileName()
         {
-            var cur = bsMods.Current as Mod;
-            if (cur == null) return;
-            if (!cur.HasValidFileName) tbModRoot.SetWarning("Set valid root to provide version naming feature.");
+            if (selectedMod == null) return;
+            if (!selectedMod.HasValidFileName) tbModRoot.SetWarning("Set valid root to provide version naming feature.");
             else tbModRoot.SetValidMessage();
         }
         private void ValidateModFields()
         {
-            if (bsMods.IsBindingSuspended) return;
             ValidateModName();
             ValidateModVersion();
             ValidateModFileName();
@@ -237,22 +237,19 @@ namespace SMT
 
         private void ValidateSourceURL()
         {
-            var cur = bsSources.Current as Source;
-            if (cur == null) return;
-            if (!cur.HasValidURL) tbSourceURL.SetError("Malformed URL.");
-            else if (!cur.HasKnownServer) tbSourceURL.SetError("Uknown server domain.");
+            if (selectedSource == null) return;
+            if (!selectedSource.HasValidURL) tbSourceURL.SetError("Malformed URL.");
+            else if (!selectedSource.HasKnownServer) tbSourceURL.SetError("Uknown server domain.");
             else tbSourceURL.SetValidMessage();
         }
         private void ValidateSourceVersion()
         {
-            var cur = bsSources.Current as Source;
-            if (cur == null) return;
-            if (!tbSourceVersion.Enabled && !cur.HasValidVersion) tbSourceVersion.SetError("Version must not be empty.");
+            if (selectedSource == null) return;
+            if (!tbSourceVersion.Enabled && !selectedSource.HasValidVersion) tbSourceVersion.SetError("Version must not be empty.");
             else tbSourceVersion.SetValidMessage();
         }
         private void ValidateSourceFields()
         {
-            if (bsSources.IsBindingSuspended) return;
             ValidateSourceURL();
             ValidateSourceVersion();
         }
@@ -264,7 +261,7 @@ namespace SMT
         }
         private void MarkMod(int index)
         {
-            if (index < 0 || index >= mods.Count) return;
+            if (index < 0 || index >= dgvMods.Rows.Count) return;
             Mod mod = mods[index];
             DataGridViewRow row = dgvMods.Rows[index];
             DataGridViewCell cell = row.Cells[(int)ModColumns.State];
@@ -451,38 +448,11 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= ScanModsWorkCompleted;
         }
 
-        private void bsMods_CurrentChanged(object sender, EventArgs e)
-        {
-            if (bsMods.Current == null) { return; }
-            (bsMods.Current as Mod).UpdateState();
-            MarkMod(bsMods.Position);
-        }
-
-        private void bsMods_CurrentItemChanged(object sender, EventArgs e)
-        {
-            if (bsMods.Current == null) { SetModEditable(false); return; }
-          
-            selectedMod = bsMods.Current as Mod;
-            sources = new BindingList<Source>(selectedMod.Sources.ToList());
-            bsSources.DataSource = sources;
-            dgvSources.DataSource = bsSources;
-            dgvSources.ClearSelection();
-            SetModEditable(mods.Count > 0);
-        }
-        private void bsSources_CurrentItemChanged(object sender, EventArgs e)
-        {
-            ValidateSourceFields();
-            SetSourceEditable(sources.Count > 0);
-            //if (bsSources.Current != null)
-            //    bUpdate.Enabled = (bsSources.Current as ModSource).State == SourceState.Update;
-        }
-
         private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == (int)ModColumns.State) // "State cell except header"
                 RunCheckMods(new Mod[] { mods[e.RowIndex] });
         }
-
         private void dgvSources_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == (int)SourcesColumns.Server || e.ColumnIndex == (int)SourcesColumns.Path)
@@ -526,26 +496,15 @@ namespace SMT
 
         private void OnModTextChanged(object sender, EventArgs e)
         {
-            if (bsMods.IsBindingSuspended) return;
-            bsMods.EndEdit();
-            (sender as TextBox).TextChanged -= OnModTextChanged;
-            bsMods.ResetCurrentItem();
-            (sender as TextBox).TextChanged += OnModTextChanged;
             ValidateModFields();
-            var cur = bsMods.Current as Mod;
-            if (cur != null)
+            if (selectedMod != null)
             {
-                cur.UpdateState();
-                MarkMod(bsMods.Position);
+                selectedMod.UpdateState();
+                MarkMod(selectedModIndex);
             }
         }
         private void OnSourceTextChanged(object sender, EventArgs e)
         {
-            if (bsSources.IsBindingSuspended) return;
-            bsSources.EndEdit();
-            (sender as TextBox).TextChanged -= OnSourceTextChanged;
-            bsSources.ResetCurrentItem();
-            (sender as TextBox).TextChanged += OnSourceTextChanged;
             ValidateSourceFields();
             MarkSources();
         }
@@ -553,31 +512,24 @@ namespace SMT
         private void bBrowse_Click(object sender, EventArgs e)
         {
             if (DialogResult.OK == ofdRoot.ShowDialog())
-            {
                 tbModRoot.Text = Path.GetFileName(ofdRoot.FileName);
-                bsMods.EndEdit();
-            }
         }
         private void bAddMod_Click(object sender, EventArgs e)
         {
-            bsMods.AddNew();
             SetModEditable(true);
             EditRow(dgvMods, mods.Count - 1);
         }
         private void bRemoveMod_Click(object sender, EventArgs e)
         {
-            bsMods.RemoveCurrent();
             SetModEditable(mods.Count > 0);
         }
         private void bAddSource_Click(object sender, EventArgs e)
         {
-            bsSources.AddNew();
             SetSourceEditable(true);
             EditRow(dgvSources, sources.Count - 1);
         }
         private void bRemoveSource_Click(object sender, EventArgs e)
         {
-            bsSources.RemoveCurrent();
             SetSourceEditable(sources.Count > 0);
         }
 
@@ -592,7 +544,6 @@ namespace SMT
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Save();
-            bsMods.ResetBindings(false);
             MarkMods();
         }
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -657,29 +608,23 @@ namespace SMT
             Source source;
             if (SourcesManager.TryBuildModSource(sourceURL, out source))
             {
-                bsSources.Add(source);
                 SetSourceEditable(true);
             }
-            bsSources.ResetBindings(false);
-            if (bsMods.Current != null)
+            if (selectedMod != null)
             {
-                (bsMods.Current as Mod).UpdateState();
-                bsMods.ResetCurrentItem();
-                MarkMod(bsMods.Position);
+                selectedMod.UpdateState();
+                MarkMod(selectedModIndex);
             }
         }
 
         private void bUpdate_Click(object sender, EventArgs e)
         {
-            var src = bsSources.Current as Source;
-            var mod = bsMods.Current as Mod;
-            if (src != null && mod != null)
+            if (selectedSource != null && selectedMod != null)
             {
-                mod.Version = src.Version;
-                bsMods.EndEdit();
-                bsMods.ResetCurrentItem();
-                mod.UpdateState();
-                MarkMod(bsMods.Position);
+                selectedMod.Version = selectedSource.Version;
+                selectedMod.Language = selectedSource.Language;
+                selectedMod.UpdateState();
+                MarkMod(selectedModIndex);
                 MarkSources();
             }
 

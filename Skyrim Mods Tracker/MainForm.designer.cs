@@ -124,21 +124,18 @@
             this.dataGridViewLinkColumn34 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn35 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn36 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn37 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn38 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn39 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn40 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.modLanguageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsMods = new System.Windows.Forms.BindingSource(this.components);
             this.bUpdate = new SMT.Utils.StateButton();
             this.bAddSource = new SMT.Utils.StateButton();
             this.bRemoveSource = new SMT.Utils.StateButton();
-            this.bsSources = new System.Windows.Forms.BindingSource(this.components);
             this.bAddMod = new SMT.Utils.StateButton();
             this.bRemoveMod = new SMT.Utils.StateButton();
             this.bBrowse = new SMT.Utils.StateButton();
             this.serverDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.sourceLanguageDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionModDataGridViewTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.ssStatus.SuspendLayout();
             this.msMenu.SuspendLayout();
@@ -150,8 +147,6 @@
             this.gbMod.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSources)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsMods)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSources)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvMods
@@ -160,21 +155,16 @@
             this.dgvMods.AllowUserToDeleteRows = false;
             this.dgvMods.AllowUserToOrderColumns = true;
             this.dgvMods.AllowUserToResizeRows = false;
-            this.dgvMods.AutoGenerateColumns = false;
             this.dgvMods.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMods.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMods.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvMods.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMods.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvMods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.versionDataGridViewTextBoxColumn,
             this.State,
             this.modLanguageDataGridViewTextBoxColumn,
-            this.FileName,
-            this.iDDataGridViewTextBoxColumn});
+            this.FileName});
             this.dgvMods.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvMods.DataSource = this.bsMods;
             this.dgvMods.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMods.EnableHeadersVisualStyles = false;
@@ -685,7 +675,6 @@
             // 
             this.tbSourceURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSourceURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "URL", true));
             this.tbSourceURL.Location = new System.Drawing.Point(70, 20);
             this.tbSourceURL.Name = "tbSourceURL";
             this.tbSourceURL.Size = new System.Drawing.Size(253, 20);
@@ -728,7 +717,6 @@
             // tbSourceVersion
             // 
             this.tbSourceVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSourceVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Version", true));
             this.tbSourceVersion.Location = new System.Drawing.Point(70, 100);
             this.tbSourceVersion.Name = "tbSourceVersion";
             this.tbSourceVersion.Size = new System.Drawing.Size(232, 20);
@@ -747,8 +735,6 @@
             // 
             this.cbSourceLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbSourceLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Language", true));
-            this.cbSourceLanguage.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsSources, "Language", true));
             this.cbSourceLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSourceLanguage.FormattingEnabled = true;
             this.cbSourceLanguage.Location = new System.Drawing.Point(70, 60);
@@ -803,8 +789,6 @@
             // 
             this.cbModLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbModLanguage.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSources, "Language", true));
-            this.cbModLanguage.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsMods, "Language", true));
             this.cbModLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModLanguage.FormattingEnabled = true;
             this.cbModLanguage.Location = new System.Drawing.Point(70, 99);
@@ -863,7 +847,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbModRoot.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.tbModRoot.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbModRoot.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "FileName", true));
             this.tbModRoot.Location = new System.Drawing.Point(70, 135);
             this.tbModRoot.Name = "tbModRoot";
             this.tbModRoot.Size = new System.Drawing.Size(227, 20);
@@ -873,7 +856,6 @@
             // 
             this.tbModVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbModVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Version", true));
             this.tbModVersion.Location = new System.Drawing.Point(70, 60);
             this.tbModVersion.Name = "tbModVersion";
             this.tbModVersion.Size = new System.Drawing.Size(253, 20);
@@ -883,7 +865,6 @@
             // 
             this.tbModName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbModName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsMods, "Name", true));
             this.tbModName.Location = new System.Drawing.Point(70, 20);
             this.tbModName.Name = "tbModName";
             this.tbModName.Size = new System.Drawing.Size(253, 20);
@@ -938,17 +919,13 @@
             this.dgvSources.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSources.AutoGenerateColumns = false;
             this.dgvSources.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSources.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSources.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvSources.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.serverDataGridViewLinkColumn,
-            this.sourceLanguageDataGridViewTextColumn,
-            this.versionModDataGridViewTextColumn,
             this.SourceStateString,
             this.pathDataGridViewLinkColumn});
-            this.dgvSources.DataSource = this.bsSources;
             this.dgvSources.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvSources.EnableHeadersVisualStyles = false;
             this.dgvSources.Location = new System.Drawing.Point(10, 19);
@@ -1114,21 +1091,45 @@
             this.dataGridViewLinkColumn36.TrackVisitedState = false;
             this.dataGridViewLinkColumn36.Width = 43;
             // 
-            // nameDataGridViewTextBoxColumn
+            // dataGridViewLinkColumn37
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 59;
+            this.dataGridViewLinkColumn37.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn37.HeaderText = "Server";
+            this.dataGridViewLinkColumn37.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn37.Name = "dataGridViewLinkColumn37";
+            this.dataGridViewLinkColumn37.ReadOnly = true;
+            this.dataGridViewLinkColumn37.TrackVisitedState = false;
+            this.dataGridViewLinkColumn37.Width = 43;
             // 
-            // versionDataGridViewTextBoxColumn
+            // dataGridViewLinkColumn38
             // 
-            this.versionDataGridViewTextBoxColumn.DataPropertyName = "Version";
-            this.versionDataGridViewTextBoxColumn.HeaderText = "Version";
-            this.versionDataGridViewTextBoxColumn.Name = "versionDataGridViewTextBoxColumn";
-            this.versionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.versionDataGridViewTextBoxColumn.Width = 66;
+            this.dataGridViewLinkColumn38.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn38.HeaderText = "Server";
+            this.dataGridViewLinkColumn38.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn38.Name = "dataGridViewLinkColumn38";
+            this.dataGridViewLinkColumn38.ReadOnly = true;
+            this.dataGridViewLinkColumn38.TrackVisitedState = false;
+            this.dataGridViewLinkColumn38.Width = 43;
+            // 
+            // dataGridViewLinkColumn39
+            // 
+            this.dataGridViewLinkColumn39.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn39.HeaderText = "Server";
+            this.dataGridViewLinkColumn39.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn39.Name = "dataGridViewLinkColumn39";
+            this.dataGridViewLinkColumn39.ReadOnly = true;
+            this.dataGridViewLinkColumn39.TrackVisitedState = false;
+            this.dataGridViewLinkColumn39.Width = 43;
+            // 
+            // dataGridViewLinkColumn40
+            // 
+            this.dataGridViewLinkColumn40.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn40.HeaderText = "Server";
+            this.dataGridViewLinkColumn40.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn40.Name = "dataGridViewLinkColumn40";
+            this.dataGridViewLinkColumn40.ReadOnly = true;
+            this.dataGridViewLinkColumn40.TrackVisitedState = false;
+            this.dataGridViewLinkColumn40.Width = 43;
             // 
             // modLanguageDataGridViewTextBoxColumn
             // 
@@ -1137,21 +1138,6 @@
             this.modLanguageDataGridViewTextBoxColumn.Name = "modLanguageDataGridViewTextBoxColumn";
             this.modLanguageDataGridViewTextBoxColumn.ReadOnly = true;
             this.modLanguageDataGridViewTextBoxColumn.Width = 79;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            this.iDDataGridViewTextBoxColumn.Width = 42;
-            // 
-            // bsMods
-            // 
-            this.bsMods.DataSource = typeof(SMT.Models.Mod);
-            this.bsMods.CurrentChanged += new System.EventHandler(this.bsMods_CurrentChanged);
-            this.bsMods.CurrentItemChanged += new System.EventHandler(this.bsMods_CurrentItemChanged);
             // 
             // bUpdate
             // 
@@ -1203,11 +1189,6 @@
             this.bRemoveSource.TabIndex = 12;
             this.bRemoveSource.Text = "Remove";
             this.bRemoveSource.UseVisualStyleBackColor = false;
-            // 
-            // bsSources
-            // 
-            this.bsSources.DataSource = typeof(SMT.Models.Source);
-            this.bsSources.CurrentItemChanged += new System.EventHandler(this.bsSources_CurrentItemChanged);
             // 
             // bAddMod
             // 
@@ -1271,22 +1252,6 @@
             this.serverDataGridViewLinkColumn.TrackVisitedState = false;
             this.serverDataGridViewLinkColumn.Width = 43;
             // 
-            // sourceLanguageDataGridViewTextColumn
-            // 
-            this.sourceLanguageDataGridViewTextColumn.DataPropertyName = "Language";
-            this.sourceLanguageDataGridViewTextColumn.HeaderText = "Language";
-            this.sourceLanguageDataGridViewTextColumn.Name = "sourceLanguageDataGridViewTextColumn";
-            this.sourceLanguageDataGridViewTextColumn.ReadOnly = true;
-            this.sourceLanguageDataGridViewTextColumn.Width = 79;
-            // 
-            // versionModDataGridViewTextColumn
-            // 
-            this.versionModDataGridViewTextColumn.DataPropertyName = "Version";
-            this.versionModDataGridViewTextColumn.HeaderText = "Version";
-            this.versionModDataGridViewTextColumn.Name = "versionModDataGridViewTextColumn";
-            this.versionModDataGridViewTextColumn.ReadOnly = true;
-            this.versionModDataGridViewTextColumn.Width = 66;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1317,8 +1282,6 @@
             this.gbMod.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSources)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsMods)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSources)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1327,8 +1290,6 @@
         #endregion
         private System.Windows.Forms.DataGridView dgvMods;
         private System.Windows.Forms.OpenFileDialog ofdRoot;
-        private System.Windows.Forms.BindingSource bsSources;
-        private System.Windows.Forms.BindingSource bsMods;
         private System.Windows.Forms.DataGridViewTextBoxColumn rootDataGridViewTextBoxColumn;
         private System.Windows.Forms.StatusStrip ssStatus;
         private System.Windows.Forms.ToolStripProgressBar spbStatusProgress;
@@ -1417,15 +1378,10 @@
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn29;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn30;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn31;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn State;
         private System.Windows.Forms.DataGridViewTextBoxColumn modLanguageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewLinkColumn serverDataGridViewLinkColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sourceLanguageDataGridViewTextColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionModDataGridViewTextColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SourceStateString;
         private System.Windows.Forms.DataGridViewLinkColumn pathDataGridViewLinkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -1434,6 +1390,10 @@
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn34;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn35;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn36;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn37;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn38;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn39;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn40;
     }
 }
 

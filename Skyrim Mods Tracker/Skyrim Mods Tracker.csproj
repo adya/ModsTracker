@@ -56,6 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ModsActions\EditModelAction.cs" />
+    <Compile Include="Actions\ModsActions\RemoveModelAction.cs" />
+    <Compile Include="Actions\ModsActions\AddModelAction.cs" />
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Actions\NamedAction.cs" />
     <Compile Include="JsonConverters\VersionJsonConverter.cs" />
     <Compile Include="JsonConverters\SourcesJsonConverter.cs" />
     <Compile Include="JsonConverters\ServerJsonConverter.cs" />
@@ -65,6 +70,7 @@
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Managers\ActionsManager.cs" />
     <Compile Include="Managers\ModsManager.cs" />
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\SettingsManager.cs" />
@@ -100,6 +106,7 @@
       <DependentUpon>ServersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\DictionaryExtensions.cs" />
+    <Compile Include="Utils\LimitedList.cs" />
     <Compile Include="Utils\StateButton.cs">
       <SubType>Component</SubType>
     </Compile>

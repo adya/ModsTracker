@@ -20,12 +20,6 @@ namespace SMT.Models
         /// </summary>
         public Version Version { get; set; }
 
-
-        /// <summary>
-        /// Name of the mod's file.
-        /// </summary>
-        public string FileName { get { return filename; } set { filename = StringUtils.NonNull(value); } }
-
         /// <summary>
         /// Represents localization language of the mod.
         /// </summary>
@@ -51,22 +45,12 @@ namespace SMT.Models
         [JsonIgnore]
         public bool HasValidVersion { get { return Version != null; } }
 
-        [JsonIgnore]
-        public bool HasValidFileName
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(FileName)) return false;
-                string path = (SettingsManager.HasValidModsLocation ? Path.Combine(SettingsManager.ModsLocation, filename) : filename);
-                return File.Exists(path) || Directory.Exists(path);
-            }
-        }
 
         /// <summary>
         /// Checks whether the mod has valid configuration.
         /// </summary>
         [JsonIgnore]
-        public bool IsValid { get { return HasValidName && HasValidVersion && HasValidFileName; } }
+        public bool IsValid { get { return HasValidName && HasValidVersion; } }
 
         public Mod() : base() { }
 
@@ -77,25 +61,18 @@ namespace SMT.Models
         {
             base.Init();
             Version = new Version();
-            FileName = "";
             Sources = new HashSet<Source>();
         }
 
         public override void Normalize()
         {
-            FileName = FileName.Trim();
             foreach (var src in Sources)
                 src.Normalize();
-            this.UpdateFilename();
         }
 
         public void UpdateState()
         {
-            if (string.IsNullOrWhiteSpace(FileName))
-                State = ModState.MissedFile;
-            else if (!HasValidFileName)
-                State = ModState.InvlaidFilePath;
-            else if (Sources == null || Sources.Count == 0)
+            if (Sources == null || Sources.Count == 0)
                 State = ModState.NotTracking;
             else if (Sources.Count(s => s.State != SourceState.Available) > 0)
                 State = ModState.NotTracking;
@@ -117,7 +94,6 @@ namespace SMT.Models
             base.CopyTo(mod);
             if (mod == null) return;
             mod.Version = Version;
-            mod.FileName = FileName;
             mod.State = State;
             mod.Language = Language;
             mod.Sources = mod.Sources;

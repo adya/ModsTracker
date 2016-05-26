@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dgvMods = new System.Windows.Forms.DataGridView();
@@ -37,9 +36,6 @@
             this.spbStatusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.slStatusTitle = new System.Windows.Forms.ToolStripStatusLabel();
             this.checkModsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenu = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -75,16 +71,10 @@
             this.dataGridViewLinkColumn15 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn16 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.container = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewLinkColumn17 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn18 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn19 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn20 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn21 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn22 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn23 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn24 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewLinkColumn25 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.gbSource = new System.Windows.Forms.GroupBox();
+            this.bUpdate = new SMT.Utils.StateButton();
+            this.bAddSource = new SMT.Utils.StateButton();
+            this.bRemoveSource = new SMT.Utils.StateButton();
             this.tbSourceURL = new System.Windows.Forms.TextBox();
             this.cbManual = new System.Windows.Forms.CheckBox();
             this.lSrcVersionError = new System.Windows.Forms.Label();
@@ -97,27 +87,34 @@
             this.gbMod = new System.Windows.Forms.GroupBox();
             this.cbModLanguage = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lRootError = new System.Windows.Forms.Label();
             this.lVersionError = new System.Windows.Forms.Label();
             this.lNameError = new System.Windows.Forms.Label();
-            this.tbModRoot = new System.Windows.Forms.TextBox();
+            this.bAddMod = new SMT.Utils.StateButton();
+            this.bRemoveMod = new SMT.Utils.StateButton();
             this.tbModVersion = new System.Windows.Forms.TextBox();
             this.tbModName = new System.Windows.Forms.TextBox();
-            this.lRoot = new System.Windows.Forms.Label();
             this.lVersion = new System.Windows.Forms.Label();
             this.lName = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvSources = new System.Windows.Forms.DataGridView();
+            this.serverDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.SourceStateString = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn17 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn18 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn19 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn20 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn21 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn22 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn23 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn24 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.dataGridViewLinkColumn25 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn26 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn27 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn28 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn29 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn30 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn31 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.State = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SourceStateString = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewLinkColumn32 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn33 = new System.Windows.Forms.DataGridViewLinkColumn();
@@ -128,14 +125,9 @@
             this.dataGridViewLinkColumn38 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn39 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn40 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.State = new System.Windows.Forms.DataGridViewButtonColumn();
             this.modLanguageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bUpdate = new SMT.Utils.StateButton();
-            this.bAddSource = new SMT.Utils.StateButton();
-            this.bRemoveSource = new SMT.Utils.StateButton();
-            this.bAddMod = new SMT.Utils.StateButton();
-            this.bRemoveMod = new SMT.Utils.StateButton();
-            this.bBrowse = new SMT.Utils.StateButton();
-            this.serverDataGridViewLinkColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.serversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.ssStatus.SuspendLayout();
             this.msMenu.SuspendLayout();
@@ -162,8 +154,7 @@
             this.dgvMods.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvMods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.State,
-            this.modLanguageDataGridViewTextBoxColumn,
-            this.FileName});
+            this.modLanguageDataGridViewTextBoxColumn});
             this.dgvMods.Cursor = System.Windows.Forms.Cursors.Default;
             this.dgvMods.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -173,7 +164,7 @@
             this.dgvMods.ReadOnly = true;
             this.dgvMods.RowHeadersVisible = false;
             this.dgvMods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMods.Size = new System.Drawing.Size(656, 545);
+            this.dgvMods.Size = new System.Drawing.Size(656, 515);
             this.dgvMods.TabIndex = 10;
             this.dgvMods.TabStop = false;
             this.dgvMods.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellContentClick);
@@ -184,7 +175,7 @@
             this.ssStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.spbStatusProgress,
             this.slStatusTitle});
-            this.ssStatus.Location = new System.Drawing.Point(0, 569);
+            this.ssStatus.Location = new System.Drawing.Point(0, 539);
             this.ssStatus.Name = "ssStatus";
             this.ssStatus.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.ssStatus.Size = new System.Drawing.Size(998, 22);
@@ -210,35 +201,12 @@
             this.checkModsToolStripMenuItem.Text = "Check mods";
             this.checkModsToolStripMenuItem.Click += new System.EventHandler(this.checkModsToolStripMenuItem_Click);
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serversToolStripMenuItem,
-            this.preferencesToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // serversToolStripMenuItem
-            // 
-            this.serversToolStripMenuItem.Name = "serversToolStripMenuItem";
-            this.serversToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.serversToolStripMenuItem.Text = "Servers";
-            this.serversToolStripMenuItem.Click += new System.EventHandler(this.serversToolStripMenuItem_Click);
-            // 
-            // preferencesToolStripMenuItem
-            // 
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.preferencesToolStripMenuItem.Text = "Preferences";
-            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
-            // 
             // msMenu
             // 
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.checkModsToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.serversToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(998, 24);
@@ -554,99 +522,9 @@
             this.container.Panel2.Controls.Add(this.gbMod);
             this.container.Panel2.Controls.Add(this.groupBox1);
             this.container.Panel2MinSize = 320;
-            this.container.Size = new System.Drawing.Size(998, 545);
+            this.container.Size = new System.Drawing.Size(998, 515);
             this.container.SplitterDistance = 656;
             this.container.TabIndex = 12;
-            // 
-            // dataGridViewLinkColumn17
-            // 
-            this.dataGridViewLinkColumn17.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn17.HeaderText = "Server";
-            this.dataGridViewLinkColumn17.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn17.Name = "dataGridViewLinkColumn17";
-            this.dataGridViewLinkColumn17.ReadOnly = true;
-            this.dataGridViewLinkColumn17.TrackVisitedState = false;
-            this.dataGridViewLinkColumn17.Width = 42;
-            // 
-            // dataGridViewLinkColumn18
-            // 
-            this.dataGridViewLinkColumn18.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn18.HeaderText = "Server";
-            this.dataGridViewLinkColumn18.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn18.Name = "dataGridViewLinkColumn18";
-            this.dataGridViewLinkColumn18.ReadOnly = true;
-            this.dataGridViewLinkColumn18.TrackVisitedState = false;
-            this.dataGridViewLinkColumn18.Width = 42;
-            // 
-            // dataGridViewLinkColumn19
-            // 
-            this.dataGridViewLinkColumn19.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn19.HeaderText = "Server";
-            this.dataGridViewLinkColumn19.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn19.Name = "dataGridViewLinkColumn19";
-            this.dataGridViewLinkColumn19.ReadOnly = true;
-            this.dataGridViewLinkColumn19.TrackVisitedState = false;
-            this.dataGridViewLinkColumn19.Width = 42;
-            // 
-            // dataGridViewLinkColumn20
-            // 
-            this.dataGridViewLinkColumn20.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn20.HeaderText = "Server";
-            this.dataGridViewLinkColumn20.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn20.Name = "dataGridViewLinkColumn20";
-            this.dataGridViewLinkColumn20.ReadOnly = true;
-            this.dataGridViewLinkColumn20.TrackVisitedState = false;
-            this.dataGridViewLinkColumn20.Width = 42;
-            // 
-            // dataGridViewLinkColumn21
-            // 
-            this.dataGridViewLinkColumn21.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn21.HeaderText = "Server";
-            this.dataGridViewLinkColumn21.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn21.Name = "dataGridViewLinkColumn21";
-            this.dataGridViewLinkColumn21.ReadOnly = true;
-            this.dataGridViewLinkColumn21.TrackVisitedState = false;
-            this.dataGridViewLinkColumn21.Width = 42;
-            // 
-            // dataGridViewLinkColumn22
-            // 
-            this.dataGridViewLinkColumn22.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn22.HeaderText = "Server";
-            this.dataGridViewLinkColumn22.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn22.Name = "dataGridViewLinkColumn22";
-            this.dataGridViewLinkColumn22.ReadOnly = true;
-            this.dataGridViewLinkColumn22.TrackVisitedState = false;
-            this.dataGridViewLinkColumn22.Width = 42;
-            // 
-            // dataGridViewLinkColumn23
-            // 
-            this.dataGridViewLinkColumn23.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn23.HeaderText = "Server";
-            this.dataGridViewLinkColumn23.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn23.Name = "dataGridViewLinkColumn23";
-            this.dataGridViewLinkColumn23.ReadOnly = true;
-            this.dataGridViewLinkColumn23.TrackVisitedState = false;
-            this.dataGridViewLinkColumn23.Width = 42;
-            // 
-            // dataGridViewLinkColumn24
-            // 
-            this.dataGridViewLinkColumn24.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn24.HeaderText = "Server";
-            this.dataGridViewLinkColumn24.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn24.Name = "dataGridViewLinkColumn24";
-            this.dataGridViewLinkColumn24.ReadOnly = true;
-            this.dataGridViewLinkColumn24.TrackVisitedState = false;
-            this.dataGridViewLinkColumn24.Width = 42;
-            // 
-            // dataGridViewLinkColumn25
-            // 
-            this.dataGridViewLinkColumn25.DataPropertyName = "Server";
-            this.dataGridViewLinkColumn25.HeaderText = "Server";
-            this.dataGridViewLinkColumn25.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.dataGridViewLinkColumn25.Name = "dataGridViewLinkColumn25";
-            this.dataGridViewLinkColumn25.ReadOnly = true;
-            this.dataGridViewLinkColumn25.TrackVisitedState = false;
-            this.dataGridViewLinkColumn25.Width = 42;
             // 
             // gbSource
             // 
@@ -664,12 +542,63 @@
             this.gbSource.Controls.Add(this.cbSourceLanguage);
             this.gbSource.Controls.Add(this.lLanguage);
             this.gbSource.Controls.Add(this.lServer);
-            this.gbSource.Location = new System.Drawing.Point(3, 365);
+            this.gbSource.Location = new System.Drawing.Point(3, 343);
             this.gbSource.Name = "gbSource";
             this.gbSource.Size = new System.Drawing.Size(332, 169);
             this.gbSource.TabIndex = 7;
             this.gbSource.TabStop = false;
             this.gbSource.Text = "Source";
+            // 
+            // bUpdate
+            // 
+            this.bUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bUpdate.BackColor = System.Drawing.Color.GreenYellow;
+            this.bUpdate.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bUpdate.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bUpdate.EnabledBackColor = System.Drawing.Color.GreenYellow;
+            this.bUpdate.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bUpdate.Location = new System.Drawing.Point(10, 140);
+            this.bUpdate.Name = "bUpdate";
+            this.bUpdate.Size = new System.Drawing.Size(130, 23);
+            this.bUpdate.TabIndex = 13;
+            this.bUpdate.Text = "Update from this source";
+            this.bUpdate.UseVisualStyleBackColor = false;
+            // 
+            // bAddSource
+            // 
+            this.bAddSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddSource.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAddSource.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAddSource.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAddSource.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAddSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAddSource.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddSource.Location = new System.Drawing.Point(167, 140);
+            this.bAddSource.Name = "bAddSource";
+            this.bAddSource.Size = new System.Drawing.Size(75, 23);
+            this.bAddSource.TabIndex = 13;
+            this.bAddSource.Text = "Add";
+            this.bAddSource.UseVisualStyleBackColor = false;
+            // 
+            // bRemoveSource
+            // 
+            this.bRemoveSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRemoveSource.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveSource.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemoveSource.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemoveSource.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemoveSource.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveSource.Location = new System.Drawing.Point(248, 140);
+            this.bRemoveSource.Name = "bRemoveSource";
+            this.bRemoveSource.Size = new System.Drawing.Size(75, 23);
+            this.bRemoveSource.TabIndex = 12;
+            this.bRemoveSource.Text = "Remove";
+            this.bRemoveSource.UseVisualStyleBackColor = false;
             // 
             // tbSourceURL
             // 
@@ -766,21 +695,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMod.Controls.Add(this.cbModLanguage);
             this.gbMod.Controls.Add(this.label1);
-            this.gbMod.Controls.Add(this.lRootError);
             this.gbMod.Controls.Add(this.lVersionError);
             this.gbMod.Controls.Add(this.lNameError);
             this.gbMod.Controls.Add(this.bAddMod);
             this.gbMod.Controls.Add(this.bRemoveMod);
-            this.gbMod.Controls.Add(this.bBrowse);
-            this.gbMod.Controls.Add(this.tbModRoot);
             this.gbMod.Controls.Add(this.tbModVersion);
             this.gbMod.Controls.Add(this.tbModName);
-            this.gbMod.Controls.Add(this.lRoot);
             this.gbMod.Controls.Add(this.lVersion);
             this.gbMod.Controls.Add(this.lName);
             this.gbMod.Location = new System.Drawing.Point(3, 3);
             this.gbMod.Name = "gbMod";
-            this.gbMod.Size = new System.Drawing.Size(332, 210);
+            this.gbMod.Size = new System.Drawing.Size(332, 158);
             this.gbMod.TabIndex = 5;
             this.gbMod.TabStop = false;
             this.gbMod.Text = "Mod";
@@ -804,18 +729,6 @@
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Language:";
-            // 
-            // lRootError
-            // 
-            this.lRootError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lRootError.AutoSize = true;
-            this.lRootError.Location = new System.Drawing.Point(78, 158);
-            this.lRootError.Name = "lRootError";
-            this.lRootError.Size = new System.Drawing.Size(29, 13);
-            this.lRootError.TabIndex = 7;
-            this.lRootError.Text = "Error";
-            this.lRootError.Visible = false;
             // 
             // lVersionError
             // 
@@ -841,16 +754,39 @@
             this.lNameError.Text = "Error";
             this.lNameError.Visible = false;
             // 
-            // tbModRoot
+            // bAddMod
             // 
-            this.tbModRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbModRoot.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.tbModRoot.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbModRoot.Location = new System.Drawing.Point(70, 135);
-            this.tbModRoot.Name = "tbModRoot";
-            this.tbModRoot.Size = new System.Drawing.Size(227, 20);
-            this.tbModRoot.TabIndex = 3;
+            this.bAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bAddMod.BackColor = System.Drawing.Color.ForestGreen;
+            this.bAddMod.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bAddMod.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bAddMod.EnabledBackColor = System.Drawing.Color.ForestGreen;
+            this.bAddMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bAddMod.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bAddMod.Location = new System.Drawing.Point(167, 129);
+            this.bAddMod.Name = "bAddMod";
+            this.bAddMod.Size = new System.Drawing.Size(75, 23);
+            this.bAddMod.TabIndex = 6;
+            this.bAddMod.Text = "Add";
+            this.bAddMod.UseVisualStyleBackColor = false;
+            // 
+            // bRemoveMod
+            // 
+            this.bRemoveMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bRemoveMod.BackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveMod.DisabledBackColor = System.Drawing.Color.LightGray;
+            this.bRemoveMod.DisabledForeColor = System.Drawing.Color.DimGray;
+            this.bRemoveMod.EnabledBackColor = System.Drawing.Color.LightCoral;
+            this.bRemoveMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemoveMod.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bRemoveMod.Location = new System.Drawing.Point(248, 129);
+            this.bRemoveMod.Name = "bRemoveMod";
+            this.bRemoveMod.Size = new System.Drawing.Size(75, 23);
+            this.bRemoveMod.TabIndex = 5;
+            this.bRemoveMod.Text = "Remove";
+            this.bRemoveMod.UseVisualStyleBackColor = false;
             // 
             // tbModVersion
             // 
@@ -869,15 +805,6 @@
             this.tbModName.Name = "tbModName";
             this.tbModName.Size = new System.Drawing.Size(253, 20);
             this.tbModName.TabIndex = 1;
-            // 
-            // lRoot
-            // 
-            this.lRoot.AutoSize = true;
-            this.lRoot.Location = new System.Drawing.Point(7, 138);
-            this.lRoot.Name = "lRoot";
-            this.lRoot.Size = new System.Drawing.Size(26, 13);
-            this.lRoot.TabIndex = 0;
-            this.lRoot.Text = "File:";
             // 
             // lVersion
             // 
@@ -903,9 +830,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dgvSources);
-            this.groupBox1.Location = new System.Drawing.Point(3, 219);
+            this.groupBox1.Location = new System.Drawing.Point(3, 167);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 140);
+            this.groupBox1.Size = new System.Drawing.Size(332, 170);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sources";
@@ -933,9 +860,125 @@
             this.dgvSources.ReadOnly = true;
             this.dgvSources.RowHeadersVisible = false;
             this.dgvSources.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSources.Size = new System.Drawing.Size(313, 111);
+            this.dgvSources.Size = new System.Drawing.Size(313, 145);
             this.dgvSources.TabIndex = 11;
             this.dgvSources.TabStop = false;
+            // 
+            // serverDataGridViewLinkColumn
+            // 
+            this.serverDataGridViewLinkColumn.DataPropertyName = "Server";
+            this.serverDataGridViewLinkColumn.HeaderText = "Server";
+            this.serverDataGridViewLinkColumn.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.serverDataGridViewLinkColumn.Name = "serverDataGridViewLinkColumn";
+            this.serverDataGridViewLinkColumn.ReadOnly = true;
+            this.serverDataGridViewLinkColumn.TrackVisitedState = false;
+            this.serverDataGridViewLinkColumn.Width = 43;
+            // 
+            // SourceStateString
+            // 
+            this.SourceStateString.DataPropertyName = "StateString";
+            this.SourceStateString.HeaderText = "State";
+            this.SourceStateString.Name = "SourceStateString";
+            this.SourceStateString.ReadOnly = true;
+            this.SourceStateString.Width = 56;
+            // 
+            // pathDataGridViewLinkColumn
+            // 
+            this.pathDataGridViewLinkColumn.DataPropertyName = "Path";
+            this.pathDataGridViewLinkColumn.HeaderText = "Path";
+            this.pathDataGridViewLinkColumn.Name = "pathDataGridViewLinkColumn";
+            this.pathDataGridViewLinkColumn.ReadOnly = true;
+            this.pathDataGridViewLinkColumn.Width = 34;
+            // 
+            // dataGridViewLinkColumn17
+            // 
+            this.dataGridViewLinkColumn17.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn17.HeaderText = "Server";
+            this.dataGridViewLinkColumn17.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn17.Name = "dataGridViewLinkColumn17";
+            this.dataGridViewLinkColumn17.ReadOnly = true;
+            this.dataGridViewLinkColumn17.TrackVisitedState = false;
+            this.dataGridViewLinkColumn17.Width = 42;
+            // 
+            // dataGridViewLinkColumn18
+            // 
+            this.dataGridViewLinkColumn18.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn18.HeaderText = "Server";
+            this.dataGridViewLinkColumn18.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn18.Name = "dataGridViewLinkColumn18";
+            this.dataGridViewLinkColumn18.ReadOnly = true;
+            this.dataGridViewLinkColumn18.TrackVisitedState = false;
+            this.dataGridViewLinkColumn18.Width = 42;
+            // 
+            // dataGridViewLinkColumn19
+            // 
+            this.dataGridViewLinkColumn19.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn19.HeaderText = "Server";
+            this.dataGridViewLinkColumn19.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn19.Name = "dataGridViewLinkColumn19";
+            this.dataGridViewLinkColumn19.ReadOnly = true;
+            this.dataGridViewLinkColumn19.TrackVisitedState = false;
+            this.dataGridViewLinkColumn19.Width = 42;
+            // 
+            // dataGridViewLinkColumn20
+            // 
+            this.dataGridViewLinkColumn20.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn20.HeaderText = "Server";
+            this.dataGridViewLinkColumn20.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn20.Name = "dataGridViewLinkColumn20";
+            this.dataGridViewLinkColumn20.ReadOnly = true;
+            this.dataGridViewLinkColumn20.TrackVisitedState = false;
+            this.dataGridViewLinkColumn20.Width = 42;
+            // 
+            // dataGridViewLinkColumn21
+            // 
+            this.dataGridViewLinkColumn21.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn21.HeaderText = "Server";
+            this.dataGridViewLinkColumn21.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn21.Name = "dataGridViewLinkColumn21";
+            this.dataGridViewLinkColumn21.ReadOnly = true;
+            this.dataGridViewLinkColumn21.TrackVisitedState = false;
+            this.dataGridViewLinkColumn21.Width = 42;
+            // 
+            // dataGridViewLinkColumn22
+            // 
+            this.dataGridViewLinkColumn22.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn22.HeaderText = "Server";
+            this.dataGridViewLinkColumn22.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn22.Name = "dataGridViewLinkColumn22";
+            this.dataGridViewLinkColumn22.ReadOnly = true;
+            this.dataGridViewLinkColumn22.TrackVisitedState = false;
+            this.dataGridViewLinkColumn22.Width = 42;
+            // 
+            // dataGridViewLinkColumn23
+            // 
+            this.dataGridViewLinkColumn23.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn23.HeaderText = "Server";
+            this.dataGridViewLinkColumn23.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn23.Name = "dataGridViewLinkColumn23";
+            this.dataGridViewLinkColumn23.ReadOnly = true;
+            this.dataGridViewLinkColumn23.TrackVisitedState = false;
+            this.dataGridViewLinkColumn23.Width = 42;
+            // 
+            // dataGridViewLinkColumn24
+            // 
+            this.dataGridViewLinkColumn24.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn24.HeaderText = "Server";
+            this.dataGridViewLinkColumn24.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn24.Name = "dataGridViewLinkColumn24";
+            this.dataGridViewLinkColumn24.ReadOnly = true;
+            this.dataGridViewLinkColumn24.TrackVisitedState = false;
+            this.dataGridViewLinkColumn24.Width = 42;
+            // 
+            // dataGridViewLinkColumn25
+            // 
+            this.dataGridViewLinkColumn25.DataPropertyName = "Server";
+            this.dataGridViewLinkColumn25.HeaderText = "Server";
+            this.dataGridViewLinkColumn25.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.dataGridViewLinkColumn25.Name = "dataGridViewLinkColumn25";
+            this.dataGridViewLinkColumn25.ReadOnly = true;
+            this.dataGridViewLinkColumn25.TrackVisitedState = false;
+            this.dataGridViewLinkColumn25.Width = 42;
             // 
             // dataGridViewLinkColumn26
             // 
@@ -995,43 +1038,6 @@
             this.dataGridViewLinkColumn31.ReadOnly = true;
             this.dataGridViewLinkColumn31.TrackVisitedState = false;
             this.dataGridViewLinkColumn31.Width = 43;
-            // 
-            // State
-            // 
-            this.State.DataPropertyName = "StateString";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            this.State.DefaultCellStyle = dataGridViewCellStyle1;
-            this.State.HeaderText = "State";
-            this.State.Name = "State";
-            this.State.ReadOnly = true;
-            this.State.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.State.Width = 56;
-            // 
-            // FileName
-            // 
-            this.FileName.DataPropertyName = "FileName";
-            this.FileName.HeaderText = "File name";
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Width = 76;
-            // 
-            // SourceStateString
-            // 
-            this.SourceStateString.DataPropertyName = "StateString";
-            this.SourceStateString.HeaderText = "State";
-            this.SourceStateString.Name = "SourceStateString";
-            this.SourceStateString.ReadOnly = true;
-            this.SourceStateString.Width = 56;
-            // 
-            // pathDataGridViewLinkColumn
-            // 
-            this.pathDataGridViewLinkColumn.DataPropertyName = "Path";
-            this.pathDataGridViewLinkColumn.HeaderText = "Path";
-            this.pathDataGridViewLinkColumn.Name = "pathDataGridViewLinkColumn";
-            this.pathDataGridViewLinkColumn.ReadOnly = true;
-            this.pathDataGridViewLinkColumn.Width = 34;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1131,6 +1137,19 @@
             this.dataGridViewLinkColumn40.TrackVisitedState = false;
             this.dataGridViewLinkColumn40.Width = 43;
             // 
+            // State
+            // 
+            this.State.DataPropertyName = "StateString";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            this.State.DefaultCellStyle = dataGridViewCellStyle1;
+            this.State.HeaderText = "State";
+            this.State.Name = "State";
+            this.State.ReadOnly = true;
+            this.State.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.State.Width = 56;
+            // 
             // modLanguageDataGridViewTextBoxColumn
             // 
             this.modLanguageDataGridViewTextBoxColumn.DataPropertyName = "Language";
@@ -1139,130 +1158,24 @@
             this.modLanguageDataGridViewTextBoxColumn.ReadOnly = true;
             this.modLanguageDataGridViewTextBoxColumn.Width = 79;
             // 
-            // bUpdate
+            // serversToolStripMenuItem
             // 
-            this.bUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.bUpdate.BackColor = System.Drawing.Color.GreenYellow;
-            this.bUpdate.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bUpdate.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bUpdate.EnabledBackColor = System.Drawing.Color.GreenYellow;
-            this.bUpdate.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bUpdate.Location = new System.Drawing.Point(10, 140);
-            this.bUpdate.Name = "bUpdate";
-            this.bUpdate.Size = new System.Drawing.Size(130, 23);
-            this.bUpdate.TabIndex = 13;
-            this.bUpdate.Text = "Update from this source";
-            this.bUpdate.UseVisualStyleBackColor = false;
-            // 
-            // bAddSource
-            // 
-            this.bAddSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bAddSource.BackColor = System.Drawing.Color.ForestGreen;
-            this.bAddSource.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bAddSource.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bAddSource.EnabledBackColor = System.Drawing.Color.ForestGreen;
-            this.bAddSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bAddSource.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddSource.Location = new System.Drawing.Point(167, 140);
-            this.bAddSource.Name = "bAddSource";
-            this.bAddSource.Size = new System.Drawing.Size(75, 23);
-            this.bAddSource.TabIndex = 13;
-            this.bAddSource.Text = "Add";
-            this.bAddSource.UseVisualStyleBackColor = false;
-            // 
-            // bRemoveSource
-            // 
-            this.bRemoveSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bRemoveSource.BackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveSource.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bRemoveSource.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bRemoveSource.EnabledBackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveSource.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveSource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bRemoveSource.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveSource.Location = new System.Drawing.Point(248, 140);
-            this.bRemoveSource.Name = "bRemoveSource";
-            this.bRemoveSource.Size = new System.Drawing.Size(75, 23);
-            this.bRemoveSource.TabIndex = 12;
-            this.bRemoveSource.Text = "Remove";
-            this.bRemoveSource.UseVisualStyleBackColor = false;
-            // 
-            // bAddMod
-            // 
-            this.bAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bAddMod.BackColor = System.Drawing.Color.ForestGreen;
-            this.bAddMod.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bAddMod.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bAddMod.EnabledBackColor = System.Drawing.Color.ForestGreen;
-            this.bAddMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bAddMod.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAddMod.Location = new System.Drawing.Point(167, 181);
-            this.bAddMod.Name = "bAddMod";
-            this.bAddMod.Size = new System.Drawing.Size(75, 23);
-            this.bAddMod.TabIndex = 6;
-            this.bAddMod.Text = "Add";
-            this.bAddMod.UseVisualStyleBackColor = false;
-            // 
-            // bRemoveMod
-            // 
-            this.bRemoveMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bRemoveMod.BackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveMod.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bRemoveMod.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bRemoveMod.EnabledBackColor = System.Drawing.Color.LightCoral;
-            this.bRemoveMod.EnabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bRemoveMod.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRemoveMod.Location = new System.Drawing.Point(248, 181);
-            this.bRemoveMod.Name = "bRemoveMod";
-            this.bRemoveMod.Size = new System.Drawing.Size(75, 23);
-            this.bRemoveMod.TabIndex = 5;
-            this.bRemoveMod.Text = "Remove";
-            this.bRemoveMod.UseVisualStyleBackColor = false;
-            // 
-            // bBrowse
-            // 
-            this.bBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bBrowse.BackColor = System.Drawing.Color.SkyBlue;
-            this.bBrowse.DisabledBackColor = System.Drawing.Color.LightGray;
-            this.bBrowse.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.bBrowse.EnabledBackColor = System.Drawing.Color.SkyBlue;
-            this.bBrowse.EnabledForeColor = System.Drawing.Color.Black;
-            this.bBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.25F);
-            this.bBrowse.ForeColor = System.Drawing.Color.Black;
-            this.bBrowse.Location = new System.Drawing.Point(303, 135);
-            this.bBrowse.Name = "bBrowse";
-            this.bBrowse.Size = new System.Drawing.Size(20, 20);
-            this.bBrowse.TabIndex = 4;
-            this.bBrowse.Text = "..";
-            this.bBrowse.UseVisualStyleBackColor = false;
-            // 
-            // serverDataGridViewLinkColumn
-            // 
-            this.serverDataGridViewLinkColumn.DataPropertyName = "Server";
-            this.serverDataGridViewLinkColumn.HeaderText = "Server";
-            this.serverDataGridViewLinkColumn.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.serverDataGridViewLinkColumn.Name = "serverDataGridViewLinkColumn";
-            this.serverDataGridViewLinkColumn.ReadOnly = true;
-            this.serverDataGridViewLinkColumn.TrackVisitedState = false;
-            this.serverDataGridViewLinkColumn.Width = 43;
+            this.serversToolStripMenuItem.Name = "serversToolStripMenuItem";
+            this.serversToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.serversToolStripMenuItem.Text = "Servers";
+            this.serversToolStripMenuItem.Click += new System.EventHandler(this.serversToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 591);
+            this.ClientSize = new System.Drawing.Size(998, 561);
             this.Controls.Add(this.container);
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.ssStatus);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMenu;
-            this.MinimumSize = new System.Drawing.Size(740, 630);
+            this.MinimumSize = new System.Drawing.Size(740, 600);
             this.Name = "MainForm";
             this.Text = "Skyrim Mods Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -1295,9 +1208,6 @@
         private System.Windows.Forms.ToolStripProgressBar spbStatusProgress;
         private System.Windows.Forms.ToolStripStatusLabel slStatusTitle;
         private System.Windows.Forms.ToolStripMenuItem checkModsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMenu;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
@@ -1358,16 +1268,12 @@
         private System.Windows.Forms.GroupBox gbMod;
         private System.Windows.Forms.ComboBox cbModLanguage;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lRootError;
         private System.Windows.Forms.Label lVersionError;
         private System.Windows.Forms.Label lNameError;
         private Utils.StateButton bAddMod;
         private Utils.StateButton bRemoveMod;
-        private Utils.StateButton bBrowse;
-        private System.Windows.Forms.TextBox tbModRoot;
         private System.Windows.Forms.TextBox tbModVersion;
         private System.Windows.Forms.TextBox tbModName;
-        private System.Windows.Forms.Label lRoot;
         private System.Windows.Forms.Label lVersion;
         private System.Windows.Forms.Label lName;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1378,9 +1284,6 @@
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn29;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn30;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn31;
-        private System.Windows.Forms.DataGridViewButtonColumn State;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modLanguageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewLinkColumn serverDataGridViewLinkColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SourceStateString;
         private System.Windows.Forms.DataGridViewLinkColumn pathDataGridViewLinkColumn;
@@ -1394,6 +1297,9 @@
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn38;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn39;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn40;
+        private System.Windows.Forms.DataGridViewButtonColumn State;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modLanguageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem serversToolStripMenuItem;
     }
 }
 

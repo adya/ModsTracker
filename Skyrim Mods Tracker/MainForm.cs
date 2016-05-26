@@ -58,11 +58,6 @@ namespace SMT
             bgWorker = new BackgroundWorker();
             bgWorker.WorkerReportsProgress = true;
 
-            ApplySettings();
-
-            if (SettingsManager.AutoScanMods)
-                RunScanMods();
-
             SetDefaultStatus();
         }
 
@@ -71,13 +66,11 @@ namespace SMT
         {
             dgvMods.AutoResizeColumns();
             tbModName.BindLabel(lNameError);
-            tbModRoot.BindLabel(lRootError);
             tbModVersion.BindLabel(lVersionError);
             tbSourceURL.BindLabel(lURLError);
             tbSourceVersion.BindLabel(lSrcVersionError);
 
             tbModName.TextChanged += OnModTextChanged;
-            tbModRoot.TextChanged += OnModTextChanged;
             tbModVersion.TextChanged += OnModTextChanged;
 
             tbSourceVersion.TextChanged += OnSourceTextChanged;
@@ -133,24 +126,10 @@ namespace SMT
             MarkMods();
         }
 
-        private void ApplySettings()
-        {
-            ofdRoot.InitialDirectory = (SettingsManager.HasValidModsLocation ? SettingsManager.ModsLocation : Environment.CurrentDirectory);
-            if (SettingsManager.HasValidModsLocation)
-            {
-                AutoCompleteStringCollection completions = new AutoCompleteStringCollection();
-                completions.AddRange(Directory.GetFiles(SettingsManager.ModsLocation).Select(str => Path.GetFileName(str)).ToArray());
-                completions.AddRange(Directory.GetDirectories(SettingsManager.ModsLocation).Select(str => Path.GetFileName(str)).ToArray());
-                tbModRoot.AutoCompleteCustomSource = completions;
-            }
-        }
-
         private void SetModEditable(bool isEditable)
         {
             tbModName.Enabled = isEditable;
-            tbModRoot.Enabled = isEditable;
             tbModVersion.Enabled = isEditable;
-            bBrowse.Enabled = isEditable;
             bRemoveMod.Enabled = isEditable;
             bAddSource.Enabled = isEditable;
             dgvSources.Enabled = isEditable;
@@ -159,10 +138,8 @@ namespace SMT
             {
                 dgvMods.ClearSelection();
                 tbModName.Clear();
-                tbModRoot.Clear();
                 tbModVersion.Clear();
                 tbModName.ClearMessage();
-                tbModRoot.ClearMessage();
                 tbModVersion.ClearMessage();
                 SetSourceEditable(false);
                 dgvSources.DataSource = null;
@@ -222,17 +199,11 @@ namespace SMT
             if (!selectedMod.HasValidVersion) tbModVersion.SetError("Version must not be empty.");
             else tbModVersion.SetValidMessage();
         }
-        private void ValidateModFileName()
-        {
-            if (selectedMod == null) return;
-            if (!selectedMod.HasValidFileName) tbModRoot.SetWarning("Set valid root to provide version naming feature.");
-            else tbModRoot.SetValidMessage();
-        }
+       
         private void ValidateModFields()
         {
             ValidateModName();
             ValidateModVersion();
-            ValidateModFileName();
         }
 
         private void ValidateSourceURL()
@@ -366,88 +337,6 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= CheckModsWorkCompleted;
         }
 
-        private void RunScanMods()
-        {
-            if (bgWorker.IsBusy) return;
-            spbStatusProgress.Maximum = Directory.GetFiles(SettingsManager.ModsLocation).Length + Directory.GetDirectories(SettingsManager.ModsLocation).Length;
-            spbStatusProgress.Value = 0;
-            spbStatusProgress.Visible = true;
-            SetStatus("Scanning mods...");
-            SetUIEnabled(false);
-
-            bgWorker.DoWork += ScanModsWork;
-            bgWorker.ProgressChanged += ScanModsWorkProgressChanged;
-            bgWorker.RunWorkerCompleted += ScanModsWorkCompleted;
-            bgWorker.RunWorkerAsync();
-        }
-        private void ScanModsWork(object sender, DoWorkEventArgs e)
-        {
-            string[] files = Directory.GetFiles(SettingsManager.ModsLocation);
-            string[] dirs = Directory.GetDirectories(SettingsManager.ModsLocation);
-            int totalSize = files.Length + dirs.Length;
-            for (int i = 0; i < files.Length; i++)
-            {
-                string filename = Path.GetFileNameWithoutExtension(files[i]);
-                Mod scannedMod = ModsManager.ParseMod(filename);
-                scannedMod.FileName = Path.GetFileName(files[i]);
-
-                int progress = (int)(((double)i / (double)totalSize) * 100);
-                (sender as BackgroundWorker).ReportProgress(progress, new object[] { scannedMod, i }); // mod, index
-            }
-        }
-        private void ScanModsWorkProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var userState = e.UserState as object[];
-            var mod = userState[0] as Mod;
-            var index = (int)userState[1];
-
-
-            List<Mod> duplicates = mods.Where(m => m.Name.Equals(mod.Name)).ToList();
-            bool added = false;
-
-            if (mod.IsValid)
-            {
-                if (duplicates != null && duplicates.Count > 0)
-                {
-                    var difVersion = duplicates.FirstOrDefault(m => !m.Version.Equals(mod.Version));
-                    var sameVersion = duplicates.FirstOrDefault(m => m.Version.Equals(mod.Version));
-                    if (sameVersion == null && difVersion != null)
-                    {
-                        pendingDialogs++;
-                        if (DialogResult.Yes == MessageBox.Show(this, string.Format("Found mod '{0}', which already exists in database, but has different version.\n\nDatabase version: '{1}'\nFile version: '{2}'\nDo you want to use version file version?", mod.Name, difVersion.Version, mod.Version), "Duplicated mod", MessageBoxButtons.YesNo))
-                        {
-                            difVersion.Version = mod.Version;
-                            pendingDialogs--;
-                        }
-                        else
-                        { 
-                            added = true;
-                            mods.Add(mod);
-                            pendingDialogs--;
-                        }
-                    }
-                }
-                else {
-                    added = true;
-                    mods.Add(mod);
-                }
-            }
-            string format = "{4}% ({2}/{3}). {1} '{0}'";
-            SetStatus(string.Format(format, mod.Name, (added ? "Added" : "Scanned"), index + 1, mods.Count, e.ProgressPercentage));
-            if (pendingDialogs == 0) SetDefaultStatus();
-            spbStatusProgress.Value++;
-            MarkMod(mods.Count - 1);
-        }
-        private void ScanModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            SetUIEnabled(true);
-            dgvMods.AutoResizeColumns();
-            SetDefaultStatus();
-            bgWorker.DoWork -= ScanModsWork;
-            bgWorker.ProgressChanged -= ScanModsWorkProgressChanged;
-            bgWorker.RunWorkerCompleted -= ScanModsWorkCompleted;
-        }
-
         private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == (int)ModColumns.State) // "State cell except header"
@@ -509,11 +398,6 @@ namespace SMT
             MarkSources();
         }
 
-        private void bBrowse_Click(object sender, EventArgs e)
-        {
-            if (DialogResult.OK == ofdRoot.ShowDialog())
-                tbModRoot.Text = Path.GetFileName(ofdRoot.FileName);
-        }
         private void bAddMod_Click(object sender, EventArgs e)
         {
             SetModEditable(true);
@@ -548,9 +432,7 @@ namespace SMT
         }
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == new PreferencesForm().ShowDialog())
-                RunScanMods();
-            ApplySettings();
+          
         }
 
         private void cbManual_CheckedChanged(object sender, EventArgs e)

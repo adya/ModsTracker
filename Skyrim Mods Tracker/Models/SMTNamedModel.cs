@@ -5,7 +5,7 @@ using SMT.Utils;
 
 namespace SMT.Models
 {
-    public abstract class SMTNamedModel<T> : SMTModel<T>, INamed where T : SMTNamedModel<T>, new()
+    public abstract class SMTNamedModel<T> : SMTModel<T>, INamed, IComparable<SMTNamedModel<T>> where T : SMTNamedModel<T>, new()
     {
         private string name; // field for preventing null values.
 
@@ -32,17 +32,16 @@ namespace SMT.Models
 
         public override string ToString() { return Name; }
 
-        public override T Clone()
-        {
-            T model = new T();
-            this.CopyTo(model);
-            return model;
-        }
-
         public override void CopyTo(T model)
         {
             if (model == null) return;
             model.Name = this.Name;
+        }
+
+        public int CompareTo(SMTNamedModel<T> other)
+        {
+            if (other == null) return 1;
+            return Name.CompareTo(other.Name);
         }
     }
 }

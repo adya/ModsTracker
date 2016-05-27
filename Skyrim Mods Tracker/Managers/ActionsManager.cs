@@ -14,7 +14,7 @@ namespace SMT.Managers
         private const int NO_ACTIONS = -1;
         private const int DEFAULT_CAPACITY = 100;
 
-        private LimitedList<IAction> actions;
+        private CycledList<IAction> actions;
 
         public int CurrentActionIndex { get; private set; }
         private int capacity;
@@ -29,7 +29,7 @@ namespace SMT.Managers
         {
             this.capacity = capacity;
             CurrentActionIndex = NO_ACTIONS;
-            actions = new LimitedList<IAction>(capacity);
+            actions = new CycledList<IAction>(capacity);
         }
         public ActionsManager() : this(DEFAULT_CAPACITY) { }
 

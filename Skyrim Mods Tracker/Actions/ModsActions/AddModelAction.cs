@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SMT.Actions
 {
-    class AddModelAction<T> : NamedAction where T : SMTModel<T>
+    class AddModelAction<T> : NamedAction where T : SMTModel<T>, new()
     {
         private T model;
         private ICollection<T> target;

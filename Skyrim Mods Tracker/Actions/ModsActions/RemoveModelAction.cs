@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SMT.Actions
 {
-    class RemoveModelAction<T> : NamedAction where T : SMTModel<T>
+    class RemoveModelAction<T> : NamedAction where T : SMTModel<T>, new()
     {
         private T model;
         private ICollection<T> target;

@@ -1,4 +1,5 @@
-﻿using SMT.Managers;
+﻿using SMT.Actions;
+using SMT.Managers;
 using SMT.Models;
 using SMT.Utils;
 using System;
@@ -9,8 +10,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SMT
@@ -22,45 +21,97 @@ namespace SMT
 
         private enum SourcesColumns
         {
-            Server = 0,
-            Language = 1,
-            Version = 2,
-            State = 3,
-            Path = 4
+            Server,
+            Language,
+            Version,
+            State,
+            Path
         }
 
         private enum ModColumns
         {
-            Name = 0,
-            Version = 1,
-            State = 2,
-            File = 3
+            Index,
+            Name,
+            Version,
+            State,
+            Language,
+            ID
         }
 
-        private List<Mod> mods;
-        private Mod selectedMod;
-        private int selectedModIndex;
-
-        private List<Source> sources;
-        private Source selectedSource;
-        private int selectedSorceIndex;
-
+        private Mod editableMod;
+        private Source editableSource;
+        private DataGridViewBinder<Mod> modsBinder;
+        private DataGridViewBinder<Source> sourcesBinder;
         private BackgroundWorker bgWorker;
-        private int pendingDialogs; // used to update status when dialogs are pending
+        private ActionsManager actionsManager;
 
         public MainForm()
         {
             InitializeComponent();
-
-            mods = ModsManager.Mods.ToList();
+            BindMods();
+            actionsManager = new ActionsManager();
+           
             cbSourceLanguage.DataSource = Enum.GetValues(typeof(Language));
+            cbModLanguage.DataSource = Enum.GetValues(typeof(Language));
 
             bgWorker = new BackgroundWorker();
             bgWorker.WorkerReportsProgress = true;
 
             SetDefaultStatus();
+
+            modsBinder.Refresh();
         }
 
+        private void BindMods()
+        {
+            modsBinder = new DataGridViewBinder<Mod>(dgvMods, new SelectionList<Mod>(ModsManager.Mods));
+            modsBinder.PopulateRow += ModsBinder_OnPopulateRow;
+            modsBinder.ItemSelected += ModsBinder_OnItemSelected;
+            modsBinder.Refresh(true);
+        }
+
+        private void BindSources(Mod mod)
+        {
+            sourcesBinder = new DataGridViewBinder<Source>(dgvSources, new SelectionList<Source>(mod.Sources));
+            sourcesBinder.ItemSelected += SourcesBinder_OnItemSelected;
+            sourcesBinder.PopulateRow += SourcesBinder_OnPopulateRow;
+            sourcesBinder.Refresh(true);
+        }
+
+        private void ModsBinder_OnItemSelected(DataGridViewBinder<Mod> sender, Mod item)
+        {
+            tbModName.Text = item.Name;
+            tbModVersion.Text = item.Version.Value;
+            cbModLanguage.SelectedItem = item.Language;
+            BindSources(item);
+            SetModEditable(true);
+        }
+
+        private void ModsBinder_OnPopulateRow(DataGridViewBinder<Mod> sender, DataGridViewRow row, Mod item)
+        {
+            row.Cells[(int)ModColumns.Index].Value = row.Index + 1;
+            row.Cells[(int)ModColumns.Name].Value = item.Name;
+            row.Cells[(int)ModColumns.Version].Value = item.Version.Value;
+            row.Cells[(int)ModColumns.State].Value = item.StateString;
+            row.Cells[(int)ModColumns.Language].Value = item.Language.ToShortString();
+            row.Cells[(int)ModColumns.ID].Value = item.ID;
+        }
+
+      
+
+        private void SourcesBinder_OnPopulateRow(DataGridViewBinder<Source> sender, DataGridViewRow row, Source item)
+        {
+            row.Cells[(int)SourcesColumns.Server].Value = item.Server.Name;
+            row.Cells[(int)SourcesColumns.Version].Value = item.Version.Value;
+            row.Cells[(int)SourcesColumns.State].Value = item.StateString;
+            row.Cells[(int)SourcesColumns.Language].Value = item.Language.ToShortString();
+            row.Cells[(int)SourcesColumns.Path].Value = item.Path;
+        }
+
+        private void SourcesBinder_OnItemSelected(DataGridViewBinder<Source> sender, Source item)
+        {
+            SetSourceEditable(true);
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -82,21 +133,11 @@ namespace SMT
             MarkMods();
         }
 
-        #region Manual "Data Binding"
-
-        private void SelectMod(int index) { if (index < 0 || index >= mods.Count) return; selectedModIndex = index; selectedMod = mods[selectedModIndex]; }
-        private void LoadSelectedMod() { tbModName.Text = selectedMod.Name; }
-        private void AddMod() { dgvMods.Rows.Add(); mods.Add(new Mod()); }
-        private void RemoveMod(int index) { if (index < 0 || index >= mods.Count) return; mods.RemoveAt(index); dgvMods.Rows.RemoveAt(index); }
-
-
-        #endregion
-
         private bool SaveSources(Mod mod, bool supressWarning = false)
         {
             if (mod != null)
             {
-                var invalidSourcesCount = sources.Count(s => !s.IsValid);
+                var invalidSourcesCount = sourcesBinder.Data.Count(s => !s.IsValid);
 
                 if (supressWarning || invalidSourcesCount == 0 ||
                     (DialogResult.OK == MessageBox.Show("Some of the sources has invalid configuration.\n" +
@@ -104,7 +145,7 @@ namespace SMT
                                                         "\n\nMod '" + mod.Name + "' has " + invalidSourcesCount + " invalid sources.", "Ivalid mos sources", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)))
                 {
                     mod.Sources.Clear();
-                    foreach (var src in sources)
+                    foreach (var src in sourcesBinder.Data)
                         mod.Sources.Add(src);
                     return true;
                 }
@@ -117,7 +158,8 @@ namespace SMT
             SetUIEnabled(false);
             var m = ModsManager.Mods;
             m.Clear();
-            foreach (var mod in mods)
+            modsBinder.Data.Sort(new Comparison<Mod>((m1, m2) => m1.CompareTo(m2)));
+            foreach (var mod in modsBinder.Data)
                 m.Add(mod);
             ModsManager.NormalizeMods();
             StorageManager.Sync();
@@ -178,62 +220,63 @@ namespace SMT
         private void SetDefaultStatus()
         {
             spbStatusProgress.Visible = false;
-            SetStatus(string.Format("Total mods: {0}.", mods.Count));
+            SetStatus(string.Format("Total mods: {0}.", modsBinder.Data.Count));
         }
         private void SetStatus(string status)
         {
             if (status == null) status = "";
             slStatusTitle.Text = status;
         }
-
-        private void ValidateModName()
+     
+        #region Fields validation
+        private void ValidateModName(Mod mod)
         {
-            if (selectedMod == null) return;
-            if (!selectedMod.HasValidName) tbModName.SetError("Name must not be empty.");
-            else if (!selectedMod.HasUniqueName()) tbModName.SetWarning("Name must be unique.");
+            if (mod == null) tbModName.ClearMessage();
+            else if (!mod.HasValidName) tbModName.SetError("Name must not be empty.");
+            else if (!mod.HasUniqueName()) tbModName.SetWarning("Name must be unique.");
             else tbModName.SetValidMessage();
         }
-        private void ValidateModVersion()
+        private void ValidateModVersion(Mod mod)
         {
-            if (selectedMod == null) return;
-            if (!selectedMod.HasValidVersion) tbModVersion.SetError("Version must not be empty.");
+            if (mod == null) tbModVersion.ClearMessage();
+            else if (!mod.HasValidVersion) tbModVersion.SetError("Version must not be empty.");
             else tbModVersion.SetValidMessage();
         }
-       
-        private void ValidateModFields()
+        private void ValidateModFields(Mod mod)
         {
-            ValidateModName();
-            ValidateModVersion();
+            ValidateModName(mod);
+            ValidateModVersion(mod);
         }
 
-        private void ValidateSourceURL()
+        private void ValidateSourceURL(Source source)
         {
-            if (selectedSource == null) return;
-            if (!selectedSource.HasValidURL) tbSourceURL.SetError("Malformed URL.");
-            else if (!selectedSource.HasKnownServer) tbSourceURL.SetError("Uknown server domain.");
+            if (source == null) tbSourceURL.ClearMessage();
+            else if (!source.HasValidURL) tbSourceURL.SetError("Malformed URL.");
+            else if (!source.HasKnownServer) tbSourceURL.SetError("Uknown server domain.");
             else tbSourceURL.SetValidMessage();
         }
-        private void ValidateSourceVersion()
+        private void ValidateSourceVersion(Source source)
         {
-            if (selectedSource == null) return;
-            if (!tbSourceVersion.Enabled && !selectedSource.HasValidVersion) tbSourceVersion.SetError("Version must not be empty.");
+            if (source == null) tbSourceVersion.ClearMessage();
+            else if (!tbSourceVersion.Enabled && !source.HasValidVersion) tbSourceVersion.SetError("Version must not be empty.");
             else tbSourceVersion.SetValidMessage();
         }
-        private void ValidateSourceFields()
+        private void ValidateSourceFields(Source source)
         {
-            ValidateSourceURL();
-            ValidateSourceVersion();
+            ValidateSourceURL(source);
+            ValidateSourceVersion(source);
         }
+        #endregion
 
         private void MarkMods()
         {
-            for (int i = 0; i < mods.Count; i++)
+            for (int i = 0; i < modsBinder.Data.Count; i++)
                 MarkMod(i);
         }
         private void MarkMod(int index)
         {
             if (index < 0 || index >= dgvMods.Rows.Count) return;
-            Mod mod = mods[index];
+            Mod mod = modsBinder.Data[index];
             DataGridViewRow row = dgvMods.Rows[index];
             DataGridViewCell cell = row.Cells[(int)ModColumns.State];
 
@@ -249,20 +292,18 @@ namespace SMT
             {
                 case ModState.Undefined:
                 case ModState.NotTracking: row.DefaultCellStyle.BackColor = Color.LightPink; break;
-                case ModState.InvlaidFilePath: row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow; break;
-                case ModState.MissedFile: row.DefaultCellStyle.BackColor = Color.FromArgb(220, 220, 220); break;
                 case ModState.UpToDate: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
-                case ModState.Outdated: row.DefaultCellStyle.BackColor = Color.Orange; break;
+                case ModState.Outdated: row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow; break;
                 default: break;
             }
             MarkSources();
         }
-
         private void MarkSources()
         {
-            for(int i=0; i< sources.Count;i++)
+            if (sourcesBinder == null) return;
+            for(int i=0; i< sourcesBinder.Data.Count;i++)
             {
-                Source src = sources[i];
+                Source src = sourcesBinder.Data[i];
                 DataGridViewRow row = dgvSources.Rows[i];
                 DataGridViewLinkCell serverCell = row.Cells[(int)SourcesColumns.Server] as DataGridViewLinkCell;
                 DataGridViewLinkCell pathCell = row.Cells[(int)SourcesColumns.Path] as DataGridViewLinkCell;
@@ -323,7 +364,7 @@ namespace SMT
             if (isCompleted)
             {
                 spbStatusProgress.Value++;
-                MarkMod(mods.IndexOf(mod));
+                MarkMod(modsBinder.Data.IndexOf(mod));
             }
         }
         private void CheckModsWorkCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -337,16 +378,17 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= CheckModsWorkCompleted;
         }
 
+#region DataGridView handlers
         private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == (int)ModColumns.State) // "State cell except header"
-                RunCheckMods(new Mod[] { mods[e.RowIndex] });
+            if (e.RowIndex != -1 && e.ColumnIndex == (int)ModColumns.State) // "State cell except header"
+                RunCheckMods(new Mod[] { modsBinder.Data[e.RowIndex] });
         }
         private void dgvSources_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == (int)SourcesColumns.Server || e.ColumnIndex == (int)SourcesColumns.Path)
+            if (e.RowIndex != -1 && e.ColumnIndex == (int)SourcesColumns.Server || e.ColumnIndex == (int)SourcesColumns.Path)
             {
-                var src = sources[e.RowIndex];
+                var src = sourcesBinder.Data[e.RowIndex];
                 if (src.HasValidURL)
                     Process.Start(src.URL);
             }
@@ -375,46 +417,86 @@ namespace SMT
             }
         }
 
-        private void EditRow(DataGridView dgv, int index)
+
+        private void dgvSources_DragDrop(object sender, DragEventArgs e)
         {
-            dgv.ClearSelection();
-            dgv.Rows[index].Selected = true;
-            tbModName.Focus();
-            tbModName.DeselectAll();
+            var frmts = e.Data.GetFormats();
+            if (e.Data.GetDataPresent(DDText))
+                AddModSource(e.Data.GetData(DDText) as string);
+            else if (e.Data.GetDataPresent(DDChromeBookmarks))
+            {
+                using (MemoryStream ms = e.Data.GetData(DDChromeBookmarks) as MemoryStream)
+                {
+                    var urls = ChromeUtils.ReadBookmarksURL(ms.ToArray());
+                    foreach (var url in urls)
+                        AddModSource(url);
+                }
+            }
+
         }
+        private void dgvSources_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DDText) || e.Data.GetDataPresent(DDChromeBookmarks))
+                e.Effect = DragDropEffects.Link;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+#endregion
 
         private void OnModTextChanged(object sender, EventArgs e)
         {
-            ValidateModFields();
-            if (selectedMod != null)
+            ValidateModFields(modsBinder.Data.SelectedItem);
+
+            if (modsBinder.Data.IsSelected)
             {
-                selectedMod.UpdateState();
-                MarkMod(selectedModIndex);
+                actionsManager.PerformAction(new EditModelAction<Mod>(modsBinder.Data.SelectedItem, editableMod));
+                MarkMod(modsBinder.Data.SelectedIndex);
+                
             }
         }
+
         private void OnSourceTextChanged(object sender, EventArgs e)
         {
-            ValidateSourceFields();
-            MarkSources();
+            if (sourcesBinder == null) return;
+            ValidateSourceFields(sourcesBinder.Data.SelectedItem);
+            if (sourcesBinder.Data.IsSelected)
+                actionsManager.PerformAction(new EditModelAction<Source>(sourcesBinder.Data.SelectedItem, editableSource));
         }
 
         private void bAddMod_Click(object sender, EventArgs e)
         {
             SetModEditable(true);
-            EditRow(dgvMods, mods.Count - 1);
+            modsBinder.SelectRow(modsBinder.Data.Count - 1);
         }
         private void bRemoveMod_Click(object sender, EventArgs e)
         {
-            SetModEditable(mods.Count > 0);
+            SetModEditable(modsBinder.Data.Count > 0);
         }
         private void bAddSource_Click(object sender, EventArgs e)
         {
-            SetSourceEditable(true);
-            EditRow(dgvSources, sources.Count - 1);
+            
+            sourcesBinder.SelectRow(modsBinder.Data.Count - 1);
         }
         private void bRemoveSource_Click(object sender, EventArgs e)
         {
-            SetSourceEditable(sources.Count > 0);
+            SetSourceEditable(sourcesBinder.Data.Count > 0);
+        }
+        private void bUpdate_Click(object sender, EventArgs e)
+        {
+            if (modsBinder.Data.IsSelected && sourcesBinder.Data.IsSelected)
+            {
+                modsBinder.Data.SelectedItem.Version = sourcesBinder.Data.SelectedItem.Version;
+                modsBinder.Data.SelectedItem.Language = sourcesBinder.Data.SelectedItem.Language;
+                sourcesBinder.Data.SelectedItem.UpdateState();
+                modsBinder.Data.SelectedItem.UpdateState();
+                MarkMod(modsBinder.Data.SelectedIndex);
+                MarkSources();
+            }
+
+        }
+        private void cbManual_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSourceVersion.Enabled = cbManual.Checked;
         }
 
         private void serversToolStripMenuItem_Click(object sender, EventArgs e)
@@ -423,27 +505,18 @@ namespace SMT
         }
         private void checkModsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunCheckMods(mods);
+            RunCheckMods(modsBinder.Data);
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Save();
             MarkMods();
         }
-        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void cbManual_CheckedChanged(object sender, EventArgs e)
-        {
-            tbSourceVersion.Enabled = cbManual.Checked;
-        }
-
+     
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            var invalidMods = mods.Where(m => !m.IsValid || m.Sources.Count(s => !s.IsValid) != 0).Select(m => m.Name).ToList();
+            var invalidMods = modsBinder.Data.Where(m => !m.IsValid || m.Sources.Count(s => !s.IsValid) != 0).Select(m => m.Name).ToList();
 
             if (invalidMods.Count == 0)
             {
@@ -460,31 +533,6 @@ namespace SMT
             else e.Cancel = true;
         }
 
-        private void dgvSources_DragDrop(object sender, DragEventArgs e)
-        {
-            var frmts = e.Data.GetFormats();
-            if (e.Data.GetDataPresent(DDText))
-                AddModSource(e.Data.GetData(DDText) as string);
-            else if (e.Data.GetDataPresent(DDChromeBookmarks))
-            {
-                using (MemoryStream ms = e.Data.GetData(DDChromeBookmarks) as MemoryStream)
-                {
-                    var urls = ChromeUtils.ReadBookmarksURL(ms.ToArray());
-                    foreach (var url in urls)
-                        AddModSource(url);
-                }
-            }
-                
-        }
-
-        private void dgvSources_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DDText) || e.Data.GetDataPresent(DDChromeBookmarks))
-                e.Effect = DragDropEffects.Link;
-            else
-                e.Effect = DragDropEffects.None;
-        }
-
         private void AddModSource(string sourceURL)
         {
             Source source;
@@ -492,24 +540,11 @@ namespace SMT
             {
                 SetSourceEditable(true);
             }
-            if (selectedMod != null)
+            if (modsBinder.Data.IsSelected)
             {
-                selectedMod.UpdateState();
-                MarkMod(selectedModIndex);
+                modsBinder.Data.SelectedItem.UpdateState();
+                MarkMod(modsBinder.Data.SelectedIndex);
             }
-        }
-
-        private void bUpdate_Click(object sender, EventArgs e)
-        {
-            if (selectedSource != null && selectedMod != null)
-            {
-                selectedMod.Version = selectedSource.Version;
-                selectedMod.Language = selectedSource.Language;
-                selectedMod.UpdateState();
-                MarkMod(selectedModIndex);
-                MarkSources();
-            }
-
         }
 
       

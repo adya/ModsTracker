@@ -6,7 +6,7 @@ using System;
 
 namespace SMT.Models
 {
-    class Source : SMTNamedModel<Source>, IValidatable, IStateful<SourceState>, IVersioning, IRemote, ILocalizable
+    class Source : SMTModel<Source>, IValidatable, IStateful<SourceState>, IVersioning, IRemote, ILocalizable
     {
         /// <summary>
         /// Relative url to the source's web-page.
@@ -96,7 +96,6 @@ namespace SMT.Models
 
         protected override void Init()
         {
-            base.Init();
             Path = "";
             Server = null;
             Language = Language.None;
@@ -122,7 +121,6 @@ namespace SMT.Models
 
         public override void CopyTo(Source source)
         {
-            base.CopyTo(source);
             if (source == null) return;
             source.Path = this.Path;
             source.Server = this.Server;

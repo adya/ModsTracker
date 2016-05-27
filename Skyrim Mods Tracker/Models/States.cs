@@ -17,22 +17,10 @@ namespace SMT.Models
         Undefined,
 
         /// <summary>
-        /// Mod has invalid root path.
-        /// </summary>
-        [Description("Invalid File")]
-        InvlaidFilePath,
-
-        /// <summary>
-        /// File specified at mod's root was not found.
-        /// </summary>
-        [Description("File not found")]
-        MissedFile,
-
-        /// <summary>
         /// Mod hasn't got any sources.
         /// </summary>
         [Description("Not tracking")]
-        NotTracking,
+        NotTracking = 3,
 
         /// <summary>
         /// Mod has some sources which has never been updated.

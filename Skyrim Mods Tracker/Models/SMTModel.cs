@@ -2,7 +2,7 @@
 
 namespace SMT.Models
 {
-    public abstract class SMTModel<T> where T : SMTModel<T>
+    public abstract class SMTModel<T> : IComparable<SMTModel<T>> where T : SMTModel<T>, new()
     {
         /// <summary>
         /// Model's id.
@@ -31,9 +31,20 @@ namespace SMT.Models
 
         public override int GetHashCode() { return ID; }
 
-        public abstract T Clone();
+        public T Clone()
+        {
+            T model = new T();
+            CopyTo(model);
+            return model;
+        }
 
         public abstract void CopyTo(T model);
+
+        public int CompareTo(SMTModel<T> other)
+        {
+            if (other == null) return 1;
+            return ID.CompareTo(other.ID);
+        }
     }
  
 }

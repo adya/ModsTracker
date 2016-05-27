@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SMT.Utils
 {
-    public class LimitedList<T> : IEnumerable<T>
+    public class CycledList<T> : IEnumerable<T>
     {
         private List<T> list;
 
@@ -19,12 +19,13 @@ namespace SMT.Utils
 
         public bool IsReadOnly { get { return false; } }
 
-        public LimitedList(int capacity)
+        public CycledList(int capacity)
         {
+            list = new List<T>(capacity);
             Capacity = capacity;
         }
 
-        public LimitedList(IEnumerable<T> collection, int capacity) : this(capacity)
+        public CycledList(IEnumerable<T> collection, int capacity) : this(capacity)
         {
             AddRange(collection);
         }

@@ -1,11 +1,12 @@
 {
-  "Updated": "05/13/2016 22:38",
+  "Updated": "05/27/2016 04:23",
   "Version": "1.5",
   "Servers": [
     {
       "Pattern": ".*<br><b>\\s*Версия:\\s*</b>\\s*(.+).*",
       "URL": "http://modgames.net",
       "Language": 0,
+      "State": 0,
       "Cookies": null,
       "Name": "ModGames",
       "ID": 2117186640
@@ -14,6 +15,7 @@
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "https://nexusmods.com",
       "Language": 0,
+      "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus",
       "ID": 1273431505
@@ -22,6 +24,7 @@
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://skyrim.nexusmods.com",
       "Language": 0,
+      "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
       "ID": 145814667
@@ -30,6 +33,7 @@
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://nexusmods.com",
       "Language": 0,
+      "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
       "ID": 962540621
@@ -38,6 +42,7 @@
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://www.nexusmods.com",
       "Language": 0,
+      "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
       "ID": 1039859460
@@ -46,6 +51,7 @@
       "Pattern": ".*",
       "URL": "http://tesall.ru",
       "Language": 0,
+      "State": 0,
       "Cookies": null,
       "Name": "TESALL",
       "ID": 557347589
@@ -58,7 +64,6 @@
       "Language": 2,
       "Version": "4.1",
       "State": 5,
-      "Name": "",
       "ID": 756701033
     },
     {
@@ -67,7 +72,6 @@
       "Language": 1,
       "Version": "4.1",
       "State": 5,
-      "Name": "",
       "ID": 1525094829
     },
     {
@@ -76,7 +80,6 @@
       "Language": 1,
       "Version": "2.3.1",
       "State": 5,
-      "Name": "",
       "ID": 85264392
     },
     {
@@ -85,7 +88,6 @@
       "Language": 0,
       "Version": "1",
       "State": 5,
-      "Name": "",
       "ID": 1796755792
     },
     {
@@ -94,7 +96,6 @@
       "Language": 1,
       "Version": "1.1.0",
       "State": 5,
-      "Name": "",
       "ID": 1338081148
     },
     {
@@ -103,7 +104,6 @@
       "Language": 0,
       "Version": "6",
       "State": 5,
-      "Name": "",
       "ID": 767832364
     },
     {
@@ -112,7 +112,6 @@
       "Language": 1,
       "Version": "6",
       "State": 5,
-      "Name": "",
       "ID": 1809644903
     },
     {
@@ -121,7 +120,6 @@
       "Language": 1,
       "Version": "8 in 1",
       "State": 5,
-      "Name": "",
       "ID": 387226041
     },
     {
@@ -130,7 +128,6 @@
       "Language": 2,
       "Version": "3.6",
       "State": 5,
-      "Name": "",
       "ID": 554865401
     },
     {
@@ -139,7 +136,6 @@
       "Language": 1,
       "Version": "3.6",
       "State": 5,
-      "Name": "",
       "ID": 241752363
     },
     {
@@ -148,7 +144,6 @@
       "Language": 1,
       "Version": "5.1",
       "State": 5,
-      "Name": "",
       "ID": 1777851737
     },
     {
@@ -157,7 +152,6 @@
       "Language": 2,
       "Version": "5.1",
       "State": 5,
-      "Name": "",
       "ID": 1276119885
     },
     {
@@ -166,7 +160,6 @@
       "Language": 2,
       "Version": "1.8",
       "State": 5,
-      "Name": "",
       "ID": 1464197357
     },
     {
@@ -175,7 +168,6 @@
       "Language": 1,
       "Version": "1.8",
       "State": 5,
-      "Name": "",
       "ID": 1040888743
     },
     {
@@ -184,7 +176,6 @@
       "Language": 1,
       "Version": "3.1",
       "State": 5,
-      "Name": "",
       "ID": 1837300830
     },
     {
@@ -193,7 +184,6 @@
       "Language": 2,
       "Version": "3.1",
       "State": 5,
-      "Name": "",
       "ID": 1777803802
     },
     {
@@ -202,7 +192,6 @@
       "Language": 1,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 847970964
     },
     {
@@ -211,7 +200,6 @@
       "Language": 2,
       "Version": "2.3",
       "State": 5,
-      "Name": "",
       "ID": 323102227
     },
     {
@@ -220,7 +208,6 @@
       "Language": 0,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1303138095
     },
     {
@@ -229,7 +216,6 @@
       "Language": 1,
       "Version": "3.1",
       "State": 5,
-      "Name": "",
       "ID": 2090886713
     },
     {
@@ -238,7 +224,6 @@
       "Language": 1,
       "Version": "2.0.4 A",
       "State": 5,
-      "Name": "",
       "ID": 410514562
     },
     {
@@ -247,7 +232,6 @@
       "Language": 2,
       "Version": "3.5",
       "State": 5,
-      "Name": "",
       "ID": 2110298723
     },
     {
@@ -256,7 +240,6 @@
       "Language": 1,
       "Version": "3.1",
       "State": 5,
-      "Name": "",
       "ID": 807028440
     },
     {
@@ -265,7 +248,6 @@
       "Language": 1,
       "Version": "2.0.4 A",
       "State": 5,
-      "Name": "",
       "ID": 2029841398
     },
     {
@@ -274,7 +256,6 @@
       "Language": 2,
       "Version": "3.5",
       "State": 5,
-      "Name": "",
       "ID": 2074897480
     },
     {
@@ -283,7 +264,6 @@
       "Language": 1,
       "Version": "3.1",
       "State": 5,
-      "Name": "",
       "ID": 764245875
     },
     {
@@ -292,7 +272,6 @@
       "Language": 1,
       "Version": "2.0.4 A",
       "State": 5,
-      "Name": "",
       "ID": 1087180229
     },
     {
@@ -301,7 +280,6 @@
       "Language": 2,
       "Version": "3.5",
       "State": 5,
-      "Name": "",
       "ID": 993410040
     },
     {
@@ -310,7 +288,6 @@
       "Language": 0,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 789154772
     },
     {
@@ -319,7 +296,6 @@
       "Language": 0,
       "Version": "1.3",
       "State": 5,
-      "Name": "",
       "ID": 108813139
     },
     {
@@ -328,7 +304,6 @@
       "Language": 2,
       "Version": "2.3",
       "State": 5,
-      "Name": "",
       "ID": 257967180
     },
     {
@@ -337,7 +312,6 @@
       "Language": 1,
       "Version": "2.3",
       "State": 5,
-      "Name": "",
       "ID": 828307892
     },
     {
@@ -346,7 +320,6 @@
       "Language": 0,
       "Version": "3.6",
       "State": 5,
-      "Name": "",
       "ID": 666630975
     },
     {
@@ -355,7 +328,6 @@
       "Language": 0,
       "Version": "3.6",
       "State": 5,
-      "Name": "",
       "ID": 617414963
     },
     {
@@ -364,7 +336,6 @@
       "Language": 1,
       "Version": "1.0 Final",
       "State": 5,
-      "Name": "",
       "ID": 279865729
     },
     {
@@ -373,7 +344,6 @@
       "Language": 0,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 428599894
     },
     {
@@ -382,7 +352,6 @@
       "Language": 1,
       "Version": "4.0.1",
       "State": 5,
-      "Name": "",
       "ID": 1767086742
     },
     {
@@ -391,7 +360,6 @@
       "Language": 1,
       "Version": "3.0 b",
       "State": 5,
-      "Name": "",
       "ID": 411864125
     },
     {
@@ -400,7 +368,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1555995403
     },
     {
@@ -409,7 +376,6 @@
       "Language": 1,
       "Version": "",
       "State": 4,
-      "Name": "",
       "ID": 296667899
     },
     {
@@ -418,7 +384,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 1475728738
     },
     {
@@ -427,7 +392,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 74215405
     },
     {
@@ -436,7 +400,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 1221680941
     },
     {
@@ -445,7 +408,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 2022379658
     },
     {
@@ -454,7 +416,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 1167743180
     },
     {
@@ -463,7 +424,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 546073893
     },
     {
@@ -472,7 +432,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 2113094183
     },
     {
@@ -481,7 +440,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 1808211863
     },
     {
@@ -490,7 +448,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 104774522
     },
     {
@@ -499,7 +456,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 71450662
     },
     {
@@ -508,7 +464,6 @@
       "Language": 1,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 431052170
     },
     {
@@ -517,7 +472,6 @@
       "Language": 0,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 38694034
     },
     {
@@ -526,7 +480,6 @@
       "Language": 1,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 27553723
     },
     {
@@ -535,7 +488,6 @@
       "Language": 2,
       "Version": "1.4.0",
       "State": 5,
-      "Name": "",
       "ID": 889913035
     },
     {
@@ -544,7 +496,6 @@
       "Language": 1,
       "Version": "5",
       "State": 5,
-      "Name": "",
       "ID": 1195309402
     },
     {
@@ -553,7 +504,6 @@
       "Language": 2,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 1740568201
     },
     {
@@ -562,7 +512,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 1280090290
     },
     {
@@ -571,7 +520,6 @@
       "Language": 0,
       "Version": "5.0",
       "State": 5,
-      "Name": "",
       "ID": 1098440121
     },
     {
@@ -580,7 +528,6 @@
       "Language": 2,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 2056299861
     },
     {
@@ -589,7 +536,6 @@
       "Language": 1,
       "Version": "",
       "State": 4,
-      "Name": "",
       "ID": 701784096
     },
     {
@@ -598,7 +544,6 @@
       "Language": 0,
       "Version": "3.1",
       "State": 5,
-      "Name": "",
       "ID": 1892333385
     },
     {
@@ -607,7 +552,6 @@
       "Language": 1,
       "Version": "2.5.5",
       "State": 5,
-      "Name": "",
       "ID": 1018795967
     },
     {
@@ -616,7 +560,6 @@
       "Language": 1,
       "Version": "6.3.5",
       "State": 5,
-      "Name": "",
       "ID": 496496592
     },
     {
@@ -625,7 +568,6 @@
       "Language": 2,
       "Version": "6.4.1 b",
       "State": 5,
-      "Name": "",
       "ID": 642413367
     },
     {
@@ -634,7 +576,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 1032586954
     },
     {
@@ -643,7 +584,6 @@
       "Language": 1,
       "Version": "4.4.0",
       "State": 5,
-      "Name": "",
       "ID": 495699444
     },
     {
@@ -652,7 +592,6 @@
       "Language": 0,
       "Version": "4.4.0",
       "State": 5,
-      "Name": "",
       "ID": 1292281683
     },
     {
@@ -661,7 +600,6 @@
       "Language": 1,
       "Version": "4.0",
       "State": 5,
-      "Name": "",
       "ID": 369366816
     },
     {
@@ -670,7 +608,6 @@
       "Language": 1,
       "Version": "4.0",
       "State": 5,
-      "Name": "",
       "ID": 2128419985
     },
     {
@@ -679,7 +616,6 @@
       "Language": 1,
       "Version": "1.51",
       "State": 5,
-      "Name": "",
       "ID": 1880863862
     },
     {
@@ -688,7 +624,6 @@
       "Language": 2,
       "Version": "1.51",
       "State": 5,
-      "Name": "",
       "ID": 454571295
     },
     {
@@ -697,7 +632,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 929273085
     },
     {
@@ -706,7 +640,6 @@
       "Language": 1,
       "Version": "beta",
       "State": 5,
-      "Name": "",
       "ID": 2103375764
     },
     {
@@ -715,7 +648,6 @@
       "Language": 1,
       "Version": "1.3 и 1.0",
       "State": 5,
-      "Name": "",
       "ID": 1195499230
     },
     {
@@ -724,7 +656,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 708364485
     },
     {
@@ -733,7 +664,6 @@
       "Language": 2,
       "Version": "1.3",
       "State": 5,
-      "Name": "",
       "ID": 621963020
     },
     {
@@ -742,7 +672,6 @@
       "Language": 2,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 1287065904
     },
     {
@@ -751,7 +680,6 @@
       "Language": 2,
       "Version": "2.0",
       "State": 5,
-      "Name": "",
       "ID": 388076959
     },
     {
@@ -760,7 +688,6 @@
       "Language": 1,
       "Version": "",
       "State": 3,
-      "Name": "",
       "ID": 450155995
     },
     {
@@ -769,7 +696,6 @@
       "Language": 2,
       "Version": "2.1.2",
       "State": 5,
-      "Name": "",
       "ID": 278777562
     },
     {
@@ -778,7 +704,6 @@
       "Language": 1,
       "Version": "2.1.2",
       "State": 5,
-      "Name": "",
       "ID": 271443042
     },
     {
@@ -787,7 +712,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 2114335974
     },
     {
@@ -796,7 +720,6 @@
       "Language": 0,
       "Version": "3.6 c",
       "State": 5,
-      "Name": "",
       "ID": 959660431
     },
     {
@@ -805,7 +728,6 @@
       "Language": 0,
       "Version": "3.5 d",
       "State": 5,
-      "Name": "",
       "ID": 2140533979
     },
     {
@@ -814,7 +736,6 @@
       "Language": 0,
       "Version": "3.6 c",
       "State": 5,
-      "Name": "",
       "ID": 1816075889
     },
     {
@@ -823,7 +744,6 @@
       "Language": 0,
       "Version": "3.5 d",
       "State": 5,
-      "Name": "",
       "ID": 427489501
     },
     {
@@ -832,7 +752,6 @@
       "Language": 1,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 332007754
     },
     {
@@ -841,7 +760,6 @@
       "Language": 2,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 346831631
     },
     {
@@ -850,7 +768,6 @@
       "Language": 0,
       "Version": "1.3",
       "State": 5,
-      "Name": "",
       "ID": 1017704557
     },
     {
@@ -859,7 +776,6 @@
       "Language": 1,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 2106063306
     },
     {
@@ -868,7 +784,6 @@
       "Language": 2,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 1122117627
     },
     {
@@ -877,7 +792,6 @@
       "Language": 0,
       "Version": "5.5",
       "State": 5,
-      "Name": "",
       "ID": 1046828921
     },
     {
@@ -886,7 +800,6 @@
       "Language": 0,
       "Version": "5.5",
       "State": 5,
-      "Name": "",
       "ID": 659751212
     },
     {
@@ -895,7 +808,6 @@
       "Language": 1,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 592279689
     },
     {
@@ -904,7 +816,6 @@
       "Language": 2,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 257556535
     },
     {
@@ -913,7 +824,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1361867474
     },
     {
@@ -922,7 +832,6 @@
       "Language": 0,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1508277473
     },
     {
@@ -931,7 +840,6 @@
       "Language": 0,
       "Version": "3.0",
       "State": 5,
-      "Name": "",
       "ID": 1968937777
     },
     {
@@ -940,7 +848,6 @@
       "Language": 0,
       "Version": "3.0",
       "State": 5,
-      "Name": "",
       "ID": 1153074067
     },
     {
@@ -949,7 +856,6 @@
       "Language": 0,
       "Version": "2.1",
       "State": 5,
-      "Name": "",
       "ID": 1099664200
     },
     {
@@ -958,7 +864,6 @@
       "Language": 0,
       "Version": "2.1",
       "State": 5,
-      "Name": "",
       "ID": 514677638
     },
     {
@@ -967,7 +872,6 @@
       "Language": 0,
       "Version": "2.1",
       "State": 5,
-      "Name": "",
       "ID": 988367360
     },
     {
@@ -976,7 +880,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 2064284722
     },
     {
@@ -985,7 +888,6 @@
       "Language": 2,
       "Version": "3",
       "State": 5,
-      "Name": "",
       "ID": 1622619598
     },
     {
@@ -994,7 +896,6 @@
       "Language": 0,
       "Version": "3.0",
       "State": 5,
-      "Name": "",
       "ID": 449008328
     },
     {
@@ -1003,7 +904,6 @@
       "Language": 0,
       "Version": "4.0",
       "State": 5,
-      "Name": "",
       "ID": 1791174527
     },
     {
@@ -1012,7 +912,6 @@
       "Language": 0,
       "Version": "4.0",
       "State": 5,
-      "Name": "",
       "ID": 1363414067
     },
     {
@@ -1021,7 +920,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 2088957402
     },
     {
@@ -1030,7 +928,6 @@
       "Language": 1,
       "Version": "1.5",
       "State": 5,
-      "Name": "",
       "ID": 304878676
     },
     {
@@ -1039,7 +936,6 @@
       "Language": 0,
       "Version": "8",
       "State": 5,
-      "Name": "",
       "ID": 1536754077
     },
     {
@@ -1048,7 +944,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 959198120
     },
     {
@@ -1057,7 +952,6 @@
       "Language": 1,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 1775396656
     },
     {
@@ -1066,7 +960,6 @@
       "Language": 1,
       "Version": "3 in 1",
       "State": 5,
-      "Name": "",
       "ID": 354881000
     },
     {
@@ -1075,7 +968,6 @@
       "Language": 0,
       "Version": "1.8.1",
       "State": 5,
-      "Name": "",
       "ID": 1074171295
     },
     {
@@ -1084,7 +976,6 @@
       "Language": 0,
       "Version": "1.8.1",
       "State": 5,
-      "Name": "",
       "ID": 405527086
     },
     {
@@ -1093,7 +984,6 @@
       "Language": 0,
       "Version": "1",
       "State": 5,
-      "Name": "",
       "ID": 852212762
     },
     {
@@ -1102,7 +992,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 80757194
     },
     {
@@ -1111,7 +1000,6 @@
       "Language": 1,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 1142953944
     },
     {
@@ -1120,7 +1008,6 @@
       "Language": 2,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 1943198425
     },
     {
@@ -1129,7 +1016,6 @@
       "Language": 1,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 660574200
     },
     {
@@ -1138,7 +1024,6 @@
       "Language": 0,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 233816679
     },
     {
@@ -1147,7 +1032,6 @@
       "Language": 1,
       "Version": "V13D",
       "State": 5,
-      "Name": "",
       "ID": 793302534
     },
     {
@@ -1156,7 +1040,6 @@
       "Language": 1,
       "Version": "13 D",
       "State": 5,
-      "Name": "",
       "ID": 896868616
     },
     {
@@ -1165,7 +1048,6 @@
       "Language": 2,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 1833303159
     },
     {
@@ -1174,7 +1056,6 @@
       "Language": 1,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 106740031
     },
     {
@@ -1183,7 +1064,6 @@
       "Language": 1,
       "Version": "2.0",
       "State": 5,
-      "Name": "",
       "ID": 82871134
     },
     {
@@ -1192,7 +1072,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 394472320
     },
     {
@@ -1201,7 +1080,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1985395194
     },
     {
@@ -1210,7 +1088,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 552921218
     },
     {
@@ -1219,7 +1096,6 @@
       "Language": 1,
       "Version": "2.0",
       "State": 5,
-      "Name": "",
       "ID": 604293915
     },
     {
@@ -1228,7 +1104,6 @@
       "Language": 2,
       "Version": "2.1",
       "State": 5,
-      "Name": "",
       "ID": 1985779411
     },
     {
@@ -1237,7 +1112,6 @@
       "Language": 0,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 81545026
     },
     {
@@ -1246,7 +1120,6 @@
       "Language": 2,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 77614408
     },
     {
@@ -1255,7 +1128,6 @@
       "Language": 1,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 372518413
     },
     {
@@ -1264,7 +1136,6 @@
       "Language": 2,
       "Version": "1.7.1",
       "State": 5,
-      "Name": "",
       "ID": 1562086046
     },
     {
@@ -1273,7 +1144,6 @@
       "Language": 1,
       "Version": "1.7",
       "State": 5,
-      "Name": "",
       "ID": 1225616016
     },
     {
@@ -1282,7 +1152,6 @@
       "Language": 1,
       "Version": "3.5",
       "State": 5,
-      "Name": "",
       "ID": 770207852
     },
     {
@@ -1291,7 +1160,6 @@
       "Language": 2,
       "Version": "3.5",
       "State": 5,
-      "Name": "",
       "ID": 1419912123
     },
     {
@@ -1300,7 +1168,6 @@
       "Language": 1,
       "Version": "1.6",
       "State": 5,
-      "Name": "",
       "ID": 184234710
     },
     {
@@ -1309,7 +1176,6 @@
       "Language": 2,
       "Version": "2.1",
       "State": 5,
-      "Name": "",
       "ID": 572024862
     },
     {
@@ -1318,7 +1184,6 @@
       "Language": 0,
       "Version": "5.1",
       "State": 5,
-      "Name": "",
       "ID": 2044186133
     },
     {
@@ -1327,7 +1192,6 @@
       "Language": 1,
       "Version": "0.4",
       "State": 5,
-      "Name": "",
       "ID": 677400718
     },
     {
@@ -1336,7 +1200,6 @@
       "Language": 0,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 1973242288
     },
     {
@@ -1345,7 +1208,6 @@
       "Language": 2,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 1865775104
     },
     {
@@ -1354,7 +1216,6 @@
       "Language": 1,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 1136997652
     },
     {
@@ -1363,7 +1224,6 @@
       "Language": 1,
       "Version": "1.95",
       "State": 5,
-      "Name": "",
       "ID": 779935117
     },
     {
@@ -1372,7 +1232,6 @@
       "Language": 1,
       "Version": "0.3.1",
       "State": 5,
-      "Name": "",
       "ID": 471793034
     },
     {
@@ -1381,7 +1240,6 @@
       "Language": 2,
       "Version": "0.3.1",
       "State": 5,
-      "Name": "",
       "ID": 1692254546
     },
     {
@@ -1390,7 +1248,6 @@
       "Language": 1,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 730994440
     },
     {
@@ -1399,7 +1256,6 @@
       "Language": 2,
       "Version": "1.9",
       "State": 5,
-      "Name": "",
       "ID": 997083604
     },
     {
@@ -1408,7 +1264,6 @@
       "Language": 1,
       "Version": "V 0.1",
       "State": 5,
-      "Name": "",
       "ID": 929872583
     },
     {
@@ -1417,7 +1272,6 @@
       "Language": 0,
       "Version": "1.4",
       "State": 5,
-      "Name": "",
       "ID": 941091321
     },
     {
@@ -1426,7 +1280,6 @@
       "Language": 1,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 686443288
     },
     {
@@ -1435,7 +1288,6 @@
       "Language": 2,
       "Version": "1.2",
       "State": 5,
-      "Name": "",
       "ID": 1791727974
     },
     {
@@ -1444,7 +1296,6 @@
       "Language": 1,
       "Version": "",
       "State": 4,
-      "Name": "",
       "ID": 187646922
     },
     {
@@ -1453,7 +1304,6 @@
       "Language": 0,
       "Version": "2.8",
       "State": 5,
-      "Name": "",
       "ID": 665603451
     },
     {
@@ -1462,7 +1312,6 @@
       "Language": 1,
       "Version": "2.0.5",
       "State": 5,
-      "Name": "",
       "ID": 1452182490
     },
     {
@@ -1471,7 +1320,6 @@
       "Language": 1,
       "Version": "1,1",
       "State": 5,
-      "Name": "",
       "ID": 1116188847
     },
     {
@@ -1480,7 +1328,6 @@
       "Language": 2,
       "Version": "1.2.1",
       "State": 5,
-      "Name": "",
       "ID": 10461071
     },
     {
@@ -1489,7 +1336,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 415878922
     },
     {
@@ -1498,7 +1344,6 @@
       "Language": 0,
       "Version": "3.0 beta",
       "State": 5,
-      "Name": "",
       "ID": 1609426808
     },
     {
@@ -1507,7 +1352,6 @@
       "Language": 0,
       "Version": "Final",
       "State": 5,
-      "Name": "",
       "ID": 1270932624
     },
     {
@@ -1516,7 +1360,6 @@
       "Language": 0,
       "Version": "3.0",
       "State": 5,
-      "Name": "",
       "ID": 1035666458
     },
     {
@@ -1525,7 +1368,6 @@
       "Language": 0,
       "Version": "3.0",
       "State": 5,
-      "Name": "",
       "ID": 1619301984
     },
     {
@@ -1534,7 +1376,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1069128515
     },
     {
@@ -1543,7 +1384,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 104397972
     },
     {
@@ -1552,7 +1392,6 @@
       "Language": 2,
       "Version": "",
       "State": 4,
-      "Name": "",
       "ID": 676198658
     },
     {
@@ -1561,7 +1400,6 @@
       "Language": 1,
       "Version": "2.0 b",
       "State": 5,
-      "Name": "",
       "ID": 323417616
     },
     {
@@ -1570,7 +1408,6 @@
       "Language": 1,
       "Version": "6.5.2 b",
       "State": 5,
-      "Name": "",
       "ID": 2011157932
     },
     {
@@ -1579,7 +1416,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 1205480376
     },
     {
@@ -1588,7 +1424,6 @@
       "Language": 1,
       "Version": "1.38",
       "State": 5,
-      "Name": "",
       "ID": 705812049
     },
     {
@@ -1597,7 +1432,6 @@
       "Language": 1,
       "Version": "1.38",
       "State": 5,
-      "Name": "",
       "ID": 802788336
     },
     {
@@ -1606,7 +1440,6 @@
       "Language": 1,
       "Version": "1.38",
       "State": 5,
-      "Name": "",
       "ID": 343304124
     },
     {
@@ -1615,7 +1448,6 @@
       "Language": 1,
       "Version": "1.38",
       "State": 5,
-      "Name": "",
       "ID": 1039640161
     },
     {
@@ -1624,7 +1456,6 @@
       "Language": 1,
       "Version": "1.38",
       "State": 5,
-      "Name": "",
       "ID": 1095090843
     },
     {
@@ -1633,7 +1464,6 @@
       "Language": 1,
       "Version": "1.38",
       "State": 5,
-      "Name": "",
       "ID": 495952273
     },
     {
@@ -1642,7 +1472,6 @@
       "Language": 1,
       "Version": "5.1",
       "State": 5,
-      "Name": "",
       "ID": 1900853357
     },
     {
@@ -1651,7 +1480,6 @@
       "Language": 2,
       "Version": "5.1",
       "State": 5,
-      "Name": "",
       "ID": 345557205
     },
     {
@@ -1660,7 +1488,6 @@
       "Language": 1,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 2050584329
     },
     {
@@ -1669,7 +1496,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1727015439
     },
     {
@@ -1678,7 +1504,6 @@
       "Language": 1,
       "Version": "1.26",
       "State": 5,
-      "Name": "",
       "ID": 1380595238
     },
     {
@@ -1687,7 +1512,6 @@
       "Language": 2,
       "Version": "1.89",
       "State": 5,
-      "Name": "",
       "ID": 308157815
     },
     {
@@ -1696,7 +1520,6 @@
       "Language": 1,
       "Version": "",
       "State": 4,
-      "Name": "",
       "ID": 270559410
     },
     {
@@ -1705,7 +1528,6 @@
       "Language": 1,
       "Version": "3.0",
       "State": 5,
-      "Name": "",
       "ID": 366103296
     },
     {
@@ -1714,7 +1536,6 @@
       "Language": 2,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 664431921
     },
     {
@@ -1723,7 +1544,6 @@
       "Language": 1,
       "Version": "1.1 unofficial",
       "State": 5,
-      "Name": "",
       "ID": 204112974
     },
     {
@@ -1732,7 +1552,6 @@
       "Language": 0,
       "Version": "v.Final",
       "State": 5,
-      "Name": "",
       "ID": 686226433
     },
     {
@@ -1741,7 +1560,6 @@
       "Language": 0,
       "Version": "v.Final",
       "State": 5,
-      "Name": "",
       "ID": 2126904212
     },
     {
@@ -1750,7 +1568,6 @@
       "Language": 1,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 1037255414
     },
     {
@@ -1759,7 +1576,6 @@
       "Language": 2,
       "Version": "4.2.2",
       "State": 5,
-      "Name": "",
       "ID": 563288431
     },
     {
@@ -1768,7 +1584,6 @@
       "Language": 1,
       "Version": "4.2.2",
       "State": 5,
-      "Name": "",
       "ID": 1996917445
     },
     {
@@ -1777,7 +1592,6 @@
       "Language": 1,
       "Version": "1.2j.b15",
       "State": 5,
-      "Name": "",
       "ID": 833076978
     },
     {
@@ -1786,7 +1600,6 @@
       "Language": 2,
       "Version": "1.2j.b15",
       "State": 5,
-      "Name": "",
       "ID": 1930772949
     },
     {
@@ -1795,7 +1608,6 @@
       "Language": 0,
       "Version": "1.9",
       "State": 5,
-      "Name": "",
       "ID": 1378813620
     },
     {
@@ -1804,7 +1616,6 @@
       "Language": 0,
       "Version": "1.9",
       "State": 5,
-      "Name": "",
       "ID": 584479863
     },
     {
@@ -1813,7 +1624,6 @@
       "Language": 1,
       "Version": "1.3.2",
       "State": 5,
-      "Name": "",
       "ID": 1293130956
     },
     {
@@ -1822,7 +1632,6 @@
       "Language": 0,
       "Version": "1.3.2",
       "State": 5,
-      "Name": "",
       "ID": 660260721
     },
     {
@@ -1831,7 +1640,6 @@
       "Language": 2,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 40065277
     },
     {
@@ -1840,7 +1648,6 @@
       "Language": 1,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 163460044
     },
     {
@@ -1849,7 +1656,6 @@
       "Language": 0,
       "Version": "5",
       "State": 5,
-      "Name": "",
       "ID": 803555530
     },
     {
@@ -1858,7 +1664,6 @@
       "Language": 0,
       "Version": "5",
       "State": 5,
-      "Name": "",
       "ID": 142262363
     },
     {
@@ -1867,7 +1672,6 @@
       "Language": 1,
       "Version": "",
       "State": 5,
-      "Name": "",
       "ID": 1917753488
     },
     {
@@ -1876,7 +1680,6 @@
       "Language": 1,
       "Version": "1",
       "State": 5,
-      "Name": "",
       "ID": 1489512863
     },
     {
@@ -1885,7 +1688,6 @@
       "Language": 0,
       "Version": "2.1",
       "State": 5,
-      "Name": "",
       "ID": 1443771010
     },
     {
@@ -1894,7 +1696,6 @@
       "Language": 1,
       "Version": "5.2",
       "State": 5,
-      "Name": "",
       "ID": 153809059
     },
     {
@@ -1903,7 +1704,6 @@
       "Language": 0,
       "Version": "5.2",
       "State": 5,
-      "Name": "",
       "ID": 1165107177
     },
     {
@@ -1912,7 +1712,6 @@
       "Language": 1,
       "Version": "",
       "State": 4,
-      "Name": "",
       "ID": 1393653527
     },
     {
@@ -1921,7 +1720,6 @@
       "Language": 1,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 1255708104
     },
     {
@@ -1930,7 +1728,6 @@
       "Language": 2,
       "Version": "2.2",
       "State": 5,
-      "Name": "",
       "ID": 2050783073
     },
     {
@@ -1939,7 +1736,6 @@
       "Language": 1,
       "Version": "1.9",
       "State": 5,
-      "Name": "",
       "ID": 273625192
     },
     {
@@ -1948,7 +1744,6 @@
       "Language": 2,
       "Version": "NA",
       "State": 5,
-      "Name": "",
       "ID": 877227749
     },
     {
@@ -1957,7 +1752,6 @@
       "Language": 2,
       "Version": "2.0",
       "State": 5,
-      "Name": "",
       "ID": 1687616290
     },
     {
@@ -1966,7 +1760,6 @@
       "Language": 0,
       "Version": "1.0",
       "State": 5,
-      "Name": "",
       "ID": 1539007575
     },
     {
@@ -1975,7 +1768,6 @@
       "Language": 2,
       "Version": "2.0.6",
       "State": 5,
-      "Name": "",
       "ID": 1731344321
     },
     {
@@ -1984,7 +1776,6 @@
       "Language": 1,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 120669314
     },
     {
@@ -1993,7 +1784,6 @@
       "Language": 0,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 1698630582
     },
     {
@@ -2002,14 +1792,20 @@
       "Language": 0,
       "Version": "1.1",
       "State": 5,
-      "Name": "",
       "ID": 659328034
     }
   ],
   "Mods": [
     {
+      "Version": "",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "14411_BadGremlins",
+      "ID": 228257706
+    },
+    {
       "Version": "4.1",
-      "FileName": "83 Willows 101 Bugs HD (4.1) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2021,7 +1817,6 @@
     },
     {
       "Version": "2.3.1",
-      "FileName": "Achieve That (2.3.1) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2032,7 +1827,6 @@
     },
     {
       "Version": "1",
-      "FileName": "Alchemy And Enchanting Tables (1) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2043,7 +1837,6 @@
     },
     {
       "Version": "1.1.0",
-      "FileName": "All Tamriel Books (1.1.0) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2054,7 +1847,6 @@
     },
     {
       "Version": "6",
-      "FileName": "Andragorn's Armoury (6) (RU, NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2066,7 +1858,6 @@
     },
     {
       "Version": "8 in 1",
-      "FileName": "Archery Pro - Beta b (8 in 1) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2077,7 +1868,6 @@
     },
     {
       "Version": "3.6",
-      "FileName": "Armor Compilation (3.6) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2089,7 +1879,6 @@
     },
     {
       "Version": "3.0",
-      "FileName": "Ashara Erin and Sienna Followers (3.0) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2100,20 +1889,7 @@
       "ID": 370778636
     },
     {
-      "Version": "1.8",
-      "FileName": "B-D-Y-E-B Shield Mod (1.8) (RU, EN).7z",
-      "Language": 0,
-      "State": 6,
-      "Sources": [
-        1464197357,
-        1040888743
-      ],
-      "Name": "B-D-Y-E-B Shield Mod",
-      "ID": 44856731
-    },
-    {
       "Version": "3.1",
-      "FileName": "BadGremlins Great JarHunt (3.1) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2124,8 +1900,18 @@
       "ID": 1912438767
     },
     {
+      "Version": "1.8",
+      "Language": 0,
+      "State": 6,
+      "Sources": [
+        1464197357,
+        1040888743
+      ],
+      "Name": "B-D-Y-E-B Shield Mod",
+      "ID": 44856731
+    },
+    {
       "Version": "2.0",
-      "FileName": "Be a Milk Drinker (2.0) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2137,7 +1923,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Black Mage Robe Replacer (1.0) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2148,7 +1933,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Book Covers Skyrim (3.1) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2161,7 +1945,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Book Covers Skyrim - Hotfix (3.1) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2174,7 +1957,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Book Covers Skyrim - Paper Textures (3.1) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2187,7 +1969,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Book Weight (1.0) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2198,7 +1979,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Brown Royal Money Bags (1.2) (NO).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2209,7 +1989,6 @@
     },
     {
       "Version": "2.2",
-      "FileName": "Bucklers - Shields and other Armours (2.2) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2221,7 +2000,6 @@
     },
     {
       "Version": "3.6",
-      "FileName": "Burn Freeze Shock Effects (3.6) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2233,7 +2011,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Buy Perks (1.0) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2244,7 +2021,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Catwalk (1.2) (NO).rar",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2255,7 +2031,6 @@
     },
     {
       "Version": "3.0 b",
-      "FileName": "Chesko Wearable Lanterns (3.0 b) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2267,7 +2042,6 @@
     },
     {
       "Version": "no",
-      "FileName": "Chocolate Glazed Sweetroll (no) (RU, EN).zip",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -2279,7 +2053,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Climates Of Tamriel (3.1) (RU).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2292,7 +2065,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Climates Of Tamriel - Dawnguard Patch (3.1) (RU).zip",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2305,7 +2077,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Climates Of Tamriel - Dragonborn Patch (3.1) (RU).zip",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2318,7 +2089,6 @@
     },
     {
       "Version": "3.1",
-      "FileName": "Climates Of Tamriel - Sounds (3.1) (RU, NO).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2331,7 +2101,6 @@
     },
     {
       "Version": "1.5",
-      "FileName": "Clothing and Clutter Fixes (1.5).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -2340,7 +2109,6 @@
     },
     {
       "Version": "1.4",
-      "FileName": "Companion Valfar (1.4) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2352,7 +2120,6 @@
     },
     {
       "Version": "1.61",
-      "FileName": "Complete Crafting Overhaul Remade (1.61).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -2361,7 +2128,6 @@
     },
     {
       "Version": "5.0",
-      "FileName": "Convenient Horses (5.0) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2374,7 +2140,6 @@
     },
     {
       "Version": "NO",
-      "FileName": "Convenient Horses - Alternate Textures (NO) (NO).zip",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2385,7 +2150,6 @@
     },
     {
       "Version": "no",
-      "FileName": "Craftable Clothes and Robes (no) (RU, EN).rar",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -2397,7 +2161,6 @@
     },
     {
       "Version": "2.5.5",
-      "FileName": "Daedric Armor and weapon Improvement (2.5.5) (RU, NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2409,7 +2172,6 @@
     },
     {
       "Version": "6.3.5",
-      "FileName": "Deadly Dragons (6.3.5) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2422,7 +2184,6 @@
     },
     {
       "Version": "4.4.0",
-      "FileName": "Deadly DragonsArmory (4.4.0) (RU, NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2434,7 +2195,6 @@
     },
     {
       "Version": "3.0",
-      "FileName": "Diamond Weapon Smithing (3.0) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2446,7 +2206,6 @@
     },
     {
       "Version": "1.51",
-      "FileName": "DIMONIZED UNP female body (1.51) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2458,7 +2217,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Distant Detail Hearthfire Edition (1.0) (EN).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2469,7 +2227,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Divine Intervention (1.0) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2480,7 +2237,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Dock Overhaul (1.2).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -2489,7 +2245,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Drachis Argonians (1.0) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2502,7 +2257,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Dragon Soul Relinquishment (1.2) (EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2513,7 +2267,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Dynamic Torches (2.0) (EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2524,7 +2277,6 @@
     },
     {
       "Version": "1.21",
-      "FileName": "Egil Lovers (1.21) (RU).7z",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -2535,7 +2287,6 @@
     },
     {
       "Version": "2.1",
-      "FileName": "Elemental Arrows (2.1) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2547,7 +2298,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Elven Armor and Weapons (1.0) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2558,7 +2308,6 @@
     },
     {
       "Version": "3.6 a",
-      "FileName": "Enhanced Blood Textures (3.6 a) (NO).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2570,7 +2319,6 @@
     },
     {
       "Version": "3.5",
-      "FileName": "Enhanced Blood Textures - No Screen Blood (3.5) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2582,7 +2330,6 @@
     },
     {
       "Version": "1.4",
-      "FileName": "Fleetford (1.4) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2594,7 +2341,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Follower Trap Safety (1.1) (NO).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2605,7 +2351,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Forgotten Windmill (1.0) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2617,7 +2362,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Fox Alchemists (1.2).zip",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -2626,7 +2370,6 @@
     },
     {
       "Version": "5.5",
-      "FileName": "Get Snowy (5.5) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2638,7 +2381,6 @@
     },
     {
       "Version": "no",
-      "FileName": "Glowing Eyes for Khajiits (no).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -2647,7 +2389,6 @@
     },
     {
       "Version": "1.3",
-      "FileName": "Grimoas Plantigrade Feet For Beast Races (1.3) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2659,7 +2400,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "HD Kajiit Textures (1.0) (EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2670,7 +2410,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "HD Ore And Ingots (1.1) (NO).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2681,7 +2420,6 @@
     },
     {
       "Version": "3.0",
-      "FileName": "HD Torch Variants (3.0) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2693,7 +2431,6 @@
     },
     {
       "Version": "2.1",
-      "FileName": "High Quality LODs[Meshes] (2.1) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2704,7 +2441,6 @@
     },
     {
       "Version": "2.1",
-      "FileName": "High Quality LODs[Normals] (2.1) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2715,7 +2451,6 @@
     },
     {
       "Version": "2.1",
-      "FileName": "High Quality LODs[Textures] (2.1) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2726,7 +2461,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Hold Border Banners (1.0) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2737,7 +2471,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Hoth (2.0) (NO, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2749,7 +2482,6 @@
     },
     {
       "Version": "4.0",
-      "FileName": "Hybrids HD Plants and Herbs Retexture (4.0) (NO).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2761,7 +2493,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Illustrated Panels Towns (1.0) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2773,7 +2504,6 @@
     },
     {
       "Version": "7.1",
-      "FileName": "Immersive Armours UNP (7.1) (RU, NO).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2785,7 +2515,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Improved Books [Quest + Skills] (1.0) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2797,7 +2526,6 @@
     },
     {
       "Version": "1.8.1",
-      "FileName": "Improved NPC Clothing (1.8.1) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2809,7 +2537,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Improved Weapon Impact EFFECTS Correct Metal (1.0) (NO).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2820,7 +2547,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Insanitys City Banner Replacer (1.0) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2832,7 +2558,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Ishs Souls to Perks (1.0) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2844,7 +2569,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Jaffar (1.2) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2855,7 +2579,6 @@
     },
     {
       "Version": "13 D",
-      "FileName": "JaySuS Swords (13 D) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2867,7 +2590,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Jewels of the nord (1.2) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2878,8 +2600,18 @@
       "ID": 436949627
     },
     {
+      "Version": "1.1",
+      "Language": 0,
+      "State": 6,
+      "Sources": [
+        1698630582,
+        659328034
+      ],
+      "Name": "JS Dragon Claws",
+      "ID": 1826371333
+    },
+    {
       "Version": "1.0",
-      "FileName": "Langleys Ingots Retexture (1.0) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2891,7 +2623,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "LFox Improved Shouts (1.0) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2903,7 +2634,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Lilium Follower - Standalone - New Spells (2.0) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2915,7 +2645,6 @@
     },
     {
       "Version": "1.4",
-      "FileName": "LOD Terrain (1.4).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -2924,7 +2653,6 @@
     },
     {
       "Version": "1.4",
-      "FileName": "LOD Waterfalls (1.4) (NO).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2935,7 +2663,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Lost Longswords (1.1) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2947,7 +2674,6 @@
     },
     {
       "Version": "1.7",
-      "FileName": "Marriage Dynamic Outfits (1.7) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2959,7 +2685,6 @@
     },
     {
       "Version": "3.5",
-      "FileName": "More Slots for Enchanting (3.5) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2971,7 +2696,6 @@
     },
     {
       "Version": "1.6",
-      "FileName": "More Village Animals (1.6) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -2983,7 +2707,6 @@
     },
     {
       "Version": "no",
-      "FileName": "NMFWLM (no) (NO).rar",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -2994,7 +2717,6 @@
     },
     {
       "Version": "0.2",
-      "FileName": "NPC Bartering (0.2) (RU).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3005,7 +2727,6 @@
     },
     {
       "Version": "2.1 to",
-      "FileName": "OBIS - Organized Bandits In Skyrim (2.1 to) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3015,8 +2736,15 @@
       "ID": 1484958175
     },
     {
+      "Version": "2.1",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "OBIS - Organized Bandits In Skyrim",
+      "ID": 578527457
+    },
+    {
       "Version": "1.0",
-      "FileName": "Old Spells (1.0).rar",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3025,7 +2753,6 @@
     },
     {
       "Version": "0.9",
-      "FileName": "Open Dragon Priest Masks (0.9) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3037,7 +2764,6 @@
     },
     {
       "Version": "1.4",
-      "FileName": "Perk Trainers (1.4) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3048,7 +2774,6 @@
     },
     {
       "Version": "0.3",
-      "FileName": "Pets of Skyrim (0.3) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3060,7 +2785,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Phenderix Magic Sounds Improved (1.1).rar",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3069,7 +2793,6 @@
     },
     {
       "Version": "1.9",
-      "FileName": "Portal - Dynamically Placed Teleportation (1.9) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3081,7 +2804,6 @@
     },
     {
       "Version": "0.1",
-      "FileName": "Powerful potions (0.1) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3092,7 +2814,6 @@
     },
     {
       "Version": "1.4",
-      "FileName": "Radiance of Enchanted Weapons (1.4) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3103,7 +2824,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Revised Speed (2.0).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3112,7 +2832,6 @@
     },
     {
       "Version": "1.2",
-      "FileName": "Reweighed Potions (1.2) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3124,7 +2843,6 @@
     },
     {
       "Version": "no",
-      "FileName": "Rift Performance Plus (no) (RU).zip",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -3135,7 +2853,6 @@
     },
     {
       "Version": "2.8",
-      "FileName": "Ruins Clutter Improved (2.8) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3146,7 +2863,6 @@
     },
     {
       "Version": "2.0.3",
-      "FileName": "Run For Your Lives (2.0.3) (RU).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3157,7 +2873,6 @@
     },
     {
       "Version": "1.9.32",
-      "FileName": "Rus Names fix (1.9.32).rar",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3166,7 +2881,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Rusty Traders Magic Arrows (1.1) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3178,7 +2892,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Septim HD (1.0) (EN).zip",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3189,7 +2902,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Serious HD Retexture Skyrim (2.0) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3200,7 +2912,6 @@
     },
     {
       "Version": "5.0 final",
-      "FileName": "Shady Tales (5.0 final) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3211,7 +2922,6 @@
     },
     {
       "Version": "3.0",
-      "FileName": "Silly Level of Detail - Potions and Poisons (3.0) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3223,7 +2933,6 @@
     },
     {
       "Version": "1.0 final",
-      "FileName": "Silly Level of Detail - Wine Cellar (1.0 final) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3235,7 +2944,6 @@
     },
     {
       "Version": "3.3",
-      "FileName": "SkyFalls and SkyMills (3.3).rar",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3244,7 +2952,6 @@
     },
     {
       "Version": "1.1 a",
-      "FileName": "Skyforge Shields (1.1 a) (RU, EN).rar",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -3256,7 +2963,6 @@
     },
     {
       "Version": "6.5.2",
-      "FileName": "Skyrim Immersive Creatures (6.5.2) (RU).rar",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3268,7 +2974,6 @@
     },
     {
       "Version": "1.37",
-      "FileName": "SkyTEST - Realistic Animals and Predators (1.37) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3280,7 +2985,6 @@
     },
     {
       "Version": "1.28",
-      "FileName": "SkyTEST - Realistic Animals and Predators - Dawnguard (1.28) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3292,7 +2996,6 @@
     },
     {
       "Version": "1.35",
-      "FileName": "SkyTEST - Realistic Animals and Predators - Dragonborn (1.35) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3304,7 +3007,6 @@
     },
     {
       "Version": "4.1",
-      "FileName": "SkyUI (4.1) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3316,7 +3018,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Solitude Public Bathhouse (1.0) (RU, EN).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3328,7 +3029,6 @@
     },
     {
       "Version": "0.9.1",
-      "FileName": "Spouses Can Live Everywhere (0.9.1).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3337,7 +3037,6 @@
     },
     {
       "Version": "1.72 to",
-      "FileName": "Static Mesh Improvement Mod - SMIM (1.72 to) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3348,8 +3047,15 @@
       "ID": 2052610180
     },
     {
+      "Version": "1.72",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "Static Mesh Improvement Mod - SMIM",
+      "ID": 1482820379
+    },
+    {
       "Version": "3.0",
-      "FileName": "Tauriel Companion from The Hobbit (3.0) (RU).7z",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -3361,7 +3067,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Telekinetic Push (1.1) (RU, EN).rar",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3373,7 +3078,6 @@
     },
     {
       "Version": "1.2 final",
-      "FileName": "The Divine Shrines Retexture (1.2 final) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3384,7 +3088,6 @@
     },
     {
       "Version": "1.2 final",
-      "FileName": "The Divine Shrines Retexture - 2048 HD Arkay and Akatosh Version (1.2 final) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3395,7 +3098,6 @@
     },
     {
       "Version": "2.2",
-      "FileName": "The Notice Boards (2.2) (RU).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3406,7 +3108,6 @@
     },
     {
       "Version": "3.4",
-      "FileName": "The Ruffled Feather - W.A.T.E.R (3.4) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3418,7 +3119,6 @@
     },
     {
       "Version": "4.0",
-      "FileName": "UHDT[Bones and Skeletons] (4.0).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3427,7 +3127,6 @@
     },
     {
       "Version": "4.0",
-      "FileName": "UHDT[Dawnguard] (4.0).zip",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3436,7 +3135,6 @@
     },
     {
       "Version": "3.5",
-      "FileName": "UHDT[Shields] (3.5).zip",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3445,7 +3143,6 @@
     },
     {
       "Version": "5.0",
-      "FileName": "UHDT[Weapons] (5.0).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3454,7 +3151,6 @@
     },
     {
       "Version": "12 j",
-      "FileName": "Ultimate Follower Overhaul (12 j) (RU, EN).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3466,7 +3162,6 @@
     },
     {
       "Version": "1.9",
-      "FileName": "Ultimate HD Fire Effects (1.9) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3478,7 +3173,6 @@
     },
     {
       "Version": "1.3.2",
-      "FileName": "Unexpected Blades (1.3.2) (RU, NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3490,7 +3184,6 @@
     },
     {
       "Version": "2.2",
-      "FileName": "Unicorn (2.2) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3502,7 +3195,6 @@
     },
     {
       "Version": "5.0",
-      "FileName": "Unique Region Names (5.0) (RU, NO).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3514,8 +3206,31 @@
       "ID": 874278302
     },
     {
+      "Version": "2.1.1",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Dawnguard Patch",
+      "ID": 1143977620
+    },
+    {
+      "Version": "2.1.1",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Dragonborn Patch",
+      "ID": 1052122498
+    },
+    {
+      "Version": "2.1.1",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Hearthfire Patch",
+      "ID": 1990210746
+    },
+    {
       "Version": "1.1.9 a",
-      "FileName": "Unofficial High Resolution Patch (1.1.9 a).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3523,8 +3238,15 @@
       "ID": 1577363476
     },
     {
+      "Version": "2.1.1",
+      "Language": 0,
+      "State": 3,
+      "Sources": [],
+      "Name": "Unofficial Skyrim Patch",
+      "ID": 1472098706
+    },
+    {
       "Version": "1.0",
-      "FileName": "UNP Barkeeper Slightly Transparent (1.0) (RU).7z",
       "Language": 0,
       "State": 5,
       "Sources": [
@@ -3535,7 +3257,6 @@
     },
     {
       "Version": "2.1",
-      "FileName": "UNP Female Armors (2.1) (NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3546,7 +3267,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "UNP Female Armors[Boot Pack] (2.0).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3555,7 +3275,6 @@
     },
     {
       "Version": "2.3",
-      "FileName": "UNP Fitness Body - Also CBBE (2.3) (RU, NO).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3567,7 +3286,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "VoidCraft_Jewelry (1.0) (RU).7z",
       "Language": 0,
       "State": 3,
       "Sources": [
@@ -3578,7 +3296,6 @@
     },
     {
       "Version": "5.10",
-      "FileName": "Weapons and Armor Fixes Remade (5.10).7z",
       "Language": 0,
       "State": 3,
       "Sources": [],
@@ -3587,7 +3304,6 @@
     },
     {
       "Version": "1.422",
-      "FileName": "Wet and Cold (1.422) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3599,7 +3315,6 @@
     },
     {
       "Version": "1.9",
-      "FileName": "Wet and Cold - Ashes (1.9) (RU, EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3611,7 +3326,6 @@
     },
     {
       "Version": "2.0",
-      "FileName": "Wet and Cold - Holidays (2.0) (EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3622,7 +3336,6 @@
     },
     {
       "Version": "1.0",
-      "FileName": "Wet Arrows Back (1.0) (NO).rar",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3633,7 +3346,6 @@
     },
     {
       "Version": "1.1.1 a",
-      "FileName": "When Vampires Attack (1.1.1 a) (EN).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3644,7 +3356,6 @@
     },
     {
       "Version": "1.1",
-      "FileName": "Wonders of Weather (1.1) (RU).7z",
       "Language": 0,
       "State": 6,
       "Sources": [
@@ -3652,81 +3363,6 @@
       ],
       "Name": "Wonders of Weather",
       "ID": 468105548
-    },
-    {
-      "Version": "1.72",
-      "FileName": "Static Mesh Improvement Mod - SMIM (1.72).7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "Static Mesh Improvement Mod - SMIM",
-      "ID": 1482820379
-    },
-    {
-      "Version": "2.1",
-      "FileName": "OBIS - Organized Bandits In Skyrim (2.1).7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "OBIS - Organized Bandits In Skyrim",
-      "ID": 578527457
-    },
-    {
-      "Version": "2.1.1",
-      "FileName": "Unofficial Dawnguard Patch (2.1.1).7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "Unofficial Dawnguard Patch",
-      "ID": 1143977620
-    },
-    {
-      "Version": "2.1.1",
-      "FileName": "Unofficial Dragonborn Patch (2.1.1).7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "Unofficial Dragonborn Patch",
-      "ID": 1052122498
-    },
-    {
-      "Version": "2.1.1",
-      "FileName": "Unofficial Hearthfire Patch (2.1.1).7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "Unofficial Hearthfire Patch",
-      "ID": 1990210746
-    },
-    {
-      "Version": "2.1.1",
-      "FileName": "Unofficial Skyrim Patch (2.1.1).7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "Unofficial Skyrim Patch",
-      "ID": 1472098706
-    },
-    {
-      "Version": "1.1",
-      "FileName": "JS Dragon Claws (1.1) (NO).rar",
-      "Language": 0,
-      "State": 6,
-      "Sources": [
-        1698630582,
-        659328034
-      ],
-      "Name": "JS Dragon Claws",
-      "ID": 1826371333
-    },
-    {
-      "Version": "",
-      "FileName": "14411_BadGremlins.7z",
-      "Language": 0,
-      "State": 3,
-      "Sources": [],
-      "Name": "14411_BadGremlins",
-      "ID": 228257706
     }
   ]
 }

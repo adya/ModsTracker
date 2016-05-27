@@ -6,21 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SMT.Actions.ModsActions
+namespace SMT.Actions
 {
-    class EditSMTModelAction<T> : NamedAction where T : SMTModel<T>{ 
+    class EditModelAction<T> : NamedAction where T : SMTModel<T>, new(){ 
 
         private T target;
         private T oldModel;
         private T newModel;
 
-        public EditSMTModelAction(T target, T newModel) : base("Edit model")
+        public EditModelAction(T target, T newModel) : base("Edit model")
         {
             IsValid = target != null && newModel != null && !target.Equals(newModel);
             if (!IsValid) return;
             this.target = target;
             oldModel = target.Clone();
-            newModel = newModel.Clone();
+            this.newModel = newModel.Clone();
         }
 
         public override void Perform()

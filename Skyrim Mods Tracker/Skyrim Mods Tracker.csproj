@@ -98,6 +98,8 @@
     <Compile Include="ServersForm.designer.cs">
       <DependentUpon>ServersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\DataGridViewBinder.cs" />
+    <Compile Include="Utils\SelectionList.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\LimitedList.cs" />
     <Compile Include="Utils\StateButton.cs">

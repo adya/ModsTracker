@@ -1,20 +1,14 @@
 ﻿using Newtonsoft.Json;
 using SMT.Managers;
 using System.Collections.Generic;
-using SMT.Utils;
-using System.IO;
 using SMT.JsonConverters;
 using System.Linq;
 using SMT.Models.PropertyInterfaces;
-using System;
-using SMT.Actions.ModsActions;
 
 namespace SMT.Models
 {
     class Mod : SMTNamedModel<Mod>, IStateful<ModState>, IVersioning, IValidatable, ILocalizable
     {
-        private string filename;
-
         /// <summary>
         /// Mod's version.
         /// </summary>
@@ -98,5 +92,7 @@ namespace SMT.Models
             mod.Language = Language;
             mod.Sources = mod.Sources;
         }
+
+       
     }
 }

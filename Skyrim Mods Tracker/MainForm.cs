@@ -1,4 +1,5 @@
 ﻿using SMT.Actions;
+using SMT.DGVBinding;
 using SMT.Managers;
 using SMT.Models;
 using SMT.Utils;
@@ -22,10 +23,11 @@ namespace SMT
         private enum SourcesColumns
         {
             Server,
-            Language,
             Version,
             State,
-            Path
+            Language,
+            Path,
+            ID
         }
 
         private enum ModColumns
@@ -36,6 +38,34 @@ namespace SMT
             State,
             Language,
             ID
+        }
+
+        private class SMTModelIndexMapper<T> : IDataGridViewIndexMapper<T> where T : SMTModel<T>, new()
+        {
+            private int idColumnIndex;
+
+            public SMTModelIndexMapper(int idColumnIndex)
+            {
+                this.idColumnIndex = idColumnIndex;
+            }
+
+            public int ItemIndexFromRowIndex(DataGridViewBinder<T> binder, int rowIndex)
+            {
+                int id = (int)binder.GridView.Rows[rowIndex].Cells[idColumnIndex].Value;
+                return binder.Data.FindIndex(m => m.ID == id);
+            }
+
+            public int RowIndexFromItemIndex(DataGridViewBinder<T> binder, int itemIndex)
+            {
+                T model = binder.Data[itemIndex];
+                for (int index = 0; index < binder.GridView.Rows.Count; index++)
+                {
+                    DataGridViewRow row = binder.GridView.Rows[index];
+                    if ((int)row.Cells[idColumnIndex].Value == model.ID) return index;
+                }
+                return -1;
+            }
+
         }
 
         private Mod editableMod;
@@ -50,7 +80,7 @@ namespace SMT
             InitializeComponent();
             BindMods();
             actionsManager = new ActionsManager();
-           
+
             cbSourceLanguage.DataSource = Enum.GetValues(typeof(Language));
             cbModLanguage.DataSource = Enum.GetValues(typeof(Language));
 
@@ -58,24 +88,45 @@ namespace SMT
             bgWorker.WorkerReportsProgress = true;
 
             SetDefaultStatus();
-
-            modsBinder.Refresh();
         }
 
         private void BindMods()
         {
+            Unbind(ref modsBinder);
             modsBinder = new DataGridViewBinder<Mod>(dgvMods, new SelectionList<Mod>(ModsManager.Mods));
+            modsBinder.IndexMapper = new SMTModelIndexMapper<Mod>((int)ModColumns.ID);
             modsBinder.PopulateRow += ModsBinder_OnPopulateRow;
             modsBinder.ItemSelected += ModsBinder_OnItemSelected;
+            modsBinder.SelectionCleared += ModsBinder_SelectionCleared;
+            modsBinder.AddCellClickHandler((int)ModColumns.State, ModsBinder_State_CellContentClick);
             modsBinder.Refresh(true);
         }
 
+       
+
         private void BindSources(Mod mod)
         {
+            Unbind(ref sourcesBinder);
             sourcesBinder = new DataGridViewBinder<Source>(dgvSources, new SelectionList<Source>(mod.Sources));
+            sourcesBinder.IndexMapper = new SMTModelIndexMapper<Source>((int)SourcesColumns.ID);
             sourcesBinder.ItemSelected += SourcesBinder_OnItemSelected;
             sourcesBinder.PopulateRow += SourcesBinder_OnPopulateRow;
+            sourcesBinder.SelectionCleared += SourcesBinder_SelectionCleared;
+            sourcesBinder.AddCellClickHandler((int)SourcesColumns.Server, SourcesBinder_Server_Path_CellContentClick);
+            sourcesBinder.AddCellClickHandler((int)SourcesColumns.Path, SourcesBinder_Server_Path_CellContentClick);
             sourcesBinder.Refresh(true);
+        }
+
+       
+
+        private void Unbind<T>(ref DataGridViewBinder<T> binder) where T : new()
+        {
+            if (binder != null)
+            {
+                binder.Dispose();
+                binder.GridView.Rows.Clear();
+                binder = null;
+            }
         }
 
         private void ModsBinder_OnItemSelected(DataGridViewBinder<Mod> sender, Mod item)
@@ -83,8 +134,15 @@ namespace SMT
             tbModName.Text = item.Name;
             tbModVersion.Text = item.Version.Value;
             cbModLanguage.SelectedItem = item.Language;
+            Unbind(ref sourcesBinder);
             BindSources(item);
             SetModEditable(true);
+            MarkSources();
+        }
+
+        private void ModsBinder_SelectionCleared(DataGridViewBinder<Mod> sender)
+        {
+            SetModEditable(false);
         }
 
         private void ModsBinder_OnPopulateRow(DataGridViewBinder<Mod> sender, DataGridViewRow row, Mod item)
@@ -96,8 +154,10 @@ namespace SMT
             row.Cells[(int)ModColumns.Language].Value = item.Language.ToShortString();
             row.Cells[(int)ModColumns.ID].Value = item.ID;
         }
-
-      
+        private void ModsBinder_State_CellContentClick(DataGridViewBinder<Mod> sender, DataGridViewRow row, Mod item)
+        {
+            RunCheckMods(new Mod[] { item });
+        }
 
         private void SourcesBinder_OnPopulateRow(DataGridViewBinder<Source> sender, DataGridViewRow row, Source item)
         {
@@ -106,11 +166,26 @@ namespace SMT
             row.Cells[(int)SourcesColumns.State].Value = item.StateString;
             row.Cells[(int)SourcesColumns.Language].Value = item.Language.ToShortString();
             row.Cells[(int)SourcesColumns.Path].Value = item.Path;
+            row.Cells[(int)SourcesColumns.ID].Value = item.ID;
         }
 
         private void SourcesBinder_OnItemSelected(DataGridViewBinder<Source> sender, Source item)
         {
+            tbSourceURL.Text = item.URL;
+            tbSourceVersion.Text = item.Version.Value;
+            cbSourceLanguage.SelectedItem = item.Language;
             SetSourceEditable(true);
+        }
+
+        private void SourcesBinder_SelectionCleared(DataGridViewBinder<Source> sender)
+        {
+            SetSourceEditable(false);
+        }
+
+        private void SourcesBinder_Server_Path_CellContentClick(DataGridViewBinder<Source> sender, DataGridViewRow row, Source item)
+        {
+            if (item.HasValidURL)
+                Process.Start(item.URL);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -128,7 +203,6 @@ namespace SMT
             tbSourceURL.TextChanged += OnSourceTextChanged;
 
             SetModEditable(false);
-            SetSourceEditable(false);
             ModsManager.UpdateStates();
             MarkMods();
         }
@@ -175,7 +249,7 @@ namespace SMT
             bRemoveMod.Enabled = isEditable;
             bAddSource.Enabled = isEditable;
             dgvSources.Enabled = isEditable;
-
+            SetSourceEditable(false);
             if (!isEditable)
             {
                 dgvMods.ClearSelection();
@@ -183,11 +257,7 @@ namespace SMT
                 tbModVersion.Clear();
                 tbModName.ClearMessage();
                 tbModVersion.ClearMessage();
-                SetSourceEditable(false);
-                dgvSources.DataSource = null;
-            }
-            else {
-                MarkSources();
+                Unbind(ref sourcesBinder);
             }
         }
         private void SetSourceEditable(bool isEditable)
@@ -227,7 +297,7 @@ namespace SMT
             if (status == null) status = "";
             slStatusTitle.Text = status;
         }
-     
+
         #region Fields validation
         private void ValidateModName(Mod mod)
         {
@@ -301,7 +371,7 @@ namespace SMT
         private void MarkSources()
         {
             if (sourcesBinder == null) return;
-            for(int i=0; i< sourcesBinder.Data.Count;i++)
+            for (int i = 0; i < sourcesBinder.Data.Count; i++)
             {
                 Source src = sourcesBinder.Data[i];
                 DataGridViewRow row = dgvSources.Rows[i];
@@ -310,17 +380,22 @@ namespace SMT
 
                 serverCell.LinkBehavior = (src.HasValidURL ? LinkBehavior.AlwaysUnderline : LinkBehavior.NeverUnderline);
                 pathCell.LinkBehavior = serverCell.LinkBehavior;
-                switch (src.State)
-                {
-                    default:
-                    case SourceState.Undefined: row.DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.UnknownServer: row.DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.BrokenServer: row.DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.UnreachablePage: row.DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.UnavailableVersion: row.DefaultCellStyle.BackColor = Color.LightPink; break;
-                    case SourceState.Available: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
-             //       case SourceState.Update: row.DefaultCellStyle.BackColor = Color.Orange; break;
-             //       case SourceState.Outdated: row.DefaultCellStyle.BackColor = Color.LightCyan; break;
+                Mod mod = modsBinder.Data.SelectedItem;
+                if (src.Version > mod.Version)
+                    row.DefaultCellStyle.BackColor = Color.Orange;
+                else if (src.Version < mod.Version)
+                    row.DefaultCellStyle.BackColor = Color.LightCyan;
+                else {
+                    switch (src.State)
+                    {
+                        default:
+                        case SourceState.Undefined: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                        case SourceState.UnknownServer: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                        case SourceState.BrokenServer: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                        case SourceState.UnreachablePage: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                        case SourceState.UnavailableVersion: row.DefaultCellStyle.BackColor = Color.LightPink; break;
+                        case SourceState.Available: row.DefaultCellStyle.BackColor = Color.LightGreen; break;
+                    }
                 }
             }
         }
@@ -378,31 +453,14 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= CheckModsWorkCompleted;
         }
 
-#region DataGridView handlers
-        private void dgvMods_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1 && e.ColumnIndex == (int)ModColumns.State) // "State cell except header"
-                RunCheckMods(new Mod[] { modsBinder.Data[e.RowIndex] });
-        }
-        private void dgvSources_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1 && e.ColumnIndex == (int)SourcesColumns.Server || e.ColumnIndex == (int)SourcesColumns.Path)
-            {
-                var src = sourcesBinder.Data[e.RowIndex];
-                if (src.HasValidURL)
-                    Process.Start(src.URL);
-            }
-        }
-
+        #region DataGridView handlers
         private void dgvMods_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 DataGridView.HitTestInfo hit = dgvMods.HitTest(e.X, e.Y);
                 if (hit.Type == DataGridViewHitTestType.None)
-                    SetModEditable(false);
-                else if (hit.Type == DataGridViewHitTestType.Cell || hit.Type == DataGridViewHitTestType.RowHeader)
-                    SetModEditable(true);
+                    if (modsBinder != null) modsBinder.Data.ClearSelection();
             }
         }
         private void dgvSources_MouseDown(object sender, MouseEventArgs e)
@@ -411,12 +469,9 @@ namespace SMT
             {
                 DataGridView.HitTestInfo hit = dgvSources.HitTest(e.X, e.Y);
                 if (hit.Type == DataGridViewHitTestType.None)
-                    SetSourceEditable(false);
-                else if (hit.Type == DataGridViewHitTestType.Cell || hit.Type == DataGridViewHitTestType.RowHeader)
-                    SetSourceEditable(true);
+                    if (sourcesBinder != null) sourcesBinder.Data.ClearSelection();
             }
         }
-
 
         private void dgvSources_DragDrop(object sender, DragEventArgs e)
         {
@@ -441,7 +496,7 @@ namespace SMT
             else
                 e.Effect = DragDropEffects.None;
         }
-#endregion
+        #endregion
 
         private void OnModTextChanged(object sender, EventArgs e)
         {
@@ -451,7 +506,7 @@ namespace SMT
             {
                 actionsManager.PerformAction(new EditModelAction<Mod>(modsBinder.Data.SelectedItem, editableMod));
                 MarkMod(modsBinder.Data.SelectedIndex);
-                
+
             }
         }
 
@@ -474,7 +529,7 @@ namespace SMT
         }
         private void bAddSource_Click(object sender, EventArgs e)
         {
-            
+
             sourcesBinder.SelectRow(modsBinder.Data.Count - 1);
         }
         private void bRemoveSource_Click(object sender, EventArgs e)
@@ -512,7 +567,7 @@ namespace SMT
             Save();
             MarkMods();
         }
-     
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -547,6 +602,6 @@ namespace SMT
             }
         }
 
-      
+
     }
 }

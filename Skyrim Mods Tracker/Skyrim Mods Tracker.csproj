@@ -61,6 +61,7 @@
     <Compile Include="Actions\ModsActions\AddModelAction.cs" />
     <Compile Include="Actions\IAction.cs" />
     <Compile Include="Actions\NamedAction.cs" />
+    <Compile Include="DGVBinding\IDataGridViewSelectionMapper.cs" />
     <Compile Include="JsonConverters\VersionJsonConverter.cs" />
     <Compile Include="JsonConverters\SourcesJsonConverter.cs" />
     <Compile Include="JsonConverters\ServerJsonConverter.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="ServersForm.designer.cs">
       <DependentUpon>ServersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DataGridViewBinder.cs" />
+    <Compile Include="DGVBinding\DataGridViewBinder.cs" />
     <Compile Include="Utils\SelectionList.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\LimitedList.cs" />

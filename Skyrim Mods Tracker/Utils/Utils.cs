@@ -12,6 +12,22 @@ namespace SMT.Utils
         public static string NonNull(string str) { return (str == null ? "" : str); }
     }
 
+    static class MathUtils
+    {
+        public static int Clamp(int min, int value, int max)
+        {
+            min = Math.Min(min, max);
+            max = Math.Max(min, max);
+            return (value < min ? min : (value > max ? max : value));
+        }
+        public static bool Within(int min, int value, int max)
+        {
+            min = Math.Min(min, max);
+            max = Math.Max(min, max);
+            return (min <= value && value <= max);
+        }
+    }
+
     static class ChromeUtils
     {
         public static List<string> ReadBookmarksURL(byte[] rawData)

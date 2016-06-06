@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,81 +6,57 @@ using System.Threading.Tasks;
 
 namespace SMT.Utils
 {
-    class SelectionList<T> : IList<T> where T : new()
+    class SelectionList<T> : List<T> where T : new()
     {
 
         public delegate void SelectionChanged(SelectionList<T> sender);
         public event SelectionChanged OnSelectionChanged;
 
-        private List<T> collection;
-
-        public SelectionList(ICollection<T> collection)
-        {
-            this.collection = collection.ToList();
-        }
         private int selectedIndex;
         public int SelectedIndex {
             get { return selectedIndex; }
             set { if (selectedIndex == value) return;
-                  selectedIndex = value;
-                  SelectedItem = (IsSelected ? collection[SelectedIndex] : default(T));
-                  if (OnSelectionChanged != null) OnSelectionChanged(this);
+                selectedIndex = value;
+                SelectedItem = (IsSelected ? base[SelectedIndex] : default(T));
+                if (OnSelectionChanged != null) OnSelectionChanged(this);
             } }
         public T SelectedItem { get; private set; }
-        public bool IsSelected { get { return (SelectedIndex >= 0 && SelectedIndex < collection.Count); } }
+        public bool IsSelected { get { return (SelectedIndex >= 0 && SelectedIndex < base.Count); } }
+
+        public SelectionList() : base() { ClearSelection(); }
+        public SelectionList(ICollection<T> collection) : base(collection) { ClearSelection(); }
+        public SelectionList(int capacity) : base(capacity) { ClearSelection(); }
+
         public void ClearSelection() { SelectedIndex = -1; }
-
-        private enum AdjustmentCause
-        {
-            Removing,
-            Adding,
-            Sorting
-        }
-
-        private void AdjustSelection(int index, AdjustmentCause cause)
-        {
-            if (!IsSelected) return;
-            switch (cause)
-            {
-                case AdjustmentCause.Removing:
-                    if (index == SelectedIndex)
-                        ClearSelection();
-                    else if (index < SelectedIndex)
-                        SelectedIndex--;
-                    break;
-                case AdjustmentCause.Adding:
-                    if (index <= SelectedIndex) SelectedIndex++;
-                    break;
-                case AdjustmentCause.Sorting:
-                    SelectedIndex = collection.IndexOf(SelectedItem);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        #region IList
-        public int Count { get { return collection.Count; } }
-        public bool IsReadOnly { get { return false; } }
-        public T this[int index] { get { return collection[index]; } set { collection[index] = value; } }
-        public int IndexOf(T item) { return collection.IndexOf(item); }
-        public void Insert(int index, T item) { collection.Insert(index, item); AdjustSelection(index, AdjustmentCause.Adding); }
-        public void RemoveAt(int index) { collection.RemoveAt(index); AdjustSelection(index, AdjustmentCause.Removing); }
-        public void Add(T item) { collection.Add(item); }
-        public void Clear() { collection.Clear(); AdjustSelection(-1, AdjustmentCause.Removing); }
-        public bool Contains(T item) { return collection.Contains(item); }
-        public void CopyTo(T[] array, int arrayIndex) { collection.CopyTo(array, arrayIndex); }
-        public bool Remove(T item) { bool res = collection.Remove(item); AdjustSelection(IndexOf(item), AdjustmentCause.Removing); return res; }
-        public IEnumerator<T> GetEnumerator() { return collection.GetEnumerator(); }
-        IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
-        #endregion
+        private void AdjustSelection() { SelectedIndex = base.IndexOf(SelectedItem); }
 
         #region List
-        public T Find(Predicate<T> match) { return collection.Find(match); }
-        public void Sort() { collection.Sort(); AdjustSelection(-1, AdjustmentCause.Sorting); }
-        public void Sort(Comparison<T> comparison) { collection.Sort(comparison); AdjustSelection(-1, AdjustmentCause.Sorting); }
-        public void Sort(IComparer<T> comparer) { collection.Sort(comparer); AdjustSelection(-1, AdjustmentCause.Sorting); }
-        public void Sort(int index, int count, IComparer<T> comparer) { collection.Sort(index, count, comparer); AdjustSelection(-1, AdjustmentCause.Sorting); }
+
+        public new T this[int index]
+        {
+            get { return base[index]; }
+        }
+
+        public new void Insert(int index, T item) { base.Insert(index, item); AdjustSelection(); }
+        public new void InsertRange(int index, IEnumerable<T> collection) { base.InsertRange(index, collection); AdjustSelection(); }
+
+        public new void Add(T item) { base.Add(item); AdjustSelection(); }
+        public new void AddRange(IEnumerable<T> collection) { base.AddRange(collection); AdjustSelection(); }
+        
+        public new bool Remove(T item) { bool res = base.Remove(item); AdjustSelection(); return res; }
+        public new void RemoveAt(int index) { base.RemoveAt(index); AdjustSelection(); }
+        public new void RemoveRange(int index, int count) { base.RemoveRange(index, count); AdjustSelection(); }
+        public new void RemoveAll(Predicate<T> match) { base.RemoveAll(match); AdjustSelection(); }
+
+        public new void Clear() { base.Clear(); ClearSelection(); }
+
+        public new void Reverse() { base.Reverse(); AdjustSelection(); }
+        public new void Reverse(int index, int count) { base.Reverse(index, count); AdjustSelection(); }
+
+        public new void Sort() { base.Sort(); AdjustSelection(); }
+        public new void Sort(Comparison<T> comparison) { base.Sort(comparison); AdjustSelection(); }
+        public new void Sort(IComparer<T> comparer) { base.Sort(comparer); AdjustSelection(); }
+        public new void Sort(int index, int count, IComparer<T> comparer) { base.Sort(index, count, comparer); AdjustSelection(); }
         #endregion
     }
 }

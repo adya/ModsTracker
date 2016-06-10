@@ -70,8 +70,13 @@ namespace SMT
 
         private Mod editableMod;
         private Source editableSource;
+
+        private Mod EditableMod { get {return editableMod;}  set { editableMod = (value != null ? value.Clone() : null); } }
+        private Source EditableSource { get { return editableSource; } set { editableSource = (value != null ? value.Clone() : null); } }
+
         private DataGridViewBinder<Mod> modsBinder;
         private DataGridViewBinder<Source> sourcesBinder;
+
         private BackgroundWorker bgWorker;
         private ActionsManager actionsManager;
 
@@ -92,7 +97,7 @@ namespace SMT
 
         private void BindMods()
         {
-            Unbind(ref modsBinder);
+            Unbind(modsBinder);
             modsBinder = new DataGridViewBinder<Mod>(dgvMods, new SelectionList<Mod>(ModsManager.Mods));
             modsBinder.IndexMapper = new SMTModelIndexMapper<Mod>((int)ModColumns.ID);
             modsBinder.PopulateRow += ModsBinder_OnPopulateRow;
@@ -102,11 +107,9 @@ namespace SMT
             modsBinder.Refresh(true);
         }
 
-       
-
         private void BindSources(Mod mod)
         {
-            Unbind(ref sourcesBinder);
+            Unbind(sourcesBinder);
             sourcesBinder = new DataGridViewBinder<Source>(dgvSources, new SelectionList<Source>(mod.Sources));
             sourcesBinder.IndexMapper = new SMTModelIndexMapper<Source>((int)SourcesColumns.ID);
             sourcesBinder.ItemSelected += SourcesBinder_OnItemSelected;
@@ -117,32 +120,32 @@ namespace SMT
             sourcesBinder.Refresh(true);
         }
 
-       
-
-        private void Unbind<T>(ref DataGridViewBinder<T> binder) where T : new()
+        private void Unbind<T>(DataGridViewBinder<T> binder) where T : new()
         {
             if (binder != null)
             {
                 binder.Dispose();
                 binder.GridView.Rows.Clear();
-                binder = null;
             }
         }
 
+        #region Mods Binder
         private void ModsBinder_OnItemSelected(DataGridViewBinder<Mod> sender, Mod item)
         {
-            tbModName.Text = item.Name;
-            tbModVersion.Text = item.Version.Value;
-            cbModLanguage.SelectedItem = item.Language;
-            Unbind(ref sourcesBinder);
-            BindSources(item);
-            SetModEditable(true);
+            Unbind(sourcesBinder);
+
+            EditMod(item);
+            tbModName.Text = EditableMod.Name;
+            tbModVersion.Text = EditableMod.Version.Value;
+            cbModLanguage.SelectedItem = EditableMod.Language;
+
+            BindSources(EditableMod);
             MarkSources();
         }
 
         private void ModsBinder_SelectionCleared(DataGridViewBinder<Mod> sender)
         {
-            SetModEditable(false);
+            CancelEditMod();
         }
 
         private void ModsBinder_OnPopulateRow(DataGridViewBinder<Mod> sender, DataGridViewRow row, Mod item)
@@ -158,7 +161,8 @@ namespace SMT
         {
             RunCheckMods(new Mod[] { item });
         }
-
+        #endregion
+        #region Source Binder
         private void SourcesBinder_OnPopulateRow(DataGridViewBinder<Source> sender, DataGridViewRow row, Source item)
         {
             row.Cells[(int)SourcesColumns.Server].Value = item.Server.Name;
@@ -171,15 +175,15 @@ namespace SMT
 
         private void SourcesBinder_OnItemSelected(DataGridViewBinder<Source> sender, Source item)
         {
-            tbSourceURL.Text = item.URL;
-            tbSourceVersion.Text = item.Version.Value;
-            cbSourceLanguage.SelectedItem = item.Language;
-            SetSourceEditable(true);
+            EditSource(item);
+            tbSourceURL.Text = EditableSource.URL;
+            tbSourceVersion.Text = EditableSource.Version.Value;
+            cbSourceLanguage.SelectedItem = EditableSource.Language;
         }
 
         private void SourcesBinder_SelectionCleared(DataGridViewBinder<Source> sender)
         {
-            SetSourceEditable(false);
+            CancelEditSource();
         }
 
         private void SourcesBinder_Server_Path_CellContentClick(DataGridViewBinder<Source> sender, DataGridViewRow row, Source item)
@@ -187,6 +191,7 @@ namespace SMT
             if (item.HasValidURL)
                 Process.Start(item.URL);
         }
+        #endregion
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -202,7 +207,7 @@ namespace SMT
             tbSourceVersion.TextChanged += OnSourceTextChanged;
             tbSourceURL.TextChanged += OnSourceTextChanged;
 
-            SetModEditable(false);
+            CancelEditMod();
             ModsManager.UpdateStates();
             MarkMods();
         }
@@ -242,36 +247,47 @@ namespace SMT
             MarkMods();
         }
 
+        private void EditMod(Mod mod)
+        {
+            EditableMod = mod;
+            SetModEditable(EditableMod != null);
+        }
+        private void CancelEditMod() { EditMod(null); }
+
+        private void EditSource(Source src)
+        {
+            EditableSource = src;
+            SetSourceEditable(EditableSource != null);
+        }
+        private void CancelEditSource() { EditSource(null); }
+
         private void SetModEditable(bool isEditable)
         {
-            tbModName.Enabled = isEditable;
-            tbModVersion.Enabled = isEditable;
-            bRemoveMod.Enabled = isEditable;
+            foreach (Control c in gbMod.Controls)
+                c.Enabled = isEditable;
+            bAddMod.Enabled = true;
             bAddSource.Enabled = isEditable;
             dgvSources.Enabled = isEditable;
             SetSourceEditable(false);
             if (!isEditable)
             {
-                dgvMods.ClearSelection();
+                modsBinder.ClearSelection();
                 tbModName.Clear();
                 tbModVersion.Clear();
                 tbModName.ClearMessage();
                 tbModVersion.ClearMessage();
-                Unbind(ref sourcesBinder);
+                Unbind(sourcesBinder);
             }
         }
         private void SetSourceEditable(bool isEditable)
         {
-            cbSourceLanguage.Enabled = isEditable;
-            cbManual.Enabled = isEditable;
-            tbSourceVersion.Enabled = isEditable && (cbManual.Enabled && cbManual.Checked);
-            tbSourceURL.Enabled = isEditable;
-            bRemoveSource.Enabled = isEditable;
-
+            foreach (Control c in gbSource.Controls)
+                c.Enabled = isEditable;
+            tbSourceVersion.Enabled = isEditable && cbManual.Checked;
+            bAddSource.Enabled = EditableMod != null;
             if (!isEditable)
             {
-                dgvSources.ClearSelection();
-                cbSourceLanguage.SelectedIndex = -1;
+                sourcesBinder.ClearSelection();
                 tbSourceURL.Clear();
                 tbSourceVersion.Clear();
                 tbSourceVersion.ClearMessage();
@@ -345,6 +361,7 @@ namespace SMT
         }
         private void MarkMod(int index)
         {
+            int rowIndex = modsBinder.IndexMapper.RowIndexFromItemIndex(modsBinder, index);
             if (index < 0 || index >= dgvMods.Rows.Count) return;
             Mod mod = modsBinder.Data[index];
             DataGridViewRow row = dgvMods.Rows[index];
@@ -398,6 +415,10 @@ namespace SMT
                     }
                 }
             }
+        }
+        private void MarkSource(int index)
+        {
+
         }
 
         private void RunCheckMods(IList<Mod> checkMods)
@@ -481,40 +502,49 @@ namespace SMT
 
         private void OnModTextChanged(object sender, EventArgs e)
         {
-            ValidateModFields(modsBinder.Data.SelectedItem);
-
-            if (modsBinder.Data.IsSelected)
+            if (EditableMod != null)
             {
-                actionsManager.PerformAction(new EditModelAction<Mod>(modsBinder.Data.SelectedItem, editableMod));
-                MarkMod(modsBinder.Data.SelectedIndex);
-
+                EditableMod.Name = tbModName.Text;
+                EditableMod.Language = (Language)cbModLanguage.SelectedItem;
+                EditableMod.Version.Value = tbModVersion.Text;
+                ValidateModFields(EditableMod);
+                MarkMod(modsBinder.SelectedItemIndex);
             }
         }
         private void OnSourceTextChanged(object sender, EventArgs e)
         {
-            if (sourcesBinder == null) return;
-            ValidateSourceFields(sourcesBinder.Data.SelectedItem);
-            if (sourcesBinder.Data.IsSelected)
-                actionsManager.PerformAction(new EditModelAction<Source>(sourcesBinder.Data.SelectedItem, editableSource));
+            if (EditableSource != null)
+            {
+                EditableSource.URL = tbSourceURL.Text;
+                EditableSource.Language = (Language)cbSourceLanguage.SelectedItem;
+                if (cbManual.Checked) EditableSource.Version.Value = tbSourceVersion.Text;
+                ValidateSourceFields(sourcesBinder.Data.SelectedItem);
+                MarkMod(modsBinder.SelectedItemIndex);
+                MarkSource(sourcesBinder.SelectedItemIndex);
+            }
         }
 
         private void bAddMod_Click(object sender, EventArgs e)
         {
-            SetModEditable(true);
+            EditMod(modsBinder.AddItem());
             modsBinder.SelectRow(modsBinder.Data.Count - 1);
         }
         private void bRemoveMod_Click(object sender, EventArgs e)
         {
-            SetModEditable(modsBinder.Data.Count > 0);
+            if (modsBinder.IsSelected)
+                actionsManager.PerformAction(new RemoveModelAction<Mod>(modsBinder.SelectedItem, modsBinder.Data));
+            CancelEditMod();
         }
         private void bAddSource_Click(object sender, EventArgs e)
         {
-
-            sourcesBinder.SelectRow(modsBinder.Data.Count - 1);
+            EditSource(sourcesBinder.AddItem());
+            sourcesBinder.SelectRow(sourcesBinder.Data.Count - 1);
         }
         private void bRemoveSource_Click(object sender, EventArgs e)
         {
-            SetSourceEditable(sourcesBinder.Data.Count > 0);
+            if (sourcesBinder.IsSelected)
+                actionsManager.PerformAction(new RemoveModelAction<Source>(sourcesBinder.SelectedItem, sourcesBinder.Data));
+            CancelEditSource();
         }
         private void bUpdate_Click(object sender, EventArgs e)
         {

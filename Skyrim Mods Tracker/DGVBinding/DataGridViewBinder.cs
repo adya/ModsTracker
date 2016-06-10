@@ -73,14 +73,22 @@ namespace SMT.DGVBinding
             SelectRowAt(pair);
         }
 
-        public void AddItem(){ AddItem(new T()); }
+        public void ClearSelection() { if (!IsBroken) Data.ClearSelection(); }
+        public T SelectedItem { get { return (IsBroken ? default(T) : Data.SelectedItem); } }
+        public DataGridViewRow SelectedRow { get { return (IsBroken ? null : (IsSelected ? GridView.Rows[IndexMapper.RowIndexFromItemIndex(this, SelectedItemIndex)] : null)); } }
 
-        public void AddItem(T item)
+        public bool IsSelected { get { return !IsBroken && Data.IsSelected; } }
+        public int SelectedItemIndex { get { return (IsBroken ? SelectionList<T>.DeselectedIndex : Data.SelectedIndex); } }
+        
+        public T AddItem(){ return AddItem(new T()); }
+
+        public T AddItem(T item)
         {
-            if (IsBroken) return;
+            if (IsBroken) return default(T);
             int rowIndex = GridView.Rows.Add();
             Data.Add(item);
             RefreshAt(new IndexPair(rowIndex, Data.Count - 1));
+            return item;
             /// TODO: Consider Sorting
         }
 

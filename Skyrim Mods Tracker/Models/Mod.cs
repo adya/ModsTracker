@@ -87,10 +87,10 @@ namespace SMT.Models
         {
             base.CopyTo(mod);
             if (mod == null) return;
-            mod.Version = Version;
+            mod.Version = new Version(Version.Value);
             mod.State = State;
             mod.Language = Language;
-            mod.Sources = mod.Sources;
+            mod.Sources = Sources;
         }
 
        

@@ -8,7 +8,7 @@ namespace SMT.Utils
 {
     class SelectionList<T> : List<T> where T : new()
     {
-
+        public const int DeselectedIndex = -1;
         public delegate void SelectionChanged(SelectionList<T> sender);
         public event SelectionChanged OnSelectionChanged;
 
@@ -27,7 +27,7 @@ namespace SMT.Utils
         public SelectionList(ICollection<T> collection) : base(collection) { ClearSelection(); }
         public SelectionList(int capacity) : base(capacity) { ClearSelection(); }
 
-        public void ClearSelection() { SelectedIndex = -1; }
+        public void ClearSelection() { SelectedIndex = DeselectedIndex; }
         private void AdjustSelection() { SelectedIndex = base.IndexOf(SelectedItem); }
 
         #region List

@@ -35,6 +35,9 @@ namespace SMT.Models
             set { rawValue = (value != null ? value : ""); ParseVersion(); }
         }
 
+        public string NumericValue { get { return string.Join(".", components); } }
+        public string Stage { get { return stage; } }
+
         private void ParseVersion()
         {
             Match m = Regex.Match(rawValue, VERSION_PATTERN);

@@ -10,8 +10,6 @@ namespace SMT.Utils
 {
     static class ControlMessagesExtension
     {
-      
-
         public static Color ErrorBackColor { get; set; }
         public static Color ErrorLabelColor { get; set; }
 
@@ -23,7 +21,6 @@ namespace SMT.Utils
 
         public static Color ClearBackColor { get; set; }
         public static Color ClearLabelColor { get; set; }
-
 
         /// <summary>
         /// Sets message to the bounded label if it exists and applies error style. <para/>

@@ -39,12 +39,14 @@ namespace SMT.DGVBinding
 
         public SelectionList<T> Data { get; private set; }
         public DataGridView GridView { get; private set; }
-
-        private Dictionary<int, BinderRowItemEvent> cellContentHadlers;
-
-        public IDataGridViewIndexMapper<T> DefaultIndexMapper { get { return new SimpleIndexMapper<T>(); } }
         public IDataGridViewIndexMapper<T> IndexMapper { get; set; }
+        public IDataGridViewIndexMapper<T> DefaultIndexMapper { get { return new SimpleIndexMapper<T>(); } }
+        
+        public bool ClearOnClickOutside { get; set; }
 
+        private Dictionary<int, BinderRowItemEvent> CellContentHadlers { get; set; }
+
+       
         public bool IsBroken { get { return Data == null || GridView == null || IndexMapper == null; } }
 
         public DataGridViewBinder(DataGridView gridView, SelectionList<T> data)
@@ -52,7 +54,7 @@ namespace SMT.DGVBinding
             Data = data;
             GridView = gridView;
             IndexMapper = DefaultIndexMapper;
-            cellContentHadlers = new Dictionary<int, BinderRowItemEvent>();
+            CellContentHadlers = new Dictionary<int, BinderRowItemEvent>();
             if (!IsBroken)
             {
                 SubscribeSelectionEvents(true);
@@ -61,7 +63,7 @@ namespace SMT.DGVBinding
 
         public void AddCellClickHandler(int columnIndex, BinderRowItemEvent e)
         {
-            cellContentHadlers.Add(columnIndex, e);
+            CellContentHadlers.Add(columnIndex, e);
         }
 
         public void SelectRow(int rowIndex)
@@ -173,12 +175,14 @@ namespace SMT.DGVBinding
                 Data.OnSelectionChanged += Data_OnSelectionChanged;
                 GridView.SelectionChanged += GridView_SelectionChanged;
                 GridView.CellContentClick += GridView_CellContentClick;
+                GridView.MouseDown += GridView_MouseDown;
             }
             else
             {
                 Data.OnSelectionChanged -= Data_OnSelectionChanged;
                 GridView.SelectionChanged -= GridView_SelectionChanged;
                 GridView.CellContentClick -= GridView_CellContentClick;
+                GridView.MouseDown -= GridView_MouseDown;
             }
         }
 
@@ -186,7 +190,7 @@ namespace SMT.DGVBinding
         {
             if (e.RowIndex == -1) return;
             BinderRowItemEvent handler;
-            if (cellContentHadlers.TryGetValue(e.ColumnIndex, out handler))
+            if (CellContentHadlers.TryGetValue(e.ColumnIndex, out handler))
             {
                 IndexPair pair = IndexPairWithRowIndex(e.RowIndex);
                 handler(this, GridView.Rows[pair.RowIndex], Data[pair.ItemIndex]);    // forward to specific column handler
@@ -197,6 +201,16 @@ namespace SMT.DGVBinding
         {
             if (GridView.SelectedRows.Count <= 0) return;
             SelectItemAt(IndexPairWithRowIndex(GridView.SelectedRows[GridView.SelectedRows.Count - 1].Index));
+        }
+
+        private void GridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (ClearOnClickOutside && !IsBroken && e.Button == MouseButtons.Left)
+            {
+                DataGridView.HitTestInfo hit = GridView.HitTest(e.X, e.Y);
+                if (hit.Type == DataGridViewHitTestType.None)
+                    Data.ClearSelection();
+            }
         }
 
         private void Data_OnSelectionChanged(SelectionList<T> sender)

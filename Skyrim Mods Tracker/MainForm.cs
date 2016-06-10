@@ -453,26 +453,7 @@ namespace SMT
             bgWorker.RunWorkerCompleted -= CheckModsWorkCompleted;
         }
 
-        #region DataGridView handlers
-        private void dgvMods_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                DataGridView.HitTestInfo hit = dgvMods.HitTest(e.X, e.Y);
-                if (hit.Type == DataGridViewHitTestType.None)
-                    if (modsBinder != null) modsBinder.Data.ClearSelection();
-            }
-        }
-        private void dgvSources_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                DataGridView.HitTestInfo hit = dgvSources.HitTest(e.X, e.Y);
-                if (hit.Type == DataGridViewHitTestType.None)
-                    if (sourcesBinder != null) sourcesBinder.Data.ClearSelection();
-            }
-        }
-
+        #region Drag & Drop
         private void dgvSources_DragDrop(object sender, DragEventArgs e)
         {
             var frmts = e.Data.GetFormats();
@@ -509,7 +490,6 @@ namespace SMT
 
             }
         }
-
         private void OnSourceTextChanged(object sender, EventArgs e)
         {
             if (sourcesBinder == null) return;

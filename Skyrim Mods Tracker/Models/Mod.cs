@@ -70,7 +70,7 @@ namespace SMT.Models
                 State = ModState.NotTracking;
             else if (Sources.Count(s => s.State != SourceState.Available) > 0)
                 State = ModState.NotTracking;
-            else if (Sources.Count(s => Version.CompareTo(s.Version) == VersionComparison.Greater) > 0)
+            else if (Sources.Count(s => Version.CompareTo(s.Version) == VersionComparison.Smaller) > 0)
                 State = ModState.Outdated;
             else
                 State = ModState.UpToDate;

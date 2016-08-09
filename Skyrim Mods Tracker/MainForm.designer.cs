@@ -630,6 +630,7 @@
             this.bUpdate.TabIndex = 13;
             this.bUpdate.Text = "Update from this source";
             this.bUpdate.UseVisualStyleBackColor = false;
+            this.bUpdate.Click += new System.EventHandler(this.bUpdate_Click);
             // 
             // bAddSource
             // 
@@ -647,6 +648,7 @@
             this.bAddSource.TabIndex = 13;
             this.bAddSource.Text = "Add";
             this.bAddSource.UseVisualStyleBackColor = false;
+            this.bAddSource.Click += new System.EventHandler(this.bAddSource_Click);
             // 
             // bRemoveSource
             // 
@@ -664,6 +666,7 @@
             this.bRemoveSource.TabIndex = 12;
             this.bRemoveSource.Text = "Remove";
             this.bRemoveSource.UseVisualStyleBackColor = false;
+            this.bRemoveSource.Click += new System.EventHandler(this.bRemoveSource_Click);
             // 
             // tbSourceURL
             // 
@@ -683,6 +686,7 @@
             this.cbManual.Size = new System.Drawing.Size(15, 14);
             this.cbManual.TabIndex = 9;
             this.cbManual.UseVisualStyleBackColor = true;
+            this.cbManual.CheckedChanged += new System.EventHandler(this.cbManual_CheckedChanged);
             // 
             // lSrcVersionError
             // 
@@ -835,6 +839,7 @@
             this.bAddMod.TabIndex = 6;
             this.bAddMod.Text = "Add";
             this.bAddMod.UseVisualStyleBackColor = false;
+            this.bAddMod.Click += new System.EventHandler(this.bAddMod_Click);
             // 
             // bRemoveMod
             // 
@@ -852,6 +857,7 @@
             this.bRemoveMod.TabIndex = 5;
             this.bRemoveMod.Text = "Remove";
             this.bRemoveMod.UseVisualStyleBackColor = false;
+            this.bRemoveMod.Click += new System.EventHandler(this.bRemoveMod_Click);
             // 
             // tbModVersion
             // 

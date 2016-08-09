@@ -230,6 +230,10 @@ namespace SMT.DGVBinding
         public void Dispose()
         {
             SubscribeSelectionEvents(false);
+            Data.ClearSelection();
+            Data.Clear();
+            GridView.ClearSelection();
+            GridView.Rows.Clear();
         }
     }
 }

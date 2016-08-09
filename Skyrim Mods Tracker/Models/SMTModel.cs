@@ -34,6 +34,7 @@ namespace SMT.Models
         public T Clone()
         {
             T model = new T();
+            model.ID = this.ID;
             CopyTo(model);
             return model;
         }

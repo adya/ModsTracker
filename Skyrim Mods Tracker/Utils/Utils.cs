@@ -30,6 +30,9 @@ namespace SMT.Utils
 
     static class ChromeUtils
     {
+        public const string DDChromeBookmarks = "chromium/x-bookmark-entries";
+        public const string DDText = "Text";
+
         public static List<string> ReadBookmarksURL(byte[] rawData)
         {
             List<string> urls = new List<string>();

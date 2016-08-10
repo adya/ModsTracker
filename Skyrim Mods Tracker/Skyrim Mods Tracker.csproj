@@ -4,13 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D24F193D-1DF8-41D4-87D0-84BFFF890537}</ProjectGuid>
+    <ProjectGuid>{FEC62B3A-C4D5-483D-A6CD-C314135077DC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SMT</RootNamespace>
     <AssemblyName>Skyrim Mods Tracker</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,120 +34,106 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>SMT.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Actions\ModsActions\AddModelAction.cs" />
     <Compile Include="Actions\ModsActions\EditModelAction.cs" />
     <Compile Include="Actions\ModsActions\RemoveModelAction.cs" />
-    <Compile Include="Actions\ModsActions\AddModelAction.cs" />
-    <Compile Include="Actions\IAction.cs" />
     <Compile Include="Actions\NamedAction.cs" />
-    <Compile Include="DGVBinding\IDataGridViewSelectionMapper.cs" />
-    <Compile Include="JsonConverters\VersionJsonConverter.cs" />
-    <Compile Include="JsonConverters\SourcesJsonConverter.cs" />
     <Compile Include="JsonConverters\ServerJsonConverter.cs" />
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="JsonConverters\SourcesJsonConverter.cs" />
+    <Compile Include="JsonConverters\VersionJsonConverter.cs" />
     <Compile Include="Managers\ActionsManager.cs" />
     <Compile Include="Managers\ModsManager.cs" />
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\SourcesManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
-    <Compile Include="Models\PropertyInterfaces\ILocalizable.cs" />
-    <Compile Include="Models\PropertyInterfaces\INamed.cs" />
-    <Compile Include="Models\PropertyInterfaces\IValidatable.cs" />
-    <Compile Include="Models\SMTNamedModel.cs" />
-    <Compile Include="Models\States.cs" />
-    <Compile Include="Models\PropertyInterfaces\IRemote.cs" />
-    <Compile Include="Models\PropertyInterfaces\IStateful.cs" />
-    <Compile Include="Models\PropertyInterfaces\IVersioning.cs" />
-    <Compile Include="Models\SMTModel.cs" />
+    <Compile Include="Utils\CycledList.cs" />
+    <Compile Include="Utils\DictionaryExtensions.cs" />
+    <Compile Include="Utils\SelectionList.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ModItemViewModel.cs" />
+    <Compile Include="ViewModels\ModViewModel.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Mod.cs" />
-    <Compile Include="Models\Source.cs" />
+    <Compile Include="Models\PropertyInterfaces\ILocalizable.cs" />
+    <Compile Include="Models\PropertyInterfaces\INamed.cs" />
+    <Compile Include="Models\PropertyInterfaces\IRemote.cs" />
+    <Compile Include="Models\PropertyInterfaces\IStateful.cs" />
+    <Compile Include="Models\PropertyInterfaces\IValidatable.cs" />
+    <Compile Include="Models\PropertyInterfaces\IVersioning.cs" />
     <Compile Include="Models\Server.cs" />
+    <Compile Include="Models\SMTModel.cs" />
+    <Compile Include="Models\SMTNamedModel.cs" />
+    <Compile Include="Models\Source.cs" />
+    <Compile Include="Models\States.cs" />
     <Compile Include="Models\Version.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServersForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ServersForm.designer.cs">
-      <DependentUpon>ServersForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DGVBinding\DataGridViewBinder.cs" />
-    <Compile Include="Utils\CycledList.cs" />
-    <Compile Include="Utils\SelectionList.cs" />
-    <Compile Include="Utils\DictionaryExtensions.cs" />
-    <Compile Include="Utils\StateButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utils\UIUtils.cs" />
-    <Compile Include="Utils\Utils.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ServersForm.resx">
-      <DependentUpon>ServersForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Utils\StateButton.resx">
-      <DependentUpon>StateButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\DataSources\SMT.Models.Mod.datasource" />
-    <None Include="Properties\DataSources\SMT.Models.ModSource.datasource" />
-    <None Include="Properties\DataSources\SMT.Models.Server.datasource" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="icon.ico" />
-    <Content Include="icon2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

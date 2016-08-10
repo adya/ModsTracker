@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace SMT.Models
 {
-    public abstract class SMTModel<T> : IComparable<SMTModel<T>> where T : SMTModel<T>, new()
+    public abstract class SMTModel<T> : INotifyPropertyChanged, IComparable<SMTModel<T>> where T : SMTModel<T>, new()
     {
         /// <summary>
         /// Model's id.
@@ -45,6 +46,12 @@ namespace SMT.Models
         {
             if (other == null) return 1;
             return ID.CompareTo(other.ID);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
  

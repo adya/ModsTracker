@@ -12,7 +12,7 @@ namespace SMT.Models
         /// <summary>
         /// Modle's name.
         /// </summary>
-        public string Name { get { return name; } set { name = StringUtils.NonNull(value); } }
+        public string Name { get { return name; } set { name = StringUtils.NonNull(value); OnPropertyChanged("Name"); } }
 
         /// <summary>
         /// Checks whether the mod a has valid name or not.

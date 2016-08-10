@@ -9,20 +9,24 @@ namespace SMT.Models
 {
     class Mod : SMTNamedModel<Mod>, IStateful<ModState>, IVersioning, IValidatable, ILocalizable
     {
+        private Version version;
+        private Language language;
+        private ModState state;
+
         /// <summary>
         /// Mod's version.
         /// </summary>
-        public Version Version { get; set; }
+        public Version Version { get { return version; } set { version = value; OnPropertyChanged("Version"); } }
 
         /// <summary>
         /// Represents localization language of the mod.
         /// </summary>
-        public Language Language { get; set; }
+        public Language Language { get { return language; } set { language = value; OnPropertyChanged("Language"); } }
 
         /// <summary>
         /// Mod's state
         /// </summary>
-        public ModState State { get; set; }
+        public ModState State { get { return state; } set { state = value; OnPropertyChanged("State"); } }
 
         [JsonIgnore]
         public string StateString { get { return State.GetDescription(); } }
@@ -66,11 +70,9 @@ namespace SMT.Models
 
         public void UpdateState()
         {
-            if (Sources == null || Sources.Count == 0)
+            if (Sources == null || Sources.Count == 0 || Sources.Count(s => s.State == SourceState.Available) == 0)
                 State = ModState.NotTracking;
-            else if (Sources.Count(s => s.State != SourceState.Available) > 0)
-                State = ModState.NotTracking;
-            else if (Sources.Count(s => Version.CompareTo(s.Version) == VersionComparison.Smaller) > 0)
+            else if (!Version.IsValid || Sources.Count(s => Version.CompareTo(s.Version) == VersionComparison.Smaller) > 0)
                 State = ModState.Outdated;
             else
                 State = ModState.UpToDate;

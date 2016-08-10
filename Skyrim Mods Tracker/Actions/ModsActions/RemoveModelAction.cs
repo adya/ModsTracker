@@ -13,7 +13,7 @@ namespace SMT.Actions
         private ICollection<T> target;
 
         public RemoveModelAction(T model, ICollection<T> target) : base("Remove mod") {
-            IsValid = model != null && target != null && target.Contains(this.model);
+            IsValid = model != null && target != null && target.Contains(model);
             if (!IsValid) return;
             this.model = model;
             this.target = target;

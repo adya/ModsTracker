@@ -102,17 +102,25 @@ namespace SMT.Models
 
             bool isDifLength = comps1.Length != comps2.Length;
             int minLength = Math.Min(comps1.Length, comps2.Length);
-
-            for (int i = 0; i < minLength; i++)
+            int comparisonIndex;
+            for (comparisonIndex = 0; comparisonIndex < minLength; comparisonIndex++)
             {
-                if (comps1[i] > comps2[i]) return VersionComparison.Greater;
-                else if (comps1[i] < comps2[i]) return VersionComparison.Smaller;
+                if (comps1[comparisonIndex] > comps2[comparisonIndex]) return VersionComparison.Greater;
+                else if (comps1[comparisonIndex] < comps2[comparisonIndex]) return VersionComparison.Smaller;
             }
 
-            if (isDifLength) return (comps1.Length > comps2.Length ? VersionComparison.Greater : VersionComparison.Smaller); // while common part is the same, but lengths are different - greater will be version with extra components.
-            else if (stage1 != "" || stage2 != "") // if components are completely idential check stage parts if any.
+            if (isDifLength)
+            {
+                int[] comps = (comps1.Length > comps2.Length ? comps1 : comps2);
+                for (; comparisonIndex < comps.Length; comparisonIndex++)
+                    if (comps[comparisonIndex] != 0) return (comps == comps1 ? VersionComparison.Greater : VersionComparison.Smaller);
+                // while common part is the same, but lengths are different - greater will be the version with extra components.
+            }
+
+            if (stage1 != "" || stage2 != "") // if components are completely idential check stage parts if any.
                 return stage1.CompareTo(stage2);
-            else return 0;
+
+            return VersionComparison.Equal;
 
         }
 

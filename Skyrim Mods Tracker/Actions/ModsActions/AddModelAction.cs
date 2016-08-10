@@ -12,16 +12,19 @@ namespace SMT.Actions
         private T model;
         private ICollection<T> target;
 
-        public AddModelAction(T model, ICollection<T> target) : base("Add model")
+        public AddModelAction(ICollection<T> target, T model = default(T)) : base("Add model")
         {
-            IsValid = model != null && target != null && !target.Contains(this.model);
+            IsValid = target != null && !target.Contains(this.model);
             if (!IsValid) return;
             this.model = model;
             this.target = target;
         }
+
         public override void Perform()
         {
             if (!IsValid) return;
+            if (model != default(T))
+                model = new T();
             target.Add(model);
         }
 

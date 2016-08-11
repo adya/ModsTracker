@@ -75,6 +75,16 @@ namespace SMT.Managers
                 }
             }
         }
+
+        public static void UpdateRelativeState(this Source src, Mod mod)
+        {
+            if (src.Version > mod.Version)
+                src.State = SourceState.UpdateAvailable;
+            else if (src.Version < mod.Version)
+                src.State = SourceState.Outdated;
+            else
+                src.State = SourceState.UpToDate;
+        }
         #endregion
     }
 }

@@ -74,10 +74,29 @@ namespace SMT.Models
         UnavailableVersion,
 
         /// <summary>
-        /// Source is valid and available.
+        /// Source is valid, no relevance details.
+        /// </summary>
+        [Description("Available")]
+        Available,
+
+        /// <summary>
+        /// Source is valid and up-to-date.
         /// </summary>
         [Description("OK")]
-        Available
+        UpToDate,
+
+        /// <summary>
+        /// Source is valid and has available update.
+        /// </summary>
+        [Description("Has Update")]
+        UpdateAvailable,
+
+        /// <summary>
+        /// Source is valid, but has outdated version.
+        /// </summary>
+        [Description("Outdated")]
+        Outdated
+
     }
     /// <summary>
     /// TODO: Server states

@@ -3,7 +3,9 @@ using SMT.JsonConverters;
 using SMT.Models.PropertyInterfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -11,13 +13,15 @@ using System.Threading.Tasks;
 namespace SMT.Models
 {
     [JsonConverter(typeof(VersionJsonConverter))]
-    class Version : IValidatable, IComparable<Version>, IComparable<string>
+    class Version : IValidatable, IComparable<Version>, IComparable<string>, INotifyPropertyChanged
     {
         private const string VERSION_PATTERN = "^v?(?:(\\d+)\\.?)+\\s*([a-zA-Z]+)?\\s*$";
 
         private string rawValue;
         private int[] components;
         private string stage;
+
+       
 
         public bool IsValid { get; private set; }
 
@@ -32,7 +36,7 @@ namespace SMT.Models
 
         public string Value {
             get { return rawValue; }
-            set { rawValue = (value != null ? value : ""); ParseVersion(); }
+            set { rawValue = (value != null ? value : ""); ParseVersion(); OnPropertyChanged(); }
         }
 
         public string NumericValue { get { return string.Join(".", components); } }
@@ -48,7 +52,7 @@ namespace SMT.Models
                 for (int i = 0; i < comps.Count; i++)
                     int.TryParse(comps[i].Value, out components[i]);
                 stage = (m.Groups[2].Captures.Count > 0 ? m.Groups[2].Captures[0].Value : "");
-                rawValue = string.Join(".", components) + (HasStage ? " " + stage : "");
+                //rawValue = string.Join(".", components) + (HasStage ? " " + stage : "");
             }
             IsValid = m.Success;
         }
@@ -128,6 +132,12 @@ namespace SMT.Models
         {
             return Value;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public static class VersionComparison
@@ -136,4 +146,6 @@ namespace SMT.Models
         public const int Equal = 0;
         public const int Greater = 1;
     }
+
+
 }

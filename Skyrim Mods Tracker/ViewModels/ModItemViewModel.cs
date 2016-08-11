@@ -24,6 +24,8 @@ namespace SMT.ViewModels
         private void Mod_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
+            if (e.PropertyName.Equals("State"))
+                OnPropertyChanged("ItemColor");
         }
 
         public Mod Mod { get { return mod; } }
@@ -34,7 +36,9 @@ namespace SMT.ViewModels
         public string Language { get { return mod.Language.ToShortString(); } }
         public string State { get { return mod.StateString; } }
 
-        public Color ItemColor { get
+        public Color ItemColor
+        {
+            get
             {
                 switch (mod.State)
                 {
@@ -44,6 +48,7 @@ namespace SMT.ViewModels
                     case ModState.Outdated: return Colors.LightGoldenrodYellow;
                     default: return Colors.White;
                 }
-            } }
+            }
+        }
     }
 }

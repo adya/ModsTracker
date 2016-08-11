@@ -8,31 +8,54 @@ namespace SMT.Models
 {
     class Source : SMTModel<Source>, IValidatable, IStateful<SourceState>, IVersioning, IRemote, ILocalizable
     {
+        private string path;
+        private Server server;
+        private Language language;
+        private Version version;
+        private SourceState state;
+
         /// <summary>
         /// Relative url to the source's web-page.
         /// </summary>
-        public string Path { get; private set; }
+        public string Path { get { return path; } private set { path = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// Domain server.
         /// </summary>
         [JsonConverter(typeof(ServerIDJsonConverter))]
-        public Server Server { get; private set; }
+        public Server Server { get { return server; } private set { server = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// Language of the mod available at this source.
         /// </summary>
-        public Language Language { get; set; }
+        public Language Language { get { return language; } set { language = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// Latest version available at this source.
         /// </summary>
-        public Version Version { get; set; }
+        public Version Version
+        {
+            get { return version; }
+            set
+            {
+                if (version != null)
+                    version.PropertyChanged -= Version_PropertyChanged;
+                version = value;
+                version.PropertyChanged += Version_PropertyChanged;
+                OnPropertyChanged();
+            }
+        }
+
+        private void Version_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged("Version");
+        }
+
 
         /// <summary>
         /// State of the source.
         /// </summary>
-        public SourceState State { get; set; }
+        public SourceState State { get { return state; } set { state = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// String representation of the sources's state.

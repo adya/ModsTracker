@@ -14,20 +14,24 @@ namespace SMT.ViewModels
     {
 
         private BindingList<ModItemViewModel> mods;
+        private BindingList<SourceItemViewModel> sources;
         private ModItemViewModel selectedMod;
 
-        private ModViewModel editMod;
+        private EditModViewModel editMod;
 
-        public BindingList<ModItemViewModel> Mods { get { return mods; } }
-        public ModViewModel EditMod { get { return editMod; } set { editMod = value; OnPropertyChanged("EditMod"); } }
-        public ModItemViewModel SelectedMod { get { return selectedMod; } set { selectedMod = value; OnPropertyChanged("SelectedMod"); } }
+        public BindingList<ModItemViewModel> Mods { get { return mods; } private set { mods = value; OnPropertyChanged(); } }
+
+        public BindingList<SourceItemViewModel> Sources { get { return sources; } private set { sources = value; OnPropertyChanged(); } }
+
+        public EditModViewModel EditMod { get { return editMod; } set { editMod = value; OnPropertyChanged(); } }
+        public ModItemViewModel SelectedMod { get { return selectedMod; } set { selectedMod = value; OnPropertyChanged(); } }
         public MainViewModel(ICollection<Mod> mods)
         {
-            this.mods = new BindingList<ModItemViewModel>();
+            var list = new BindingList<ModItemViewModel>();
             int i = 1;
             foreach (Mod m in mods)
-                this.mods.Add(new ModItemViewModel(i++, m));
-
+                list.Add(new ModItemViewModel(i++, m));
+            Mods = list;
             this.PropertyChanged += MainViewModel_PropertyChanged;
             
         }
@@ -35,7 +39,13 @@ namespace SMT.ViewModels
         private void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals("SelectedMod"))
-                EditMod = new ModViewModel(SelectedMod.Mod);
+            {
+                EditMod = new EditModViewModel(SelectedMod.Mod);
+                var list = new BindingList<SourceItemViewModel>();
+                foreach (var src in SelectedMod.Mod.Sources)
+                    list.Add(new SourceItemViewModel(src, SelectedMod.Mod));
+                Sources = list;
+            }
         }
     }
 }

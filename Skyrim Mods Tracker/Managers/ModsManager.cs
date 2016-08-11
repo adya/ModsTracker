@@ -24,6 +24,7 @@ namespace SMT.Managers
         #region Mod Extensions
        
         public static bool HasUniqueName(this Mod mod) { return (Mods.Count(m => !m.Equals(mod) && m.Name.Equals(mod.Name)) == 0); }
+
         #endregion
     }
 }

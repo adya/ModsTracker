@@ -16,17 +16,30 @@ namespace SMT.Models
         /// <summary>
         /// Mod's version.
         /// </summary>
-        public Version Version { get { return version; } set { version = value; OnPropertyChanged("Version"); } }
+        public Version Version { get { return version; } set
+            {
+                if (version != null)
+                    version.PropertyChanged -= Version_PropertyChanged;
+                version = value;
+                version.PropertyChanged += Version_PropertyChanged;
+                OnPropertyChanged();
+            }
+        }
+
+        private void Version_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged("Version");
+        }
 
         /// <summary>
         /// Represents localization language of the mod.
         /// </summary>
-        public Language Language { get { return language; } set { language = value; OnPropertyChanged("Language"); } }
+        public Language Language { get { return language; } set { language = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// Mod's state
         /// </summary>
-        public ModState State { get { return state; } set { state = value; OnPropertyChanged("State"); } }
+        public ModState State { get { return state; } set { state = value; OnPropertyChanged(); } }
 
         [JsonIgnore]
         public string StateString { get { return State.GetDescription(); } }
@@ -41,7 +54,7 @@ namespace SMT.Models
         /// Checks whether the mod a has valid version or not.
         /// </summary>
         [JsonIgnore]
-        public bool HasValidVersion { get { return Version != null; } }
+        public bool HasValidVersion { get { return Version != null && Version.Value.Length != 0; } }
 
 
         /// <summary>
@@ -70,12 +83,16 @@ namespace SMT.Models
 
         public void UpdateState()
         {
-            if (Sources == null || Sources.Count == 0 || Sources.Count(s => s.State == SourceState.Available) == 0)
+            if (Sources == null || Sources.Count == 0 || Sources.Count(s => s.State >= SourceState.Available) == 0)
                 State = ModState.NotTracking;
-            else if (!Version.IsValid || Sources.Count(s => Version.CompareTo(s.Version) == VersionComparison.Smaller) > 0)
-                State = ModState.Outdated;
-            else
-                State = ModState.UpToDate;
+            else {
+                foreach (var s in Sources)
+                    s.UpdateRelativeState(this);
+                if (!Version.IsValid || Sources.Count(s => s.State == SourceState.UpdateAvailable) > 0)
+                    State = ModState.Outdated;
+                else
+                    State = ModState.UpToDate;
+            }
         }
 
         public void CheckUpdate()

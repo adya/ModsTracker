@@ -77,9 +77,11 @@
     <Compile Include="Utils\SelectionList.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\EditSourceViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModItemViewModel.cs" />
-    <Compile Include="ViewModels\ModViewModel.cs" />
+    <Compile Include="ViewModels\EditModViewModel.cs" />
+    <Compile Include="ViewModels\SourceItemViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

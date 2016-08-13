@@ -99,7 +99,7 @@ namespace SMT.Models
         /// Checks whether the source a has valid version or not.
         /// </summary>
         [JsonIgnore]
-        public bool HasValidVersion { get { return Version != null; } }
+        public bool HasValidVersion { get { return Version != null && Version.Value != ""; } }
 
         [JsonIgnore]
         public bool IsValid { get { return HasValidURL && HasKnownServer && HasValidVersion; }}
@@ -140,6 +140,8 @@ namespace SMT.Models
                 State = SourceState.UnknownServer;
             else if (!Server.HasValidPattern)
                 State = SourceState.BrokenServer;
+            else if (!HasValidVersion)
+                State = SourceState.UnavailableVersion;
         }
 
         public override void CopyTo(Source source)

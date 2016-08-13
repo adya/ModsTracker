@@ -88,7 +88,7 @@ namespace SMT.Models
             else {
                 foreach (var s in Sources)
                     s.UpdateRelativeState(this);
-                if (!Version.IsValid || Sources.Count(s => s.State == SourceState.UpdateAvailable) > 0)
+                if (Sources.Count(s => s.State == SourceState.UpdateAvailable) > 0)
                     State = ModState.Outdated;
                 else
                     State = ModState.UpToDate;

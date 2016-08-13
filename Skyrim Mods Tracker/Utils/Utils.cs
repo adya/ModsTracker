@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace SMT.Utils
 {
@@ -20,12 +21,46 @@ namespace SMT.Utils
             max = Math.Max(min, max);
             return (value < min ? min : (value > max ? max : value));
         }
+        public static float Clamp(float min, float value, float max)
+        {
+            min = Math.Min(min, max);
+            max = Math.Max(min, max);
+            return (value < min ? min : (value > max ? max : value));
+        }
         public static bool Within(int min, int value, int max)
         {
             min = Math.Min(min, max);
             max = Math.Max(min, max);
             return (min <= value && value <= max);
         }
+        public static bool Within(float min, float value, float max)
+        {
+            min = Math.Min(min, max);
+            max = Math.Max(min, max);
+            return (min <= value && value <= max);
+        }
+    }
+
+    static class ColorUtils
+    {
+        public static Color ChangeLightness(this Color color, float correctionFactor, bool preserveAlpha = true)
+        {
+            float red = color.R;
+            float green = color.G;
+            float blue = color.B;
+
+            red += (255 - red) * correctionFactor;
+            green += (255 - green) * correctionFactor;
+            blue += (255 - blue) * correctionFactor;
+
+            return Color.FromArgb((preserveAlpha ? color.A : (byte)255), (byte)ClampColor(red), (byte)ClampColor(green), (byte)ClampColor(blue));
+        }
+
+        private static float ClampColor(float value)
+        {
+            return MathUtils.Clamp(0, value, 255);
+        }
+
     }
 
     static class ChromeUtils

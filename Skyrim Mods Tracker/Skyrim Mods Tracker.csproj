@@ -61,7 +61,6 @@
     </ApplicationDefinition>
     <Compile Include="Actions\IAction.cs" />
     <Compile Include="Actions\ModsActions\AddModelAction.cs" />
-    <Compile Include="Actions\ModsActions\EditModelAction.cs" />
     <Compile Include="Actions\ModsActions\RemoveModelAction.cs" />
     <Compile Include="Actions\NamedAction.cs" />
     <Compile Include="JsonConverters\ServerJsonConverter.cs" />
@@ -72,12 +71,18 @@
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\SourcesManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
+    <Compile Include="Utils\ButtonFocusBehaviour.cs" />
     <Compile Include="Utils\CycledList.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\SelectionList.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Commands\DeleteModelCommand.cs" />
+    <Compile Include="ViewModels\Commands\AddModelCommand.cs" />
+    <Compile Include="ViewModels\Commands\BaseCommand.cs" />
+    <Compile Include="ViewModels\Commands\OpenSourceCommand.cs" />
     <Compile Include="ViewModels\EditSourceViewModel.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModItemViewModel.cs" />
     <Compile Include="ViewModels\EditModViewModel.cs" />

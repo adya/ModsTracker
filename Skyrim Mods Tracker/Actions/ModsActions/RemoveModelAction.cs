@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SMT.Actions
 {
-    class RemoveModelAction<T> : NamedAction where T : SMTModel<T>, new()
+    class RemoveModelAction<T> : NamedAction
     {
         private T model;
         private ICollection<T> target;
 
-        public RemoveModelAction(T model, ICollection<T> target) : base("Remove mod") {
+        public RemoveModelAction(ICollection<T> target, T model) : base("Remove mod") {
             IsValid = model != null && target != null && target.Contains(model);
             if (!IsValid) return;
             this.model = model;

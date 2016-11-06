@@ -7,26 +7,57 @@ using SMT.Models;
 using System.Windows.Media;
 using System.ComponentModel;
 using SMT.Utils;
+using SMT.ViewModels.Commands;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace SMT.ViewModels
 {
     class ModItemViewModel : ItemViewModel
     {
         private Mod mod;
+        private bool isEnabled;
 
-        public ModItemViewModel() : this(new Mod()) { } 
-        public ModItemViewModel(Mod mod)
+        private CheckModStateCommand checkMod;
+
+        private ObservableCollection<SourceItemViewModel> sources;
+
+        public ModItemViewModel(MainViewModel parent) : this(new Mod(), parent) { } 
+        public ModItemViewModel(Mod mod, MainViewModel parent)
         {
             this.mod = mod;
+            var list = new ObservableCollection<SourceItemViewModel>();
+            foreach (var src in mod.Sources)
+                list.Add(new SourceItemViewModel(src, mod, parent));
+            this.Sources = list;
+            this.Sources.CollectionChanged += Sources_CollectionChanged;
             this.mod.PropertyChanged += Mod_PropertyChanged;
+            this.IsEnabled = true;
+            CheckState = new CheckModStateCommand(this, parent);
+
         }
+
+       
 
         private void Mod_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
             if (e.PropertyName.Equals("State"))
+            {
+                IsEnabled = mod.State != ModState.Updating;
                 UpdateColors();
+            }
                 
+        }
+
+        private void Sources_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+                foreach (SourceItemViewModel item in e.NewItems)
+                    mod.Sources.Add(item.Source);
+            if (e.OldItems != null)
+                foreach (SourceItemViewModel item in e.OldItems)
+                    mod.Sources.Remove(item.Source);
         }
 
         public Mod Mod { get { return mod; } }
@@ -35,6 +66,14 @@ namespace SMT.ViewModels
         public string Version { get { return mod.Version.Value; }}
         public string Language { get { return mod.Language.ToShortString(); } }
         public string State { get { return mod.StateString; } }
+
+        public ObservableCollection<SourceItemViewModel> Sources { get { return sources; } set { sources = value; OnPropertyChanged(); } }
+
+        public bool IsEnabled { get { return isEnabled; } private set { isEnabled = value; OnPropertyChanged(); } }
+
+
+        public CheckModStateCommand CheckState { get { return checkMod; } private set { checkMod = value; OnPropertyChanged(); } }
+
 
         public override SolidColorBrush ItemBrush
         {
@@ -46,6 +85,7 @@ namespace SMT.ViewModels
                     case ModState.NotTracking: return Brushes.LightPink;
                     case ModState.UpToDate: return Brushes.LightGreen;
                     case ModState.Outdated: return Brushes.Orange;
+                    case ModState.Updating: return Brushes.LightSkyBlue;
                     default: return Brushes.White;
                 }
             }

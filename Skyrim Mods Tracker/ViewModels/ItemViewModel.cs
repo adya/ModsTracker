@@ -8,8 +8,11 @@ using System.Windows.Media;
 
 namespace SMT.ViewModels
 {
-    class ItemViewModel : BaseViewModel
+    class ItemViewModel : BaseViewModel, ISelectable
     {
+        private bool isSelected;
+        public bool IsSelected { get { return isSelected; } set { isSelected = value; OnPropertyChanged(); }}
+
         public virtual SolidColorBrush ItemBrush { get; }
 
         public virtual SolidColorBrush ItemDarkBrush

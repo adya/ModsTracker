@@ -19,11 +19,11 @@ namespace SMT.ViewModels.Commands
 
         private T parameter;
 
-        public T Parameter { get { return parameter; } set { parameter = value; OnPropertyChanged(); Update(); } }
+        public T Parameter { get { return parameter; } set { parameter = value; OnPropertyChanged(); } }
 
         public BaseCommand(T param = default(T))
         {
-            Parameter = parameter = param;
+            Parameter = param;
         }
 
         public abstract bool CanExecute(T parameter);
@@ -51,6 +51,7 @@ namespace SMT.ViewModels.Commands
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
+            if (propertyName.Equals("Parameter")) Update();
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }

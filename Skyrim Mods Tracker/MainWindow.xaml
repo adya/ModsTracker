@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:smt="clr-namespace:SMT"
         xmlns:smtu="clr-namespace:SMT.Utils"
@@ -11,7 +12,10 @@
         Title="MainWindow" Height="700" Width="820" MinWidth="820" MinHeight="600">
     <Window.Resources>
         <sys:Double x:Key="ItemHeight">24</sys:Double>
-        <sys:Double x:Key="MenuHeight">24</sys:Double>
+        <sys:Double x:Key="MenuHeight">26</sys:Double>
+        <sys:Double x:Key="StatusHeight">26</sys:Double>
+        <sys:Double x:Key="StatusItemHeight">18</sys:Double>
+        <smtu:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
         <ControlTemplate x:Key="ErrorTemplate">
             <StackPanel Orientation="Vertical">
                 <AdornedElementPlaceholder x:Name="ErrorTemplateTarget"/>
@@ -63,136 +67,180 @@
         </Style>
         <DataTemplate x:Key="StateCellTemplate">
             <DockPanel>
-                <Button Content="{Binding State}" Margin="1" VerticalAlignment="Stretch" BorderThickness="1" Background="{Binding ItemBrush}" BorderBrush="{Binding ItemDarkBrush}"/>
+                <Button Content="{Binding State}"
+                        Command="{Binding CheckState}"
+                        IsEnabled="{Binding IsEnabled}"
+                        CommandParameter="{Binding}"
+                        Margin="1" 
+                        VerticalAlignment="Stretch"
+                        BorderThickness="1"
+                        Background="{Binding ItemBrush}"
+                        BorderBrush="{Binding ItemDarkBrush}"/>
             </DockPanel>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*" MinWidth="560"/>
-            <ColumnDefinition Width="3"/>
-            <ColumnDefinition Width="30*" MinWidth="240"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource MenuHeight}}"/>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="200"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
-            </Grid.RowDefinitions>
-            <DataGrid x:Name="dgMods" Grid.Row="0" ItemsSource="{Binding Mods}" Background="FloralWhite" SelectedItem="{Binding SelectedMod}" AutoGenerateColumns="False" VerticalGridLinesBrush="DimGray" HorizontalGridLinesBrush="DimGray" SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="True" CanUserReorderColumns="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Version" Binding="{Binding Version, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="State" SortMemberPath="State" CanUserSort="True" IsReadOnly="True" CellTemplate="{StaticResource StateCellTemplate}"/>
-                    <DataGridTextColumn Header="Language" Binding="{Binding Language, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="Add" Grid.Row="1" Style="{StaticResource AddButtonStyle}" Command="{Binding AddMod}" smtu:EventFocusAttachment.ElementToFocus="{Binding ElementName=dgMods}" />
-        </Grid>
-        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Stretch"/>
-        <GroupBox Header="Mod" Grid.Row="1" Grid.Column="2" Margin="3" IsEnabled="{Binding IsEditableMod}">
-            <Grid DataContext="{Binding EditMod}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="0"/>
-                <TextBlock Text="Version:" VerticalAlignment="Center" Grid.Row="1"/>
-                <TextBlock Text="Language:" VerticalAlignment="Center" Grid.Row="2"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" Text="{Binding Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}"/>
-                <ComboBox Grid.Column="1" Grid.Row="2" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" SelectedValue="{Binding Language, Mode=TwoWay}" ItemsSource="{Binding AvailableLanguages}"/>
-                <Button Content="Remove" Width="162" Grid.Column="1" Grid.Row="3" Style="{StaticResource RemoveButtonStyle}" Command="{Binding Path=DataContext.DeleteMod, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}}"/>
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Sources" Grid.Column="2" Grid.Row="2" Margin="3" IsEnabled="{Binding IsEditableMod}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
-                </Grid.RowDefinitions>
-                <DataGrid x:Name="dgSources" ItemsSource="{Binding Sources}" SelectedItem="{Binding SelectedSource}" AutoGenerateColumns="False" VerticalGridLinesBrush="DimGray" HorizontalGridLinesBrush="DimGray" SelectionMode="Single" CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True">
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Server">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <Hyperlink Command="{Binding OpenSource}">
-                                            <TextBlock Text="{Binding Server}"/>
-                                        </Hyperlink>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Version" Binding="{Binding Version, UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridTemplateColumn Header="State" SortMemberPath="State" CanUserSort="True" IsReadOnly="True" CellTemplate="{StaticResource StateCellTemplate}"/>
-                        <DataGridTextColumn Header="Language" Binding="{Binding Language, UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridTemplateColumn Header="Path">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <Hyperlink Command="{Binding OpenSource}">
-                                            <TextBlock Text="{Binding Path}"/>
-                                        </Hyperlink>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button Content="Add" Grid.Row="1" Style="{StaticResource AddButtonStyle}" Command="{Binding AddSource}" smtu:EventFocusAttachment.ElementToFocus="{Binding ElementName=dgSources}"/>
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Source" Grid.Row="3" Grid.Column="2" Margin="3" IsEnabled="{Binding IsEditableSource}" >
-            <Grid DataContext="{Binding EditSource}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="URL:" VerticalAlignment="Center" Grid.Row="0"/>
-                <TextBlock Text="Version:" VerticalAlignment="Center" Grid.Row="1"/>
-                <TextBlock Text="Language:" VerticalAlignment="Center" Grid.Row="2"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" Text="{Binding URL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}" IsEnabled="{Binding}"/>
-                <Grid Grid.Column="1" Grid.Row="1" Height="{StaticResource ItemHeight}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="{Binding Source={StaticResource ItemHeight}}"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" VerticalContentAlignment="Center" Text="{Binding Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}" IsEnabled="{Binding IsVersionEditable}"/>
-                    <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding IsVersionEditable}" IsEnabled="{Binding}"/>
-                </Grid>
-                <ComboBox Grid.Column="1" Grid.Row="2" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" SelectedValue="{Binding Language, Mode=TwoWay}" ItemsSource="{Binding AvailableLanguages}" IsEnabled="{Binding}"/>
-                <Button Content="Remove" Width="162" Grid.Column="1" Grid.Row="3" Style="{StaticResource RemoveButtonStyle}" Command="{Binding Path=DataContext.DeleteSource, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}}"/>
-            </Grid>
-        </GroupBox>
-        <Menu Grid.Row="0" Grid.ColumnSpan="3">
+    <DockPanel>
+       
+        <Menu DockPanel.Dock="Top" Height="{StaticResource MenuHeight}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <MenuItem Header="Check Mods"/>
+            <MenuItem Header="Check Mods" Command="{Binding CheckMods}"/>
             <Separator Width="10"/>
             <MenuItem Header="Save"/>
             <Separator Width="10"/>
             <MenuItem Header="Servers"/>
         </Menu>
-    </Grid>
+        <StatusBar DockPanel.Dock="Bottom" DataContext="{Binding Status}" Height="{StaticResource StatusHeight}">
+            <StatusBarItem Visibility="{Binding IsProgressVisible, Converter={StaticResource BoolVisibilityConverter}}">
+                <ProgressBar Width="100" Height="{StaticResource StatusItemHeight}" Maximum="{Binding MaximumProgress}" Minimum="{Binding MinimumProgress}" Value="{Binding CurrentProgress}"/>
+            </StatusBarItem>
+            <StatusBarItem Visibility="{Binding IsVisible, Converter={StaticResource BoolVisibilityConverter}}">
+                <TextBlock Text="{Binding Status}"/>
+            </StatusBarItem>
+        </StatusBar>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" MinWidth="560"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="30*" MinWidth="240"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
+                    </Grid.RowDefinitions>
+                <DataGrid x:Name="dgMods" Grid.Row="0" 
+                          ItemsSource="{Binding Mods}" 
+                          SelectedItem="{Binding SelectedMod}" 
+                          Background="FloralWhite" 
+                          AutoGenerateColumns="False" 
+                          VerticalGridLinesBrush="DimGray"
+                          HorizontalGridLinesBrush="DimGray"
+                          SelectionMode="Single" 
+                          SelectionUnit="FullRow"
+                          CanUserAddRows="False" 
+                          CanUserDeleteRows="True"
+                          CanUserReorderColumns="True">
+                    <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" 
+                                                    Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                                    IsReadOnly="True"
+                                                    Selector.IsSelected="{Binding IsSelected}"/>
+                                <DataGridTextColumn Header="Version" 
+                                                    Binding="{Binding Version, UpdateSourceTrigger=PropertyChanged}" 
+                                                    IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="State"
+                                                        SortMemberPath="State"
+                                                        CanUserSort="True" IsReadOnly="True"
+                                                        CellTemplate="{StaticResource StateCellTemplate}"/>
+                                <DataGridTextColumn Header="Language" Binding="{Binding Language, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Content="Add" Grid.Row="1" Style="{StaticResource AddButtonStyle}" Command="{Binding AddMod}" smtu:EventFocusAttachment.ElementToFocus="{Binding ElementName=dgMods}" />
+                </Grid>
+                <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Stretch"/>
+                <GroupBox Header="Mod" Grid.Row="0" Grid.Column="2" Margin="3" IsEnabled="{Binding IsEditableMod}">
+                    <Grid DataContext="{Binding EditMod}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="0"/>
+                        <TextBlock Text="Version:" VerticalAlignment="Center" Grid.Row="1"/>
+                        <TextBlock Text="Language:" VerticalAlignment="Center" Grid.Row="2"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" Text="{Binding Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" SelectedValue="{Binding Language, Mode=TwoWay}" ItemsSource="{Binding AvailableLanguages}"/>
+                        <Button Content="Remove" Width="162" Grid.Column="1" Grid.Row="3" Style="{StaticResource RemoveButtonStyle}" Command="{Binding DeleteMod, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}}"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Sources" Grid.Column="2" Grid.Row="1" Margin="3" IsEnabled="{Binding IsEditableMod}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid x:Name="dgSources" ItemsSource="{Binding SelectedMod.Sources}" SelectedItem="{Binding SelectedSource}" AutoGenerateColumns="False" VerticalGridLinesBrush="DimGray" HorizontalGridLinesBrush="DimGray" SelectionMode="Single" CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Server">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <Hyperlink Command="{Binding OpenSource}">
+                                                    <TextBlock Text="{Binding Server}"/>
+                                                </Hyperlink>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Version" 
+                                                    Binding="{Binding Version, UpdateSourceTrigger=PropertyChanged}"/>
+                                <DataGridTemplateColumn Header="State" 
+                                                        SortMemberPath="State" 
+                                                        CanUserSort="True" 
+                                                        IsReadOnly="True"
+                                                        CellTemplate="{StaticResource StateCellTemplate}"/>
+                                <DataGridTextColumn Header="Language"
+                                                    Binding="{Binding Language, UpdateSourceTrigger=PropertyChanged}"/>
+                                <DataGridTemplateColumn Header="Path">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <Hyperlink Command="{Binding OpenSource}">
+                                                    <TextBlock Text="{Binding Path}"/>
+                                                </Hyperlink>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Content="Add" Grid.Row="1" Style="{StaticResource AddButtonStyle}" Command="{Binding AddSource}" smtu:EventFocusAttachment.ElementToFocus="{Binding ElementName=dgSources}"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Source" Grid.Row="2" Grid.Column="2" Margin="3,3,3,0" IsEnabled="{Binding IsEditableSource}" >
+                    <Grid DataContext="{Binding EditSource}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="{Binding Source={StaticResource ItemHeight}}"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="URL:" VerticalAlignment="Center" Grid.Row="0"/>
+                        <TextBlock Text="Version:" VerticalAlignment="Center" Grid.Row="1"/>
+                        <TextBlock Text="Language:" VerticalAlignment="Center" Grid.Row="2"/>
+                        <TextBox Grid.Column="1" Grid.Row="0" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" Text="{Binding URL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}" IsEnabled="{Binding}"/>
+                        <Grid Grid.Column="1" Grid.Row="1" Height="{StaticResource ItemHeight}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="{Binding Source={StaticResource ItemHeight}}"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" VerticalContentAlignment="Center" Text="{Binding Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource TextErrorStyle}" IsEnabled="{Binding IsVersionEditable}"/>
+                            <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding IsVersionEditable}" IsEnabled="{Binding}"/>
+                        </Grid>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Height="{StaticResource ItemHeight}" VerticalContentAlignment="Center" SelectedValue="{Binding Language, Mode=TwoWay}" ItemsSource="{Binding AvailableLanguages}" IsEnabled="{Binding}"/>
+                        <Button Content="Remove" Width="162" Grid.Column="1" Grid.Row="3" Style="{StaticResource RemoveButtonStyle}" Command="{Binding Path=DataContext.DeleteSource, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}}"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+    </DockPanel>
+
 </Window>

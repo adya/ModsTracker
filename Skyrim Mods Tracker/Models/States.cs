@@ -38,7 +38,13 @@ namespace SMT.Models
         /// Mod has the latest available version on all sources.
         /// </summary>
         [Description("OK")]
-        UpToDate
+        UpToDate,
+
+        /// <summary>
+        /// Transient state to indicate that Mod is currently updating.
+        /// </summary>
+        [Description("Updating")]
+        Updating
     }
 
     public enum SourceState
@@ -95,7 +101,13 @@ namespace SMT.Models
         /// Source is valid, but has outdated version.
         /// </summary>
         [Description("Outdated")]
-        Outdated
+        Outdated,
+
+        /// <summary>
+        /// Transient state to indicate that Source is currently updating.
+        /// </summary>
+        [Description("Updating")]
+        Updating
 
     }
     /// <summary>

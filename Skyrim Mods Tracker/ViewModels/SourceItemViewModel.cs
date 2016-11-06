@@ -5,6 +5,7 @@ using SMT.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,17 +17,22 @@ namespace SMT.ViewModels
     {
         private Source src;
         private Mod mod;
+        private bool isEnabled;
 
         private OpenSourceCommand openSource;
-        public BaseCommand<Source> OpenSource { get { if (openSource == null) openSource = new OpenSourceCommand(src); return openSource; } }
+        private CheckSourceStateCommand checkSource;
 
-        public SourceItemViewModel(Mod mod) : this(new Source(), mod) { }
-        public SourceItemViewModel(Source src, Mod mod)
+        public BaseCommand<Source> OpenSource { get { if (openSource == null) openSource = new OpenSourceCommand(src); return openSource; } }
+        public CheckSourceStateCommand CheckState { get { return checkSource; } private set { checkSource = value; OnPropertyChanged(); } }
+
+        public SourceItemViewModel(Mod mod, MainViewModel parent) : this(new Source(), mod, parent) { }
+        public SourceItemViewModel(Source src, Mod mod, MainViewModel parent)
         {
             this.src = src;
             this.mod = mod;
             this.src.PropertyChanged += Src_PropertyChanged;
             this.mod.PropertyChanged += Mod_PropertyChanged;
+            CheckState = new CheckSourceStateCommand(this, mod, parent);
             UpdateRelativeState(false);
             OpenSource.Update();
         }
@@ -41,6 +47,9 @@ namespace SMT.ViewModels
         public string Language { get { return src.Language.ToShortString(); } }
         public string Path { get { return src.Path; } }
         public string URL { get { return src.URL; } }
+
+        public bool IsEnabled { get { return isEnabled; } private set { isEnabled = value; OnPropertyChanged(); } }
+
 
         public override SolidColorBrush ItemBrush
         {
@@ -57,13 +66,14 @@ namespace SMT.ViewModels
                     case SourceState.UpToDate: return Brushes.LightGreen;
                     case SourceState.UpdateAvailable: return Brushes.Orange;
                     case SourceState.Outdated: return Brushes.LightGray;
+                    case SourceState.Updating: return Brushes.LightSkyBlue;
                 }
             }
         }
 
-        private void UpdateRelativeState(bool currentStateOnly)
+        private void UpdateRelativeState(bool sourceState)
         {
-            if (currentStateOnly)
+            if (sourceState)
                 this.src.UpdateRelativeState(this.mod);
             else
                 this.mod.UpdateState();
@@ -81,6 +91,11 @@ namespace SMT.ViewModels
             OnPropertyChanged(e.PropertyName);
             if (e.PropertyName.Equals("Version"))
                 UpdateRelativeState(true);
+            else if (e.PropertyName.Equals("State"))
+            {
+                IsEnabled = src.State != SourceState.Updating;
+                UpdateColors();
+            }
         }
     }
 }

@@ -35,12 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,12 +79,23 @@
     <Compile Include="Managers\ServersManager.cs" />
     <Compile Include="Managers\SourcesManager.cs" />
     <Compile Include="Managers\StorageManager.cs" />
+    <Compile Include="Utils\BoolVisibilityConverter.cs" />
     <Compile Include="Utils\ButtonFocusBehaviour.cs" />
     <Compile Include="Utils\CycledList.cs" />
+    <Compile Include="Utils\DataGridEx.cs" />
+    <Compile Include="Utils\DataGridFocusedSelectionBehavior.cs" />
+    <Compile Include="Utils\DataGridSelectedItemsBlendBehavior.cs" />
+    <Compile Include="Utils\DataGrisSelectedModsBlendBehavior.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
+    <Compile Include="Utils\InverseBoolConverter.cs" />
     <Compile Include="Utils\SelectionList.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="Utils\Scheduler.cs" />
+    <Compile Include="ViewModels\Commands\CheckAllModsCommand.cs" />
+    <Compile Include="ViewModels\Commands\CheckModStateCommand.cs" />
+    <Compile Include="ViewModels\Commands\CheckSourceStateCommand.cs" />
+    <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\Commands\DeleteModelCommand.cs" />
     <Compile Include="ViewModels\Commands\AddModelCommand.cs" />
     <Compile Include="ViewModels\Commands\BaseCommand.cs" />
@@ -87,6 +106,7 @@
     <Compile Include="ViewModels\ModItemViewModel.cs" />
     <Compile Include="ViewModels\EditModViewModel.cs" />
     <Compile Include="ViewModels\SourceItemViewModel.cs" />
+    <Compile Include="ViewModels\StatusViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

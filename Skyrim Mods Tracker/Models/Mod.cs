@@ -81,14 +81,19 @@ namespace SMT.Models
                 src.Normalize();
         }
 
-        public void UpdateState()
+        public void UpdateState(bool refreshSources = true)
         {
             if (Sources == null || Sources.Count == 0 || Sources.Count(s => s.State >= SourceState.Available) == 0)
                 State = ModState.NotTracking;
             else {
-                foreach (var s in Sources)
-                    s.UpdateRelativeState(this);
-                if (Sources.Count(s => s.State == SourceState.UpdateAvailable) > 0)
+                if (refreshSources)
+                {
+                    foreach (var s in Sources)
+                        s.UpdateRelativeState(this);
+                }
+                if (Sources.Count(s => s.State == SourceState.Updating) > 0)
+                    State = ModState.Updating;
+                else if (Sources.Count(s => s.State == SourceState.UpdateAvailable) > 0)
                     State = ModState.Outdated;
                 else
                     State = ModState.UpToDate;
@@ -97,8 +102,12 @@ namespace SMT.Models
 
         public void CheckUpdate()
         {
+            State = ModState.Updating;
             foreach (var src in Sources)
+            {
                 src.CheckUpdate();
+                src.UpdateRelativeState(this);
+            }
             UpdateState();
         }
 

@@ -48,7 +48,14 @@ namespace SMT.ViewModels
         public string Path { get { return src.Path; } }
         public string URL { get { return src.URL; } }
 
-        public bool IsEnabled { get { return isEnabled; } private set { isEnabled = value; OnPropertyChanged(); } }
+        public bool IsEnabled {
+            get
+            {
+                return Source.State != SourceState.Updating &&
+                      Source.State != SourceState.UnknownServer &&
+                      Source.State != SourceState.BrokenServer && CheckState.CanExecute(this);
+            }
+        }
 
 
         public override SolidColorBrush ItemBrush
@@ -82,6 +89,7 @@ namespace SMT.ViewModels
 
         private void Mod_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            OnPropertyChanged("IsEnabled");
             if (e.PropertyName.Equals("Version"))
                 UpdateRelativeState(false);
         }
@@ -89,11 +97,11 @@ namespace SMT.ViewModels
         private void Src_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
+            OnPropertyChanged("IsEnabled");
             if (e.PropertyName.Equals("Version"))
                 UpdateRelativeState(true);
             else if (e.PropertyName.Equals("State"))
             {
-                IsEnabled = src.State != SourceState.Updating;
                 UpdateColors();
             }
         }

@@ -16,7 +16,6 @@ namespace SMT.ViewModels
     class ModItemViewModel : ItemViewModel
     {
         private Mod mod;
-        private bool isEnabled;
 
         private CheckModStateCommand checkMod;
 
@@ -32,7 +31,6 @@ namespace SMT.ViewModels
             this.Sources = list;
             this.Sources.CollectionChanged += Sources_CollectionChanged;
             this.mod.PropertyChanged += Mod_PropertyChanged;
-            this.IsEnabled = true;
             CheckState = new CheckModStateCommand(this, parent);
 
         }
@@ -42,12 +40,9 @@ namespace SMT.ViewModels
         private void Mod_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
+            OnPropertyChanged("IsEnabled");
             if (e.PropertyName.Equals("State"))
-            {
-                IsEnabled = mod.State != ModState.Updating;
                 UpdateColors();
-            }
-                
         }
 
         private void Sources_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -58,6 +53,7 @@ namespace SMT.ViewModels
             if (e.OldItems != null)
                 foreach (SourceItemViewModel item in e.OldItems)
                     mod.Sources.Remove(item.Source);
+            OnPropertyChanged("IsEnabled");
         }
 
         public Mod Mod { get { return mod; } }
@@ -69,7 +65,13 @@ namespace SMT.ViewModels
 
         public ObservableCollection<SourceItemViewModel> Sources { get { return sources; } set { sources = value; OnPropertyChanged(); } }
 
-        public bool IsEnabled { get { return isEnabled; } private set { isEnabled = value; OnPropertyChanged(); } }
+        public bool IsEnabled {
+            get
+            {
+                return mod.State != ModState.Updating && 
+                       mod.State != ModState.NotTracking && CheckState.CanExecute(this);
+            }
+        }
 
 
         public CheckModStateCommand CheckState { get { return checkMod; } private set { checkMod = value; OnPropertyChanged(); } }

@@ -81,7 +81,7 @@ namespace SMT.Managers
         public static void UpdateRelativeState(this Source src, Mod mod)
         {
             src.UpdateState(); // ensure that source still has valid state.
-            if (src.State < SourceState.Available) return; //
+            if (src.State < SourceState.Available) return; 
 
             if (src.Version > mod.Version)
                 src.State = SourceState.UpdateAvailable;

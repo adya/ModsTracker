@@ -65,43 +65,56 @@ namespace SMT.Utils
 
     static class ChromeUtils
     {
+        public class ChromeBookmark
+        {
+            public ChromeBookmark(string url, string name)
+            {
+                URL = url;
+                Name = name;
+            }
+
+            public string URL { get; private set; }
+            public string Name { get; private set; }
+        }
+
         public const string DDChromeBookmarks = "chromium/x-bookmark-entries";
         public const string DDText = "Text";
 
-        public static List<string> ReadBookmarksURL(byte[] rawData)
+        public static ChromeBookmark[] ReadBookmarks(byte[] rawData)
         {
-            List<string> urls = new List<string>();
+            var bookmarks = new List<ChromeBookmark>();
             using (BinaryReader br = new BinaryReader(new MemoryStream(rawData)))
             {
                 int size = br.ReadInt32();
                 int headerSize = br.ReadInt32();
                 br.ReadBytes(FullByteBlock(headerSize * 2)); // skip header. Header contains 2-byte chars.
-                ReadItems(br, urls);
+                return ReadItems(br).ToArray();
             }
-            return urls;
         }
 
-        private static void ReadItems(BinaryReader br, List<string> urls)
+        private static List<ChromeBookmark> ReadItems(BinaryReader br)
         {
+            var items = new List<ChromeBookmark>();
             int itemsCount = br.ReadInt32(); // number of stored items
             for (int i = 0; i < itemsCount; i++)
-                ReadItem(br, urls);
+            {
+                bool isBookmark = br.ReadInt32() == 1; // flag indicating whether the next stored item has url or not
+                if (isBookmark)
+                    items.Add(ReadBookmark(br));
+                else
+                    items.AddRange(ReadBookmarkFolder(br));
+            }
+            return items;
         }
 
-        private static void ReadItem(BinaryReader br, List<string> urls)
-        {
-            bool isUrl = br.ReadInt32() == 1; // flag indicating whether the next stored item has url or not
-            if (isUrl) ReadBookmarkURL(br, urls);
-            else ReadBookmarkFolder(br, urls);
-        }
-
-        private static void ReadBookmarkURL(BinaryReader br, List<string> urls)
+        private static ChromeBookmark ReadBookmark(BinaryReader br)
         {
             int urlSize = br.ReadInt32();   // read size of the url
-            urls.Add(Encoding.UTF8.GetString(br.ReadBytes(urlSize))); // read actually url
+            string url = Encoding.UTF8.GetString(br.ReadBytes(urlSize)); // read actually url
             br.ReadBytes(FullByteBlockRemainder(urlSize)); // skip remainder of the byte block
-            int detailsSize = br.ReadInt32(); // read size of bookmark's details
-            br.ReadBytes(FullByteBlock(detailsSize * 2)); // skip it. Details has 2-byte chars as well.
+            int detailsSize = br.ReadInt32() * 2; // x2 because names use Unicode which takes 2-bytes per char.
+            var name = Encoding.Unicode.GetString(br.ReadBytes(detailsSize)); // Read bookmark name. Details has 2-byte chars as well.
+            br.ReadBytes(FullByteBlockRemainder(detailsSize)); // skip remainder of the byte block
             int bookmarkIndex = br.ReadInt32(); // read, as guessed, bookmark index or id.
             int unknownInt2 = br.ReadInt32();  // not yet discovered, probably begin flag.
             int auxParamsCount = br.ReadInt32(); // read number of aux params
@@ -113,24 +126,35 @@ namespace SMT.Utils
                 int paramValueSize = br.ReadInt32(); // read size of param value
                 br.ReadBytes(FullByteBlock(paramValueSize)); // skip that value
             }
+            return new ChromeBookmark(url, name);
         }
 
-        private static void ReadBookmarkFolder(BinaryReader br, List<string> urls)
+        private static List<ChromeBookmark> ReadBookmarkFolder(BinaryReader br)
         {
             int unknownInt = br.ReadInt32();  // not yet discovered, empty 4-byte block for folder
-            int folderNameSize = br.ReadInt32();
-            br.ReadBytes(FullByteBlock(folderNameSize * 2)); // skip name. Name contains 2-byte chars.
+            int folderNameSize = br.ReadInt32() * 2; // x2 because names use Unicode which takes 2-bytes per char.
+            string folderName = Encoding.Unicode.GetString(br.ReadBytes(FullByteBlock(folderNameSize))); // skip name. Name contains 2-byte chars.
             int folderContentSize = br.ReadInt32();
             br.ReadInt32(); // skip 1st unknown empty 4-byte block 
             br.ReadInt32(); // skip 2nd unknown empty 4-byte block 
-            ReadItems(br, urls);
+            return ReadItems(br);
         }
 
+        /// <summary>
+        /// Ceils given number of bytes to the closest multiple of 4 (to get full 32-bits [4-bytes] block).
+        /// </summary>
+        /// <param name="blockSize">Size of the block in bytes to ceil.</param>
+        /// <returns></returns>
         private static int FullByteBlock(int blockSize)
         {
             return (int)(Math.Ceiling(blockSize / 4.0) * 4.0);
         }
 
+        /// <summary>
+        /// Calculates difference between given size of block and it's ceiled 4-bytes block.
+        /// </summary>
+        /// <param name="blockSize">Size of the block in bytes to get diffrerence of.</param>
+        /// <returns></returns>
         private static int FullByteBlockRemainder(int blockSize)
         {
             return FullByteBlock(blockSize) - blockSize;

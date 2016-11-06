@@ -73,18 +73,22 @@ namespace SMT.Models
             base.Init();
             Version = new Version();
             Sources = new HashSet<Source>();
+            UpdateState();
         }
 
         public override void Normalize()
         {
+            Name = Name.Trim();
             foreach (var src in Sources)
                 src.Normalize();
         }
 
         public void UpdateState(bool refreshSources = true)
         {
-            if (Sources == null || Sources.Count == 0 || Sources.Count(s => s.State >= SourceState.Available) == 0)
+            if (Sources == null || Sources.Count == 0)
                 State = ModState.NotTracking;
+            else if (Sources.Count(s => s.State >= SourceState.Available) == 0)
+                State = ModState.Undefined;
             else {
                 if (refreshSources)
                 {

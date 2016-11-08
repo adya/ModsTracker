@@ -17,7 +17,6 @@ namespace SMT.ViewModels
     {
         private Source src;
         private Mod mod;
-        private bool isEnabled;
 
         private OpenSourceCommand openSource;
         private CheckSourceStateCommand checkSource;

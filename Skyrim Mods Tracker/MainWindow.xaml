@@ -218,7 +218,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Version" 
-                                                    Binding="{Binding Version, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    Binding="{Binding Version, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTemplateColumn Header="State" 
                                                         SortMemberPath="State" 
                                                         CanUserSort="True" 

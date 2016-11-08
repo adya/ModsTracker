@@ -70,9 +70,9 @@ namespace SMT
             {
                 using (MemoryStream ms = e.Data.GetData(ChromeUtils.DDChromeBookmarks) as MemoryStream)
                 {
-                    var urls = ChromeUtils.ReadBookmarks(ms.ToArray());
-                    foreach (var url in urls)
-                        viewModel.AddModSource(url.URL);
+                    var bookmarks = ChromeUtils.ReadBookmarks(ms.ToArray());
+                    foreach (var bookmark in bookmarks)
+                        viewModel.AddModSource(bookmark.URL);
                 }
             }
             else if (e.Data.GetDataPresent(ChromeUtils.DDText))
@@ -93,6 +93,35 @@ namespace SMT
         private void GroupBox_DragEnter(object sender, DragEventArgs e)
         {
             var item = e.Data;
+        }
+
+        private void dgMods_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(ChromeUtils.DDChromeBookmarks))
+                e.Effects = DragDropEffects.Link;
+            else
+                e.Effects = DragDropEffects.None;
+        }
+
+        private void dgMods_Drop(object sender, DragEventArgs e)
+        {
+            var viewModel = (DataContext as MainViewModel);
+            var frmts = e.Data.GetFormats();
+
+            if (e.Data.GetDataPresent(ChromeUtils.DDChromeBookmarks))
+            {
+                using (MemoryStream ms = e.Data.GetData(ChromeUtils.DDChromeBookmarks) as MemoryStream)
+                {
+                    var bookmarks = ChromeUtils.ReadBookmarks(ms.ToArray());
+                    foreach (var bookmark in bookmarks)
+                        viewModel.AddMod(bookmark.Name, bookmark.URL);
+                }
+            }
+            else if (e.Data.GetDataPresent(ChromeUtils.DDText))
+            {
+                viewModel.AddModSource(e.Data.GetData(ChromeUtils.DDText) as string);
+            }
+           
         }
     }
 }

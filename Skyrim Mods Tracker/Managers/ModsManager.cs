@@ -21,8 +21,10 @@ namespace SMT.Managers
 
         public static Mod ModWithID(int id) { return Mods.FirstOrDefault(m => m.ID == id); }
 
+        public static Mod ModWithName(string name) { return Mods.FirstOrDefault(m => m.Name.Trim().ToUpper() == name.Trim().ToUpper()); }
+
         #region Mod Extensions
-       
+
         public static bool HasUniqueName(this Mod mod) { return (Mods.Count(m => !m.Equals(mod) && m.Name.Equals(mod.Name)) == 0); }
 
         #endregion

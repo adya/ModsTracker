@@ -32,6 +32,10 @@ namespace SMT.Managers
             {
                 src = new Source();
                 src.URL = url;
+                if (src.Server != null)
+                {
+                    src.Language = src.Server.Language;
+                }
             }
             else
                 src = null;

@@ -15,9 +15,8 @@ namespace SMT.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
-        private bool isLocked;
         private ICollection<Mod> mods;
-        private BackgroundWorker Worker { get; set; }
+        private bool isChecking;
 
         private ObservableCollection<ModItemViewModel> modsViewModels;
 
@@ -27,14 +26,14 @@ namespace SMT.ViewModels
         private EditModViewModel editMod;
         private EditSourceViewModel editSource;
 
-        private CheckAllModsCommand checkAllMods;
-        private SaveChangesCommand saveChanges;
+        private CheckAllModsCommand checkAllModsCommand;
+        private SaveChangesCommand saveChangesCommand;
 
-        private BaseCommand<ModItemViewModel> addMod;
-        private BaseCommand<ModItemViewModel> deleteMod;
+        private BaseCommand<ModItemViewModel> addModCommand;
+        private BaseCommand<ModItemViewModel> deleteModCommand;
 
-        private BaseCommand<SourceItemViewModel> addSource;
-        private BaseCommand<SourceItemViewModel> deleteSource;
+        private BaseCommand<SourceItemViewModel> addSourceCommand;
+        private BaseCommand<SourceItemViewModel> deleteSourceCommand;
 
         private ActionsManager ActionsManager { get; set; }
 
@@ -85,45 +84,47 @@ namespace SMT.ViewModels
             get { return SelectedMod != null; }
         }
 
+        public bool IsChecking { get { return isChecking; } set { isChecking = value; OnPropertyChanged(); OnPropertyChanged("CanCheck"); } }
+        public bool CanCheck { get {return !IsChecking; } }
         #region Commands
 
-        public CheckAllModsCommand CheckAllMods
+        public CheckAllModsCommand CheckAllModsCommand
         {
-            get { return checkAllMods; }
-            private set { checkAllMods = value; OnPropertyChanged(); }
+            get { return checkAllModsCommand; }
+            private set { checkAllModsCommand = value; OnPropertyChanged(); }
         }
 
 
-        public SaveChangesCommand SaveChanges
+        public SaveChangesCommand SaveChangesCommand
         {
-            get { return saveChanges; }
-            set { saveChanges = value; }
+            get { return saveChangesCommand; }
+            set { saveChangesCommand = value; }
         }
         
 
-        public BaseCommand<ModItemViewModel> AddMod
+        public BaseCommand<ModItemViewModel> AddModCommand
         {
-            get { return addMod; }
-            private set { addMod = value; OnPropertyChanged();
+            get { return addModCommand; }
+            private set { addModCommand = value; OnPropertyChanged();
             }
         }
-        public BaseCommand<ModItemViewModel> DeleteMod
+        public BaseCommand<ModItemViewModel> DeleteModCommand
         {
-            get { return deleteMod; }
-            private set { deleteMod = value; OnPropertyChanged();
+            get { return deleteModCommand; }
+            private set { deleteModCommand = value; OnPropertyChanged();
             }
         }
 
-        public BaseCommand<SourceItemViewModel> AddSource
+        public BaseCommand<SourceItemViewModel> AddSourceCommand
         {
-            get { return addSource; }
-            private set { addSource = value; OnPropertyChanged();
+            get { return addSourceCommand; }
+            private set { addSourceCommand = value; OnPropertyChanged();
             }
         }
-        public BaseCommand<SourceItemViewModel> DeleteSource
+        public BaseCommand<SourceItemViewModel> DeleteSourceCommand
         {
-            get { return deleteSource; }
-            private set { deleteSource = value; OnPropertyChanged(); }
+            get { return deleteSourceCommand; }
+            private set { deleteSourceCommand = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -171,7 +172,7 @@ namespace SMT.ViewModels
                     foreach (var src in SelectedMod.Mod.Sources)
                         list.Add(new SourceItemViewModel(src, SelectedMod.Mod, this));
                     InitSourcesActions();
-                    DeleteMod.Parameter = SelectedMod;  // setting model manualy because Binding via CommanParameter runs in a wrong order causing parameter to be null at this point
+                    DeleteModCommand.Parameter = SelectedMod;  // setting model manualy because Binding via CommanParameter runs in a wrong order causing parameter to be null at this point
                 }
                 else
                 {
@@ -185,13 +186,13 @@ namespace SMT.ViewModels
                 EditSource = IsEditableSource ? new EditSourceViewModel(SelectedSource.Source) : null;
                 OnPropertyChanged("IsEditableSource");
                 if (IsEditableSource)
-                    DeleteSource.Parameter = SelectedSource; // setting model manualy because Binding via CommanParameter runs in a wrong order causing parameter to be null at this point
+                    DeleteSourceCommand.Parameter = SelectedSource; // setting model manualy because Binding via CommanParameter runs in a wrong order causing parameter to be null at this point
             }
         }
 
         public async void RunCheckMods(params ModItemViewModel[] mods)
         {
-           
+            IsChecking = true;
             Status.Status = "Checking mods...";
             int totalTasks = mods.Aggregate(0, (acc, x) => acc + x.Sources.Count); // Count all tasks to be executed.
             float executed = 0;
@@ -206,6 +207,7 @@ namespace SMT.ViewModels
             });
             await Scheduler.CheckModTask(progress, mods.Select(m => m.Mod).ToArray());
 
+            IsChecking = false;
             Status.IsProgressVisible = false;
             Status.Status = DefaultStatus;
         }
@@ -232,25 +234,25 @@ namespace SMT.ViewModels
 
         private void InitActions()
         {
-            AddMod = new AddModelCommand<ModItemViewModel>(Mods, new ModItemViewModel(new Mod(), this), ActionsManager);
-            AddMod.CommandExecuted += ((cmd, param) =>
+            AddModCommand = new AddModelCommand<ModItemViewModel>(Mods, new ModItemViewModel(new Mod(), this), ActionsManager);
+            AddModCommand.CommandExecuted += ((cmd, param) =>
             {
                 SelectedMod = param;
                 Status.IsProgressVisible = false;
                 Status.Status = string.Format("Added mod with ID = {0}", SelectedMod.Mod.ID);
             });
 
-            DeleteMod = new DeleteModelCommand<ModItemViewModel>(Mods, ActionsManager);
-            CheckAllMods = new CheckAllModsCommand(this);
-            SaveChanges = new SaveChangesCommand();
+            DeleteModCommand = new DeleteModelCommand<ModItemViewModel>(Mods, ActionsManager);
+            CheckAllModsCommand = new CheckAllModsCommand(this);
+            SaveChangesCommand = new SaveChangesCommand();
         }
 
         private void InitSourcesActions()
         {
-            AddSource = new AddModelCommand<SourceItemViewModel>(SelectedMod.Sources, new SourceItemViewModel(SelectedMod.Mod, this), ActionsManager);
-            AddSource.CommandExecuted += ((cmd, param) => SelectedSource = param);
+            AddSourceCommand = new AddModelCommand<SourceItemViewModel>(SelectedMod.Sources, new SourceItemViewModel(SelectedMod.Mod, this), ActionsManager);
+            AddSourceCommand.CommandExecuted += ((cmd, param) => SelectedSource = param);
 
-            DeleteSource = new DeleteModelCommand<SourceItemViewModel>(SelectedMod.Sources, ActionsManager);
+            DeleteSourceCommand = new DeleteModelCommand<SourceItemViewModel>(SelectedMod.Sources, ActionsManager);
         }
 
         public void AddModSource(string sourceURL)
@@ -258,7 +260,32 @@ namespace SMT.ViewModels
             Source source;
             if (SourcesManager.TryBuildModSource(sourceURL, out source) && SelectedMod != null)
             {
-                AddSource.Execute(new SourceItemViewModel(source, SelectedMod.Mod, this));
+                AddSourceCommand.Execute(new SourceItemViewModel(source, SelectedMod.Mod, this));
+            }
+        }
+
+        public void AddMod(string name, string sourceURL)
+        {
+            
+            Mod mod = ModsManager.ModWithName(name);
+            var item = Mods.FirstOrDefault(i => i.Mod.Equals(mod));
+            Source source;
+            if (SourcesManager.TryBuildModSource(sourceURL, out source))
+            {
+               
+                if (mod == null)
+                {
+                    mod = new Mod() { Name = name };
+                    item = new ModItemViewModel(mod, this);
+                    AddModCommand.Execute(item);
+                }
+                SelectedMod = item;
+                mod.Language = source.Language;
+
+                var srcItem = Mods.SelectMany(i => i.Sources).FirstOrDefault(s => s.Source.HasValidURL && s.Source.URL == sourceURL);
+                if (srcItem == null)
+                    AddSourceCommand.Execute(new SourceItemViewModel(source, mod, this));
+                SelectedSource = srcItem;
             }
         }
 

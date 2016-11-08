@@ -5,7 +5,7 @@
     {
       "Pattern": ".*<br><b>\\s*Версия:\\s*</b>\\s*(.+).*",
       "URL": "http://modgames.net",
-      "Language": 0,
+      "Language": 1,
       "State": 0,
       "Cookies": null,
       "Name": "ModGames",
@@ -14,7 +14,7 @@
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "https://nexusmods.com",
-      "Language": 0,
+      "Language": 2,
       "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus",
@@ -23,7 +23,7 @@
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://skyrim.nexusmods.com",
-      "Language": 0,
+      "Language": 2,
       "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
@@ -32,7 +32,7 @@
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://nexusmods.com",
-      "Language": 0,
+      "Language": 2,
       "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
@@ -41,7 +41,7 @@
     {
       "Pattern": ".*<p\\s+class=\"file-version\">\\s*<strong>\\s*(.+)\\s*</strong>.*",
       "URL": "http://www.nexusmods.com",
-      "Language": 0,
+      "Language": 2,
       "State": 0,
       "Cookies": "__qca=P0-723839978-1452169485648; member_id=4613231; pass_hash=368156fca52eb0aa0f2fc38141345a60; sid=AGABACuBGHEHvHGFvAzAFCBzssEtusuuHByHyxyA; CookieLawNexus=accepted; ab=1|1462550832; _ga=GA1.2.693213497.1452169486; _gat=1; __utmt=1; __utma=117333529.693213497.1452169486.1462548440.1462550532.18; __utmb=117333529.1.10.1462550532; __utmc=117333529; __utmz=117333529.1462550532.18.8.utmcsr=google|utmccn=(organic )|utmcmd=organic|utmctr=(not%20provided )",
       "Name": "Nexus old",
@@ -50,7 +50,7 @@
     {
       "Pattern": ".*",
       "URL": "http://tesall.ru",
-      "Language": 0,
+      "Language": 1,
       "State": 0,
       "Cookies": null,
       "Name": "TESALL",
